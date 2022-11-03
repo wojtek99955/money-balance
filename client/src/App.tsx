@@ -3,7 +3,7 @@ import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
 import styled from "styled-components";
 import StartPage from "./components/StartPage";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 
 const AppContainer = styled.div`
   max-width: 1600px;

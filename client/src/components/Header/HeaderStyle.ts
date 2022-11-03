@@ -34,7 +34,8 @@ export const StyledLink = styled(Link)`
     color: ${({ theme }) => theme.colors.main.default};
     border: ${({ theme }) => `2px solid ${theme.colors.main.default}`};
     &:hover {
-      background-color: ${({ theme }) => theme.colors.main.default};
+      background-color: ${({ theme }) => theme.colors.main.hover};
+      border: ${({ theme }) => `2px solid ${theme.colors.main.hover}`};
       color: white;
     }
     &:active {

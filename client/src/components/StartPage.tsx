@@ -4,6 +4,8 @@ import AnimatedStats from "../assets/svg/AnimatedStats";
 
 const Container = styled.div`
   width: 100%;
+  background-color: ${({ theme }) =>
+    theme.colors.backgroundColor.lightBackground};
 `;
 const MainTitle = styled.h1`
   color: ${({ theme }) => theme.colors.title};

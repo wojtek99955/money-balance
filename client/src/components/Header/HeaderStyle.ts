@@ -6,6 +6,7 @@ export const StyledHeader = styled.header`
   width: 100%;
   padding: 0.8rem 1rem;
   border-bottom: 1px solid #e1e4e7;
+  background-color: white;
 `;
 export const Container = styled.div`
   display: flex;

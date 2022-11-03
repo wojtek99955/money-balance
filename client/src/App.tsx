@@ -8,7 +8,6 @@ import Header from "./components/Header/Header";
 const AppContainer = styled.div`
   max-width: 1600px;
   margin: auto;
-  padding: 0 1rem;
 `;
 function App() {
   return (

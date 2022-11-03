@@ -4,6 +4,8 @@ export const theme = {
     title: "#374257",
     grey: "#bfc0c5",
     lightGrey: "#eff0f6",
-    lightBackground: "#fafbfc",
+    backgroundColor: {
+      lightBackground: "#fafbfc",
+    },
   },
 };

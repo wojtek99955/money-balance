@@ -78,7 +78,8 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.lightBackground};
+  background-color: ${({ theme }) =>
+    theme.colors.backgroundColor.lightBackground};
   align-items: center;
 `;
 export const Description = styled.div`

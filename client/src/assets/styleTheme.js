@@ -1,7 +1,9 @@
 export const theme = {
-    colors: {
-        main: "#397EF6",
-        title: "#374257",
-        lightGrey: "#bdbfc4"
-    }
-}
+  colors: {
+    main: { default: "#397EF6", hover: "#0a5ae5", active: "#70a2f9" },
+    title: "#374257",
+    grey: "#bfc0c5",
+    lightGrey: "#eff0f6",
+    lightBackground: "#fafbfc",
+  },
+};

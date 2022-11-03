@@ -24,6 +24,7 @@ export const FormContainer = styled.div`
     font-size: 1.2rem;
     border-radius: 8px;
     height: 3.8rem;
+    outline-color: ${({ theme }) => theme.colors.main.active};
   }
   button {
     background-color: ${({ theme }) => theme.colors.main.default};

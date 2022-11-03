@@ -45,8 +45,14 @@ const StyledLink = styled(Link)`
   display: flex;
   justify-content: center;
   width: 12rem;
-  background-color: ${({ theme }) => theme.colors.main};
+  background-color: ${({ theme }) => theme.colors.main.default};
   color: white;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.main.hover};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors.main.active};
+  }
 `;
 const SvgContainer = styled.div`
   width: 70%;

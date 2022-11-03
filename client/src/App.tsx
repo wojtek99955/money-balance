@@ -3,6 +3,7 @@ import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
 import styled from "styled-components";
 import StartPage from "./components/StartPage";
+import Header from "./components/Header";
 
 const AppContainer = styled.div`
   max-width: 1600px;
@@ -11,13 +12,16 @@ const AppContainer = styled.div`
 `;
 function App() {
   return (
-    <AppContainer>
-      <Routes>
-        <Route path="/" element={<StartPage />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/sign-in" element={<SignIn />} />
-      </Routes>
-    </AppContainer>
+    <>
+      <Header />
+      <AppContainer>
+        <Routes>
+          <Route path="/" element={<StartPage />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
+        </Routes>
+      </AppContainer>
+    </>
   );
 }
 

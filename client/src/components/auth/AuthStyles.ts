@@ -26,7 +26,7 @@ export const FormContainer = styled.div`
     height: 3.8rem;
   }
   button {
-    background-color: ${({ theme }) => theme.colors.main};
+    background-color: ${({ theme }) => theme.colors.main.default};
     border: none;
     color: white;
     padding: 1rem 0;
@@ -35,6 +35,12 @@ export const FormContainer = styled.div`
     border-radius: 8px;
     cursor: pointer;
     height: 3.8rem;
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.main.hover};
+    }
+    &:active {
+      background-color: ${({ theme }) => theme.colors.main.active};
+    }
   }
   label {
     color: #8894a9;
@@ -42,7 +48,10 @@ export const FormContainer = styled.div`
   }
   a {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.main};
+    color: ${({ theme }) => theme.colors.main.default};
+    &:hover {
+      color: ${({ theme }) => theme.colors.main.hover};
+    }
   }
   div {
     &:first-of-type {

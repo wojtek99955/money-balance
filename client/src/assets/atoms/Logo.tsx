@@ -4,7 +4,7 @@ import styled from "styled-components";
 const LogoContainer = styled.div`
   font-size: 1.8rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.main};
+  color: ${({ theme }) => theme.colors.main.default};
   cursor: pointer;
 `;
 const Logo = () => {

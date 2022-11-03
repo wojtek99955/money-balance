@@ -9,6 +9,7 @@ const MainTitle = styled.h1`
   color: ${({ theme }) => theme.colors.title};
   font-size: 2.5rem;
   margin: auto;
+  text-align: center;
 `;
 
 const MainSection = styled.main`
@@ -16,7 +17,16 @@ const MainSection = styled.main`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  max-width: 600px;
+  margin: auto;
   margin-top: 10rem;
+
+  p {
+    color: ${({ theme }) => theme.colors.grey};
+    font-size: 1.2rem;
+    margin-top: 3rem;
+    text-align: center;
+  }
 `;
 
 const AuthSection = styled.div`
@@ -42,7 +52,7 @@ const StyledLink = styled(Link)`
   border: ${({ theme }) => `2px solid ${theme.colors.main}`};
 `;
 const SvgContainer = styled.div`
-  width: 30rem;
+  width: 70%;
   margin: auto;
   margin-top: 8rem;
 `;
@@ -53,6 +63,11 @@ const StartPage = () => {
         <MainTitle>
           Start manage your Finances <br /> smart with Money Balance.
         </MainTitle>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus,
+          placeat excepturi at molestias maxime minus aut. Ea cum iste
+          voluptatum.
+        </p>
         <AuthSection>
           <StyledLink to="/sign-up">Register free</StyledLink>
           <StyledLink to="/sign-in">Sign in</StyledLink>

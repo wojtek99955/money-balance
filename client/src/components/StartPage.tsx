@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import AnimatedStats from "../assets/svg/AnimatedStats";
 
 const Container = styled.div`
   width: 100%;
@@ -40,7 +41,11 @@ const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.colors.main};
   border: ${({ theme }) => `2px solid ${theme.colors.main}`};
 `;
-
+const SvgContainer = styled.div`
+  width: 30rem;
+  margin: auto;
+  margin-top: 8rem;
+`;
 const StartPage = () => {
   return (
     <Container>
@@ -53,6 +58,9 @@ const StartPage = () => {
           <StyledLink to="/sign-in">Sign in</StyledLink>
         </AuthSection>
       </MainSection>
+      <SvgContainer>
+        <AnimatedStats />
+      </SvgContainer>
     </Container>
   );
 };

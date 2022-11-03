@@ -19,7 +19,7 @@ const MainSection = styled.main`
   align-items: center;
   max-width: 600px;
   margin: auto;
-  margin-top: 10rem;
+  padding-top: 10rem;
 
   p {
     color: ${({ theme }) => theme.colors.grey};
@@ -38,18 +38,13 @@ const AuthSection = styled.div`
 const StyledLink = styled(Link)`
   display: block;
   text-decoration: none;
-  padding: 0.8rem 2.5rem;
+  padding: 1rem 2.6rem;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   width: 12rem;
-
-  &:first-of-type {
-    background-color: ${({ theme }) => theme.colors.main};
-    color: white;
-  }
-  color: ${({ theme }) => theme.colors.main};
-  border: ${({ theme }) => `2px solid ${theme.colors.main}`};
+  background-color: ${({ theme }) => theme.colors.main};
+  color: white;
 `;
 const SvgContainer = styled.div`
   width: 70%;
@@ -70,7 +65,6 @@ const StartPage = () => {
         </p>
         <AuthSection>
           <StyledLink to="/sign-up">Register free</StyledLink>
-          <StyledLink to="/sign-in">Sign in</StyledLink>
         </AuthSection>
       </MainSection>
       <SvgContainer>

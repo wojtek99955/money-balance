@@ -1,16 +1,12 @@
 import { Formik, Form, Field } from "formik";
-
-interface LoginType {
-  username: string;
-  password: string;
-}
+import {Auth} from "../Interfaces/Auth";
 
 const initialValues = {
   username: "",
   password: "",
 };
 
-const handleSubmit = async (val: LoginType) => {
+const handleSubmit = async (val: Auth) => {
   const res = await fetch("http://localhost:3500/auth", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

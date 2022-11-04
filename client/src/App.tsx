@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
 import styled from "styled-components";
-import StartPage from "./components/StartPage";
+import StartPage from "./components/StartPage/StartPage";
 import Header from "./components/Header/Header";
 
 const AppContainer = styled.div`

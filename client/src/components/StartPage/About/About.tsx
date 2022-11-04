@@ -3,6 +3,12 @@ import { BiWallet } from "react-icons/bi";
 import { BiBarChartSquare } from "react-icons/bi";
 import { BiMedal } from "react-icons/bi";
 
+interface Description {
+  icon: JSX.Element;
+  name: string;
+  text: string;
+}
+
 const Container = styled.div`
   margin: 2rem 1rem;
   h2 {
@@ -79,7 +85,7 @@ const About = () => {
         omnis assumenda officia consequuntur illo minus?
       </p>
       <GridContainer>
-        {descriptions.map((item: any) => {
+        {descriptions.map((item: Description) => {
           return (
             <GridItem>
               {item.icon}

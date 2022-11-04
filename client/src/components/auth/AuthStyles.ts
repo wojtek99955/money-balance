@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const FormContainer = styled.div`
   width: 50%;
-  padding: 0 2rem 0 3rem;
+  padding: 0 1rem 0 3rem;
 
   h1 {
     color: ${({ theme }) => theme.colors.title};
@@ -23,7 +23,7 @@ export const FormContainer = styled.div`
     border: ${({ theme }) => `2px solid ${theme.colors.lightGrey}`};
     font-size: 1.2rem;
     border-radius: 8px;
-    height: 3.8rem;
+    height: 3.4rem;
     outline-color: ${({ theme }) => theme.colors.main.active};
   }
   button {
@@ -35,7 +35,7 @@ export const FormContainer = styled.div`
     font-size: 1.2rem;
     border-radius: 8px;
     cursor: pointer;
-    height: 3.8rem;
+    height: 3.4rem;
     &:hover {
       background-color: ${({ theme }) => theme.colors.main.hover};
     }
@@ -69,7 +69,7 @@ export const FormWrapper = styled.div`
 `;
 
 export const SvgContainer = styled.div`
-  width: 100%;
+  width: 85%;
   max-width: 700px;
 `;
 export const Wrapper = styled.div`
@@ -81,6 +81,7 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }) =>
     theme.colors.backgroundColor.lightBackground};
   align-items: center;
+  padding-left: 1rem;
 `;
 export const Description = styled.div`
   p {

@@ -1,4 +1,5 @@
 import About from "./About/About";
+import Footer from "./Footer/Footer";
 import Main from "./Main/Main";
 
 const StartPage = () => {
@@ -6,6 +7,7 @@ const StartPage = () => {
     <>
       <Main />
       <About />
+      <Footer />
     </>
   );
 };

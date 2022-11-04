@@ -2,8 +2,6 @@ import { Formik, Form, Field } from "formik";
 import { Auth } from "../../Interfaces/Auth";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Charts from "../../assets/svg/Charts";
-import Logo from "../../assets/atoms/Logo";
 import { FormContainer, FormWrapper, Container } from "./AuthStyles";
 import DescriptionSection from "./DescriptionSection";
 

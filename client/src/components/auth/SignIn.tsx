@@ -3,11 +3,17 @@ import { Auth } from "../../Interfaces/Auth";
 import { Container, FormContainer, FormWrapper } from "./AuthStyles";
 import DescriptionSection from "./DescriptionSection";
 import { Link } from "react-router-dom";
+import * as yup from "yup";
 
 const initialValues = {
   username: "",
   password: "",
 };
+
+const validationSchema = yup.object().shape({
+  name: yup.string().required("Required"),
+  password: yup.string().required("Required"),
+});
 
 const handleSubmit = async (val: Auth) => {
   const res = await fetch("http://localhost:3500/auth", {
@@ -31,15 +37,16 @@ const SignIn = () => {
         <FormWrapper>
           <Formik
             initialValues={initialValues}
+            validationSchema={validationSchema}
             onSubmit={(val) => {
               handleSubmit(val);
             }}
           >
             <Form>
               <label htmlFor="username">Username</label>
-              <Field type="text" name="username" />
+              <Field type="text" name="username" placeholder="username" />
               <label htmlFor="password">Password</label>
-              <Field type="password" name="password" />
+              <Field type="password" name="password" placeholder="password" />
               <button type="submit">Sign in</button>
             </Form>
           </Formik>

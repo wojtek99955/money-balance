@@ -1,6 +1,5 @@
 import { Formik, Form, Field } from "formik";
 import { Auth } from "../../Interfaces/Auth";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FormContainer, FormWrapper, Container } from "./AuthStyles";
 import DescriptionSection from "./DescriptionSection";

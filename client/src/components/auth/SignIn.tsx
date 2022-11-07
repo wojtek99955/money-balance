@@ -2,9 +2,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Auth } from "../../Interfaces/Auth";
 import { Container, FormContainer, FormWrapper } from "./AuthStyles";
 import DescriptionSection from "./DescriptionSection";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import ValidationErrorMsg from "../../assets/atoms/ValidationErrorMsg";
+import jwt_decode from "jwt-decode";
 
 const initialValues = {
   username: "",
@@ -16,16 +17,29 @@ const validationSchema = yup.object().shape({
   password: yup.string().required("Required"),
 });
 
-const handleSubmit = async (val: Auth) => {
-  const res = await fetch("http://localhost:3500/auth", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify(val),
-  });
-};
-
 const SignIn = () => {
+  let navigate = useNavigate();
+
+  const handleSubmit = async (val: Auth) => {
+    const response: any = await fetch("http://localhost:3500/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ username: val.username, password: val.password }),
+    });
+
+    let responseOK = response && response.ok;
+    if (responseOK) {
+      let JWT = await response.json();
+      const decoded: any = jwt_decode(JWT.accessToken);
+      localStorage.setItem(
+        "username",
+        JSON.stringify(decoded.UserInfo.username)
+      );
+      navigate("/dashboard");
+    }
+  };
+
   return (
     <Container>
       <DescriptionSection />

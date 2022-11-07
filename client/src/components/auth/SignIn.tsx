@@ -1,9 +1,10 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Auth } from "../../Interfaces/Auth";
 import { Container, FormContainer, FormWrapper } from "./AuthStyles";
 import DescriptionSection from "./DescriptionSection";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
+import ValidationErrorMsg from "../../assets/atoms/ValidationErrorMsg";
 
 const initialValues = {
   username: "",
@@ -11,8 +12,11 @@ const initialValues = {
 };
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required("Required"),
-  password: yup.string().required("Required"),
+  username: yup.string().min(3, "Minimum 3 characters").required("Required"),
+  password: yup
+    .string()
+    .matches(/\d/, "One number required")
+    .required("Required"),
 });
 
 const handleSubmit = async (val: Auth) => {
@@ -45,8 +49,10 @@ const SignIn = () => {
             <Form>
               <label htmlFor="username">Username</label>
               <Field type="text" name="username" placeholder="username" />
+              <ErrorMessage component={ValidationErrorMsg} name="username" />
               <label htmlFor="password">Password</label>
               <Field type="password" name="password" placeholder="password" />
+              <ErrorMessage component={ValidationErrorMsg} name="password" />
               <button type="submit">Sign in</button>
             </Form>
           </Formik>

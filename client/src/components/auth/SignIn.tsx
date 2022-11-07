@@ -13,10 +13,7 @@ const initialValues = {
 
 const validationSchema = yup.object().shape({
   username: yup.string().min(3, "Minimum 3 characters").required("Required"),
-  password: yup
-    .string()
-    .matches(/\d/, "One number required")
-    .required("Required"),
+  password: yup.string().required("Required"),
 });
 
 const handleSubmit = async (val: Auth) => {

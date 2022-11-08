@@ -66,6 +66,7 @@ export const FormContainer = styled.div`
 
 export const FormWrapper = styled.div`
   padding-top: 2rem;
+  max-width: 800px;
 `;
 
 export const SvgContainer = styled.div`

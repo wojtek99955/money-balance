@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {
@@ -14,6 +14,7 @@ console.log(username);
 
 const Profile = () => {
   let navigate = useNavigate();
+  const profileWrapperRef = useRef<HTMLDivElement>(null);
   const [showOptions, setShowOptions] = useState(false);
 
   const toggleOptions = () => {
@@ -28,12 +29,27 @@ const Profile = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (e: any) => {
+      if (
+        profileWrapperRef.current &&
+        !profileWrapperRef.current.contains(e.target)
+      ) {
+        setShowOptions(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  });
   return (
     <Container>
       <AnimatePresence>
         {showOptions ? (
           <OptionsContainer
-            initial={{ height: 0, y: 0 }}
+            initial={{ height: 0, y: 10 }}
             animate={{ height: 200, y: -15 }}
             exit={{ height: 0, opacity: 0 }}
           >
@@ -46,7 +62,7 @@ const Profile = () => {
           </OptionsContainer>
         ) : null}
       </AnimatePresence>
-      <ProfileWrapper onClick={toggleOptions}>
+      <ProfileWrapper onClick={toggleOptions} ref={profileWrapperRef}>
         <span>{username!.slice(0, 10)}</span>
         {showOptions ? <UpIcon /> : <DownIcon />}
       </ProfileWrapper>

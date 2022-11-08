@@ -4,6 +4,7 @@ import { FiChevronUp } from "react-icons/fi";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   position: absolute;
@@ -23,7 +24,7 @@ const UpIcon = styled(FiChevronUp)`
 const OptionsContainer = styled(motion.div)`
   background-color: ${({ theme }) => theme.colors.main.light};
   border-radius: 12px;
-  padding: 1rem;
+  padding: 1rem 0;
   overflow: hidden;
   height: 200px;
 
@@ -35,8 +36,11 @@ const OptionsContainer = styled(motion.div)`
     height: 100%;
     li {
       color: white;
-      padding: 0.2rem 0;
+      padding: 0.6rem 1rem;
       cursor: pointer;
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.main.hover};
+      }
     }
   }
 `;
@@ -57,12 +61,23 @@ const ProfileWrapper = styled.div`
 `;
 
 const username = JSON.parse(localStorage.getItem("username")!);
+console.log(username);
 
 const Profile = () => {
+  let navigate = useNavigate();
   const [showOptions, setShowOptions] = useState(false);
 
   const toggleOptions = () => {
     setShowOptions((prev) => !prev);
+  };
+  const handleLogout = async () => {
+    try {
+      await fetch("http://localhost:3500/auth/logout");
+      localStorage.removeItem("username");
+      navigate("/sign-in");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <Container>
@@ -77,13 +92,13 @@ const Profile = () => {
               <li>Profile</li>
               <li>Statistics</li>
               <li>Wallet</li>
-              <li>Logout</li>
+              <li onClick={handleLogout}>Logout</li>
             </ul>
           </OptionsContainer>
         ) : null}
       </AnimatePresence>
       <ProfileWrapper onClick={toggleOptions}>
-        <span>{username.slice(0, 10)}</span>
+        <span>{username!.slice(0, 10)}</span>
         {showOptions ? <UpIcon /> : <DownIcon />}
       </ProfileWrapper>
     </Container>

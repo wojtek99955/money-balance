@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const LogoContainer = styled.div`
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.main.default};
   cursor: pointer;

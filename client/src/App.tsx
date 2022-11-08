@@ -5,15 +5,32 @@ import styled from "styled-components";
 import StartPage from "./components/StartPage/StartPage";
 import RequireAuth from "./components/RequireAuth";
 import Dashboard from "./components/Dashboard/Dashboard";
+import { useLocation } from "react-router-dom";
+import Sidebar from "./components/Dashboard/Sidebar/Sidebar";
 
-const AppContainer = styled.div`
-  max-width: 1600px;
+interface StyleProps {
+  location: string;
+}
+const AppContainer = styled.div<StyleProps>`
   margin: auto;
+  display: flex;
+  flex-direction: ${({ location }) =>
+    location === "/" || location === "/sign-up" || location === "/sign-in"
+      ? "column"
+      : "row"};
 `;
 function App() {
+  let location = useLocation();
   return (
     <>
-      <AppContainer>
+      <AppContainer location={location.pathname}>
+        <div>
+          {location.pathname === "/" ||
+          location.pathname === "/sign-up" ||
+          location.pathname === "/sign-in" ? null : (
+            <Sidebar />
+          )}
+        </div>
         <Routes>
           <Route path="/" element={<StartPage />} />
           <Route path="/sign-up" element={<SignUp />} />

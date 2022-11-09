@@ -3,9 +3,9 @@ const jwt_decode = require("jwt-decode");
 const asyncHandler = require("express-async-handler");
 
 const createExpense = async (req, res) => {
-  const { username, category, amount } = req.body;
+  const { username, category, amount, date } = req.body;
 
-  const expense = await Expense.create({ category, username, amount });
+  const expense = await Expense.create({ category, username, amount, date });
 
   if (expense) {
     return res.status(201).json({ message: "New expense created" });

@@ -1,6 +1,6 @@
 import { DashboardBox } from "../../../assets/atoms/DashboardBox";
 import { useGetExpensesQuery } from "../../../api/apiSlice";
-import { getCategoryIcon } from "../../../helpers/getCategoryIcon";
+import { getExpenseCategoryIcon } from "../../../helpers/getExpenseCategoryIcon";
 import {
   Price,
   ExpensesWrapper,
@@ -26,7 +26,7 @@ const Expenses = () => {
             return (
               <Expense>
                 <ExpenseDataGroup>
-                  {getCategoryIcon(expense.category)}
+                  {getExpenseCategoryIcon(expense.category)}
                   <div>
                     <div>{expense.category}</div>
                     <span>{expense.date}</span>

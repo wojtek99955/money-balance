@@ -44,7 +44,7 @@ const IconContainer = styled.div<StyleProps>`
   background-color: ${({ color }) => color};
 `;
 
-export const getCategoryIcon = (category: string) => {
+export const getExpenseCategoryIcon = (category: string) => {
   switch (category) {
     case "restaurants":
       return (

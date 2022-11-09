@@ -3,7 +3,7 @@ import { DashboardBox } from "../../assets/atoms/DashboardBox";
 import { useGetExpensesQuery } from "../../api/apiSlice";
 import { Expense } from "../../Interfaces/Expense";
 import { RouteContainer } from "../../assets/atoms/RouteContainer";
-import { getCategoryIcon } from "../../helpers/getCategoryIcon";
+import { getExpenseCategoryIcon } from "../../helpers/getExpenseCategoryIcon";
 import { IoMdClose } from "react-icons/io";
 import { useDeleteExpenseMutation } from "../../api/apiSlice";
 
@@ -75,7 +75,7 @@ const Expenses = () => {
             <DashboardBox key={expense._id}>
               <ExpensesWrapper>
                 <ExpenseDataGroup>
-                  {getCategoryIcon(expense.category)}
+                  {getExpenseCategoryIcon(expense.category)}
                   <div>
                     <div>{expense.category}</div>
                     <span>{expense.date}</span>

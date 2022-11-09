@@ -3,10 +3,8 @@ import { TbWallet } from "react-icons/tb";
 import { GiReceiveMoney } from "react-icons/gi";
 import { GiExpense } from "react-icons/gi";
 import { IoMdAddCircleOutline } from "react-icons/io";
-
-interface IconContainerProps {
-  color: string;
-}
+import { useState } from "react";
+import ExpensesModal from "../ExpensesModal/ExpensesModal";
 
 const DashBoardBox = styled.div`
   background-color: white;
@@ -57,7 +55,12 @@ const AddIcon = styled(IoMdAddCircleOutline)`
   color: ${({ theme }) => theme.colors.grey};
   cursor: pointer;
 `;
+
 const Summary = () => {
+  const [openExpensesModal, setOpenExpensesModal] = useState(false);
+  const handleOpenExpensesModal = () => {
+    setOpenExpensesModal(true);
+  };
   return (
     <DashBoardBox>
       <BoxWrapper>
@@ -80,9 +83,12 @@ const Summary = () => {
             <ExpenseIcon />
           </IconContainer>
           <h3>Expenses</h3>
-          <AddIcon />
+          <AddIcon onClick={handleOpenExpensesModal} />
         </ItemContainer>
       </BoxWrapper>
+      {openExpensesModal ? (
+        <ExpensesModal setOpenExpensesModal={setOpenExpensesModal} />
+      ) : null}
     </DashBoardBox>
   );
 };

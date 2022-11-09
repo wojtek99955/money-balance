@@ -27,7 +27,29 @@ const getExpenses = asyncHandler(async (req, res) => {
   res.json({ expenses });
 });
 
+const deleteExpense = async (req, res) => {
+  const { id } = req.body;
+  console.log(id);
+
+  if (!id) {
+    return res.status(400).json({ message: "Expense ID required" });
+  }
+
+  const expense = await Expense.findById(id).exec();
+
+  if (!expense) {
+    return res.status(400).json({ message: "Expense not found" });
+  }
+
+  const result = await expense.deleteOne();
+
+  const reply = `Expense ${result.title} with ID ${result._id} deleted`;
+
+  res.json(reply);
+};
+
 module.exports = {
   createExpense,
   getExpenses,
+  deleteExpense,
 };

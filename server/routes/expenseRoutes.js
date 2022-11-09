@@ -5,6 +5,7 @@ const expenseController = require("../controllers/expenseController");
 router
   .route("/")
   .get(expenseController.getExpenses)
-  .post(expenseController.createExpense);
+  .post(expenseController.createExpense)
+  .delete(expenseController.deleteExpense);
 
 module.exports = router;

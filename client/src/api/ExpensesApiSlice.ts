@@ -21,7 +21,19 @@ export const expensesApiSlice = createApi({
       }),
       invalidatesTags: ["Expenses"],
     }),
+    deleteExpense: builder.mutation({
+      query: ({ id }) => ({
+        url: "/expense",
+        method: "DELETE",
+        body: { id },
+      }),
+      invalidatesTags: ["Expenses"],
+    }),
   }),
 });
 
-export const { useGetExpensesQuery, useAddExpensesMutation } = expensesApiSlice;
+export const {
+  useGetExpensesQuery,
+  useAddExpensesMutation,
+  useDeleteExpenseMutation,
+} = expensesApiSlice;

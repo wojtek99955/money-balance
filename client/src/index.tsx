@@ -7,7 +7,7 @@ import { GlobalStyles } from "./assets/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./assets/styleTheme";
 import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
-import { expensesApiSlice } from "./api/ExpensesApiSlice";
+import { apiSlice } from "./api/apiSlice";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,7 +17,7 @@ root.render(
     <BrowserRouter>
       <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <ApiProvider api={expensesApiSlice}>
+        <ApiProvider api={apiSlice}>
           <App />
         </ApiProvider>
       </ThemeProvider>

@@ -7,9 +7,11 @@ export const expensesApiSlice = createApi({
     baseUrl: "http://localhost:3500",
     credentials: "include",
   }),
+  tagTypes: ["Expenses"],
   endpoints: (builder) => ({
     getExpenses: builder.query<any, undefined>({
       query: () => "/expense",
+      providesTags: ["Expenses"],
     }),
     addExpenses: builder.mutation({
       query: (expense) => ({
@@ -17,6 +19,7 @@ export const expensesApiSlice = createApi({
         method: "POST",
         body: expense,
       }),
+      invalidatesTags: ["Expenses"],
     }),
   }),
 });

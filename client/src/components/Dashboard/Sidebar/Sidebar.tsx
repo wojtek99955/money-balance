@@ -16,6 +16,7 @@ const Container = styled.aside`
   flex-direction: column;
   align-items: center;
   position: relative;
+  background-color: white; ;
 `;
 
 const Nav = styled.nav`

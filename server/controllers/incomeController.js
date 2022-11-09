@@ -26,9 +26,9 @@ const getIncomes = asyncHandler(async (req, res) => {
 
 const createNewIncome = async (req, res) => {
   // Get all users from MongoDB
-  const { username, category, amount } = req.body;
+  const { username, category, amount, date } = req.body;
 
-  const income = await Income.create({ category, username, amount });
+  const income = await Income.create({ category, username, amount, date });
 
   if (income) {
     // Created

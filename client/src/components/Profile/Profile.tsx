@@ -9,10 +9,9 @@ import {
   ProfileWrapper,
 } from "./ProfileStyle";
 
-const username = JSON.parse(localStorage.getItem("username")!);
-console.log(username);
-
 const Profile = () => {
+  const username = JSON.parse(localStorage.getItem("username")!);
+
   let navigate = useNavigate();
   const profileWrapperRef = useRef<HTMLDivElement>(null);
   const [showOptions, setShowOptions] = useState(false);
@@ -49,7 +48,7 @@ const Profile = () => {
       <AnimatePresence>
         {showOptions ? (
           <OptionsContainer
-            initial={{ height: 0, y: 10 }}
+            initial={{ height: 0, y: 0 }}
             animate={{ height: 200, y: -15 }}
             exit={{ height: 0, opacity: 0 }}
           >

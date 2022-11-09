@@ -4,7 +4,8 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { GiExpense } from "react-icons/gi";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
-import ExpensesModal from "../ExpensesModal/ExpensesModal";
+import ExpensesModal from "./ExpensesModal/ExpensesModal";
+import { useNavigate } from "react-router-dom";
 
 const DashBoardBox = styled.div`
   background-color: white;
@@ -25,6 +26,7 @@ const IconContainer = styled.div`
   height: 3.5rem;
   background-color: ${({ color }) => color};
   border-radius: 12px;
+  cursor: pointer;
 `;
 const WalletIcon = styled(TbWallet)`
   font-size: 2rem;
@@ -61,6 +63,10 @@ const Summary = () => {
   const handleOpenExpensesModal = () => {
     setOpenExpensesModal(true);
   };
+  let navigate = useNavigate();
+  const goToExpenses = () => {
+    navigate("/expenses");
+  };
   return (
     <DashBoardBox>
       <BoxWrapper>
@@ -79,7 +85,7 @@ const Summary = () => {
           <AddIcon />
         </ItemContainer>
         <ItemContainer>
-          <IconContainer color="#b4cefc">
+          <IconContainer color="#b4cefc" onClick={goToExpenses}>
             <ExpenseIcon />
           </IconContainer>
           <h3>Expenses</h3>

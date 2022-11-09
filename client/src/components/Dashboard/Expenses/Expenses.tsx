@@ -1,5 +1,5 @@
 import { DashboardBox } from "../../../assets/atoms/DashboardBox";
-import { useGetExpensesQuery } from "../../../api/ExpensesApiSlice";
+import { useGetExpensesQuery } from "../../../api/apiSlice";
 import { getCategoryIcon } from "../../../helpers/getCategoryIcon";
 import {
   Price,

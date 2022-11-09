@@ -2,16 +2,10 @@ import styled from "styled-components";
 import Sidebar from "./Sidebar/Sidebar";
 import Summary from "./Summary";
 import { useState } from "react";
-import ExpensesModal from "../ExpensesModal/ExpensesModal";
-import Expenses from "../Expenses/Expenses";
-
-const RouteContainer = styled.div`
-  display: flex;
-  width: 100%;
-  background-color: ${({ theme }) =>
-    theme.colors.backgroundColor.lightBackground};
-  padding: 1rem;
-`;
+import ExpensesModal from "./ExpensesModal/ExpensesModal";
+import Expenses from "./Expenses/Expenses";
+import { RouteContainer } from "../../assets/atoms/RouteContainer";
+import Incomes from "./Incomes/Incomes";
 
 const Title = styled.div`
   h2 {
@@ -49,6 +43,11 @@ const Profile = styled.div`
   }
 `;
 
+const RecentOperations = styled.div`
+  display: flex;
+  gap: 2rem;
+`;
+
 const Dashboard = () => {
   const username = JSON.parse(localStorage.getItem("username")!);
 
@@ -68,7 +67,10 @@ const Dashboard = () => {
           </Profile>
         </TopSection>
         <Summary />
-        <Expenses />
+        <RecentOperations>
+          <Expenses />
+          <Incomes />
+        </RecentOperations>
       </RouteWrapper>
     </RouteContainer>
   );

@@ -7,7 +7,7 @@ export const expensesApiSlice = createApi({
     baseUrl: "http://localhost:3500",
     credentials: "include",
   }),
-  tagTypes: ["Expenses"],
+  tagTypes: ["Expenses", "Incomes"],
   endpoints: (builder) => ({
     getExpenses: builder.query<any, undefined>({
       query: () => "/expense",
@@ -29,6 +29,17 @@ export const expensesApiSlice = createApi({
       }),
       invalidatesTags: ["Expenses"],
     }),
+    getIncomes: builder.query<any, undefined>({
+      query: () => "/income",
+      providesTags: ["Incomes"],
+    }),
+    addIncomes: builder.mutation({
+      query: (income) => ({
+        url: "/income",
+        method: "POST",
+        body: income,
+      }),
+    }),
   }),
 });
 
@@ -36,4 +47,6 @@ export const {
   useGetExpensesQuery,
   useAddExpensesMutation,
   useDeleteExpenseMutation,
+  useGetIncomesQuery,
+  useAddIncomesMutation,
 } = expensesApiSlice;

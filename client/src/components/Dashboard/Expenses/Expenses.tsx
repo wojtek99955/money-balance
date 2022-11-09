@@ -1,6 +1,6 @@
-import { DashboardBox } from "../../assets/atoms/DashboardBox";
-import { useGetExpensesQuery } from "../../api/ExpensesApiSlice";
-import { getCategoryIcon } from "../../helpers/getCategoryIcon";
+import { DashboardBox } from "../../../assets/atoms/DashboardBox";
+import { useGetExpensesQuery } from "../../../api/ExpensesApiSlice";
+import { getCategoryIcon } from "../../../helpers/getCategoryIcon";
 import {
   Price,
   ExpensesWrapper,

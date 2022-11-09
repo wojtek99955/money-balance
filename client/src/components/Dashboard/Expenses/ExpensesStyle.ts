@@ -10,7 +10,7 @@ export const ExpensesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
-  width: 30%;
+  width: 100%;
   gap: 1rem;
 `;
 

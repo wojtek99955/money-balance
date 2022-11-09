@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { DashboardBox } from "../../assets/atoms/DashboardBox";
-import { useGetExpensesQuery } from "../../api/ExpensesApiSlice";
+import { useGetExpensesQuery } from "../../api/apiSlice";
 import { Expense } from "../../Types/Expense";
 import { RouteContainer } from "../../assets/atoms/RouteContainer";
 import { getCategoryIcon } from "../../helpers/getCategoryIcon";
 import { IoMdClose } from "react-icons/io";
-import { useDeleteExpenseMutation } from "../../api/ExpensesApiSlice";
+import { useDeleteExpenseMutation } from "../../api/apiSlice";
 
 export const Price = styled.div`
   color: red;

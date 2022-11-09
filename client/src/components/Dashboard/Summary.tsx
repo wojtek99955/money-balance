@@ -6,12 +6,8 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
 import ExpensesModal from "./ExpensesModal/ExpensesModal";
 import { useNavigate } from "react-router-dom";
-
-const DashBoardBox = styled.div`
-  background-color: white;
-  border-radius: 12px;
-  padding: 1rem;
-`;
+import IncomesModal from "./IncomesModal/IncomesModal";
+import { DashboardBox } from "../../assets/atoms/DashboardBox";
 
 const BoxWrapper = styled.div`
   display: flex;
@@ -60,15 +56,19 @@ const AddIcon = styled(IoMdAddCircleOutline)`
 
 const Summary = () => {
   const [openExpensesModal, setOpenExpensesModal] = useState(false);
+  const [openIncomesModal, setOpenIncomesModal] = useState(false);
   const handleOpenExpensesModal = () => {
     setOpenExpensesModal(true);
+  };
+  const hnadleOpenIncomesModal = () => {
+    setOpenIncomesModal(true);
   };
   let navigate = useNavigate();
   const goToExpenses = () => {
     navigate("/expenses");
   };
   return (
-    <DashBoardBox>
+    <DashboardBox>
       <BoxWrapper>
         <ItemContainer>
           <IconContainer color="#ffe3e3">
@@ -82,7 +82,7 @@ const Summary = () => {
             <IncomeIcon />
           </IconContainer>
           <h3>Income</h3>
-          <AddIcon />
+          <AddIcon onClick={hnadleOpenIncomesModal} />
         </ItemContainer>
         <ItemContainer>
           <IconContainer color="#b4cefc" onClick={goToExpenses}>
@@ -95,7 +95,10 @@ const Summary = () => {
       {openExpensesModal ? (
         <ExpensesModal setOpenExpensesModal={setOpenExpensesModal} />
       ) : null}
-    </DashBoardBox>
+      {openIncomesModal ? (
+        <IncomesModal setOpenIncomesModal={setOpenIncomesModal} />
+      ) : null}
+    </DashboardBox>
   );
 };
 

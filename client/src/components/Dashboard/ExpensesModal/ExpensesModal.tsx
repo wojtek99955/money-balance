@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { Formik, Form, Field } from "formik";
 import { Button } from "../../../assets/atoms/Button";
-import { useAddExpensesMutation } from "../../../api/ExpensesApiSlice";
+import { useAddExpensesMutation } from "../../../api/apiSlice";
 import { getDate } from "../../../helpers/getDate";
 
 const Container = styled.div`

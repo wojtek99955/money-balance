@@ -66,9 +66,24 @@ const updateExpense = async (req, res) => {
   res.json(` Expense with ID '${updatedExpense.id}' updated`);
 };
 
+const getLatestExpenses = asyncHandler(async (req, res) => {
+  let JWT = req.cookies.jwt;
+
+  const decoded = jwt_decode(JWT);
+  const username = decoded.username;
+
+  const expenses = await Expense.find({ username: username })
+    .limit(3)
+    .select("-username")
+    .lean();
+  console.log(expenses);
+  res.json({ expenses });
+});
+
 module.exports = {
   createExpense,
   getExpenses,
   deleteExpense,
   updateExpense,
+  getLatestExpenses,
 };

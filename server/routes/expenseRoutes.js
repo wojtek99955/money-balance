@@ -8,5 +8,6 @@ router
   .post(expenseController.createExpense)
   .delete(expenseController.deleteExpense)
   .patch(expenseController.updateExpense);
+router.get("/latest", expenseController.getLatestExpenses);
 
 module.exports = router;

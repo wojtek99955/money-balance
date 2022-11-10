@@ -42,6 +42,10 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Expenses"],
     }),
+    getLatestExpenses: builder.query<any, undefined>({
+      query: () => "/expense/latest",
+      providesTags: ["Expenses"],
+    }),
     getIncomes: builder.query<any, undefined>({
       query: () => "/income",
       providesTags: ["Incomes"],
@@ -87,4 +91,5 @@ export const {
   useDeleteIncomeMutation,
   useUpdateExpenseMutation,
   useUpdateIncomeMutation,
+  useGetLatestExpensesQuery,
 } = apiSlice;

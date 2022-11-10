@@ -6,6 +6,8 @@ import { getIncomeCategoryIcon } from "../../helpers/getIncomeCategoryIcon";
 import { DashboardBox } from "../../assets/atoms/DashboardBox";
 import { useDeleteIncomeMutation } from "../../api/apiSlice";
 import { AiOutlineEdit } from "react-icons/ai";
+import { useState } from "react";
+import EditIncomesModal from "./EditIncomesModal";
 
 const EditIcon = styled(AiOutlineEdit)`
   color: ${({ theme }) => theme.colors.grey};
@@ -88,6 +90,13 @@ const Incomes = () => {
     await deleteIncome({ id: id });
   };
 
+  const [openEditIncomesModal, setOpenEditIncomesModal] = useState(false);
+  const handleOpenEditModal = () => {
+    setOpenEditIncomesModal(true);
+  };
+
+  const [currentId, setCurrentId] = useState("");
+
   return (
     <RouteContainer>
       <IncomeContainer>
@@ -105,7 +114,12 @@ const Incomes = () => {
                 <Price> + {income.amount} $</Price>
                 <ControllerBtns>
                   <BtnContainer>
-                    <EditIcon />
+                    <EditIcon
+                      onClick={() => {
+                        handleOpenEditModal();
+                        setCurrentId(income._id);
+                      }}
+                    />
                   </BtnContainer>
                   <BtnContainer>
                     <DeleteIcon
@@ -116,6 +130,12 @@ const Incomes = () => {
                   </BtnContainer>
                 </ControllerBtns>
               </ExpensesWrapper>
+              {openEditIncomesModal ? (
+                <EditIncomesModal
+                  currentId={currentId}
+                  setOpenEditIncomesModal={setOpenEditIncomesModal}
+                />
+              ) : null}
             </DashboardBox>
           );
         })}

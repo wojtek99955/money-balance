@@ -1,5 +1,5 @@
 import { DashboardBox } from "../../../assets/atoms/DashboardBox";
-import { useGetExpensesQuery } from "../../../api/apiSlice";
+import { useGetLatestExpensesQuery } from "../../../api/apiSlice";
 import { getExpenseCategoryIcon } from "../../../helpers/getExpenseCategoryIcon";
 import {
   Price,
@@ -15,7 +15,7 @@ interface ExpenseType {
 }
 
 const Expenses = () => {
-  const { data: expenses, isLoading } = useGetExpensesQuery(undefined);
+  const { data: expenses, isLoading } = useGetLatestExpensesQuery(undefined);
   console.log(expenses);
   return (
     <DashboardBox>

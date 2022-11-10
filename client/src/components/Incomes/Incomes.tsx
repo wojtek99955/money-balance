@@ -5,11 +5,19 @@ import { RouteContainer } from "../../assets/atoms/RouteContainer";
 import { getIncomeCategoryIcon } from "../../helpers/getIncomeCategoryIcon";
 import { DashboardBox } from "../../assets/atoms/DashboardBox";
 import { useDeleteIncomeMutation } from "../../api/apiSlice";
+import { AiOutlineEdit } from "react-icons/ai";
+
+const EditIcon = styled(AiOutlineEdit)`
+  color: ${({ theme }) => theme.colors.grey};
+  font-size: 1.2rem;
+`;
 
 export const Price = styled.div`
   color: green;
   font-size: 1.4rem;
   font-weight: 600;
+  margin-left: auto;
+  margin-right: 3rem;
 `;
 const ExpenseDataGroup = styled.div`
   display: flex;
@@ -42,6 +50,11 @@ const ExpensesWrapper = styled.div`
   align-items: center;
 `;
 
+const DeleteIcon = styled(IoMdClose)`
+  color: ${({ theme }) => theme.colors.grey};
+  font-size: 1.2rem;
+`;
+
 const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -50,12 +63,19 @@ const BtnContainer = styled.div`
   padding: 0.5rem;
   border-radius: 12px;
   cursor: pointer;
+  &:hover {
+    background-color: #ddecff;
+    ${DeleteIcon} {
+      color: ${({ theme }) => theme.colors.main.default};
+    }
+    ${EditIcon} {
+      color: ${({ theme }) => theme.colors.main.default};
+    }
+  }
 `;
-const ControllerBtns = styled.div``;
-
-const DeleteIcon = styled(IoMdClose)`
-  color: ${({ theme }) => theme.colors.grey};
-  font-size: 1.2rem;
+const ControllerBtns = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 
 const Incomes = () => {
@@ -84,6 +104,9 @@ const Incomes = () => {
                 </ExpenseDataGroup>
                 <Price> + {income.amount} $</Price>
                 <ControllerBtns>
+                  <BtnContainer>
+                    <EditIcon />
+                  </BtnContainer>
                   <BtnContainer>
                     <DeleteIcon
                       onClick={() => {

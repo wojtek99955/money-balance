@@ -7,11 +7,15 @@ import { getExpenseCategoryIcon } from "../../helpers/getExpenseCategoryIcon";
 import { IoMdClose } from "react-icons/io";
 import { useDeleteExpenseMutation } from "../../api/apiSlice";
 import { AiOutlineEdit } from "react-icons/ai";
+import { useState } from "react";
+import EditExpensesModal from "./EditExpensesModal";
 
 export const Price = styled.div`
   color: red;
   font-size: 1.4rem;
   font-weight: 600;
+  margin-left: auto;
+  margin-right: 3rem;
 `;
 const ExpenseDataGroup = styled.div`
   display: flex;
@@ -42,6 +46,7 @@ const ExpensesWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.5rem 0;
 `;
 
 const DeleteIcon = styled(IoMdClose)`
@@ -85,6 +90,16 @@ const Expenses = () => {
   const handleDeleteNote = async (id: string) => {
     await deleteExpense({ id: id });
   };
+  const [openEditExpensesModal, setOpenEditExpensesModal] = useState(false);
+
+  const handleOpenEditModal = () => {
+    setOpenEditExpensesModal(true);
+  };
+  const [currentId, setCurrentId] = useState(" ");
+
+  const handleSetCurrentId = (id: string) => {
+    setCurrentId(id);
+  };
   return (
     <RouteContainer>
       <ExpensesContainer>
@@ -101,7 +116,12 @@ const Expenses = () => {
                 </ExpenseDataGroup>
                 <Price> - {expense.amount} $</Price>
                 <ControllerBtns>
-                  <BtnContainer>
+                  <BtnContainer
+                    onClick={() => {
+                      handleOpenEditModal();
+                      handleSetCurrentId(expense._id);
+                    }}
+                  >
                     <EditIcon />
                   </BtnContainer>
                   <BtnContainer
@@ -113,6 +133,12 @@ const Expenses = () => {
                   </BtnContainer>
                 </ControllerBtns>
               </ExpensesWrapper>
+              {openEditExpensesModal ? (
+                <EditExpensesModal
+                  currentId={currentId}
+                  setOpenEditExpensesModal={setOpenEditExpensesModal}
+                />
+              ) : null}
             </DashboardBox>
           );
         })}

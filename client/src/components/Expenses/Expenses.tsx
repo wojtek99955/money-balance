@@ -9,9 +9,9 @@ import { useDeleteExpenseMutation } from "../../api/apiSlice";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useState } from "react";
 import EditExpensesModal from "./EditExpensesModal";
-import FilterDropdown from "../../assets/atoms/FilterDropdown";
 import { GiExpense } from "react-icons/gi";
 import { Button } from "../../assets/atoms/Button";
+import ExpensesFilterDropdown from "./ExpensesFilterDropdown/ExpensesFilterDropdown";
 
 export const Price = styled.div`
   color: red;
@@ -85,11 +85,6 @@ const ControllerBtns = styled.div`
   gap: 1rem;
 `;
 
-const FilterContainer = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
-
 const ExpensesIconContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -145,9 +140,6 @@ const Expenses = () => {
     setCurrentId(id);
   };
 
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedAddedTime, setSelectedAddedTime] = useState("");
-
   const goNextPage = () => {
     setPage((prev) => prev + 1);
   };
@@ -168,54 +160,7 @@ const Expenses = () => {
             <p>Browse your expenses history</p>
           </div>
         </Title>
-        <FilterContainer>
-          <FilterDropdown
-            filterName="Category"
-            selectedValue={selectedCategory}
-          >
-            <ul>
-              <li
-                onClick={() => {
-                  setSelectedCategory("Shopping");
-                }}
-              >
-                Shopping
-              </li>
-              <li
-                onClick={() => {
-                  setSelectedCategory("Gift");
-                }}
-              >
-                Gift
-              </li>
-              <li
-                onClick={() => {
-                  setSelectedCategory("Transportation");
-                }}
-              >
-                Transportation
-              </li>
-            </ul>
-          </FilterDropdown>
-          <FilterDropdown filterName="Date" selectedValue={selectedAddedTime}>
-            <ul>
-              <li
-                onClick={() => {
-                  setSelectedAddedTime("Latest");
-                }}
-              >
-                Latest
-              </li>
-              <li
-                onClick={() => {
-                  setSelectedAddedTime("Oldest");
-                }}
-              >
-                Oldest
-              </li>
-            </ul>
-          </FilterDropdown>
-        </FilterContainer>
+        <ExpensesFilterDropdown />
         {expenses?.expenses.map((expense: Expense) => {
           return (
             <DashboardBox key={expense._id}>
@@ -267,7 +212,7 @@ const Expenses = () => {
         <Button
           onClick={goNextPage}
           style={{ width: "9rem" }}
-          disabled={page >= expenses.totalPages}
+          disabled={page >= expenses?.totalPages}
         >
           Next
         </Button>

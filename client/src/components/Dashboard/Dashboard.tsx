@@ -5,7 +5,7 @@ import { useState } from "react";
 import ExpensesModal from "./ExpensesModal/ExpensesModal";
 import Expenses from "./Expenses/Expenses";
 import { RouteContainer } from "../../assets/atoms/RouteContainer";
-import Incomes from "./Incomes/Incomes";
+import Incomes from "./Incomes/RecentIncomes";
 
 const Title = styled.div`
   h2 {

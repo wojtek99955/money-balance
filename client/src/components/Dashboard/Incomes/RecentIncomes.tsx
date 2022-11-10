@@ -2,7 +2,7 @@ import { DashboardBox } from "../../../assets/atoms/DashboardBox";
 import { useGetIncomesQuery } from "../../../api/apiSlice";
 import { getIncomeCategoryIcon } from "../../../helpers/getIncomeCategoryIcon";
 
-const Incomes = () => {
+const RecentIncomes = () => {
   const { data: incomes, isLoading } = useGetIncomesQuery(undefined);
   console.log(incomes);
   return (
@@ -20,4 +20,4 @@ const Incomes = () => {
   );
 };
 
-export default Incomes;
+export default RecentIncomes;

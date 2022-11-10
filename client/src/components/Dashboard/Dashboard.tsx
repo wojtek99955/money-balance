@@ -1,11 +1,8 @@
 import styled from "styled-components";
-import Sidebar from "./Sidebar/Sidebar";
 import Summary from "./Summary";
-import { useState } from "react";
-import ExpensesModal from "./ExpensesModal/ExpensesModal";
 import Expenses from "./Expenses/Expenses";
 import { RouteContainer } from "../../assets/atoms/RouteContainer";
-import Incomes from "./Incomes/RecentIncomes";
+import Incomes from "./RecentIncomes/RecentIncomes";
 
 const Title = styled.div`
   h2 {

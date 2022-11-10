@@ -6,6 +6,7 @@ router
   .route("/")
   .get(expenseController.getExpenses)
   .post(expenseController.createExpense)
-  .delete(expenseController.deleteExpense);
+  .delete(expenseController.deleteExpense)
+  .patch(expenseController.updateExpense);
 
 module.exports = router;

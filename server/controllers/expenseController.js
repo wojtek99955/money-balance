@@ -48,8 +48,27 @@ const deleteExpense = async (req, res) => {
   res.json(reply);
 };
 
+const updateExpense = async (req, res) => {
+  const { id, amount, category, username } = req.body;
+
+  const expense = await Expense.findById(id).exec();
+
+  // if (expense) {
+  //   return res.status(400).json({ message: "Expense not found" });
+  // }
+  console.log(expense);
+  expense.amount = amount;
+  expense.category = category;
+  expense.username = username;
+
+  const updatedExpense = await expense.save();
+
+  res.json(` Expense with ID '${updatedExpense.id}' updated`);
+};
+
 module.exports = {
   createExpense,
   getExpenses,
   deleteExpense,
+  updateExpense,
 };

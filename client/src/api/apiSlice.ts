@@ -39,6 +39,15 @@ export const apiSlice = createApi({
         method: "POST",
         body: income,
       }),
+      invalidatesTags: ["Incomes"],
+    }),
+    deleteIncome: builder.mutation({
+      query: ({ id }) => ({
+        url: "/income",
+        method: "DELETE",
+        body: { id },
+      }),
+      invalidatesTags: ["Incomes"],
     }),
   }),
 });
@@ -49,4 +58,5 @@ export const {
   useDeleteExpenseMutation,
   useGetIncomesQuery,
   useAddIncomesMutation,
+  useDeleteIncomeMutation,
 } = apiSlice;

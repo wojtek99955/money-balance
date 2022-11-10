@@ -5,7 +5,7 @@ import { RouteContainer } from "../../../assets/atoms/RouteContainer";
 import { getExpenseCategoryIcon } from "../../../helpers/getExpenseCategoryIcon";
 import { useDeleteExpenseMutation } from "../../../api/apiSlice";
 import { useState } from "react";
-import EditExpensesModal from "../EditExpensesModal";
+import EditExpensesModal from "../EditExpensesModal/EditExpensesModal";
 import ExpensesFilterDropdown from "../ExpensesFilterDropdown/ExpensesFilterDropdown";
 import { Button } from "../../../assets/atoms/Button";
 import {

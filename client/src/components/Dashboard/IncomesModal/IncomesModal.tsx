@@ -72,7 +72,7 @@ interface Props {
 }
 
 const initialValues = {
-  category: "",
+  category: "salary",
   amount: "",
 };
 

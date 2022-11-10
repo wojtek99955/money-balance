@@ -38,7 +38,29 @@ const createNewIncome = async (req, res) => {
   }
 };
 
+const deleteIncome = async (req, res) => {
+  const { id } = req.body;
+  console.log(id);
+
+  if (!id) {
+    return res.status(400).json({ message: "Expense ID required" });
+  }
+
+  const income = await Income.findById(id).exec();
+
+  if (!income) {
+    return res.status(400).json({ message: "Expense not found" });
+  }
+
+  const result = await income.deleteOne();
+
+  const reply = `Income ${result.title} with ID ${result._id} deleted`;
+
+  res.json(reply);
+};
+
 module.exports = {
   getIncomes,
   createNewIncome,
+  deleteIncome,
 };

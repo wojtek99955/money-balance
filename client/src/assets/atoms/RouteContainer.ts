@@ -4,4 +4,5 @@ export const RouteContainer = styled.div`
   background-color: ${({ theme }) =>
     theme.colors.backgroundColor.lightBackground};
   padding: 1rem;
+  padding-top: 4rem;
 `;

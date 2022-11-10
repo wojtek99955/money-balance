@@ -16,7 +16,7 @@ const Container = styled.aside`
   flex-direction: column;
   align-items: center;
   position: relative;
-  background-color: white; ;
+  background-color: white;
 `;
 
 const Nav = styled.nav`
@@ -72,6 +72,14 @@ const CategoryDropdown = styled.div`
   margin-bottom: 1rem;
 `;
 
+const SidebarWrapper = styled.div`
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const links = [
   {
     text: "Dashboard",
@@ -103,21 +111,23 @@ const links = [
 const Sidebar = () => {
   return (
     <Container>
-      <Logo />
-      <Nav>
-        {links.map((link) => {
-          return (
-            <StyledLink to={link.route}>
-              {link.icon}
-              {link.text}
-            </StyledLink>
-          );
-        })}
-      </Nav>
-      <CategoryDropdown>
-        <CategoryIcon /> Categories
-      </CategoryDropdown>
-      <Profile />
+      <SidebarWrapper>
+        <Logo />
+        <Nav>
+          {links.map((link) => {
+            return (
+              <StyledLink to={link.route}>
+                {link.icon}
+                {link.text}
+              </StyledLink>
+            );
+          })}
+        </Nav>
+        <CategoryDropdown>
+          <CategoryIcon /> Categories
+        </CategoryDropdown>
+        <Profile />
+      </SidebarWrapper>
     </Container>
   );
 };

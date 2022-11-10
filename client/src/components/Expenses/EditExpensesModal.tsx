@@ -99,7 +99,7 @@ const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
     <Container>
       <FormContainer>
         <CloseIcon onClick={handleCloseModal} />
-        <h3>Add Expense</h3>
+        <h3>Edit Expense</h3>
         <Formik
           initialValues={initialValues}
           onSubmit={(val) => {

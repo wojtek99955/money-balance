@@ -7,9 +7,9 @@ import { useUpdateExpenseMutation } from "../../api/apiSlice";
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
-  position: absolute;
+  position: fixed;
   top: 0;
   display: flex;
   justify-content: center;

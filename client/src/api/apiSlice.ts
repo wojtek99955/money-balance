@@ -62,6 +62,19 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Incomes"],
     }),
+    updateIncome: builder.mutation({
+      query: ({ id, amount, username, category }) => ({
+        url: "/income",
+        method: "PATCH",
+        body: {
+          id,
+          amount,
+          username,
+          category,
+        },
+      }),
+      invalidatesTags: ["Incomes"],
+    }),
   }),
 });
 
@@ -73,4 +86,5 @@ export const {
   useAddIncomesMutation,
   useDeleteIncomeMutation,
   useUpdateExpenseMutation,
+  useUpdateIncomeMutation,
 } = apiSlice;

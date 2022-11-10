@@ -8,5 +8,6 @@ router
   .post(incomeController.createNewIncome)
   .delete(incomeController.deleteIncome)
   .patch(incomeController.updateIncome);
+router.get("/latest", incomeController.getLatestIncomes);
 
 module.exports = router;

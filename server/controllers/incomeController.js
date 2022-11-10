@@ -77,9 +77,24 @@ const updateIncome = async (req, res) => {
   res.json(` Income with ID '${updatedIncome.id}' updated`);
 };
 
+const getLatestIncomes = asyncHandler(async (req, res) => {
+  let JWT = req.cookies.jwt;
+
+  const decoded = jwt_decode(JWT);
+  const username = decoded.username;
+
+  const incomes = await Income.find({ username: username })
+    .limit(3)
+    .select("-username")
+    .lean();
+
+  res.json({ incomes });
+});
+
 module.exports = {
   getIncomes,
   createNewIncome,
   deleteIncome,
   updateIncome,
+  getLatestIncomes,
 };

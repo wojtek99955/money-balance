@@ -1,5 +1,5 @@
 import { DashboardBox } from "../../../assets/atoms/DashboardBox";
-import { useGetIncomesQuery } from "../../../api/apiSlice";
+import { useGetLatestIncomesQuery } from "../../../api/apiSlice";
 import { getIncomeCategoryIcon } from "../../../helpers/getIncomeCategoryIcon";
 import styled from "styled-components";
 
@@ -42,7 +42,7 @@ const Amount = styled.div`
 `;
 
 const RecentIncomes = () => {
-  const { data: incomes, isLoading } = useGetIncomesQuery(undefined);
+  const { data: incomes, isLoading } = useGetLatestIncomesQuery(undefined);
   console.log(incomes);
   return (
     <DashboardBox>

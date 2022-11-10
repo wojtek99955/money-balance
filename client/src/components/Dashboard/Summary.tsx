@@ -67,6 +67,9 @@ const Summary = () => {
   const goToExpenses = () => {
     navigate("/expenses");
   };
+  const goToIncomes = () => {
+    navigate("/incomes");
+  };
   return (
     <DashboardBox>
       <BoxWrapper>
@@ -78,7 +81,7 @@ const Summary = () => {
           <AddIcon />
         </ItemContainer>
         <ItemContainer>
-          <IconContainer color="#a6eeda">
+          <IconContainer color="#a6eeda" onClick={goToIncomes}>
             <IncomeIcon />
           </IconContainer>
           <h3>Income</h3>

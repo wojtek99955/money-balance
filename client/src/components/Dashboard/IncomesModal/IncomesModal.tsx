@@ -30,6 +30,15 @@ const FormContainer = styled.div`
     font-size: 1.6rem;
     padding-bottom: 2rem;
   }
+
+  select {
+    display: block;
+    border: ${({ theme }) => `2px solid ${theme.colors.grey}`};
+    border-radius: 12px;
+    padding: 1rem;
+    width: 80%;
+    font-size: 1rem;
+  }
 `;
 
 const CloseIcon = styled(RiCloseCircleLine)`
@@ -47,6 +56,7 @@ const StyledField = styled(Field)`
   border-radius: 12px;
   padding: 1rem;
   width: 80%;
+  font-size: 1rem;
 `;
 
 const FormWrapper = styled.div`
@@ -91,7 +101,10 @@ const IncomesModal = ({ setOpenIncomesModal }: Props) => {
         >
           <Form>
             <FormWrapper>
-              <StyledField type="text" name="category" />
+              <Field as="select" name="category">
+                <option value="salary">salary</option>
+                <option value="prize">prize</option>
+              </Field>
               <StyledField type="text" name="amount" />
               <Button type="submit">Save</Button>
             </FormWrapper>

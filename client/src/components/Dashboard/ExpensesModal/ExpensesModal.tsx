@@ -5,6 +5,7 @@ import { Formik, Form, Field } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useAddExpensesMutation } from "../../../api/apiSlice";
 import { getDate } from "../../../helpers/getDate";
+import { useState } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -30,6 +31,15 @@ const FormContainer = styled.div`
     font-size: 1.6rem;
     padding-bottom: 2rem;
   }
+
+  select {
+    display: block;
+    border: ${({ theme }) => `2px solid ${theme.colors.grey}`};
+    border-radius: 12px;
+    padding: 1rem;
+    width: 80%;
+    font-size: 1rem;
+  }
 `;
 
 const CloseIcon = styled(RiCloseCircleLine)`
@@ -47,6 +57,7 @@ const StyledField = styled(Field)`
   border-radius: 12px;
   padding: 1rem;
   width: 80%;
+  font-size: 1rem;
 `;
 
 const FormWrapper = styled.div`
@@ -72,6 +83,8 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
   const handleCloseModal = () => {
     setOpenExpensesModal(false);
   };
+  const [values, setValues] = useState<any>("");
+  console.log(values + "select");
   return ReactDOM.createPortal(
     <Container>
       <FormContainer>
@@ -86,12 +99,18 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
               username: username,
               date: getDate(),
             });
+            setValues(val.category);
             setOpenExpensesModal(false);
           }}
         >
           <Form>
             <FormWrapper>
-              <StyledField type="text" name="category" />
+              <Field as="select" name="category">
+                <option value="shopping">shopping</option>
+                <option value="restaurants">restaurants</option>
+                <option value="gift">gift</option>
+                <option value="transportation">transportation</option>
+              </Field>
               <StyledField type="text" name="amount" />
               <Button type="submit">Save</Button>
             </FormWrapper>

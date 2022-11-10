@@ -9,6 +9,9 @@ import { useDeleteExpenseMutation } from "../../api/apiSlice";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useState } from "react";
 import EditExpensesModal from "./EditExpensesModal";
+import FilterDropdown from "../../assets/atoms/FilterDropdown";
+import { GiExpense } from "react-icons/gi";
+import { Button } from "../../assets/atoms/Button";
 
 export const Price = styled.div`
   color: red;
@@ -82,8 +85,49 @@ const ControllerBtns = styled.div`
   gap: 1rem;
 `;
 
+const FilterContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+const ExpensesIconContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #ffe3e3;
+  padding: 1rem;
+`;
+const ExpensesIcon = styled(GiExpense)`
+  font-size: 3rem;
+  color: #ff9582;
+`;
+
+const Title = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  h2 {
+    color: ${({ theme }) => theme.colors.main.default};
+  }
+  p {
+    color: ${({ theme }) => theme.colors.grey};
+    font-weight: 600;
+  }
+`;
+
+const PaginationBtns = styled.div`
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  margin-top: 4rem;
+`;
+
 const Expenses = () => {
-  const { data: expenses, isLoading } = useGetExpensesQuery(undefined);
+  const [page, setPage] = useState<number>(1);
+
+  const { data: expenses, isLoading } = useGetExpensesQuery(page);
   const [deleteExpense, { isSuccess, isError, error }] =
     useDeleteExpenseMutation();
 
@@ -100,9 +144,78 @@ const Expenses = () => {
   const handleSetCurrentId = (id: string) => {
     setCurrentId(id);
   };
+
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedAddedTime, setSelectedAddedTime] = useState("");
+
+  const goNextPage = () => {
+    setPage((prev) => prev + 1);
+  };
+  const goPrevPage = () => {
+    setPage((prev) => prev - 1);
+  };
+  console.log(expenses);
+
   return (
     <RouteContainer>
       <ExpensesContainer>
+        <Title>
+          <ExpensesIconContainer>
+            <ExpensesIcon />
+          </ExpensesIconContainer>
+          <div>
+            <h2>Expenses</h2>
+            <p>Browse your expenses history</p>
+          </div>
+        </Title>
+        <FilterContainer>
+          <FilterDropdown
+            filterName="Category"
+            selectedValue={selectedCategory}
+          >
+            <ul>
+              <li
+                onClick={() => {
+                  setSelectedCategory("Shopping");
+                }}
+              >
+                Shopping
+              </li>
+              <li
+                onClick={() => {
+                  setSelectedCategory("Gift");
+                }}
+              >
+                Gift
+              </li>
+              <li
+                onClick={() => {
+                  setSelectedCategory("Transportation");
+                }}
+              >
+                Transportation
+              </li>
+            </ul>
+          </FilterDropdown>
+          <FilterDropdown filterName="Date" selectedValue={selectedAddedTime}>
+            <ul>
+              <li
+                onClick={() => {
+                  setSelectedAddedTime("Latest");
+                }}
+              >
+                Latest
+              </li>
+              <li
+                onClick={() => {
+                  setSelectedAddedTime("Oldest");
+                }}
+              >
+                Oldest
+              </li>
+            </ul>
+          </FilterDropdown>
+        </FilterContainer>
         {expenses?.expenses.map((expense: Expense) => {
           return (
             <DashboardBox key={expense._id}>
@@ -143,6 +256,22 @@ const Expenses = () => {
           );
         })}
       </ExpensesContainer>
+      <PaginationBtns>
+        <Button
+          onClick={goPrevPage}
+          style={{ width: "9rem" }}
+          disabled={page === 1}
+        >
+          Previous
+        </Button>
+        <Button
+          onClick={goNextPage}
+          style={{ width: "9rem" }}
+          disabled={page >= expenses.totalPages}
+        >
+          Next
+        </Button>
+      </PaginationBtns>
     </RouteContainer>
   );
 };

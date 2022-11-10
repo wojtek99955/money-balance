@@ -1,17 +1,17 @@
 import styled from "styled-components";
-import { DashboardBox } from "../../assets/atoms/DashboardBox";
-import { useGetExpensesQuery } from "../../api/apiSlice";
-import { Expense } from "../../Interfaces/Expense";
-import { RouteContainer } from "../../assets/atoms/RouteContainer";
-import { getExpenseCategoryIcon } from "../../helpers/getExpenseCategoryIcon";
+import { DashboardBox } from "../../../assets/atoms/DashboardBox";
+import { useGetExpensesQuery } from "../../../api/apiSlice";
+import { Expense } from "../../../Interfaces/Expense";
+import { RouteContainer } from "../../../assets/atoms/RouteContainer";
+import { getExpenseCategoryIcon } from "../../../helpers/getExpenseCategoryIcon";
 import { IoMdClose } from "react-icons/io";
-import { useDeleteExpenseMutation } from "../../api/apiSlice";
+import { useDeleteExpenseMutation } from "../../../api/apiSlice";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useState } from "react";
-import EditExpensesModal from "./EditExpensesModal";
+import EditExpensesModal from "../EditExpensesModal";
 import { GiExpense } from "react-icons/gi";
-import { Button } from "../../assets/atoms/Button";
-import ExpensesFilterDropdown from "./ExpensesFilterDropdown/ExpensesFilterDropdown";
+import { Button } from "../../../assets/atoms/Button";
+import ExpensesFilterDropdown from "../ExpensesFilterDropdown/ExpensesFilterDropdown";
 
 export const Price = styled.div`
   color: red;
@@ -119,7 +119,7 @@ const PaginationBtns = styled.div`
   margin-top: 4rem;
 `;
 
-const Expenses = () => {
+const ExpensesList = () => {
   const [page, setPage] = useState<number>(1);
 
   const { data: expenses, isLoading } = useGetExpensesQuery(page);
@@ -221,4 +221,4 @@ const Expenses = () => {
   );
 };
 
-export default Expenses;
+export default ExpensesList;

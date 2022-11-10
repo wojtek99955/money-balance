@@ -7,7 +7,7 @@ import RequireAuth from "./components/RequireAuth";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { useLocation } from "react-router-dom";
 import Sidebar from "./components/Dashboard/Sidebar/Sidebar";
-import Expenses from "./components/Expenses/Expenses";
+import ExpensesList from "./components/Expenses/ExpensesList/ExpensesList";
 import Incomes from "./components/Incomes/Incomes";
 
 interface StyleProps {
@@ -49,7 +49,7 @@ function App() {
             path="/expenses"
             element={
               <RequireAuth>
-                <Expenses />
+                <ExpensesList />
               </RequireAuth>
             }
           />

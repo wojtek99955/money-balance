@@ -59,8 +59,27 @@ const deleteIncome = async (req, res) => {
   res.json(reply);
 };
 
+const updateIncome = async (req, res) => {
+  const { id, amount, category, username } = req.body;
+
+  const income = await Income.findById(id).exec();
+
+  // if (income) {
+  //   return res.status(400).json({ message: "income not found" });
+  // }
+  console.log(income);
+  income.amount = amount;
+  income.category = category;
+  income.username = username;
+
+  const updatedIncome = await income.save();
+
+  res.json(` Income with ID '${updatedIncome.id}' updated`);
+};
+
 module.exports = {
   getIncomes,
   createNewIncome,
   deleteIncome,
+  updateIncome,
 };

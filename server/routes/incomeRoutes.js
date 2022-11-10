@@ -6,6 +6,7 @@ router
   .route("/")
   .get(incomeController.getIncomes)
   .post(incomeController.createNewIncome)
-  .delete(incomeController.deleteIncome);
+  .delete(incomeController.deleteIncome)
+  .patch(incomeController.updateIncome);
 
 module.exports = router;

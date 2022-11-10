@@ -73,7 +73,7 @@ interface Props {
 }
 
 const initialValues = {
-  category: "",
+  category: "shopping",
   amount: "",
 };
 
@@ -84,7 +84,6 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
     setOpenExpensesModal(false);
   };
   const [values, setValues] = useState<any>("");
-  console.log(values + "select");
   return ReactDOM.createPortal(
     <Container>
       <FormContainer>

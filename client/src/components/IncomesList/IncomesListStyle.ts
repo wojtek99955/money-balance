@@ -76,4 +76,5 @@ export const ControllerBtns = styled.div`
 export const PaginationBtns = styled.div`
   display: flex;
   justify-content: center;
+  gap: 3rem;
 `;

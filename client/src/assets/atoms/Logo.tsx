@@ -7,10 +7,17 @@ const LogoContainer = styled.div`
   color: ${({ theme }) => theme.colors.main.default};
   cursor: pointer;
 `;
+
+const username = JSON.parse(localStorage.getItem("username")!);
+
 const Logo = () => {
   let navigate = useNavigate();
   const handleGoHome = () => {
-    navigate("/");
+    if (username) {
+      navigate("/dashboard");
+    } else {
+      navigate("/");
+    }
   };
   return <LogoContainer onClick={handleGoHome}>Money Balance</LogoContainer>;
 };

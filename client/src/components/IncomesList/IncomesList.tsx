@@ -86,7 +86,7 @@ const PaginationBtns = styled.div`
   justify-content: center;
 `;
 
-const Incomes = () => {
+const IncomesList = () => {
   const [page, setPage] = useState<number>(1);
 
   const { data: income, isLoading } = useGetIncomesQuery(page);
@@ -176,4 +176,4 @@ const Incomes = () => {
   );
 };
 
-export default Incomes;
+export default IncomesList;

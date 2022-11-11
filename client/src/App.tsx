@@ -8,7 +8,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import { useLocation } from "react-router-dom";
 import Sidebar from "./components/Dashboard/Sidebar/Sidebar";
 import ExpensesList from "./components/Expenses/ExpensesList/ExpensesList";
-import Incomes from "./components/Incomes/Incomes";
+import IncomesList from "./components/IncomesList/IncomesList";
 
 interface StyleProps {
   location: string;
@@ -57,7 +57,7 @@ function App() {
             path="/incomes"
             element={
               <RequireAuth>
-                <Incomes />
+                <IncomesList />
               </RequireAuth>
             }
           />

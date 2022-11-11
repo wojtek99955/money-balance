@@ -10,7 +10,7 @@ export const apiSlice = createApi({
   tagTypes: ["Expenses", "Incomes"],
   endpoints: (builder) => ({
     getExpenses: builder.query<any, any>({
-      query: (page = 1) => `/expense?p=${page}`,
+      query: (page = 0) => `/expense?p=${page}`,
       providesTags: ["Expenses"],
     }),
     addExpenses: builder.mutation({

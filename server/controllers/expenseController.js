@@ -28,6 +28,7 @@ const getExpenses = asyncHandler(async (req, res) => {
   const expenses = await Expense.find({ username: username })
     .skip(page * expensesPerPage)
     .limit(expensesPerPage)
+    .sort({ createdAt: -1 })
     .select("-username")
     .lean();
 
@@ -85,6 +86,7 @@ const getLatestExpenses = asyncHandler(async (req, res) => {
   const expenses = await Expense.find({ username: username })
     .limit(3)
     .select("-username")
+    .sort({ createdAt: -1 })
     .lean();
   console.log(expenses);
   res.json({ expenses });

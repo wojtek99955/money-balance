@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useUpdateExpenseMutation } from "../../../api/apiSlice";
 import {
@@ -9,6 +9,8 @@ import {
   StyledField,
   FormWrapper,
 } from "./EditExpensesModalStyle";
+import * as yup from "yup";
+import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
 
 interface Props {
   setOpenEditExpensesModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -32,6 +34,10 @@ const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
     setOpenEditExpensesModal(false);
   };
 
+  const validationSchema = yup.object().shape({
+    amount: yup.number().typeError("Only numbers").required("Required"),
+  });
+
   const handleUpdateExpense = (id: string, values: InitialValues) => {
     updateExpense({
       id: id,
@@ -46,6 +52,7 @@ const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
         <h3>Edit Expense</h3>
         <Formik
           initialValues={initialValues}
+          validationSchema={validationSchema}
           onSubmit={(val) => {
             handleUpdateExpense(currentId, val);
             setOpenEditExpensesModal(false);
@@ -60,6 +67,7 @@ const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
                 <option value="transportation">transportation</option>
               </Field>
               <StyledField type="text" name="amount" />
+              <ErrorMessage name="amount" component={ValidationErrorMsg} />
               <Button type="submit">Save</Button>
             </FormWrapper>
           </Form>

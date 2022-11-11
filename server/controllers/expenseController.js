@@ -20,7 +20,7 @@ const getExpenses = asyncHandler(async (req, res) => {
   const decoded = jwt_decode(JWT);
   const username = decoded.username;
 
-  const page = req.query.p || 1;
+  const page = req.query.p;
   const expensesPerPage = 5;
 
   const expensesCount = await Expense.count();
@@ -32,7 +32,7 @@ const getExpenses = asyncHandler(async (req, res) => {
     .lean();
 
   res.json({
-    expenses,
+    expenses: expenses,
     totalPages: Math.ceil(expensesCount / expensesPerPage),
   });
 });

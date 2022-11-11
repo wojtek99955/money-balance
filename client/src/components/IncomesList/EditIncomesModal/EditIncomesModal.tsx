@@ -2,8 +2,8 @@ import ReactDOM from "react-dom";
 import styled from "styled-components";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { Formik, Form, Field } from "formik";
-import { Button } from "../../assets/atoms/Button";
-import { useUpdateIncomeMutation } from "../../api/apiSlice";
+import { Button } from "../../../assets/atoms/Button";
+import { useUpdateIncomeMutation } from "../../../api/apiSlice";
 
 const Container = styled.div`
   width: 100%;

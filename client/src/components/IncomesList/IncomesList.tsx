@@ -4,7 +4,7 @@ import { getIncomeCategoryIcon } from "../../helpers/getIncomeCategoryIcon";
 import { DashboardBox } from "../../assets/atoms/DashboardBox";
 import { useDeleteIncomeMutation } from "../../api/apiSlice";
 import { useState } from "react";
-import EditIncomesModal from "./EditIncomesModal";
+import EditIncomesModal from "./EditIncomesModal/EditIncomesModal";
 import { Button } from "../../assets/atoms/Button";
 import {
   EditIcon,

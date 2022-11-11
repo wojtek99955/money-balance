@@ -27,16 +27,16 @@ const initialValues = {
   amount: "",
 };
 
+const validationSchema = yup.object().shape({
+  amount: yup.number().typeError("Only numbers").required("Required"),
+});
+
 const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
   const [updateExpense] = useUpdateExpenseMutation();
   const handleCloseModal = () => {
     setOpenEditExpensesModal(false);
   };
-
-  const validationSchema = yup.object().shape({
-    amount: yup.number().typeError("Only numbers").required("Required"),
-  });
 
   const handleUpdateExpense = (id: string, values: InitialValues) => {
     updateExpense({

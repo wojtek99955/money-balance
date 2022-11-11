@@ -16,7 +16,6 @@ interface ExpenseType {
 
 const Expenses = () => {
   const { data: expenses, isLoading } = useGetLatestExpensesQuery(undefined);
-  console.log(expenses);
   return (
     <DashboardBox>
       <h3>Recent expenses</h3>

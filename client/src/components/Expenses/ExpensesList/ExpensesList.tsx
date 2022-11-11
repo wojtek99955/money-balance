@@ -24,9 +24,9 @@ import {
 } from "./ExpensesListStyle";
 
 const ExpensesList = () => {
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(0);
 
-  const { data: expenses, isLoading } = useGetExpensesQuery(page);
+  const { data: expenses } = useGetExpensesQuery(page);
   const [deleteExpense, { isSuccess, isError, error }] =
     useDeleteExpenseMutation();
 

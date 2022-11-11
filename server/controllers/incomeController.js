@@ -16,6 +16,7 @@ const getIncomes = asyncHandler(async (req, res) => {
   const incomes = await Income.find({ username: username })
     .skip(page * incomesPerPage)
     .limit(incomesPerPage)
+    .sort({ createdAt: -1 })
     .select("-username")
     .lean();
 
@@ -78,6 +79,7 @@ const getLatestIncomes = asyncHandler(async (req, res) => {
 
   const incomes = await Income.find({ username: username })
     .select("-username")
+    .sort({ createdAt: -1 })
     .limit(3)
     .lean();
 

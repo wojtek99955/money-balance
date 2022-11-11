@@ -17,11 +17,18 @@ const getIncomes = asyncHandler(async (req, res) => {
   const decoded = jwt_decode(JWT);
   const username = decoded.username;
 
+  const page = req.query.p || 1;
+  const incomesPerPage = 5;
+
+  const incomesCount = await Income.count();
+
   const incomes = await Income.find({ username: username })
+    .skip(page * incomesPerPage)
+    .limit(incomesPerPage)
     .select("-username")
     .lean();
 
-  res.json({ incomes });
+  res.json({ incomes, totalPages: Math.ceil(incomesCount / incomesPerPage) });
 });
 
 const createNewIncome = async (req, res) => {
@@ -84,8 +91,8 @@ const getLatestIncomes = asyncHandler(async (req, res) => {
   const username = decoded.username;
 
   const incomes = await Income.find({ username: username })
-    .limit(3)
     .select("-username")
+    .limit(3)
     .lean();
 
   res.json({ incomes });

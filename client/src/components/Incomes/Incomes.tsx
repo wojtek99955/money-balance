@@ -8,6 +8,7 @@ import { useDeleteIncomeMutation } from "../../api/apiSlice";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useState } from "react";
 import EditIncomesModal from "./EditIncomesModal";
+import { Button } from "../../assets/atoms/Button";
 
 const EditIcon = styled(AiOutlineEdit)`
   color: ${({ theme }) => theme.colors.grey};
@@ -80,8 +81,15 @@ const ControllerBtns = styled.div`
   gap: 1rem;
 `;
 
+const PaginationBtns = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const Incomes = () => {
-  const { data: income, isLoading } = useGetIncomesQuery(undefined);
+  const [page, setPage] = useState<number>(1);
+
+  const { data: income, isLoading } = useGetIncomesQuery(page);
 
   const [deleteIncome, { isSuccess, isError, error }] =
     useDeleteIncomeMutation();
@@ -96,6 +104,14 @@ const Incomes = () => {
   };
 
   const [currentId, setCurrentId] = useState("");
+
+  const goNextPage = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  const goPrevPage = () => {
+    setPage((prev) => prev - 1);
+  };
 
   return (
     <RouteContainer>
@@ -140,6 +156,22 @@ const Incomes = () => {
           );
         })}
       </IncomeContainer>
+      <PaginationBtns>
+        <Button
+          onClick={goPrevPage}
+          style={{ width: "9rem" }}
+          disabled={page === 1}
+        >
+          Previous
+        </Button>
+        <Button
+          onClick={goNextPage}
+          style={{ width: "9rem" }}
+          disabled={page >= income?.totalPages}
+        >
+          Next
+        </Button>
+      </PaginationBtns>
     </RouteContainer>
   );
 };

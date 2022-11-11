@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useUpdateIncomeMutation } from "../../../api/apiSlice";
 import {
@@ -9,6 +9,8 @@ import {
   StyledField,
   FormWrapper,
 } from "./EditIncomesModalStyle";
+import * as yup from "yup";
+import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
 
 interface Props {
   setOpenEditIncomesModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,6 +26,10 @@ const initialValues = {
   category: "salary",
   amount: "",
 };
+
+const validationSchema = yup.object().shape({
+  amount: yup.number().typeError("Only numbers").required("Required"),
+});
 
 const IncomesModal = ({ setOpenEditIncomesModal, currentId }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
@@ -46,6 +52,7 @@ const IncomesModal = ({ setOpenEditIncomesModal, currentId }: Props) => {
         <h3>Edit Expense</h3>
         <Formik
           initialValues={initialValues}
+          validationSchema={validationSchema}
           onSubmit={(val) => {
             handleUpdateIncome(currentId, val);
             setOpenEditIncomesModal(false);
@@ -58,6 +65,7 @@ const IncomesModal = ({ setOpenEditIncomesModal, currentId }: Props) => {
                 <option value="prize">prize</option>
               </Field>
               <StyledField type="text" name="amount" />
+              <ErrorMessage name="amount" component={ValidationErrorMsg} />
               <Button type="submit">Save</Button>
             </FormWrapper>
           </Form>

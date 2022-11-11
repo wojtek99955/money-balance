@@ -8,7 +8,7 @@ const getIncomes = asyncHandler(async (req, res) => {
   const decoded = jwt_decode(JWT);
   const username = decoded.username;
 
-  const page = req.query.p || 1;
+  const page = req.query.p;
   const incomesPerPage = 5;
 
   const incomesCount = await Income.count();

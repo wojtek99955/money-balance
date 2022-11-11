@@ -19,7 +19,7 @@ import {
 } from "./IncomesListStyle";
 
 const IncomesList = () => {
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(0);
 
   const { data: income, isLoading } = useGetIncomesQuery(page);
 
@@ -45,10 +45,12 @@ const IncomesList = () => {
     setPage((prev) => prev - 1);
   };
 
+  console.log(income);
+
   return (
     <RouteContainer>
       <IncomeContainer>
-        {income?.incomes!.map((income: any) => {
+        {income?.incomes.map((income: any) => {
           return (
             <DashboardBox key={income._id}>
               <ExpensesWrapper>
@@ -92,7 +94,7 @@ const IncomesList = () => {
         <Button
           onClick={goPrevPage}
           style={{ width: "9rem" }}
-          disabled={page === 1}
+          disabled={page === 0}
         >
           Previous
         </Button>

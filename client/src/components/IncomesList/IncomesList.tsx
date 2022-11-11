@@ -1,90 +1,22 @@
-import styled from "styled-components";
-import { IoMdClose } from "react-icons/io";
 import { useGetIncomesQuery } from "../../api/apiSlice";
 import { RouteContainer } from "../../assets/atoms/RouteContainer";
 import { getIncomeCategoryIcon } from "../../helpers/getIncomeCategoryIcon";
 import { DashboardBox } from "../../assets/atoms/DashboardBox";
 import { useDeleteIncomeMutation } from "../../api/apiSlice";
-import { AiOutlineEdit } from "react-icons/ai";
 import { useState } from "react";
 import EditIncomesModal from "./EditIncomesModal";
 import { Button } from "../../assets/atoms/Button";
-
-const EditIcon = styled(AiOutlineEdit)`
-  color: ${({ theme }) => theme.colors.grey};
-  font-size: 1.2rem;
-`;
-
-export const Price = styled.div`
-  color: green;
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-left: auto;
-  margin-right: 3rem;
-`;
-const ExpenseDataGroup = styled.div`
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  div {
-    color: ${({ theme }) => theme.colors.title};
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-transform: capitalize;
-  }
-  span {
-    color: ${({ theme }) => theme.colors.grey};
-    font-weight: 500;
-    font-size: 1rem;
-  }
-`;
-
-const IncomeContainer = styled.div`
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: auto;
-`;
-
-const ExpensesWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const DeleteIcon = styled(IoMdClose)`
-  color: ${({ theme }) => theme.colors.grey};
-  font-size: 1.2rem;
-`;
-
-const BtnContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f4f7fd;
-  padding: 0.5rem;
-  border-radius: 12px;
-  cursor: pointer;
-  &:hover {
-    background-color: #ddecff;
-    ${DeleteIcon} {
-      color: ${({ theme }) => theme.colors.main.default};
-    }
-    ${EditIcon} {
-      color: ${({ theme }) => theme.colors.main.default};
-    }
-  }
-`;
-const ControllerBtns = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
-
-const PaginationBtns = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+import {
+  EditIcon,
+  Price,
+  ExpenseDataGroup,
+  IncomeContainer,
+  ExpensesWrapper,
+  DeleteIcon,
+  BtnContainer,
+  ControllerBtns,
+  PaginationBtns,
+} from "./IncomesListStyle";
 
 const IncomesList = () => {
   const [page, setPage] = useState<number>(1);

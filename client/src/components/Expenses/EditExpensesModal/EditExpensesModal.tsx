@@ -11,6 +11,7 @@ import {
 } from "./EditExpensesModalStyle";
 import * as yup from "yup";
 import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
+import { useRef } from "react";
 
 interface Props {
   setOpenEditExpensesModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -33,9 +34,19 @@ const validationSchema = yup.object().shape({
 
 const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
+
   const [updateExpense] = useUpdateExpenseMutation();
+
   const handleCloseModal = () => {
     setOpenEditExpensesModal(false);
+  };
+
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClickOutside = (e: any) => {
+    if (e.target === wrapperRef.current) {
+      setOpenEditExpensesModal(false);
+    }
   };
 
   const handleUpdateExpense = (id: string, values: InitialValues) => {
@@ -46,7 +57,7 @@ const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
     });
   };
   return ReactDOM.createPortal(
-    <Container>
+    <Container ref={wrapperRef} onClick={handleClickOutside}>
       <FormContainer>
         <CloseIcon onClick={handleCloseModal} />
         <h3>Edit Expense</h3>

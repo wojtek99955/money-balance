@@ -3,15 +3,6 @@ const asyncHandler = require("express-async-handler");
 const jwt_decode = require("jwt-decode");
 
 const getIncomes = asyncHandler(async (req, res) => {
-  // const cookie = req.headers.cookie;
-  // const { username } = req.body;
-
-  // // If no users
-  // if (!incomes?.length) {
-  //   return res.status(400).json({ message: "No incomes found" });
-  // }
-
-  // res.json(cookie.userData);
   let JWT = req.cookies.jwt;
 
   const decoded = jwt_decode(JWT);
@@ -32,13 +23,11 @@ const getIncomes = asyncHandler(async (req, res) => {
 });
 
 const createNewIncome = async (req, res) => {
-  // Get all users from MongoDB
   const { username, category, amount, date } = req.body;
 
   const income = await Income.create({ category, username, amount, date });
 
   if (income) {
-    // Created
     return res.status(201).json({ message: "New income created" });
   } else {
     return res.status(400).json({ message: "Invalid income data received" });
@@ -71,9 +60,6 @@ const updateIncome = async (req, res) => {
 
   const income = await Income.findById(id).exec();
 
-  // if (income) {
-  //   return res.status(400).json({ message: "income not found" });
-  // }
   console.log(income);
   income.amount = amount;
   income.category = category;

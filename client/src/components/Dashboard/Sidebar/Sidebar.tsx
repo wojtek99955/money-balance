@@ -36,6 +36,7 @@ const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.colors.title};
   font-size: 1.1rem;
   margin-bottom: 1rem;
+  user-select: none;
 `;
 
 const ChartIcon = styled(TbChartBar)`
@@ -70,6 +71,7 @@ const CategoryDropdown = styled.div`
   color: ${({ theme }) => theme.colors.title};
   font-size: 1.1rem;
   margin-bottom: 1rem;
+  user-select: none;
 `;
 
 const SidebarWrapper = styled.div`

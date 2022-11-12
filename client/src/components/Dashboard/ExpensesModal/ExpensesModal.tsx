@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useAddExpensesMutation } from "../../../api/apiSlice";
 import { getDate } from "../../../helpers/getDate";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -84,8 +84,17 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
     setOpenExpensesModal(false);
   };
   const [values, setValues] = useState<any>("");
+
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClickOutside = (e: any) => {
+    if (e.target === wrapperRef.current) {
+      setOpenExpensesModal(false);
+    }
+  };
+
   return ReactDOM.createPortal(
-    <Container>
+    <Container ref={wrapperRef} onClick={handleClickOutside}>
       <FormContainer>
         <CloseIcon onClick={handleCloseModal} />
         <h3>Add Expense</h3>

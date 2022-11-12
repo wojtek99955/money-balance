@@ -41,12 +41,16 @@ const Amount = styled.div`
   font-weight: 600;
 `;
 
+const StyledH3 = styled.h3`
+  user-select: none;
+`;
+
 const RecentIncomes = () => {
   const { data: incomes, isLoading } = useGetLatestIncomesQuery(undefined);
   console.log(incomes);
   return (
     <DashboardBox>
-      <h3>Recent incomes</h3>
+      <StyledH3>Recent incomes</StyledH3>
       <IncomesWrapper>
         {incomes?.incomes!.map((income: any) => {
           return (

@@ -5,6 +5,7 @@ import { Formik, Form, Field } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useAddIncomesMutation } from "../../../api/apiSlice";
 import { getDate } from "../../../helpers/getDate";
+import { useRef } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -82,8 +83,16 @@ const IncomesModal = ({ setOpenIncomesModal }: Props) => {
   const handleCloseModal = () => {
     setOpenIncomesModal(false);
   };
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClickOutside = (e: any) => {
+    if (e.target === wrapperRef.current) {
+      setOpenIncomesModal(false);
+    }
+  };
+
   return ReactDOM.createPortal(
-    <Container>
+    <Container ref={wrapperRef} onClick={handleClickOutside}>
       <FormContainer>
         <CloseIcon onClick={handleCloseModal} />
         <h3>Add Income</h3>

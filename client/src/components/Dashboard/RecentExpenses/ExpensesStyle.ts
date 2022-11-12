@@ -38,3 +38,7 @@ export const ExpenseDataGroup = styled.div`
     font-size: 1rem;
   }
 `;
+
+export const StyledH3 = styled.h3`
+  user-select: none;
+`;

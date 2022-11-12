@@ -6,6 +6,7 @@ import {
   ExpensesWrapper,
   Expense,
   ExpenseDataGroup,
+  StyledH3,
 } from "./ExpensesStyle";
 
 interface ExpenseType {
@@ -18,7 +19,7 @@ const Expenses = () => {
   const { data: expenses, isLoading } = useGetLatestExpensesQuery(undefined);
   return (
     <DashboardBox>
-      <h3>Recent expenses</h3>
+      <StyledH3>Recent expenses</StyledH3>
       {!isLoading ? (
         <ExpensesWrapper>
           {expenses?.expenses!.map((expense: ExpenseType) => {

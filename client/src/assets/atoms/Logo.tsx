@@ -6,6 +6,7 @@ const LogoContainer = styled.div`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.main.default};
   cursor: pointer;
+  user-select: none;
 `;
 
 const username = JSON.parse(localStorage.getItem("username")!);

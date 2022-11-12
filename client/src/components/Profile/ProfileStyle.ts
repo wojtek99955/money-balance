@@ -11,11 +11,13 @@ export const Container = styled.div`
 export const DownIcon = styled(FiChevronDown)`
   color: white;
   font-size: 1.5rem;
+  pointer-events: none;
 `;
 
 export const UpIcon = styled(FiChevronUp)`
   color: white;
   font-size: 1.5rem;
+  pointer-events: none;
 `;
 
 export const OptionsContainer = styled(motion.div)`

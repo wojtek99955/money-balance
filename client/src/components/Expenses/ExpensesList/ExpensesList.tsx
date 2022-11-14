@@ -109,7 +109,7 @@ const ExpensesList = () => {
         <Button
           onClick={goPrevPage}
           style={{ width: "9rem" }}
-          disabled={page === 1}
+          disabled={page === 0}
         >
           Previous
         </Button>

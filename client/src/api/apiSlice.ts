@@ -83,6 +83,10 @@ export const apiSlice = createApi({
       query: () => "/income/latest",
       providesTags: ["Incomes"],
     }),
+    getTotalIncome: builder.query<any, undefined>({
+      query: () => "income/total",
+      providesTags: ["Incomes"],
+    }),
   }),
 });
 
@@ -97,4 +101,5 @@ export const {
   useUpdateIncomeMutation,
   useGetLatestExpensesQuery,
   useGetLatestIncomesQuery,
+  useGetTotalIncomeQuery,
 } = apiSlice;

@@ -3,10 +3,11 @@ import { TbWallet } from "react-icons/tb";
 import { GiReceiveMoney } from "react-icons/gi";
 import { GiExpense } from "react-icons/gi";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ExpensesModal from "./ExpensesModal/ExpensesModal";
 import IncomesModal from "./IncomesModal/IncomesModal";
 import { DashboardBox } from "../../assets/atoms/DashboardBox";
+import { useGetTotalIncomeQuery } from "../../api/apiSlice";
 
 const BoxWrapper = styled.div`
   display: flex;
@@ -66,6 +67,8 @@ const Summary = () => {
     setOpenIncomesModal(true);
   };
 
+  const { data: totalIncome } = useGetTotalIncomeQuery(undefined);
+
   return (
     <DashboardBox>
       <BoxWrapper>
@@ -82,6 +85,7 @@ const Summary = () => {
           </IconContainer>
           <h3>Income</h3>
           <AddIcon />
+          {totalIncome?.totalIncome[0]?.totalIncome}
         </ItemContainer>
         <ItemContainer onClick={handleOpenExpensesModal}>
           <IconContainer color="#b4cefc">

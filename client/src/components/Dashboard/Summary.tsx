@@ -40,6 +40,9 @@ const ItemContainer = styled.div`
   h3 {
     color: ${({ theme }) => theme.colors.grey};
   }
+  &:not(:first-of-type) {
+    cursor: pointer;
+  }
 `;
 
 const ExpenseIcon = styled(GiExpense)`
@@ -73,19 +76,19 @@ const Summary = () => {
           <h3>Wallet</h3>
           <AddIcon />
         </ItemContainer>
-        <ItemContainer>
+        <ItemContainer onClick={hnadleOpenIncomesModal}>
           <IconContainer color="#a6eeda">
             <IncomeIcon />
           </IconContainer>
           <h3>Income</h3>
-          <AddIcon onClick={hnadleOpenIncomesModal} />
+          <AddIcon />
         </ItemContainer>
-        <ItemContainer>
+        <ItemContainer onClick={handleOpenExpensesModal}>
           <IconContainer color="#b4cefc">
             <ExpenseIcon />
           </IconContainer>
           <h3>Expenses</h3>
-          <AddIcon onClick={handleOpenExpensesModal} />
+          <AddIcon />
         </ItemContainer>
       </BoxWrapper>
       {openExpensesModal ? (

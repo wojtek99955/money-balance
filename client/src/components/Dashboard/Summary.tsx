@@ -63,6 +63,7 @@ const AddIcon = styled(IoMdAddCircleOutline)`
 const Value = styled.div`
   font-size: 1.2rem;
   color: ${({ theme }) => theme.colors.title};
+  font-weight: 600;
 `;
 
 const ValueContainer = styled.div`
@@ -98,7 +99,7 @@ const Summary = () => {
           </IconContainer>
           <ValueContainer>
             <h3>Wallet</h3>
-            <Value>{walletValue}</Value>
+            <Value>${walletValue}</Value>
           </ValueContainer>
         </ItemContainer>
         <ItemContainer onClick={hnadleOpenIncomesModal}>

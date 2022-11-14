@@ -85,6 +85,10 @@ const Summary = () => {
 
   const { data: totalExpense } = useGetTotalExpenseQuery(undefined);
 
+  const walletValue =
+    totalIncome?.totalIncome[0]?.totalIncome -
+    totalExpense?.totalExpense[0]?.totalExpense;
+
   return (
     <DashboardBox>
       <BoxWrapper>
@@ -92,8 +96,10 @@ const Summary = () => {
           <IconContainer color="#ffe3e3">
             <WalletIcon />
           </IconContainer>
-          <h3>Wallet</h3>
-          <AddIcon />
+          <ValueContainer>
+            <h3>Wallet</h3>
+            <Value>{walletValue}</Value>
+          </ValueContainer>
         </ItemContainer>
         <ItemContainer onClick={hnadleOpenIncomesModal}>
           <IconContainer color="#a6eeda">

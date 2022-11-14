@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { Formik, Form, Field } from "formik";
 import { Button } from "../../../assets/atoms/Button";
-import { useAddIncomesMutation } from "../../../api/apiSlice";
+import { useAddIncomesMutation } from "../../../api/incomeApiSlice";
 import { getDate } from "../../../helpers/getDate";
 import { useRef } from "react";
 

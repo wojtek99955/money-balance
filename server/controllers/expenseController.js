@@ -92,10 +92,27 @@ const getLatestExpenses = asyncHandler(async (req, res) => {
   res.json({ expenses });
 });
 
+const getTotalExpense = asyncHandler(async (req, res) => {
+  let JWT = req.cookies.jwt;
+
+  const decoded = jwt_decode(JWT);
+  const username = decoded.username;
+
+  const totalExpense = await Expense.aggregate([
+    { $match: { username: username } },
+    {
+      $group: { _id: "$name", totalExpense: { $sum: "$amount" } },
+    },
+  ]);
+
+  res.json({ totalExpense: totalExpense });
+});
+
 module.exports = {
   createExpense,
   getExpenses,
   deleteExpense,
   updateExpense,
   getLatestExpenses,
+  getTotalExpense,
 };

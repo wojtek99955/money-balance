@@ -1,5 +1,5 @@
 import { DashboardBox } from "../../../assets/atoms/DashboardBox";
-import { useGetLatestIncomesQuery } from "../../../api/apiSlice";
+import { useGetLatestIncomesQuery } from "../../../api/incomeApiSlice";
 import { getIncomeCategoryIcon } from "../../../helpers/getIncomeCategoryIcon";
 import { IncomeType } from "../../../Interfaces/Income";
 import {

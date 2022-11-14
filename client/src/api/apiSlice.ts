@@ -87,6 +87,10 @@ export const apiSlice = createApi({
       query: () => "income/total",
       providesTags: ["Incomes"],
     }),
+    getTotalExpense: builder.query<any, undefined>({
+      query: () => "expense/total",
+      providesTags: ["Expenses"],
+    }),
   }),
 });
 
@@ -102,4 +106,5 @@ export const {
   useGetLatestExpensesQuery,
   useGetLatestIncomesQuery,
   useGetTotalIncomeQuery,
+  useGetTotalExpenseQuery,
 } = apiSlice;

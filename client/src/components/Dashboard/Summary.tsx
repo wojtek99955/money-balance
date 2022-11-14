@@ -7,7 +7,10 @@ import { useEffect, useState } from "react";
 import ExpensesModal from "./ExpensesModal/ExpensesModal";
 import IncomesModal from "./IncomesModal/IncomesModal";
 import { DashboardBox } from "../../assets/atoms/DashboardBox";
-import { useGetTotalIncomeQuery } from "../../api/apiSlice";
+import {
+  useGetTotalIncomeQuery,
+  useGetTotalExpenseQuery,
+} from "../../api/apiSlice";
 
 const BoxWrapper = styled.div`
   display: flex;
@@ -80,6 +83,8 @@ const Summary = () => {
 
   const { data: totalIncome } = useGetTotalIncomeQuery(undefined);
 
+  const { data: totalExpense } = useGetTotalExpenseQuery(undefined);
+
   return (
     <DashboardBox>
       <BoxWrapper>
@@ -104,7 +109,10 @@ const Summary = () => {
           <IconContainer color="#b4cefc">
             <ExpenseIcon />
           </IconContainer>
-          <h3>Expenses</h3>
+          <ValueContainer>
+            <h3>Expenses</h3>
+            <Value>${totalExpense?.totalExpense[0]?.totalExpense}</Value>
+          </ValueContainer>
           <AddIcon />
         </ItemContainer>
       </BoxWrapper>

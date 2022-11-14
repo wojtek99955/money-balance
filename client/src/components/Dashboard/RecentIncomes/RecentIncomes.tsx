@@ -1,57 +1,34 @@
 import { DashboardBox } from "../../../assets/atoms/DashboardBox";
 import { useGetLatestIncomesQuery } from "../../../api/apiSlice";
 import { getIncomeCategoryIcon } from "../../../helpers/getIncomeCategoryIcon";
-import styled from "styled-components";
 import { IncomeType } from "../../../Interfaces/Income";
-
-export const IncomesWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 2rem;
-  width: 100%;
-  gap: 1rem;
-`;
-export const Income = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-`;
-
-const IncomeDataGroup = styled.div`
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  div {
-    color: ${({ theme }) => theme.colors.title};
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-transform: capitalize;
-  }
-  span {
-    color: ${({ theme }) => theme.colors.grey};
-    font-weight: 500;
-    font-size: 1rem;
-  }
-`;
-
-const Amount = styled.div`
-  color: green;
-  font-size: 1.2rem;
-  font-weight: 600;
-`;
-
-const StyledH3 = styled.h3`
-  user-select: none;
-`;
+import {
+  IncomesWrapper,
+  Income,
+  IncomeDataGroup,
+  Amount,
+  StyledH3,
+  TopSection,
+} from "./RecentIncomesStyle";
+import ShowMore from "../../../assets/atoms/ShowMore";
+import { useNavigate } from "react-router-dom";
 
 const RecentIncomes = () => {
   const { data: incomes, isLoading } = useGetLatestIncomesQuery(undefined);
   console.log(incomes);
+
+  let navigate = useNavigate();
+  const goToIncomes = () => {
+    navigate("/incomes");
+  };
   return (
     <DashboardBox>
-      <StyledH3>Recent incomes</StyledH3>
+      <TopSection>
+        <StyledH3>Recent incomes</StyledH3>
+        <div onClick={goToIncomes}>
+          <ShowMore />
+        </div>
+      </TopSection>
       <IncomesWrapper>
         {incomes?.incomes!.map((income: IncomeType) => {
           return (

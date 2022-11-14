@@ -9,8 +9,15 @@ const ShowMoreIcon = styled(CgMoreVertical)`
 const Container = styled.div`
   color: ${({ theme }) => theme.colors.grey};
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   align-items: center;
+  cursor: pointer;
+  &:hover {
+    color: ${({ theme }) => theme.colors.main.default};
+    ${ShowMoreIcon} {
+      color: ${({ theme }) => theme.colors.main.default};
+    }
+  }
 `;
 
 const ShowMore = () => {

@@ -7,10 +7,8 @@ import { useEffect, useState } from "react";
 import ExpensesModal from "./ExpensesModal/ExpensesModal";
 import IncomesModal from "./IncomesModal/IncomesModal";
 import { DashboardBox } from "../../assets/atoms/DashboardBox";
-import {
-  useGetTotalIncomeQuery,
-  useGetTotalExpenseQuery,
-} from "../../api/apiSlice";
+import { useGetTotalIncomeQuery } from "../../api/incomeApiSlice";
+import { useGetTotalExpenseQuery } from "../../api/expenseApiSlice";
 
 const BoxWrapper = styled.div`
   display: flex;

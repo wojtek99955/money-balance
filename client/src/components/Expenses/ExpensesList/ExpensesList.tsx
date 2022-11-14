@@ -1,9 +1,9 @@
 import { DashboardBox } from "../../../assets/atoms/DashboardBox";
-import { useGetExpensesQuery } from "../../../api/apiSlice";
+import { useGetExpensesQuery } from "../../../api/expenseApiSlice";
 import { Expense } from "../../../Interfaces/Expense";
 import { RouteContainer } from "../../../assets/atoms/RouteContainer";
 import { getExpenseCategoryIcon } from "../../../helpers/getExpenseCategoryIcon";
-import { useDeleteExpenseMutation } from "../../../api/apiSlice";
+import { useDeleteExpenseMutation } from "../../../api/expenseApiSlice";
 import { useState } from "react";
 import EditExpensesModal from "../EditExpensesModal/EditExpensesModal";
 import ExpensesFilterDropdown from "../ExpensesFilterDropdown/ExpensesFilterDropdown";

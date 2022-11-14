@@ -2,6 +2,7 @@ import { DashboardBox } from "../../../assets/atoms/DashboardBox";
 import { useGetLatestIncomesQuery } from "../../../api/apiSlice";
 import { getIncomeCategoryIcon } from "../../../helpers/getIncomeCategoryIcon";
 import styled from "styled-components";
+import { IncomeType } from "../../../Interfaces/Income";
 
 export const IncomesWrapper = styled.div`
   display: flex;
@@ -52,7 +53,7 @@ const RecentIncomes = () => {
     <DashboardBox>
       <StyledH3>Recent incomes</StyledH3>
       <IncomesWrapper>
-        {incomes?.incomes!.map((income: any) => {
+        {incomes?.incomes!.map((income: IncomeType) => {
           return (
             <Income>
               <IncomeDataGroup>

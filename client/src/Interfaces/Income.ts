@@ -1,5 +1,5 @@
-export interface Income {
-  category: String;
-  amount: Number;
-  date: String;
+export interface IncomeType {
+  category: string;
+  amount: number;
+  date: string;
 }

@@ -76,7 +76,7 @@ const ExpensesList = () => {
                     <span>{expense.date}</span>
                   </div>
                 </ExpenseDataGroup>
-                <Price> - {expense.amount} $</Price>
+                <Price> - ${expense.amount} </Price>
                 <ControllerBtns>
                   <BtnContainer
                     onClick={() => {

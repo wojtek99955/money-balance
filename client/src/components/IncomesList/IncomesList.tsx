@@ -61,7 +61,7 @@ const IncomesList = () => {
                     <span>{income.date}</span>
                   </div>
                 </ExpenseDataGroup>
-                <Price> + {income.amount} $</Price>
+                <Price> + ${income.amount}</Price>
                 <ControllerBtns>
                   <BtnContainer>
                     <EditIcon

@@ -5,7 +5,6 @@ import { GiExpense } from "react-icons/gi";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
 import ExpensesModal from "./ExpensesModal/ExpensesModal";
-import { useNavigate } from "react-router-dom";
 import IncomesModal from "./IncomesModal/IncomesModal";
 import { DashboardBox } from "../../assets/atoms/DashboardBox";
 
@@ -63,13 +62,7 @@ const Summary = () => {
   const hnadleOpenIncomesModal = () => {
     setOpenIncomesModal(true);
   };
-  let navigate = useNavigate();
-  const goToExpenses = () => {
-    navigate("/expenses");
-  };
-  const goToIncomes = () => {
-    navigate("/incomes");
-  };
+
   return (
     <DashboardBox>
       <BoxWrapper>
@@ -81,14 +74,14 @@ const Summary = () => {
           <AddIcon />
         </ItemContainer>
         <ItemContainer>
-          <IconContainer color="#a6eeda" onClick={goToIncomes}>
+          <IconContainer color="#a6eeda">
             <IncomeIcon />
           </IconContainer>
           <h3>Income</h3>
           <AddIcon onClick={hnadleOpenIncomesModal} />
         </ItemContainer>
         <ItemContainer>
-          <IconContainer color="#b4cefc" onClick={goToExpenses}>
+          <IconContainer color="#b4cefc">
             <ExpenseIcon />
           </IconContainer>
           <h3>Expenses</h3>

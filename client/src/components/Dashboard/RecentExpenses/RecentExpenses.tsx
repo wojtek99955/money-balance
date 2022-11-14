@@ -7,7 +7,10 @@ import {
   Expense,
   ExpenseDataGroup,
   StyledH3,
+  TopSection,
 } from "./ExpensesStyle";
+import ShowMore from "../../../assets/atoms/ShowMore";
+import { useNavigate } from "react-router-dom";
 
 interface ExpenseType {
   category: string;
@@ -17,9 +20,20 @@ interface ExpenseType {
 
 const Expenses = () => {
   const { data: expenses, isLoading } = useGetLatestExpensesQuery(undefined);
+
+  let navigate = useNavigate();
+
+  const goToExpenses = () => {
+    navigate("/expenses");
+  };
   return (
     <DashboardBox>
-      <StyledH3>Recent expenses</StyledH3>
+      <TopSection>
+        <StyledH3>Recent expenses</StyledH3>
+        <div onClick={goToExpenses}>
+          <ShowMore />
+        </div>
+      </TopSection>
       {!isLoading ? (
         <ExpensesWrapper>
           {expenses?.expenses!.map((expense: ExpenseType) => {

@@ -42,3 +42,8 @@ export const ExpenseDataGroup = styled.div`
 export const StyledH3 = styled.h3`
   user-select: none;
 `;
+
+export const TopSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

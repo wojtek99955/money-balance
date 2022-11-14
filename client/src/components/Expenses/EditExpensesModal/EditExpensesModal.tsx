@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../../assets/atoms/Button";
-import { useUpdateExpenseMutation } from "../../../api/apiSlice";
+import { useUpdateExpenseMutation } from "../../../api/expenseApiSlice";
 import {
   Container,
   FormContainer,

@@ -9,5 +9,6 @@ router
   .delete(expenseController.deleteExpense)
   .patch(expenseController.updateExpense);
 router.get("/latest", expenseController.getLatestExpenses);
+router.get("/total", expenseController.getTotalExpense);
 
 module.exports = router;

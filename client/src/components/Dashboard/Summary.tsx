@@ -57,6 +57,17 @@ const AddIcon = styled(IoMdAddCircleOutline)`
   cursor: pointer;
 `;
 
+const Value = styled.div`
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.colors.title};
+`;
+
+const ValueContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const Summary = () => {
   const [openExpensesModal, setOpenExpensesModal] = useState(false);
   const [openIncomesModal, setOpenIncomesModal] = useState(false);
@@ -83,9 +94,11 @@ const Summary = () => {
           <IconContainer color="#a6eeda">
             <IncomeIcon />
           </IconContainer>
-          <h3>Income</h3>
+          <ValueContainer>
+            <h3>Income</h3>
+            <Value>${totalIncome?.totalIncome[0]?.totalIncome}</Value>
+          </ValueContainer>
           <AddIcon />
-          {totalIncome?.totalIncome[0]?.totalIncome}
         </ItemContainer>
         <ItemContainer onClick={handleOpenExpensesModal}>
           <IconContainer color="#b4cefc">

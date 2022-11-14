@@ -40,7 +40,7 @@ const RecentIncomes = () => {
                   <span>{income.date}</span>
                 </div>
               </IncomeDataGroup>
-              <Amount> + {income.amount} $</Amount>
+              <Amount> + ${income.amount}</Amount>
             </Income>
           );
         })}

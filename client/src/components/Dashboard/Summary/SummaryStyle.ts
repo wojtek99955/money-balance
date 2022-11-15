@@ -55,7 +55,8 @@ export const AddIcon = styled(IoMdAddCircleOutline)`
 export const Value = styled.div`
   font-size: 1.2rem;
   color: ${({ theme }) => theme.colors.title};
-  font-weight: 600;
+  font-weight: 700;
+  color: ${({ color }) => color};
 `;
 
 export const ValueContainer = styled.div`

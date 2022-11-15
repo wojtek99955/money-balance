@@ -63,7 +63,9 @@ const Summary = () => {
           </IconContainer>
           <ValueContainer>
             <h3>Income</h3>
-            <Value>${totalIncomeData ? totalIncomeData : "0"}</Value>
+            <Value color="#009F5F">
+              ${totalIncomeData ? totalIncomeData : "0"}
+            </Value>
           </ValueContainer>
           <AddIcon />
         </ItemContainer>
@@ -73,7 +75,9 @@ const Summary = () => {
           </IconContainer>
           <ValueContainer>
             <h3>Expenses</h3>
-            <Value>${totalExpenseData ? totalExpenseData : "0"}</Value>
+            <Value color="#E65016">
+              ${totalExpenseData ? totalExpenseData : "0"}
+            </Value>
           </ValueContainer>
           <AddIcon />
         </ItemContainer>

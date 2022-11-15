@@ -5,7 +5,7 @@ import { FormContainer, FormWrapper, Container } from "./AuthStyles";
 import DescriptionSection from "./DescriptionSection";
 import * as yup from "yup";
 import ValidationErrorMsg from "../../assets/atoms/ValidationErrorMsg";
-
+import { useCreateUserMutation } from "../../api/userSlice";
 const initialValues = {
   username: "",
   password: "",
@@ -20,16 +20,9 @@ const validationSchema = yup.object().shape({
     .required("Required"),
 });
 
-const handleSubmit = async (val: Auth) => {
-  const res = await fetch("http://localhost:3500/users", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(val),
-  });
-  console.log(res);
-};
-
 const SignUp = () => {
+  const [addUser, response] = useCreateUserMutation();
+
   return (
     <Container>
       <DescriptionSection />
@@ -44,7 +37,7 @@ const SignUp = () => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(val) => {
-              handleSubmit(val);
+              addUser(val);
             }}
           >
             <Form>

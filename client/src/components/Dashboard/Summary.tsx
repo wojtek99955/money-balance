@@ -84,9 +84,20 @@ const Summary = () => {
 
   const { data: totalExpense } = useGetTotalExpenseQuery(undefined);
 
-  const walletValue =
-    totalIncome?.totalIncome[0]?.totalIncome -
-    totalExpense?.totalExpense[0]?.totalExpense;
+  const totalIncomeData = totalIncome?.totalIncome[0]?.totalIncome;
+  const totalExpenseData = totalExpense?.totalExpense[0]?.totalExpense;
+
+  const getWalletValue = () => {
+    if (!totalExpenseData) {
+      return totalIncomeData - 0;
+    } else if (!totalIncomeData) {
+      return 0 - totalExpenseData;
+    } else {
+      return totalIncomeData - totalExpenseData;
+    }
+  };
+
+  const walletValue = getWalletValue();
 
   return (
     <DashboardBox>
@@ -97,7 +108,7 @@ const Summary = () => {
           </IconContainer>
           <ValueContainer>
             <h3>Wallet</h3>
-            <Value>${walletValue}</Value>
+            <Value>${walletValue ? walletValue : 0}</Value>
           </ValueContainer>
         </ItemContainer>
         <ItemContainer onClick={hnadleOpenIncomesModal}>
@@ -106,7 +117,7 @@ const Summary = () => {
           </IconContainer>
           <ValueContainer>
             <h3>Income</h3>
-            <Value>${totalIncome?.totalIncome[0]?.totalIncome}</Value>
+            <Value>${totalIncomeData ? totalIncomeData : "0"}</Value>
           </ValueContainer>
           <AddIcon />
         </ItemContainer>
@@ -116,7 +127,7 @@ const Summary = () => {
           </IconContainer>
           <ValueContainer>
             <h3>Expenses</h3>
-            <Value>${totalExpense?.totalExpense[0]?.totalExpense}</Value>
+            <Value>${totalExpenseData ? totalExpenseData : "0"}</Value>
           </ValueContainer>
           <AddIcon />
         </ItemContainer>

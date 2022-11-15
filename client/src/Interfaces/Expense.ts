@@ -1,4 +1,4 @@
-export interface Expense {
+export interface ExpenseType {
   category: string;
   amount: number;
   date: string;

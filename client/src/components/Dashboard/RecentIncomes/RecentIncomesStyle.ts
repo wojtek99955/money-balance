@@ -33,7 +33,7 @@ export const IncomeDataGroup = styled.div`
 `;
 
 export const Amount = styled.div`
-  color: green;
+  color: #009f5f;
   font-size: 1.2rem;
   font-weight: 600;
 `;

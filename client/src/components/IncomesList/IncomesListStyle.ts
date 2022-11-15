@@ -8,7 +8,7 @@ export const EditIcon = styled(AiOutlineEdit)`
 `;
 
 export const Price = styled.div`
-  color: green;
+  color: #009f5f;
   font-size: 1.4rem;
   font-weight: 600;
   margin-left: auto;

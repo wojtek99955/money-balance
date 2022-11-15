@@ -1,6 +1,6 @@
 import { DashboardBox } from "../../../assets/atoms/DashboardBox";
 import { useGetExpensesQuery } from "../../../api/expenseApiSlice";
-import { Expense } from "../../../Interfaces/Expense";
+import { ExpenseType } from "../../../Interfaces/Expense";
 import { RouteContainer } from "../../../assets/atoms/RouteContainer";
 import { getExpenseCategoryIcon } from "../../../helpers/getExpenseCategoryIcon";
 import { useDeleteExpenseMutation } from "../../../api/expenseApiSlice";
@@ -65,7 +65,7 @@ const ExpensesList = () => {
           </div>
         </Title>
         <ExpensesFilterDropdown />
-        {expenses?.expenses.map((expense: Expense) => {
+        {expenses?.expenses.map((expense: ExpenseType) => {
           return (
             <DashboardBox key={expense._id}>
               <ExpensesWrapper>

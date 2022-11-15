@@ -11,13 +11,7 @@ import {
 } from "./ExpensesStyle";
 import ShowMore from "../../../assets/atoms/ShowMore";
 import { useNavigate } from "react-router-dom";
-
-interface ExpenseType {
-  category: string;
-  amount: number;
-  date: string;
-}
-
+import { ExpenseType } from "../../../Interfaces/Expense";
 const Expenses = () => {
   const { data: expenses, isLoading } = useGetLatestExpensesQuery(undefined);
 
@@ -26,6 +20,7 @@ const Expenses = () => {
   const goToExpenses = () => {
     navigate("/expenses");
   };
+
   return (
     <DashboardBox>
       <TopSection>
@@ -38,7 +33,7 @@ const Expenses = () => {
         <ExpensesWrapper>
           {expenses?.expenses!.map((expense: ExpenseType) => {
             return (
-              <Expense>
+              <Expense key={expense._id}>
                 <ExpenseDataGroup>
                   {getExpenseCategoryIcon(expense.category)}
                   <div>

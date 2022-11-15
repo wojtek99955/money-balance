@@ -4,7 +4,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { GiExpense } from "react-icons/gi";
 
 export const Price = styled.div`
-  color: red;
+  color: #e65016;
   font-size: 1.4rem;
   font-weight: 600;
   margin-left: auto;

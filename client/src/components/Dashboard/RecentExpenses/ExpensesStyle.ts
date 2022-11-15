@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Price = styled.div`
-  color: red;
+  color: #e65016;
   font-size: 1.2rem;
   font-weight: 600;
 `;

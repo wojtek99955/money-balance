@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Summary from "./Summary";
+import Summary from "./Summary/Summary";
 import Expenses from "./RecentExpenses/RecentExpenses";
 import { RouteContainer } from "../../assets/atoms/RouteContainer";
 import Incomes from "./RecentIncomes/RecentIncomes";

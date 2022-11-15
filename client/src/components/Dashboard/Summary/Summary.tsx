@@ -4,11 +4,11 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { GiExpense } from "react-icons/gi";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { useEffect, useState } from "react";
-import ExpensesModal from "./ExpensesModal/ExpensesModal";
-import IncomesModal from "./IncomesModal/IncomesModal";
-import { DashboardBox } from "../../assets/atoms/DashboardBox";
-import { useGetTotalIncomeQuery } from "../../api/incomeApiSlice";
-import { useGetTotalExpenseQuery } from "../../api/expenseApiSlice";
+import ExpensesModal from "../ExpensesModal/ExpensesModal";
+import IncomesModal from "../IncomesModal/IncomesModal";
+import { DashboardBox } from "../../../assets/atoms/DashboardBox";
+import { useGetTotalIncomeQuery } from "../../../api/incomeApiSlice";
+import { useGetTotalExpenseQuery } from "../../../api/expenseApiSlice";
 
 const BoxWrapper = styled.div`
   display: flex;

@@ -71,7 +71,7 @@ const Profile = () => {
         ) : null}
       </AnimatePresence>
       <ProfileWrapper onClick={toggleOptions} ref={profileWrapperRef}>
-        <span>{username!.slice(0, 10)}</span>
+        <span>{username?.slice(0, 10)}</span>
         {showOptions ? <UpIcon /> : <DownIcon />}
       </ProfileWrapper>
     </Container>

@@ -11,16 +11,19 @@ const getIncomes = asyncHandler(async (req, res) => {
   const page = req.query.p;
   const incomesPerPage = 5;
 
-  const incomesCount = await Income.count();
+  const incomesCount = await Income.find({ username }).count();
 
-  const incomes = await Income.find({ username: username })
+  const incomes = await Income.find({ username })
     .skip(page * incomesPerPage)
     .limit(incomesPerPage)
     .sort({ createdAt: -1 })
     .select("-username")
     .lean();
 
-  res.json({ incomes, totalPages: Math.ceil(incomesCount / incomesPerPage) });
+  res.json({
+    incomes,
+    totalPages: Math.ceil(incomesCount / incomesPerPage),
+  });
 });
 
 const createNewIncome = async (req, res) => {

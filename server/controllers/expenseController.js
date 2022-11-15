@@ -23,9 +23,9 @@ const getExpenses = asyncHandler(async (req, res) => {
   const page = req.query.p;
   const expensesPerPage = 5;
 
-  const expensesCount = await Expense.count();
+  const expensesCount = await Expense.find({ username }).count();
 
-  const expenses = await Expense.find({ username: username })
+  const expenses = await Expense.find({ username })
     .skip(page * expensesPerPage)
     .limit(expensesPerPage)
     .sort({ createdAt: -1 })

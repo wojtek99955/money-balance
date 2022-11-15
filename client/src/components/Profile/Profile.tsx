@@ -8,9 +8,12 @@ import {
   OptionsContainer,
   ProfileWrapper,
 } from "./ProfileStyle";
+import { apiSlice } from "../../api/apiSlice";
+import { useDispatch } from "react-redux";
 
 const Profile = () => {
   const username = JSON.parse(localStorage.getItem("username")!);
+  let dispatch = useDispatch();
 
   let navigate = useNavigate();
   const profileWrapperRef = useRef<HTMLDivElement>(null);
@@ -21,8 +24,14 @@ const Profile = () => {
   };
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:3500/auth/logout");
+      await fetch("http://localhost:3500/auth/logout", {
+        method: "post",
+        credentials: "include",
+      });
+      dispatch(apiSlice.util.resetApiState());
+
       localStorage.removeItem("username");
+
       navigate("/sign-in");
     } catch (err) {
       console.log(err);

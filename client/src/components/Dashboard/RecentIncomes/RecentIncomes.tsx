@@ -32,7 +32,7 @@ const RecentIncomes = () => {
       <IncomesWrapper>
         {incomes?.incomes!.map((income: IncomeType) => {
           return (
-            <Income>
+            <Income key={income._id}>
               <IncomeDataGroup>
                 {getIncomeCategoryIcon(income.category)}
                 <div>

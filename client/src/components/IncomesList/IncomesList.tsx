@@ -17,11 +17,26 @@ import {
   ControllerBtns,
   PaginationBtns,
 } from "./IncomesListStyle";
+import { FilterWallet } from "../../Interfaces/FilterWallet";
+import IncomesFilterDropdown from "./IncomesFilterDropdown/IncomesFilterDropdown";
 
 const IncomesList = () => {
   const [page, setPage] = useState<number>(0);
 
-  const { data: income, isLoading } = useGetIncomesQuery(page);
+  const [filterData, setFilterData] = useState<FilterWallet>({
+    category: "all",
+    amount: "",
+    date: -1,
+  });
+
+  const { category, amount, date } = filterData;
+
+  const { data: income, isLoading } = useGetIncomesQuery({
+    page,
+    category,
+    amount,
+    date,
+  });
 
   const [deleteIncome, { isSuccess, isError, error }] =
     useDeleteIncomeMutation();
@@ -50,6 +65,10 @@ const IncomesList = () => {
   return (
     <RouteContainer>
       <IncomeContainer>
+        <IncomesFilterDropdown
+          setFilterData={setFilterData}
+          filterData={filterData}
+        />
         {income?.incomes.map((income: any) => {
           return (
             <DashboardBox key={income._id}>

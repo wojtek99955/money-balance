@@ -26,20 +26,23 @@ import { FilterWallet } from "../../../Interfaces/FilterWallet";
 
 const ExpensesList = () => {
   const [page, setPage] = useState<number>(0);
+  const [ItemsPerPage, setItemsPerPage] = useState(5);
 
   const [filterData, setFilterData] = useState<FilterWallet>({
     category: "all",
     amount: "",
     date: -1,
+    limit: 5,
   });
 
-  const { category, amount, date } = filterData;
+  const { category, amount, date, limit } = filterData;
 
   const { data: expenses } = useGetExpensesQuery({
     page,
     category,
     amount,
     date,
+    limit,
   });
   const [deleteExpense, { isSuccess, isError, error }] =
     useDeleteExpenseMutation();
@@ -81,6 +84,7 @@ const ExpensesList = () => {
         <ExpensesFilterDropdown
           setFilterData={setFilterData}
           filterData={filterData}
+          setItemsPerPage={setItemsPerPage}
         />
         {expenses?.expenses.map((expense: ExpenseType) => {
           return (

@@ -1,13 +1,19 @@
 import { useState } from "react";
 import styled from "styled-components";
 import FilterDropdown from "../../../assets/atoms/FilterDropdown";
+import { FilterExpense } from "../../../Interfaces/FilterExpense";
+
+interface Props {
+  setFilterData: React.Dispatch<React.SetStateAction<FilterExpense>>;
+  filterData: FilterExpense;
+}
 
 const FilterContainer = styled.div`
   display: flex;
   gap: 1rem;
 `;
 
-const ExpensesFilterDropdown = () => {
+const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAddedTime, setSelectedAddedTime] = useState("");
   return (
@@ -16,6 +22,15 @@ const ExpensesFilterDropdown = () => {
         <ul>
           <li
             onClick={() => {
+              setFilterData({ ...filterData, category: "all" });
+              setSelectedCategory("All");
+            }}
+          >
+            All
+          </li>
+          <li
+            onClick={() => {
+              setFilterData({ ...filterData, category: "shopping" });
               setSelectedCategory("Shopping");
             }}
           >
@@ -23,6 +38,7 @@ const ExpensesFilterDropdown = () => {
           </li>
           <li
             onClick={() => {
+              setFilterData({ ...filterData, category: "gift" });
               setSelectedCategory("Gift");
             }}
           >
@@ -30,6 +46,7 @@ const ExpensesFilterDropdown = () => {
           </li>
           <li
             onClick={() => {
+              setFilterData({ ...filterData, category: "transportation" });
               setSelectedCategory("Transportation");
             }}
           >
@@ -41,6 +58,7 @@ const ExpensesFilterDropdown = () => {
         <ul>
           <li
             onClick={() => {
+              setFilterData({ ...filterData, date: -1 });
               setSelectedAddedTime("Latest");
             }}
           >
@@ -48,6 +66,7 @@ const ExpensesFilterDropdown = () => {
           </li>
           <li
             onClick={() => {
+              setFilterData({ ...filterData, date: 1 });
               setSelectedAddedTime("Oldest");
             }}
           >

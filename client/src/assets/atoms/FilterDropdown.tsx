@@ -22,6 +22,7 @@ const FilterName = styled.div<StyleProps>`
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 const OptionsContainer = styled.div`

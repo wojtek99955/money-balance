@@ -2,6 +2,8 @@ const Income = require("../models/Income");
 const asyncHandler = require("express-async-handler");
 const jwt_decode = require("jwt-decode");
 
+const categories = ["salary", "prize"];
+
 const getIncomes = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
@@ -10,13 +12,21 @@ const getIncomes = asyncHandler(async (req, res) => {
 
   const page = req.query.p;
   const incomesPerPage = 5;
+  const date = req.query.date;
+  let category = req.query.category;
+
+  category === "all"
+    ? (category = [...categories])
+    : (category = req.query.category.split(","));
 
   const incomesCount = await Income.find({ username }).count();
 
   const incomes = await Income.find({ username })
+    .where("category")
+    .in([...category])
     .skip(page * incomesPerPage)
     .limit(incomesPerPage)
-    .sort({ createdAt: -1 })
+    .sort({ createdAt: date })
     .select("-username")
     .lean();
 

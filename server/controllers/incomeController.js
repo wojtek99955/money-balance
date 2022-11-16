@@ -11,9 +11,10 @@ const getIncomes = asyncHandler(async (req, res) => {
   const username = decoded.username;
 
   const page = req.query.p;
-  const incomesPerPage = 5;
+  const incomesPerPage = req.query.limit;
   const date = req.query.date;
   let category = req.query.category;
+  console.log(incomesPerPage);
 
   category === "all"
     ? (category = [...categories])

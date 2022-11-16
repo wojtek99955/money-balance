@@ -22,11 +22,25 @@ import {
   ExpensesWrapper,
   PaginationBtns,
 } from "./ExpensesListStyle";
+import { FilterExpense } from "../../../Interfaces/FilterExpense";
 
 const ExpensesList = () => {
   const [page, setPage] = useState<number>(0);
 
-  const { data: expenses } = useGetExpensesQuery(page);
+  const [filterData, setFilterData] = useState<FilterExpense>({
+    category: "transportation",
+    amount: "",
+    date: -1,
+  });
+
+  const { category, amount, date } = filterData;
+
+  const { data: expenses } = useGetExpensesQuery({
+    page,
+    category,
+    amount,
+    date,
+  });
   const [deleteExpense, { isSuccess, isError, error }] =
     useDeleteExpenseMutation();
 
@@ -64,7 +78,10 @@ const ExpensesList = () => {
             <p>Browse your expenses history</p>
           </div>
         </Title>
-        <ExpensesFilterDropdown />
+        <ExpensesFilterDropdown
+          setFilterData={setFilterData}
+          filterData={filterData}
+        />
         {expenses?.expenses.map((expense: ExpenseType) => {
           return (
             <DashboardBox key={expense._id}>

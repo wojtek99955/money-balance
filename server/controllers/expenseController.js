@@ -23,7 +23,7 @@ const getExpenses = asyncHandler(async (req, res) => {
   const username = decoded.username;
 
   const page = req.query.p;
-  const expensesPerPage = 5;
+  const expensesPerPage = req.query.limit;
   const date = req.query.date;
   let category = req.query.category;
 

@@ -6,6 +6,7 @@ import { FilterWallet } from "../../../Interfaces/FilterWallet";
 interface Props {
   setFilterData: React.Dispatch<React.SetStateAction<FilterWallet>>;
   filterData: FilterWallet;
+  setItemsPerPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const FilterContainer = styled.div`
@@ -13,9 +14,14 @@ const FilterContainer = styled.div`
   gap: 1rem;
 `;
 
-const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
+const ExpensesFilterDropdown = ({
+  setFilterData,
+  filterData,
+  setItemsPerPage,
+}: Props) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAddedTime, setSelectedAddedTime] = useState("");
+  const [selectedItemsPerPage, setSelectedItemsPerPage] = useState(5);
   return (
     <FilterContainer>
       <FilterDropdown filterName="Category" selectedValue={selectedCategory}>
@@ -71,6 +77,37 @@ const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
             }}
           >
             Oldest
+          </li>
+        </ul>
+      </FilterDropdown>
+      <FilterDropdown
+        filterName="ItemsPerPage"
+        selectedValue={selectedItemsPerPage}
+      >
+        <ul>
+          <li
+            onClick={() => {
+              setFilterData({ ...filterData, limit: 5 });
+              setSelectedItemsPerPage(5);
+            }}
+          >
+            5
+          </li>
+          <li
+            onClick={() => {
+              setFilterData({ ...filterData, limit: 10 });
+              setSelectedItemsPerPage(10);
+            }}
+          >
+            10
+          </li>
+          <li
+            onClick={() => {
+              setFilterData({ ...filterData, limit: 15 });
+              setSelectedItemsPerPage(15);
+            }}
+          >
+            15
           </li>
         </ul>
       </FilterDropdown>

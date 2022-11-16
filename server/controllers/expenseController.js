@@ -14,6 +14,8 @@ const createExpense = async (req, res) => {
   }
 };
 
+const categories = ["shopping", "transportation", "gift"];
+
 const getExpenses = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
@@ -22,13 +24,25 @@ const getExpenses = asyncHandler(async (req, res) => {
 
   const page = req.query.p;
   const expensesPerPage = 5;
+  const date = req.query.date;
+  let category = req.query.category;
+  console.log(date);
+  console.log(page);
+
+  category === "all"
+    ? (category = [...categories])
+    : (category = req.query.category.split(","));
 
   const expensesCount = await Expense.find({ username }).count();
 
+  console.log(category);
+
   const expenses = await Expense.find({ username })
+    .where("category")
+    .in([...category])
     .skip(page * expensesPerPage)
     .limit(expensesPerPage)
-    .sort({ createdAt: -1 })
+    .sort({ createdAt: date })
     .select("-username")
     .lean();
 

@@ -69,7 +69,7 @@ const SelectIcon = styled(HiOutlineSelector)`
 interface Props {
   children: React.ReactNode;
   filterName: string;
-  selectedValue: string;
+  selectedValue: string | number;
 }
 
 const FilterDropdown = ({ children, filterName, selectedValue }: Props) => {

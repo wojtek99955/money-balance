@@ -22,13 +22,13 @@ import {
   ExpensesWrapper,
   PaginationBtns,
 } from "./ExpensesListStyle";
-import { FilterExpense } from "../../../Interfaces/FilterExpense";
+import { FilterWallet } from "../../../Interfaces/FilterWallet";
 
 const ExpensesList = () => {
   const [page, setPage] = useState<number>(0);
 
-  const [filterData, setFilterData] = useState<FilterExpense>({
-    category: "transportation",
+  const [filterData, setFilterData] = useState<FilterWallet>({
+    category: "all",
     amount: "",
     date: -1,
   });

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import FilterDropdown from "../../../assets/atoms/FilterDropdown";
-import { FilterExpense } from "../../../Interfaces/FilterExpense";
+import { FilterWallet } from "../../../Interfaces/FilterWallet";
 
 interface Props {
-  setFilterData: React.Dispatch<React.SetStateAction<FilterExpense>>;
-  filterData: FilterExpense;
+  setFilterData: React.Dispatch<React.SetStateAction<FilterWallet>>;
+  filterData: FilterWallet;
 }
 
 const FilterContainer = styled.div`

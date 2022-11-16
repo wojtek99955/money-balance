@@ -6,7 +6,6 @@ import { FilterWallet } from "../../../Interfaces/FilterWallet";
 interface Props {
   setFilterData: React.Dispatch<React.SetStateAction<FilterWallet>>;
   filterData: FilterWallet;
-  setItemsPerPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const FilterContainer = styled.div`
@@ -14,11 +13,7 @@ const FilterContainer = styled.div`
   gap: 1rem;
 `;
 
-const ExpensesFilterDropdown = ({
-  setFilterData,
-  filterData,
-  setItemsPerPage,
-}: Props) => {
+const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAddedTime, setSelectedAddedTime] = useState("");
   const [selectedItemsPerPage, setSelectedItemsPerPage] = useState(5);

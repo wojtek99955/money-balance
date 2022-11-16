@@ -26,7 +26,6 @@ import { FilterWallet } from "../../../Interfaces/FilterWallet";
 
 const ExpensesList = () => {
   const [page, setPage] = useState<number>(0);
-  const [ItemsPerPage, setItemsPerPage] = useState(5);
 
   const [filterData, setFilterData] = useState<FilterWallet>({
     category: "all",
@@ -84,7 +83,6 @@ const ExpensesList = () => {
         <ExpensesFilterDropdown
           setFilterData={setFilterData}
           filterData={filterData}
-          setItemsPerPage={setItemsPerPage}
         />
         {expenses?.expenses.map((expense: ExpenseType) => {
           return (

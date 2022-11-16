@@ -3,7 +3,8 @@ import { apiSlice } from "./apiSlice";
 const expenseApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getExpenses: builder.query<any, any>({
-      query: (page = 0) => `/expense?p=${page}`,
+      query: ({ page, category, amount, date }) =>
+        `/expense?p=${page}&category=${category}&date=${date}&amount=${amount}`,
       providesTags: ["Expenses"],
     }),
     addExpenses: builder.mutation({

@@ -27,15 +27,17 @@ const IncomesList = () => {
     category: "all",
     amount: "",
     date: -1,
+    limit: 5,
   });
 
-  const { category, amount, date } = filterData;
+  const { category, amount, date, limit } = filterData;
 
   const { data: income, isLoading } = useGetIncomesQuery({
     page,
     category,
     amount,
     date,
+    limit,
   });
 
   const [deleteIncome, { isSuccess, isError, error }] =

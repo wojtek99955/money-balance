@@ -16,7 +16,9 @@ const FilterContainer = styled.div`
 const IncomesFilterDropdown = ({ setFilterData, filterData }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAddedTime, setSelectedAddedTime] = useState("");
-  const [selectedItemsPerPage, setSelectedItemsPerPage] = useState(5);
+  const [selectedItemsPerPage, setSelectedItemsPerPage] = useState<
+    number | string
+  >("");
 
   return (
     <FilterContainer>
@@ -68,10 +70,7 @@ const IncomesFilterDropdown = ({ setFilterData, filterData }: Props) => {
           </li>
         </ul>
       </FilterDropdown>
-      <FilterDropdown
-        filterName="ItemsPerPage"
-        selectedValue={selectedItemsPerPage}
-      >
+      <FilterDropdown filterName="Items" selectedValue={selectedItemsPerPage}>
         <ul>
           <li
             onClick={() => {

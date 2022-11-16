@@ -26,8 +26,6 @@ const getExpenses = asyncHandler(async (req, res) => {
   const expensesPerPage = 5;
   const date = req.query.date;
   let category = req.query.category;
-  console.log(date);
-  console.log(page);
 
   category === "all"
     ? (category = [...categories])

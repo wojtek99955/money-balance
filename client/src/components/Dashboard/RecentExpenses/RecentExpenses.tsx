@@ -12,6 +12,7 @@ import {
 import ShowMore from "../../../assets/atoms/ShowMore";
 import { useNavigate } from "react-router-dom";
 import { ExpenseType } from "../../../Interfaces/Expense";
+import LoaderContainer from "../../../assets/atoms/LoaderContainer";
 const Expenses = () => {
   const { data: expenses, isLoading } = useGetLatestExpensesQuery(undefined);
 
@@ -23,6 +24,7 @@ const Expenses = () => {
 
   return (
     <DashboardBox>
+      <LoaderContainer isLoading={isLoading} />
       <TopSection>
         <StyledH3>Recent expenses</StyledH3>
         <div onClick={goToExpenses}>

@@ -12,6 +12,7 @@ import {
 } from "./RecentIncomesStyle";
 import ShowMore from "../../../assets/atoms/ShowMore";
 import { useNavigate } from "react-router-dom";
+import LoaderContainer from "../../../assets/atoms/LoaderContainer";
 
 const RecentIncomes = () => {
   const { data: incomes, isLoading } = useGetLatestIncomesQuery(undefined);
@@ -23,6 +24,7 @@ const RecentIncomes = () => {
   };
   return (
     <DashboardBox>
+      <LoaderContainer isLoading={isLoading} />
       <TopSection>
         <StyledH3>Recent incomes</StyledH3>
         <div onClick={goToIncomes}>

@@ -24,7 +24,7 @@ const RecentIncomes = () => {
   };
   return (
     <DashboardBox>
-      <LoaderContainer isLoading={isLoading} />
+      {isLoading ? <LoaderContainer /> : null}
       <TopSection>
         <StyledH3>Recent incomes</StyledH3>
         <div onClick={goToIncomes}>

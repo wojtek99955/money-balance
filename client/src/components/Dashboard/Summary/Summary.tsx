@@ -52,7 +52,7 @@ const Summary = () => {
 
   return (
     <DashboardBox>
-      <LoaderContainer isLoading={loadingSummary} />
+      {loadingSummary ? <LoaderContainer /> : null}
       <BoxWrapper>
         <ItemContainer>
           <IconContainer color="#ffe3e3">

@@ -24,7 +24,7 @@ const Expenses = () => {
 
   return (
     <DashboardBox>
-      <LoaderContainer isLoading={isLoading} />
+      {isLoading ? <LoaderContainer /> : null}
       <TopSection>
         <StyledH3>Recent expenses</StyledH3>
         <div onClick={goToExpenses}>

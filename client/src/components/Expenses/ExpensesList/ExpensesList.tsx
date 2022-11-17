@@ -23,6 +23,7 @@ import {
   PaginationBtns,
 } from "./ExpensesListStyle";
 import { FilterWallet } from "../../../Interfaces/FilterWallet";
+import BudgetItemLoader from "../../../assets/molecules/BudgetItemLoader";
 
 const ExpensesList = () => {
   const [page, setPage] = useState<number>(0);
@@ -36,7 +37,7 @@ const ExpensesList = () => {
 
   const { category, amount, date, limit } = filterData;
 
-  const { data: expenses } = useGetExpensesQuery({
+  const { data: expenses, isLoading } = useGetExpensesQuery({
     page,
     category,
     amount,
@@ -123,6 +124,7 @@ const ExpensesList = () => {
             </DashboardBox>
           );
         })}
+        {isLoading ? <BudgetItemLoader /> : null}
       </ExpensesContainer>
       <PaginationBtns>
         <Button

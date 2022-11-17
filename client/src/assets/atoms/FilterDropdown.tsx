@@ -13,6 +13,9 @@ const Container = styled.div<StyleProps>`
   position: relative;
   width: 9rem;
   background-color: ${({ open }) => (open ? "#d1e8fb" : "white")};
+  &:last-of-type {
+    margin-left: auto;
+  }
 `;
 
 const FilterName = styled.div<StyleProps>`

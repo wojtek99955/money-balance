@@ -19,6 +19,7 @@ import {
 } from "./IncomesListStyle";
 import { FilterWallet } from "../../Interfaces/FilterWallet";
 import IncomesFilterDropdown from "./IncomesFilterDropdown/IncomesFilterDropdown";
+import BudgetItemLoader from "../../assets/molecules/BudgetItemLoader";
 
 const IncomesList = () => {
   const [page, setPage] = useState<number>(0);
@@ -110,6 +111,7 @@ const IncomesList = () => {
             </DashboardBox>
           );
         })}
+        {isLoading ? <BudgetItemLoader /> : null}
       </IncomeContainer>
       <PaginationBtns>
         <Button

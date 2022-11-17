@@ -32,12 +32,8 @@ const Container = styled.div`
   }
 `;
 
-interface Props {
-  isLoading: boolean;
-}
-
-const LoaderContainer = ({ isLoading }: Props) => {
-  return <>{isLoading ? <Container></Container> : null}</>;
+const LoaderContainer = () => {
+  return <Container />;
 };
 
 export default LoaderContainer;

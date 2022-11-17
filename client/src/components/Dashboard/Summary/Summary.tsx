@@ -15,6 +15,7 @@ import {
   Value,
   ValueContainer,
 } from "./SummaryStyle";
+import LoaderContainer from "../../../assets/atoms/LoaderContainer";
 
 const Summary = () => {
   const [openExpensesModal, setOpenExpensesModal] = useState(false);
@@ -26,9 +27,11 @@ const Summary = () => {
     setOpenIncomesModal(true);
   };
 
-  const { data: totalIncome } = useGetTotalIncomeQuery(undefined);
+  const { data: totalIncome, isLoading: loadingIncome } =
+    useGetTotalIncomeQuery(undefined);
 
-  const { data: totalExpense } = useGetTotalExpenseQuery(undefined);
+  const { data: totalExpense, isLoading: loadingExpense } =
+    useGetTotalExpenseQuery(undefined);
 
   const totalIncomeData = totalIncome?.totalIncome[0]?.totalIncome;
   const totalExpenseData = totalExpense?.totalExpense[0]?.totalExpense;
@@ -45,8 +48,11 @@ const Summary = () => {
 
   const walletValue = getWalletValue();
 
+  const loadingSummary = loadingIncome && loadingExpense;
+
   return (
     <DashboardBox>
+      <LoaderContainer isLoading={loadingSummary} />
       <BoxWrapper>
         <ItemContainer>
           <IconContainer color="#ffe3e3">

@@ -12,6 +12,7 @@ const Container = styled.div<StyleProps>`
   padding: 0.7rem 0.8rem;
   position: relative;
   width: 9rem;
+  z-index: 2;
   background-color: ${({ open }) => (open ? "#d1e8fb" : "white")};
   &:last-of-type {
     margin-left: auto;

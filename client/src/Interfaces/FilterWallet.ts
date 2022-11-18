@@ -1,6 +1,7 @@
 export interface FilterWallet {
   category: string;
-  date: number;
+  timestamp: number;
   amount: string;
   limit: number;
+  date: string;
 }

@@ -16,6 +16,9 @@ import {
   BtnContainer,
   ControllerBtns,
   PaginationBtns,
+  Title,
+  IncomeIcon,
+  IncomeIconContainer,
 } from "./IncomesListStyle";
 import { FilterWallet } from "../../Interfaces/FilterWallet";
 import IncomesFilterDropdown from "./IncomesFilterDropdown/IncomesFilterDropdown";
@@ -68,6 +71,15 @@ const IncomesList = () => {
   return (
     <RouteContainer>
       <IncomeContainer>
+        <Title>
+          <IncomeIconContainer>
+            <IncomeIcon />
+          </IncomeIconContainer>
+          <div>
+            <h2>Incomes</h2>
+            <p>Browse your incomes history</p>
+          </div>
+        </Title>
         <IncomesFilterDropdown
           setFilterData={setFilterData}
           filterData={filterData}

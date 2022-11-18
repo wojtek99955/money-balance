@@ -1,6 +1,35 @@
 import styled from "styled-components";
 import { AiOutlineEdit } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
+import { GiReceiveMoney } from "react-icons/gi";
+
+export const IncomeIcon = styled(GiReceiveMoney)`
+  font-size: 3rem;
+  color: #25c196;
+`;
+
+export const IncomeIconContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #a6eeda;
+  padding: 1rem;
+`;
+
+export const Title = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  h2 {
+    color: ${({ theme }) => theme.colors.main.default};
+  }
+  p {
+    color: ${({ theme }) => theme.colors.grey};
+    font-weight: 600;
+  }
+`;
 
 export const EditIcon = styled(AiOutlineEdit)`
   color: ${({ theme }) => theme.colors.grey};

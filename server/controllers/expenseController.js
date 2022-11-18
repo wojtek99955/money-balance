@@ -3,9 +3,14 @@ const jwt_decode = require("jwt-decode");
 const asyncHandler = require("express-async-handler");
 
 const createExpense = async (req, res) => {
-  const { username, category, amount, date } = req.body;
+  const { username, category, amount } = req.body;
 
-  const expense = await Expense.create({ category, username, amount, date });
+  const expense = await Expense.create({
+    category,
+    username,
+    amount,
+    date: new Date().toISOString().slice(0, 10),
+  });
 
   if (expense) {
     return res.status(201).json({ message: "New expense created" });
@@ -21,7 +26,7 @@ const getExpenses = asyncHandler(async (req, res) => {
 
   const decoded = jwt_decode(JWT);
   const username = decoded.username;
-
+  const timestamp = req.query.timestamp;
   const page = req.query.p;
   const expensesPerPage = req.query.limit;
   const date = req.query.date;
@@ -31,16 +36,22 @@ const getExpenses = asyncHandler(async (req, res) => {
     ? (category = [...categories])
     : (category = req.query.category.split(","));
 
-  const expensesCount = await Expense.find({ username }).count();
+  const expensesCount = await Expense.find({
+    username,
+    date: date ? date : { $exists: true },
+  }).count();
 
-  console.log(category);
+  console.log(date);
 
-  const expenses = await Expense.find({ username })
+  const expenses = await Expense.find({
+    username,
+    date: date ? date : { $exists: true },
+  })
     .where("category")
     .in([...category])
     .skip(page * expensesPerPage)
     .limit(expensesPerPage)
-    .sort({ createdAt: date })
+    .sort({ createdAt: timestamp })
     .select("-username")
     .lean();
 

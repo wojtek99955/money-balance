@@ -27,18 +27,20 @@ const IncomesList = () => {
   const [filterData, setFilterData] = useState<FilterWallet>({
     category: "all",
     amount: "",
-    date: -1,
+    timestamp: -1,
     limit: 5,
+    date: "",
   });
 
-  const { category, amount, date, limit } = filterData;
+  const { category, amount, timestamp, limit, date } = filterData;
 
   const { data: income, isLoading } = useGetIncomesQuery({
     page,
     category,
     amount,
-    date,
+    timestamp,
     limit,
+    date,
   });
 
   const [deleteIncome, { isSuccess, isError, error }] =
@@ -62,8 +64,6 @@ const IncomesList = () => {
   const goPrevPage = () => {
     setPage((prev) => prev - 1);
   };
-
-  console.log(income);
 
   return (
     <RouteContainer>

@@ -9,6 +9,7 @@ export const Container = styled.div`
   position: fixed;
   top: 0;
   display: flex;
+  z-index: 5;
   justify-content: center;
   align-items: center;
 `;

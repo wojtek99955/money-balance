@@ -20,6 +20,10 @@ const IncomesFilterDropdown = ({ setFilterData, filterData }: Props) => {
     number | string
   >("");
 
+  const pickDate = (e: any) => {
+    setFilterData({ ...filterData, date: e.target.value });
+  };
+
   return (
     <FilterContainer>
       <FilterDropdown filterName="Category" selectedValue={selectedCategory}>
@@ -54,7 +58,7 @@ const IncomesFilterDropdown = ({ setFilterData, filterData }: Props) => {
         <ul>
           <li
             onClick={() => {
-              setFilterData({ ...filterData, date: -1 });
+              setFilterData({ ...filterData, timestamp: -1 });
               setSelectedAddedTime("Latest");
             }}
           >
@@ -62,7 +66,7 @@ const IncomesFilterDropdown = ({ setFilterData, filterData }: Props) => {
           </li>
           <li
             onClick={() => {
-              setFilterData({ ...filterData, date: 1 });
+              setFilterData({ ...filterData, timestamp: 1 });
               setSelectedAddedTime("Oldest");
             }}
           >
@@ -98,6 +102,7 @@ const IncomesFilterDropdown = ({ setFilterData, filterData }: Props) => {
           </li>
         </ul>
       </FilterDropdown>
+      <input type="date" name="" id="" onChange={pickDate} />
     </FilterContainer>
   );
 };

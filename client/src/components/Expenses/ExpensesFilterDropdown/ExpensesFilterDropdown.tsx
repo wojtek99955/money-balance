@@ -21,7 +21,7 @@ const DropdownWrapper = styled.div`
 `;
 
 const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<any>("");
   const [selectedAddedTime, setSelectedAddedTime] = useState("");
   const [selectedItemsPerPage, setSelectedItemsPerPage] = useState(5);
 
@@ -41,7 +41,12 @@ const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
         />
       </DateInputContainer>
       <DropdownWrapper>
-        <FilterDropdown filterName="Category" selectedValue={selectedCategory}>
+        <FilterDropdown
+          filterName="Category"
+          selectedValue={selectedCategory}
+          setFilterData={setFilterData}
+          filterData={filterData}
+        >
           <ul>
             <li
               onClick={() => {
@@ -77,7 +82,12 @@ const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
             </li>
           </ul>
         </FilterDropdown>
-        <FilterDropdown filterName="Date" selectedValue={selectedAddedTime}>
+        <FilterDropdown
+          filterName="Date"
+          selectedValue={selectedAddedTime}
+          filterData={filterData}
+          setFilterData={setFilterData}
+        >
           <ul>
             <li
               onClick={() => {
@@ -98,6 +108,8 @@ const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
           </ul>
         </FilterDropdown>
         <FilterDropdown
+          filterData={filterData}
+          setFilterData={setFilterData}
           filterName="ItemsPerPage"
           selectedValue={selectedItemsPerPage}
         >

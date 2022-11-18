@@ -1,27 +1,33 @@
 import styled from "styled-components";
 import { useState, useRef, useEffect } from "react";
 import { HiOutlineSelector } from "react-icons/hi";
+import { RiCloseLine } from "react-icons/ri";
+import { FilterWallet } from "../../Interfaces/FilterWallet";
 
 interface StyleProps {
   open: boolean;
+  selectedValue?: string | number;
+  reset?: boolean;
 }
 const Container = styled.div<StyleProps>`
-  border: ${({ theme, open }) =>
-    open ? `2px solid #d1e8fb ` : `2px solid ${theme.colors.grey}`};
+  border: ${({ theme, open, reset }) =>
+    open && reset ? `2px solid #d1e8fb ` : `2px solid ${theme.colors.grey}`};
+  border: ${({ open, reset }) => (open || reset ? `2px solid #d1e8fb` : null)};
   border-radius: 12px;
   padding: 0.7rem 0.8rem;
   position: relative;
-  width: 9rem;
+  width: 12rem;
   z-index: 2;
-  background-color: ${({ open }) => (open ? "#d1e8fb" : "white")};
+  background-color: ${({ open, reset }) =>
+    open || reset ? "#d1e8fb" : "transparent"};
   &:last-of-type {
     margin-left: auto;
   }
 `;
 
 const FilterName = styled.div<StyleProps>`
-  color: ${({ theme, open }) =>
-    open ? theme.colors.main.default : theme.colors.grey};
+  color: ${({ theme, open, reset }) =>
+    open || reset ? theme.colors.main.default : theme.colors.grey};
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -74,15 +80,26 @@ const SelectIcon = styled(HiOutlineSelector)`
   font-size: 1.2rem;
 `;
 
+const ResetIcon = styled(RiCloseLine)`
+  font-size: 1.2rem;
+`;
+
 interface Props {
   children: React.ReactNode;
   filterName: string;
-  selectedValue: string | number;
+  selectedValue: any;
+  setFilterData: React.Dispatch<React.SetStateAction<FilterWallet>>;
+  filterData: FilterWallet;
 }
 
-const FilterDropdown = ({ children, filterName, selectedValue }: Props) => {
+const FilterDropdown = ({
+  children,
+  filterName,
+  selectedValue,
+  setFilterData,
+  filterData,
+}: Props) => {
   const [open, setOpen] = useState(false);
-
   const filterRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
@@ -97,18 +114,63 @@ const FilterDropdown = ({ children, filterName, selectedValue }: Props) => {
     };
   }, [open]);
 
+  const [title, setTitle] = useState(filterName);
+
+  const defaultFilter = (e?: any) => {
+    e.stopPropagation();
+    if (filterName === "Category") {
+      setFilterData({ ...filterData, category: "all" });
+      setTitle("Category");
+    } else if (filterName === "Timestamp") {
+      setFilterData({ ...filterData, timestamp: -1 });
+      setTitle("Timestamp");
+    } else if (filterName === "Items") {
+      setFilterData({ ...filterData, limit: 5 });
+    }
+    setOpen(false);
+  };
+
+  const [reset, setReset] = useState(false);
+  console.log(title);
+
   return (
     <Container
       ref={filterRef}
       open={open}
+      reset={reset}
+      selectedValue={selectedValue}
       onClick={() => {
         setOpen((prev) => !prev);
       }}
     >
-      <FilterName open={open}>
-        {selectedValue ? selectedValue : filterName} <SelectIcon />
+      <FilterName open={open} selectedValue={selectedValue} reset={reset}>
+        {reset ? (
+          <>
+            {selectedValue}
+            <ResetIcon
+              onClick={(e) => {
+                defaultFilter(e);
+                setTitle(filterName);
+                setReset(false);
+              }}
+            />
+          </>
+        ) : (
+          <>
+            {title}
+            <SelectIcon />
+          </>
+        )}
       </FilterName>
-      {open ? <OptionsContainer>{children}</OptionsContainer> : null}
+      {open ? (
+        <OptionsContainer
+          onClick={() => {
+            setReset(true);
+          }}
+        >
+          {children}
+        </OptionsContainer>
+      ) : null}
     </Container>
   );
 };

@@ -43,7 +43,12 @@ const IncomesFilterDropdown = ({ setFilterData, filterData }: Props) => {
         />
       </DateInputContainer>
       <DropdownWrapper>
-        <FilterDropdown filterName="Category" selectedValue={selectedCategory}>
+        <FilterDropdown
+          filterName="Category"
+          selectedValue={selectedCategory}
+          filterData={filterData}
+          setFilterData={setFilterData}
+        >
           <ul>
             <li
               onClick={() => {
@@ -71,7 +76,12 @@ const IncomesFilterDropdown = ({ setFilterData, filterData }: Props) => {
             </li>
           </ul>
         </FilterDropdown>
-        <FilterDropdown filterName="Date" selectedValue={selectedAddedTime}>
+        <FilterDropdown
+          filterName="Timestamp"
+          selectedValue={selectedAddedTime}
+          setFilterData={setFilterData}
+          filterData={filterData}
+        >
           <ul>
             <li
               onClick={() => {
@@ -91,7 +101,12 @@ const IncomesFilterDropdown = ({ setFilterData, filterData }: Props) => {
             </li>
           </ul>
         </FilterDropdown>
-        <FilterDropdown filterName="Items" selectedValue={selectedItemsPerPage}>
+        <FilterDropdown
+          filterName="Items"
+          selectedValue={selectedItemsPerPage}
+          setFilterData={setFilterData}
+          filterData={filterData}
+        >
           <ul>
             <li
               onClick={() => {

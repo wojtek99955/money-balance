@@ -3,8 +3,8 @@ import { apiSlice } from "./apiSlice";
 const incomeApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getIncomes: builder.query<any, any>({
-      query: ({ page, category, amount, date, limit }) =>
-        `/income?p=${page}&limit=${limit}&category=${category}&date=${date}&amount=${amount}`,
+      query: ({ page, category, amount, timestamp, limit, date }) =>
+        `/income?p=${page}&limit=${limit}&category=${category}&timestamp=${timestamp}&amount=${amount}&date=${date}`,
       providesTags: ["Incomes"],
     }),
     addIncomes: builder.mutation({

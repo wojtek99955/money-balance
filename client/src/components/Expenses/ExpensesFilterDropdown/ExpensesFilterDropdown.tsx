@@ -59,7 +59,7 @@ const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
         <ul>
           <li
             onClick={() => {
-              setFilterData({ ...filterData, date: -1 });
+              setFilterData({ ...filterData, timestamp: -1 });
               setSelectedAddedTime("Latest");
             }}
           >
@@ -67,7 +67,7 @@ const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
           </li>
           <li
             onClick={() => {
-              setFilterData({ ...filterData, date: 1 });
+              setFilterData({ ...filterData, timestamp: 1 });
               setSelectedAddedTime("Oldest");
             }}
           >

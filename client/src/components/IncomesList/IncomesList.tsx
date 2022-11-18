@@ -85,20 +85,20 @@ const IncomesList = () => {
                 </ExpenseDataGroup>
                 <Price> + ${income.amount}</Price>
                 <ControllerBtns>
-                  <BtnContainer>
-                    <EditIcon
-                      onClick={() => {
-                        handleOpenEditModal();
-                        setCurrentId(income._id);
-                      }}
-                    />
+                  <BtnContainer
+                    onClick={() => {
+                      handleOpenEditModal();
+                      setCurrentId(income._id);
+                    }}
+                  >
+                    <EditIcon />
                   </BtnContainer>
-                  <BtnContainer>
-                    <DeleteIcon
-                      onClick={() => {
-                        handleDeleteIncome(income._id);
-                      }}
-                    />
+                  <BtnContainer
+                    onClick={() => {
+                      handleDeleteIncome(income._id);
+                    }}
+                  >
+                    <DeleteIcon />
                   </BtnContainer>
                 </ControllerBtns>
               </ExpensesWrapper>

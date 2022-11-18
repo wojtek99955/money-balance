@@ -31,18 +31,20 @@ const ExpensesList = () => {
   const [filterData, setFilterData] = useState<FilterWallet>({
     category: "all",
     amount: "",
-    date: -1,
+    timestamp: -1,
     limit: 5,
+    date: "",
   });
 
-  const { category, amount, date, limit } = filterData;
+  const { category, amount, timestamp, limit, date } = filterData;
 
   const { data: expenses, isLoading } = useGetExpensesQuery({
     page,
     category,
     amount,
-    date,
+    timestamp,
     limit,
+    date,
   });
   const [deleteExpense, { isSuccess, isError, error }] =
     useDeleteExpenseMutation();

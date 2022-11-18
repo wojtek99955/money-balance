@@ -12,22 +12,33 @@ const getIncomes = asyncHandler(async (req, res) => {
 
   const page = req.query.p;
   const incomesPerPage = req.query.limit;
+  const timestamp = req.query.timestamp;
   const date = req.query.date;
   let category = req.query.category;
   console.log(incomesPerPage);
+  console.log();
+  console.log(date);
 
   category === "all"
     ? (category = [...categories])
     : (category = req.query.category.split(","));
 
-  const incomesCount = await Income.find({ username }).count();
+  console.log(category);
 
-  const incomes = await Income.find({ username })
+  const incomesCount = await Income.find({
+    username,
+    date: date ? date : { $exists: true },
+  }).count();
+
+  const incomes = await Income.find({
+    username,
+    date: date ? date : { $exists: true },
+  })
     .where("category")
     .in([...category])
     .skip(page * incomesPerPage)
     .limit(incomesPerPage)
-    .sort({ createdAt: date })
+    .sort({ createdAt: timestamp })
     .select("-username")
     .lean();
 
@@ -38,9 +49,14 @@ const getIncomes = asyncHandler(async (req, res) => {
 });
 
 const createNewIncome = async (req, res) => {
-  const { username, category, amount, date } = req.body;
+  const { username, category, amount } = req.body;
 
-  const income = await Income.create({ category, username, amount, date });
+  const income = await Income.create({
+    category,
+    username,
+    amount,
+    date: new Date().toISOString().slice(0, 10),
+  });
 
   if (income) {
     return res.status(201).json({ message: "New income created" });

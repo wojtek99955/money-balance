@@ -37,8 +37,7 @@ const IncomesFilterDropdown = ({ setFilterData, filterData }: Props) => {
       <DateInputContainer date={filterData.date}>
         <DateInput
           type="date"
-          name=""
-          id=""
+          name="date"
           onChange={pickDate}
           placeholder="date"
         />

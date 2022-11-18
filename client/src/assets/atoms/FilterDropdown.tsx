@@ -27,6 +27,7 @@ const FilterName = styled.div<StyleProps>`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  font-weight: 600;
 `;
 
 const OptionsContainer = styled.div`
@@ -43,6 +44,8 @@ const OptionsContainer = styled.div`
       border: ${({ theme }) => `2px solid ${theme.colors.grey}`};
       background-color: white;
       cursor: pointer;
+      font-weight: 600;
+      color: ${({ theme }) => theme.colors.grey};
 
       &:nth-child(even) {
         border-top: none;
@@ -53,6 +56,7 @@ const OptionsContainer = styled.div`
 
       &:hover {
         background-color: #d1e8fb;
+        color: ${({ theme }) => theme.colors.main.default};
       }
       &:first-of-type {
         border-top-left-radius: 12px;

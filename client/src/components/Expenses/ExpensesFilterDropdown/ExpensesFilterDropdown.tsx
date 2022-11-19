@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import FilterDropdown from "../../../assets/atoms/FilterDropdown";
+import FilterDropdown from "../../../assets/atoms/FilterDropdown/FilterDropdown";
 import { FilterWallet } from "../../../Interfaces/FilterWallet";
 import DateInputContainer from "../../../assets/atoms/DateInputContainer";
 import { DateInput } from "../../../assets/atoms/DateInput";

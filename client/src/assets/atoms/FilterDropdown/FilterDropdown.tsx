@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState, useRef, useEffect } from "react";
 import { HiOutlineSelector } from "react-icons/hi";
 import { RiCloseLine } from "react-icons/ri";
-import { FilterWallet } from "../../Interfaces/FilterWallet";
+import { FilterWallet } from "../../../Interfaces/FilterWallet";
 
 interface StyleProps {
   open: boolean;

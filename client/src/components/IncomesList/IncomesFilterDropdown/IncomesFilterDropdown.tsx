@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { DateInput } from "../../../assets/atoms/DateInput";
 import DateInputContainer from "../../../assets/atoms/DateInputContainer";
-import FilterDropdown from "../../../assets/atoms/FilterDropdown";
+import FilterDropdown from "../../../assets/atoms/FilterDropdown/FilterDropdown";
 import { FilterWallet } from "../../../Interfaces/FilterWallet";
 
 interface Props {

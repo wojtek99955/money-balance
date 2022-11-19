@@ -83,7 +83,7 @@ const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
           </ul>
         </FilterDropdown>
         <FilterDropdown
-          filterName="Date"
+          filterName="Added"
           selectedValue={selectedAddedTime}
           filterData={filterData}
           setFilterData={setFilterData}

@@ -45,9 +45,9 @@ const FilterDropdown = ({
     if (filterName === "Category") {
       setFilterData({ ...filterData, category: "all" });
       setTitle("Category");
-    } else if (filterName === "Timestamp") {
+    } else if (filterName === "Added") {
       setFilterData({ ...filterData, timestamp: -1 });
-      setTitle("Timestamp");
+      setTitle("Added");
     } else if (filterName === "Items") {
       setFilterData({ ...filterData, limit: 5 });
     }

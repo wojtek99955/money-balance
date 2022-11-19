@@ -77,7 +77,7 @@ const IncomesFilterDropdown = ({ setFilterData, filterData }: Props) => {
           </ul>
         </FilterDropdown>
         <FilterDropdown
-          filterName="Timestamp"
+          filterName="Added"
           selectedValue={selectedAddedTime}
           setFilterData={setFilterData}
           filterData={filterData}

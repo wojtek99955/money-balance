@@ -110,7 +110,7 @@ const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {
         <FilterDropdown
           filterData={filterData}
           setFilterData={setFilterData}
-          filterName="ItemsPerPage"
+          filterName="Items"
           selectedValue={selectedItemsPerPage}
         >
           <ul>

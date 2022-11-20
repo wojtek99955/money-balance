@@ -19,7 +19,7 @@ const createExpense = async (req, res) => {
   }
 };
 
-const categories = ["shopping", "transportation", "gift"];
+const categories = ["shopping", "transportation", "gift", "restaurants"];
 
 const getExpenses = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
@@ -168,19 +168,23 @@ const getSumCategories = asyncHandler(async (req, res) => {
   const sumCategories = [
     {
       category: "shopping",
-      amount: shoppingSum[0].shoppingSum,
+      amount: shoppingSum.length !== 0 ? shoppingSum[0].shoppingSum : 0,
     },
     {
       category: "restaurants",
-      amount: restaurantsSum[0].restaurantsSum,
+      amount:
+        restaurantsSum.length !== 0 ? restaurantsSum[0].restaurantsSum : 0,
     },
     {
       category: "gift",
-      amount: giftSum[0].giftSum,
+      amount: giftSum.length !== 0 ? giftSum[0].giftSum : 0,
     },
     {
       category: "transportation",
-      amount: transportationSum[0].transportationSum,
+      amount:
+        transportationSum.length !== 0
+          ? transportationSum[0].transportationSum
+          : 0,
     },
   ].sort((a, b) => b.amount - a.amount);
 

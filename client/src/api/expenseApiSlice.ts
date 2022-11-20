@@ -44,6 +44,10 @@ const expenseApiSlice = apiSlice.injectEndpoints({
       query: () => "expense/total",
       providesTags: ["Expenses"],
     }),
+    getSumCategoryExpenses: builder.query<any, undefined>({
+      query: () => "expense/sumCategories",
+      providesTags: ["Expenses"],
+    }),
   }),
   overrideExisting: false,
 });
@@ -55,4 +59,5 @@ export const {
   useGetLatestExpensesQuery,
   useGetTotalExpenseQuery,
   useDeleteExpenseMutation,
+  useGetSumCategoryExpensesQuery,
 } = expenseApiSlice;

@@ -37,7 +37,7 @@ const BiggestExpenses = () => {
       <ExpensesWrapper>
         {sumCategories?.map((cat: BiggestExpense) => {
           return (
-            <DashboardBox>
+            <DashboardBox key={cat.category}>
               <Category>
                 {getExpenseCategoryIcon(cat.category)}
                 <h3>{cat.category}</h3>

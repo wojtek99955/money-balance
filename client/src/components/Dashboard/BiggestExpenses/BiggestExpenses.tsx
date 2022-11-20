@@ -41,7 +41,7 @@ const BiggestExpenses = () => {
               <Category>
                 {getExpenseCategoryIcon(cat.category)}
                 <h3>{cat.category}</h3>
-                <Price>- ${cat.amount}</Price>
+                <Price>{cat.amount === 0 ? "$0" : `- $${cat.amount}`}</Price>
               </Category>
             </DashboardBox>
           );

@@ -131,6 +131,62 @@ const getTotalExpense = asyncHandler(async (req, res) => {
   res.json({ totalExpense: totalExpense });
 });
 
+const getSumCategories = asyncHandler(async (req, res) => {
+  let JWT = req.cookies.jwt;
+
+  const decoded = jwt_decode(JWT);
+  const username = decoded.username;
+
+  const shoppingSum = await Expense.aggregate([
+    { $match: { username: username, category: "shopping" } },
+    {
+      $group: { _id: "$name", shoppingSum: { $sum: "$amount" } },
+    },
+  ]);
+
+  const giftSum = await Expense.aggregate([
+    { $match: { username: username, category: "gift" } },
+    {
+      $group: { _id: "$name", giftSum: { $sum: "$amount" } },
+    },
+  ]);
+
+  const restaurantsSum = await Expense.aggregate([
+    { $match: { username: username, category: "restaurants" } },
+    {
+      $group: { _id: "$name", restaurantsSum: { $sum: "$amount" } },
+    },
+  ]);
+
+  const transportationSum = await Expense.aggregate([
+    { $match: { username: username, category: "transportation" } },
+    {
+      $group: { _id: "$name", transportationSum: { $sum: "$amount" } },
+    },
+  ]);
+
+  const sumCategories = [
+    {
+      category: "shopping",
+      amount: shoppingSum[0].shoppingSum,
+    },
+    {
+      category: "restaurants",
+      amount: restaurantsSum[0].restaurantsSum,
+    },
+    {
+      category: "gift",
+      amount: giftSum[0].giftSum,
+    },
+    {
+      category: "transportation",
+      amount: transportationSum[0].transportationSum,
+    },
+  ].sort((a, b) => b.amount - a.amount);
+
+  res.json(sumCategories);
+});
+
 module.exports = {
   createExpense,
   getExpenses,
@@ -138,4 +194,5 @@ module.exports = {
   updateExpense,
   getLatestExpenses,
   getTotalExpense,
+  getSumCategories,
 };

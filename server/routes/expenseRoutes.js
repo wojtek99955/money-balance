@@ -10,5 +10,6 @@ router
   .patch(expenseController.updateExpense);
 router.get("/latest", expenseController.getLatestExpenses);
 router.get("/total", expenseController.getTotalExpense);
+router.get("/sumCategories", expenseController.getSumCategories);
 
 module.exports = router;

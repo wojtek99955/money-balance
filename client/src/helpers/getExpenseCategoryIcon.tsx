@@ -60,7 +60,7 @@ export const getExpenseCategoryIcon = (category: string) => {
       );
     case "credit/loans":
       return <CreditsIcon />;
-    case "gifts":
+    case "gift":
       return (
         <IconContainer color="#ffe3e3">
           <GiftIcon />

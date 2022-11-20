@@ -11,7 +11,7 @@ interface BiggestExpense {
 
 const Container = styled.div`
   h3 {
-    margin-bottom: 2rem;
+    margin: 2rem 0;
   }
 `;
 

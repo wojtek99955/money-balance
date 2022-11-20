@@ -3,6 +3,7 @@ import Summary from "./Summary/Summary";
 import Expenses from "./RecentExpenses/RecentExpenses";
 import { RouteContainer } from "../../assets/atoms/RouteContainer";
 import Incomes from "./RecentIncomes/RecentIncomes";
+import BiggestExpenses from "./BiggestExpenses/BiggestExpenses";
 
 const Title = styled.div`
   h2 {
@@ -68,6 +69,7 @@ const Dashboard = () => {
           <Expenses />
           <Incomes />
         </RecentOperations>
+        <BiggestExpenses />
       </RouteWrapper>
     </RouteContainer>
   );

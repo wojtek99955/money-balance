@@ -38,8 +38,8 @@ const RecentExpensesChart = () => {
       {
         label: "Expenses",
         data,
-        borderColor: "rgba(255, 99, 132, 1)",
-        backgroundColor: "rgba(255, 99, 132, 0.3)",
+        borderColor: "#E65015",
+        backgroundColor: "#FFD1D1",
         fill: {
           target: "origin",
         },

@@ -6,6 +6,8 @@ import { TbCalendar } from "react-icons/tb";
 import { TbWallet } from "react-icons/tb";
 import { FaListUl } from "react-icons/fa";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { GiReceiveMoney } from "react-icons/gi";
+import { GiExpense } from "react-icons/gi";
 
 export const Container = styled.aside`
   height: 100vh;
@@ -15,6 +17,11 @@ export const Container = styled.aside`
   align-items: center;
   position: relative;
   background-color: white;
+`;
+
+export const ExpensesIcon = styled(GiExpense)`
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.main.default};
 `;
 
 export const Nav = styled.nav`
@@ -58,6 +65,11 @@ export const CategoryIcon = styled(FaListUl)`
 `;
 
 export const AddIcon = styled(IoMdAddCircleOutline)`
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.main.default};
+`;
+
+export const IncomesIcon = styled(GiReceiveMoney)`
   font-size: 1.5rem;
   color: ${({ theme }) => theme.colors.main.default};
 `;

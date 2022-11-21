@@ -6,12 +6,12 @@ import {
   DashboardIcon,
   StyledLink,
   ChartIcon,
-  CalendarIcon,
   WalletIcon,
   CategoryIcon,
-  AddIcon,
   CategoryDropdown,
   SidebarWrapper,
+  IncomesIcon,
+  ExpensesIcon,
 } from "./SidebarStyle";
 
 const links = [
@@ -21,18 +21,18 @@ const links = [
     route: "/dashboard",
   },
   {
-    text: "Add",
-    icon: <AddIcon />,
-    route: "/",
+    text: "Incomes",
+    icon: <IncomesIcon />,
+    route: "/incomes",
+  },
+  {
+    text: "Expenses",
+    icon: <ExpensesIcon />,
+    route: "/expenses",
   },
   {
     text: "Statistics",
     icon: <ChartIcon />,
-    route: "/",
-  },
-  {
-    text: "Calendar",
-    icon: <CalendarIcon />,
     route: "/",
   },
   {

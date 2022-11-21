@@ -52,7 +52,7 @@ const RecentIncomesChart = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: "bottom" as const,
+        display: false,
       },
     },
     elements: {

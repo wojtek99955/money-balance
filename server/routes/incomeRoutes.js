@@ -10,5 +10,6 @@ router
   .patch(incomeController.updateIncome);
 router.get("/latest", incomeController.getLatestIncomes);
 router.get("/total", incomeController.getTotalIncome);
+router.get("/dailySum", incomeController.getDailySum);
 
 module.exports = router;

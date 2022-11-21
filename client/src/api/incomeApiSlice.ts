@@ -44,6 +44,10 @@ const incomeApiSlice = apiSlice.injectEndpoints({
       query: () => "income/total",
       providesTags: ["Incomes"],
     }),
+    getDailySumIncomes: builder.query<any, undefined>({
+      query: () => "income/dailySum",
+      providesTags: ["Incomes"],
+    }),
   }),
   overrideExisting: false,
 });
@@ -55,4 +59,5 @@ export const {
   useUpdateIncomeMutation,
   useGetLatestIncomesQuery,
   useGetTotalIncomeQuery,
+  useGetDailySumIncomesQuery,
 } = incomeApiSlice;

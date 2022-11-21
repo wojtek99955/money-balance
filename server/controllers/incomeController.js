@@ -133,6 +133,25 @@ const getTotalIncome = asyncHandler(async (req, res) => {
   res.json({ totalIncome: totalIncome });
 });
 
+const getDailySum = asyncHandler(async (req, res) => {
+  let JWT = req.cookies.jwt;
+
+  const decoded = jwt_decode(JWT);
+  const username = decoded.username;
+
+  const totalIncome = await Income.aggregate([
+    { $match: { username: username } },
+    {
+      $group: {
+        _id: { day: "$date" },
+        totalAmount: { $sum: "$amount" },
+      },
+    },
+  ]);
+
+  res.json({ totalDayIncome: totalIncome });
+});
+
 module.exports = {
   getIncomes,
   createNewIncome,
@@ -140,4 +159,5 @@ module.exports = {
   updateIncome,
   getLatestIncomes,
   getTotalIncome,
+  getDailySum,
 };

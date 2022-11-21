@@ -9,6 +9,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -19,7 +20,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 );
 const RecentIncomesChart = () => {
   const { data: dailySum, isLoading } = useGetDailySumIncomesQuery(undefined);
@@ -39,7 +41,7 @@ const RecentIncomesChart = () => {
         label: "Incomes",
         data,
         borderColor: "#25c196",
-        backgroundColor: "#A7EEDA",
+        backgroundColor: "rgba(167, 238, 218, 0.6)",
         fill: {
           target: "origin",
         },

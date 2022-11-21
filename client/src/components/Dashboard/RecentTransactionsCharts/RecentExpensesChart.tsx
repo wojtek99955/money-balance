@@ -8,6 +8,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useGetDailySumExpensesQuery } from "../../../api/expenseApiSlice";
@@ -18,7 +19,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 );
 
 const RecentExpensesChart = () => {
@@ -39,7 +41,7 @@ const RecentExpensesChart = () => {
         label: "Expenses",
         data,
         borderColor: "#E65015",
-        backgroundColor: "#FFD1D1",
+        backgroundColor: "rgba(255, 209, 209, 0.6)",
         fill: {
           target: "origin",
         },

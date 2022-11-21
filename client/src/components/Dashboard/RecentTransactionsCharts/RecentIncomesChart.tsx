@@ -38,8 +38,8 @@ const RecentIncomesChart = () => {
       {
         label: "Incomes",
         data,
-        borderColor: "rgba(255, 99, 132, 1)",
-        backgroundColor: "rgba(255, 99, 132, 0.3)",
+        borderColor: "#25c196",
+        backgroundColor: "#A7EEDA",
         fill: {
           target: "origin",
         },

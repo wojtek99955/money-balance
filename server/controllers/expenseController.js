@@ -4,12 +4,13 @@ const asyncHandler = require("express-async-handler");
 
 const createExpense = async (req, res) => {
   const { username, category, amount } = req.body;
+  const date = new Date().toISOString().slice(0, 10);
 
   const expense = await Expense.create({
     category,
     username,
     amount,
-    date: new Date().toISOString().slice(0, 10),
+    date,
   });
 
   if (expense) {
@@ -191,6 +192,25 @@ const getSumCategories = asyncHandler(async (req, res) => {
   res.json(sumCategories);
 });
 
+const getDailySum = asyncHandler(async (req, res) => {
+  let JWT = req.cookies.jwt;
+
+  const decoded = jwt_decode(JWT);
+  const username = decoded.username;
+
+  const totalExpense = await Expense.aggregate([
+    { $match: { username: username } },
+    {
+      $group: {
+        _id: { day: "$date" },
+        totalAmount: { $sum: "$amount" },
+      },
+    },
+  ]);
+
+  res.json({ totalDayExpense: totalExpense });
+});
+
 module.exports = {
   createExpense,
   getExpenses,
@@ -199,4 +219,5 @@ module.exports = {
   getLatestExpenses,
   getTotalExpense,
   getSumCategories,
+  getDailySum,
 };

@@ -4,6 +4,7 @@ import Expenses from "./RecentExpenses/RecentExpenses";
 import { RouteContainer } from "../../assets/atoms/RouteContainer";
 import Incomes from "./RecentIncomes/RecentIncomes";
 import BiggestExpenses from "./BiggestExpenses/BiggestExpenses";
+import RecentTransactionsCharts from "./RecentTransactionsCharts/RecentTransactionsCharts";
 
 const Title = styled.div`
   h2 {
@@ -69,6 +70,7 @@ const Dashboard = () => {
           <Expenses />
           <Incomes />
         </RecentOperations>
+        <RecentTransactionsCharts />
         <BiggestExpenses />
       </RouteWrapper>
     </RouteContainer>

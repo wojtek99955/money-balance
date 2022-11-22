@@ -66,6 +66,7 @@ export const IncomeContainer = styled.div`
   flex-direction: column;
   gap: 2rem;
   margin: auto;
+  margin-bottom: 4rem;
 `;
 
 export const ExpensesWrapper = styled.div`
@@ -107,4 +108,15 @@ export const PaginationBtns = styled.div`
   display: flex;
   justify-content: center;
   gap: 3rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export const Wrapper = styled.div`
+  position: relative;
+  min-height: 100%;
 `;

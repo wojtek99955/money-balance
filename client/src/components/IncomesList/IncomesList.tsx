@@ -19,6 +19,7 @@ import {
   Title,
   IncomeIcon,
   IncomeIconContainer,
+  Wrapper,
 } from "./IncomesListStyle";
 import { FilterWallet } from "../../Interfaces/FilterWallet";
 import IncomesFilterDropdown from "./IncomesFilterDropdown/IncomesFilterDropdown";
@@ -70,77 +71,79 @@ const IncomesList = () => {
 
   return (
     <RouteContainer>
-      <IncomeContainer>
-        <Title>
-          <IncomeIconContainer>
-            <IncomeIcon />
-          </IncomeIconContainer>
-          <div>
-            <h2>Incomes</h2>
-            <p>Browse your incomes history</p>
-          </div>
-        </Title>
-        <IncomesFilterDropdown
-          setFilterData={setFilterData}
-          filterData={filterData}
-        />
-        {income?.incomes.map((income: any) => {
-          return (
-            <DashboardBox key={income._id}>
-              <ExpensesWrapper>
-                <ExpenseDataGroup>
-                  {getIncomeCategoryIcon(income.category)}
-                  <div>
-                    <div>{income.category}</div>
-                    <span>{income.date}</span>
-                  </div>
-                </ExpenseDataGroup>
-                <Price> + ${income.amount}</Price>
-                <ControllerBtns>
-                  <BtnContainer
-                    onClick={() => {
-                      handleOpenEditModal();
-                      setCurrentId(income._id);
-                    }}
-                  >
-                    <EditIcon />
-                  </BtnContainer>
-                  <BtnContainer
-                    onClick={() => {
-                      handleDeleteIncome(income._id);
-                    }}
-                  >
-                    <DeleteIcon />
-                  </BtnContainer>
-                </ControllerBtns>
-              </ExpensesWrapper>
-              {openEditIncomesModal ? (
-                <EditIncomesModal
-                  currentId={currentId}
-                  setOpenEditIncomesModal={setOpenEditIncomesModal}
-                />
-              ) : null}
-            </DashboardBox>
-          );
-        })}
-        {isLoading ? <BudgetItemLoader /> : null}
-      </IncomeContainer>
-      <PaginationBtns>
-        <Button
-          onClick={goPrevPage}
-          style={{ width: "9rem" }}
-          disabled={page === 0}
-        >
-          Previous
-        </Button>
-        <Button
-          onClick={goNextPage}
-          style={{ width: "9rem" }}
-          disabled={page >= income?.totalPages}
-        >
-          Next
-        </Button>
-      </PaginationBtns>
+      <Wrapper>
+        <IncomeContainer>
+          <Title>
+            <IncomeIconContainer>
+              <IncomeIcon />
+            </IncomeIconContainer>
+            <div>
+              <h2>Incomes</h2>
+              <p>Browse your incomes history</p>
+            </div>
+          </Title>
+          <IncomesFilterDropdown
+            setFilterData={setFilterData}
+            filterData={filterData}
+          />
+          {income?.incomes.map((income: any) => {
+            return (
+              <DashboardBox key={income._id}>
+                <ExpensesWrapper>
+                  <ExpenseDataGroup>
+                    {getIncomeCategoryIcon(income.category)}
+                    <div>
+                      <div>{income.category}</div>
+                      <span>{income.date}</span>
+                    </div>
+                  </ExpenseDataGroup>
+                  <Price> + ${income.amount}</Price>
+                  <ControllerBtns>
+                    <BtnContainer
+                      onClick={() => {
+                        handleOpenEditModal();
+                        setCurrentId(income._id);
+                      }}
+                    >
+                      <EditIcon />
+                    </BtnContainer>
+                    <BtnContainer
+                      onClick={() => {
+                        handleDeleteIncome(income._id);
+                      }}
+                    >
+                      <DeleteIcon />
+                    </BtnContainer>
+                  </ControllerBtns>
+                </ExpensesWrapper>
+                {openEditIncomesModal ? (
+                  <EditIncomesModal
+                    currentId={currentId}
+                    setOpenEditIncomesModal={setOpenEditIncomesModal}
+                  />
+                ) : null}
+              </DashboardBox>
+            );
+          })}
+          {isLoading ? <BudgetItemLoader /> : null}
+        </IncomeContainer>
+        <PaginationBtns>
+          <Button
+            onClick={goPrevPage}
+            style={{ width: "9rem" }}
+            disabled={page === 0}
+          >
+            Previous
+          </Button>
+          <Button
+            onClick={goNextPage}
+            style={{ width: "9rem" }}
+            disabled={page >= income?.totalPages}
+          >
+            Next
+          </Button>
+        </PaginationBtns>
+      </Wrapper>
     </RouteContainer>
   );
 };

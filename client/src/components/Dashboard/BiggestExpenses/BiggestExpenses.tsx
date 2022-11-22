@@ -3,6 +3,7 @@ import { useGetSumCategoryExpensesQuery } from "../../../api/expenseApiSlice";
 import { DashboardBox } from "../../../assets/atoms/DashboardBox";
 import { getExpenseCategoryIcon } from "../../../helpers/getExpenseCategoryIcon";
 import { Price } from "../RecentExpenses/ExpensesStyle";
+import LoaderContainer from "../../../assets/atoms/LoaderContainer";
 
 interface BiggestExpense {
   category: string;
@@ -26,18 +27,48 @@ const Category = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+const LoadingBox = styled.div`
+  min-height: 10rem;
+  position: relative;
+  width: 100%;
+`;
+interface StyleProps {
+  isLoading: boolean;
+}
+const LoaderWrapper = styled.div<StyleProps>`
+  min-height: 10rem;
+  opacity: ${({ isLoading }) => (isLoading ? 1 : 0)};
+`;
 const BiggestExpenses = () => {
   const { data: sumCategories, isLoading } =
     useGetSumCategoryExpensesQuery(undefined);
 
+  let loading = isLoading ? (
+    <>
+      <LoadingBox>
+        <LoaderContainer />
+      </LoadingBox>
+      <LoadingBox>
+        <LoaderContainer />
+      </LoadingBox>
+      <LoadingBox>
+        <LoaderContainer />
+      </LoadingBox>
+      <LoadingBox>
+        <LoaderContainer />
+      </LoadingBox>
+    </>
+  ) : null;
+
   return (
     <Container>
-      <h3>Categories with biggest expense</h3>
-
       <ExpensesWrapper>
+        {loading}
         {sumCategories?.map((cat: BiggestExpense) => {
           return (
             <DashboardBox key={cat.category}>
+              {loading}
               <Category>
                 {getExpenseCategoryIcon(cat.category)}
                 <h3>{cat.category}</h3>

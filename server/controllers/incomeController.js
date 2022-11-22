@@ -49,13 +49,18 @@ const getIncomes = asyncHandler(async (req, res) => {
 });
 
 const createNewIncome = async (req, res) => {
+  const date = new Date()
+    .toLocaleDateString("pt-br")
+    .split("/")
+    .reverse()
+    .join("-");
   const { username, category, amount } = req.body;
 
   const income = await Income.create({
     category,
     username,
     amount,
-    date: new Date().toISOString().slice(0, 10),
+    date,
   });
 
   if (income) {
@@ -143,11 +148,11 @@ const getDailySum = asyncHandler(async (req, res) => {
     { $match: { username: username } },
     {
       $group: {
-        _id: { day: "$date" },
+        _id: "$date",
         totalAmount: { $sum: "$amount" },
       },
     },
-  ]);
+  ]).sort({ _id: 1 });
 
   res.json({ totalDayIncome: totalIncome });
 });

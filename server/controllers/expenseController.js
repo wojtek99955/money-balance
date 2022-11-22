@@ -92,10 +92,6 @@ const updateExpense = async (req, res) => {
 
   const expense = await Expense.findById(id).exec();
 
-  // if (expense) {
-  //   return res.status(400).json({ message: "Expense not found" });
-  // }
-  console.log(expense);
   expense.amount = amount;
   expense.category = category;
   expense.username = username;

@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import ValidationErrorMsg from "../../assets/atoms/ValidationErrorMsg";
 import jwt_decode from "jwt-decode";
+import { useLoginMutation } from "../../api/authSlice";
 
 const initialValues = {
   username: "",
@@ -20,24 +21,20 @@ const validationSchema = yup.object().shape({
 const SignIn = () => {
   let navigate = useNavigate();
 
-  const handleSubmit = async (val: Auth) => {
-    const response: any = await fetch("http://localhost:3500/auth", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ username: val.username, password: val.password }),
-    });
+  const [login, response] = useLoginMutation();
 
-    let responseOK = response && response.ok;
-    if (responseOK) {
-      let JWT = await response.json();
-      const decoded: any = jwt_decode(JWT.accessToken);
-      localStorage.setItem(
-        "username",
-        JSON.stringify(decoded.UserInfo.username)
-      );
-      navigate("/dashboard");
-    }
+  const handleSubmit = async (val: Auth) => {
+    const res: any = await login({
+      username: val.username,
+      password: val.password,
+    }).unwrap();
+    console.log(res);
+
+    let JWT = await res.accessToken;
+    console.log(JWT);
+    const decoded: any = jwt_decode(JWT);
+    localStorage.setItem("username", JSON.stringify(decoded.UserInfo.username));
+    navigate("/dashboard");
   };
 
   return (

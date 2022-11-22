@@ -10,10 +10,12 @@ import {
 } from "./ProfileStyle";
 import { apiSlice } from "../../api/apiSlice";
 import { useDispatch } from "react-redux";
+import { useLogoutMutation } from "../../api/authSlice";
 
 const Profile = () => {
   const username = JSON.parse(localStorage.getItem("username")!);
   let dispatch = useDispatch();
+  const [logout, response] = useLogoutMutation();
 
   let navigate = useNavigate();
   const profileWrapperRef = useRef<HTMLDivElement>(null);
@@ -23,19 +25,10 @@ const Profile = () => {
     setShowOptions((prev) => !prev);
   };
   const handleLogout = async () => {
-    try {
-      await fetch("http://localhost:3500/auth/logout", {
-        method: "post",
-        credentials: "include",
-      });
-      dispatch(apiSlice.util.resetApiState());
-
-      localStorage.removeItem("username");
-
-      navigate("/sign-in");
-    } catch (err) {
-      console.log(err);
-    }
+    await logout({});
+    dispatch(apiSlice.util.resetApiState());
+    localStorage.removeItem("username");
+    navigate("/sign-in");
   };
 
   useEffect(() => {

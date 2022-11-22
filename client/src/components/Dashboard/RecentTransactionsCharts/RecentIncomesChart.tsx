@@ -11,6 +11,7 @@ import {
   Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import LoaderContainer from "../../../assets/atoms/LoaderContainer";
 
 ChartJS.register(
   CategoryScale,
@@ -61,8 +62,11 @@ const RecentIncomesChart = () => {
       },
     },
   };
+  const loading = isLoading ? <LoaderContainer /> : null;
+
   return (
     <>
+      {loading}
       <Line style={{ maxHeight: "13rem" }} options={options} data={chartData} />
     </>
   );

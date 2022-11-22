@@ -4,7 +4,11 @@ const asyncHandler = require("express-async-handler");
 
 const createExpense = async (req, res) => {
   const { username, category, amount } = req.body;
-  const date = new Date().toISOString().slice(0, 10);
+  const date = new Date()
+    .toLocaleDateString("pt-br")
+    .split("/")
+    .reverse()
+    .join("-");
 
   const expense = await Expense.create({
     category,
@@ -202,11 +206,11 @@ const getDailySum = asyncHandler(async (req, res) => {
     { $match: { username: username } },
     {
       $group: {
-        _id: { day: "$date" },
+        _id: "$date",
         totalAmount: { $sum: "$amount" },
       },
     },
-  ]);
+  ]).sort({ _id: 1 });
 
   res.json({ totalDayExpense: totalExpense });
 });

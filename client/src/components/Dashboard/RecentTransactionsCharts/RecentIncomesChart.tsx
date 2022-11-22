@@ -28,7 +28,7 @@ const RecentIncomesChart = () => {
   console.log(dailySum);
 
   const labels = dailySum?.totalDayIncome.map((dailySum: any) => {
-    return dailySum._id.day;
+    return dailySum._id;
   });
   const data = dailySum?.totalDayIncome.map((dailySum: any) => {
     return dailySum.totalAmount;

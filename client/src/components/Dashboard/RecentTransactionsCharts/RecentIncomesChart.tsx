@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useGetDailySumIncomesQuery } from "../../../api/incomeApiSlice";
 import {
   Chart as ChartJS,

@@ -28,7 +28,7 @@ const RecentExpensesChart = () => {
   console.log(dailySum);
 
   const labels = dailySum?.totalDayExpense.map((dailySum: any) => {
-    return dailySum._id.day;
+    return dailySum._id;
   });
   const data = dailySum?.totalDayExpense.map((dailySum: any) => {
     return dailySum.totalAmount;

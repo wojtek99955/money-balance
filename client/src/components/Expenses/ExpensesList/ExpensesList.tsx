@@ -21,6 +21,7 @@ import {
   Title,
   ExpensesWrapper,
   PaginationBtns,
+  Wrapper,
 } from "./ExpensesListStyle";
 import { FilterWallet } from "../../../Interfaces/FilterWallet";
 import BudgetItemLoader from "../../../assets/molecules/BudgetItemLoader";
@@ -73,77 +74,79 @@ const ExpensesList = () => {
 
   return (
     <RouteContainer>
-      <ExpensesContainer>
-        <Title>
-          <ExpensesIconContainer>
-            <ExpensesIcon />
-          </ExpensesIconContainer>
-          <div>
-            <h2>Expenses</h2>
-            <p>Browse your expenses history</p>
-          </div>
-        </Title>
-        <ExpensesFilterDropdown
-          setFilterData={setFilterData}
-          filterData={filterData}
-        />
-        {expenses?.expenses.map((expense: ExpenseType) => {
-          return (
-            <DashboardBox key={expense._id}>
-              <ExpensesWrapper>
-                <ExpenseDataGroup>
-                  {getExpenseCategoryIcon(expense.category)}
-                  <div>
-                    <div>{expense.category}</div>
-                    <span>{expense.date}</span>
-                  </div>
-                </ExpenseDataGroup>
-                <Price> - ${expense.amount} </Price>
-                <ControllerBtns>
-                  <BtnContainer
-                    onClick={() => {
-                      handleOpenEditModal();
-                      handleSetCurrentId(expense._id);
-                    }}
-                  >
-                    <EditIcon />
-                  </BtnContainer>
-                  <BtnContainer
-                    onClick={() => {
-                      handleDeleteNote(expense._id);
-                    }}
-                  >
-                    <DeleteIcon />
-                  </BtnContainer>
-                </ControllerBtns>
-              </ExpensesWrapper>
-              {openEditExpensesModal ? (
-                <EditExpensesModal
-                  currentId={currentId}
-                  setOpenEditExpensesModal={setOpenEditExpensesModal}
-                />
-              ) : null}
-            </DashboardBox>
-          );
-        })}
-        {isLoading ? <BudgetItemLoader /> : null}
-      </ExpensesContainer>
-      <PaginationBtns>
-        <Button
-          onClick={goPrevPage}
-          style={{ width: "9rem" }}
-          disabled={page === 0}
-        >
-          Previous
-        </Button>
-        <Button
-          onClick={goNextPage}
-          style={{ width: "9rem" }}
-          disabled={page >= expenses?.totalPages}
-        >
-          Next
-        </Button>
-      </PaginationBtns>
+      <Wrapper>
+        <ExpensesContainer>
+          <Title>
+            <ExpensesIconContainer>
+              <ExpensesIcon />
+            </ExpensesIconContainer>
+            <div>
+              <h2>Expenses</h2>
+              <p>Browse your expenses history</p>
+            </div>
+          </Title>
+          <ExpensesFilterDropdown
+            setFilterData={setFilterData}
+            filterData={filterData}
+          />
+          {expenses?.expenses.map((expense: ExpenseType) => {
+            return (
+              <DashboardBox key={expense._id}>
+                <ExpensesWrapper>
+                  <ExpenseDataGroup>
+                    {getExpenseCategoryIcon(expense.category)}
+                    <div>
+                      <div>{expense.category}</div>
+                      <span>{expense.date}</span>
+                    </div>
+                  </ExpenseDataGroup>
+                  <Price> - ${expense.amount} </Price>
+                  <ControllerBtns>
+                    <BtnContainer
+                      onClick={() => {
+                        handleOpenEditModal();
+                        handleSetCurrentId(expense._id);
+                      }}
+                    >
+                      <EditIcon />
+                    </BtnContainer>
+                    <BtnContainer
+                      onClick={() => {
+                        handleDeleteNote(expense._id);
+                      }}
+                    >
+                      <DeleteIcon />
+                    </BtnContainer>
+                  </ControllerBtns>
+                </ExpensesWrapper>
+                {openEditExpensesModal ? (
+                  <EditExpensesModal
+                    currentId={currentId}
+                    setOpenEditExpensesModal={setOpenEditExpensesModal}
+                  />
+                ) : null}
+              </DashboardBox>
+            );
+          })}
+          {isLoading ? <BudgetItemLoader /> : null}
+        </ExpensesContainer>
+        <PaginationBtns>
+          <Button
+            onClick={goPrevPage}
+            style={{ width: "9rem" }}
+            disabled={page === 0}
+          >
+            Previous
+          </Button>
+          <Button
+            onClick={goNextPage}
+            style={{ width: "9rem" }}
+            disabled={page >= expenses?.totalPages}
+          >
+            Next
+          </Button>
+        </PaginationBtns>
+      </Wrapper>
     </RouteContainer>
   );
 };

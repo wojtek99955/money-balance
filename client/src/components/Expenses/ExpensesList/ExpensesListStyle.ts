@@ -33,6 +33,7 @@ export const ExpensesContainer = styled.div`
   flex-direction: column;
   gap: 2rem;
   margin: auto;
+  margin-bottom: 4rem;
 `;
 
 export const ExpensesWrapper = styled.div`
@@ -104,7 +105,17 @@ export const Title = styled.div`
 
 export const PaginationBtns = styled.div`
   display: flex;
-  gap: 3rem;
   justify-content: center;
-  margin-top: 4rem;
+  gap: 3rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export const Wrapper = styled.div`
+  position: relative;
+  min-height: 100%;
 `;

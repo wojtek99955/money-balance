@@ -26,7 +26,6 @@ ChartJS.register(
 
 const RecentExpensesChart = () => {
   const { data: dailySum, isLoading } = useGetDailySumExpensesQuery(undefined);
-  console.log(dailySum);
 
   const labels = dailySum?.totalDayExpense.map((dailySum: any) => {
     return dailySum._id;

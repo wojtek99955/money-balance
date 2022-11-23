@@ -1,5 +1,5 @@
 import Logo from "../../../assets/atoms/Logo";
-import Profile from "../../Profile/Profile";
+import Profile from "./Profile/Profile";
 import {
   Container,
   Nav,

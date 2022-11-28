@@ -61,7 +61,7 @@ const IncomesModal = ({ setOpenEditIncomesModal, currentId }: Props) => {
     <Container onClickCapture={handleClickOutside} ref={wrapperRef}>
       <FormContainer>
         <CloseIcon onClick={handleCloseModal} />
-        <h3>Edit Expense</h3>
+        <h3>Edit Income</h3>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}

@@ -2,6 +2,8 @@ const User = require("../models/User");
 const jwt_decode = require("jwt-decode");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
+const Income = require("../models/Income");
+const Expense = require("../models/Expense");
 
 const getUser = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
@@ -73,21 +75,19 @@ const updateUser = asyncHandler(async (req, res) => {
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
-  const { id } = req.body;
-
-  if (!id) {
-    return res.status(400).json({ message: "User id required" });
+  const { username } = req.body;
+  console.log(username);
+  if (!username) {
+    return res.status(400).json({ message: "Username required" });
   }
 
-  const user = await User.findById(id).exec();
+  const deleteUserResult = await User.deleteOne({ username });
 
-  if (!user) {
-    return res.status(400).json({ message: "User not found" });
-  }
+  const deleteIncomeResult = await Income.deleteMany({ username });
 
-  const result = await user.deleteOne();
+  const deleteExpenseResult = await Expense.deleteMany({ username });
 
-  const reply = `Username ${result.username} with ID ${result._id} deleted`;
+  const reply = `Username ${deleteUserResult.username} deleted`;
   res.json(reply);
 });
 

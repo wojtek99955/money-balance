@@ -94,3 +94,12 @@ export const variants = {
     bottom: "-1.5rem",
   },
 };
+
+export const DeleteAccountBtn = styled.button`
+  background-color: #e65016;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+`;

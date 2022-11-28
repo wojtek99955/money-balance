@@ -16,6 +16,7 @@ import {
   EditContainer,
   DeleteIcon,
   variants,
+  DeleteAccountBtn,
 } from "./ProfileStyle";
 
 const Profile = () => {
@@ -90,6 +91,7 @@ const Profile = () => {
         {isHovered && avatar === 0 ? <EditContainer></EditContainer> : null}
       </Avatar>
       <div>{username}</div>
+      <DeleteAccountBtn>Delete account</DeleteAccountBtn>
     </RouteContainer>
   );
 };

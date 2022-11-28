@@ -140,8 +140,7 @@ const Profile = () => {
   const { data: userData, isLoading: userDataLoading } =
     useGetUserQuery(undefined);
 
-  console.log(userData);
-  const username = userData[0].username;
+  const username = userData ? userData[0].username : null;
   return (
     <RouteContainer>
       <Avatar

@@ -6,7 +6,7 @@ import {
   useAddAvatarMutation,
   useDeleteAvatarMutation,
 } from "../../api/avatarSlice";
-import { useGetUserQuery } from "../../api/userSlice";
+import { useGetUserQuery, useDeleteUserMutation } from "../../api/userSlice";
 import {
   Avatar,
   ProfileIcon,
@@ -18,6 +18,9 @@ import {
   variants,
   DeleteAccountBtn,
 } from "./ProfileStyle";
+import { useDispatch } from "react-redux";
+import { apiSlice } from "../../api/apiSlice";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [files, setFiles] = useState<any>(null);
@@ -58,6 +61,21 @@ const Profile = () => {
     useGetUserQuery(undefined);
 
   const username = userData ? userData[0].username : null;
+
+  const [
+    deleteUser,
+    { isSuccess: deleteUserSuccess, isError: deleteUserError },
+  ] = useDeleteUserMutation();
+
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+
+  const handleDeleteUser = async () => {
+    await deleteUser({ username });
+    dispatch(apiSlice.util.resetApiState());
+    localStorage.removeItem("username");
+    navigate("/sign-in");
+  };
   return (
     <RouteContainer>
       <Avatar
@@ -91,7 +109,9 @@ const Profile = () => {
         {isHovered && avatar === 0 ? <EditContainer></EditContainer> : null}
       </Avatar>
       <div>{username}</div>
-      <DeleteAccountBtn>Delete account</DeleteAccountBtn>
+      <DeleteAccountBtn onClick={handleDeleteUser}>
+        Delete account
+      </DeleteAccountBtn>
     </RouteContainer>
   );
 };

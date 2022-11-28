@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FiChevronDown } from "react-icons/fi";
 import { FiChevronUp } from "react-icons/fi";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   position: absolute;
@@ -57,4 +58,11 @@ export const ProfileWrapper = styled.div`
     color: white;
     user-select: none;
   }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  display: block;
 `;

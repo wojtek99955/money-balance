@@ -7,6 +7,7 @@ import {
   UpIcon,
   OptionsContainer,
   ProfileWrapper,
+  StyledLink,
 } from "./ProfileStyle";
 import { apiSlice } from "../../../../api/apiSlice";
 import { useDispatch } from "react-redux";
@@ -55,7 +56,9 @@ const Profile = () => {
             exit={{ height: 0, opacity: 0 }}
           >
             <ul>
-              <li>Profile</li>
+              <li>
+                <StyledLink to="/profile">Profile</StyledLink>
+              </li>
               <li>Statistics</li>
               <li>Wallet</li>
               <li onClick={handleLogout}>Logout</li>

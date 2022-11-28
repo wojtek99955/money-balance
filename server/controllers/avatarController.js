@@ -31,7 +31,11 @@ const getAvatar = asyncHandler(async (req, res) => {
     username,
   });
 
-  res.json(avatar);
+  if (avatar.length === 0) {
+    res.json(0);
+  } else {
+    res.json(avatar);
+  }
 });
 
 const deleteAvatar = asyncHandler(async (req, res) => {

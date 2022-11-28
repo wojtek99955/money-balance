@@ -9,8 +9,12 @@ const userSlice = apiSlice.injectEndpoints({
         body: user,
       }),
     }),
+    getUser: builder.query<any, any>({
+      query: () => "/users",
+      providesTags: ["User"],
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useCreateUserMutation } = userSlice;
+export const { useCreateUserMutation, useGetUserQuery } = userSlice;

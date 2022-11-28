@@ -1,18 +1,20 @@
 const User = require("../models/User");
-
+const jwt_decode = require("jwt-decode");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 
-const getAllUsers = asyncHandler(async (req, res) => {
-  // Get all users from MongoDB
-  const users = await User.find().select("-password").lean();
+const getUser = asyncHandler(async (req, res) => {
+  let JWT = req.cookies.jwt;
 
-  // If no users
-  if (!users?.length) {
-    return res.status(400).json({ message: "No users found" });
+  const decoded = jwt_decode(JWT);
+  const username = decoded.username;
+  const user = await User.find({ username }).select("-password").lean();
+
+  if (!user?.length) {
+    return res.status(400).json({ message: "No user found" });
   }
 
-  res.json(users);
+  res.json(user);
 });
 
 const createNewUser = asyncHandler(async (req, res) => {
@@ -90,7 +92,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
-  getAllUsers,
+  getUser,
   createNewUser,
   updateUser,
   deleteUser,

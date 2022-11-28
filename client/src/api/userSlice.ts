@@ -13,8 +13,17 @@ const userSlice = apiSlice.injectEndpoints({
       query: () => "/users",
       providesTags: ["User"],
     }),
+    deleteUser: builder.mutation({
+      query: ({ username }) => ({
+        url: "/users",
+        method: "DELETE",
+        body: { username },
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useCreateUserMutation, useGetUserQuery } = userSlice;
+export const { useCreateUserMutation, useGetUserQuery, useDeleteUserMutation } =
+  userSlice;

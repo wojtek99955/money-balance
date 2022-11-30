@@ -12,6 +12,7 @@ import {
 import { apiSlice } from "../../../../api/apiSlice";
 import { useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../../../api/authSlice";
+import { useGetUserQuery } from "../../../../api/userSlice";
 
 const Profile = () => {
   const username = JSON.parse(localStorage.getItem("username")!);
@@ -46,6 +47,11 @@ const Profile = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   });
+  const { data: userData, isLoading: userDataLoading } =
+    useGetUserQuery(undefined);
+
+  const usernameData = userData ? userData[0].username : null;
+
   return (
     <Container>
       <AnimatePresence>
@@ -67,7 +73,7 @@ const Profile = () => {
         ) : null}
       </AnimatePresence>
       <ProfileWrapper onClick={toggleOptions} ref={profileWrapperRef}>
-        <span>{username?.slice(0, 10)}</span>
+        <span>{usernameData?.slice(0, 10)}</span>
         {showOptions ? <UpIcon /> : <DownIcon />}
       </ProfileWrapper>
     </Container>

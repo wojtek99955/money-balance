@@ -9,9 +9,8 @@ const getUser = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
   const decoded = jwt_decode(JWT);
-  console.log(decoded);
-  const username = decoded.username;
-  const user = await User.find({ username }).select("-password").lean();
+  const userId = decoded.userId;
+  const user = await User.find({ _id: userId }).select("-password").lean();
 
   if (!user?.length) {
     return res.status(400).json({ message: "No user found" });

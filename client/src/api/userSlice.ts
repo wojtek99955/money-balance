@@ -21,9 +21,25 @@ const userSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+    updateUsername: builder.mutation({
+      query: ({ username, newUsername }) => ({
+        url: "/users",
+        method: "PATCH",
+        body: {
+          username,
+          newUsername,
+        },
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
+
   overrideExisting: false,
 });
 
-export const { useCreateUserMutation, useGetUserQuery, useDeleteUserMutation } =
-  userSlice;
+export const {
+  useCreateUserMutation,
+  useGetUserQuery,
+  useDeleteUserMutation,
+  useUpdateUsernameMutation,
+} = userSlice;

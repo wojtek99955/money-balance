@@ -108,8 +108,9 @@ export const DeleteAccountBtn = styled.button`
 export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 20rem;
-
+  min-width: 20rem;
+  height: auto;
+  justify-content: space-between;
   input {
     border-radius: 8px;
     padding: 0.5rem;
@@ -143,4 +144,9 @@ export const EditUsernameContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 1rem 0;
+`;
+
+export const RouteWrapper = styled.div`
+  display: flex;
+  gap: 2rem;
 `;

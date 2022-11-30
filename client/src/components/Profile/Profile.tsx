@@ -25,6 +25,7 @@ import {
   UsernameContainer,
   Username,
   EditUsernameContainer,
+  RouteWrapper,
 } from "./ProfileStyle";
 import { useDispatch } from "react-redux";
 import { apiSlice } from "../../api/apiSlice";
@@ -100,59 +101,61 @@ const Profile = () => {
   console.log(userData);
   return (
     <RouteContainer>
-      <Avatar
-        img={imgPath}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {avatar === 0 ? (
-          <>
-            <ProfileIcon />
-            <AddAvatarIconContainer
-              variants={variants}
-              animate={isHovered ? "hover" : "initial"}
-            >
-              <AddAvatarIcon />
-            </AddAvatarIconContainer>
-          </>
-        ) : null}
-        <FileInput
-          type="file"
-          name="avatar"
-          id=""
-          onChange={(e: any) => setFiles(e.target.files[0])}
-          avatar={avatar}
-        />
-        {isHovered && avatar ? (
-          <EditContainer>
-            <DeleteIcon onClick={handleDeleteAvatar} />
-          </EditContainer>
-        ) : null}
-        {isHovered && avatar === 0 ? <EditContainer></EditContainer> : null}
-      </Avatar>
-      <ProfileWrapper>
-        <UsernameContainer>
-          <Username>
-            <strong>{username}</strong>
-            <button onClick={handleOpenEditUsername}>edit</button>
-          </Username>
-          {editUsername ? (
-            <EditUsernameContainer>
-              <input
-                type="text"
-                placeholder="new username"
-                onChange={(e: any) => {
-                  setNewusername(e.target.value);
-                }}
-              />
-              <button onClick={handleUpdateUsername}>save</button>
-            </EditUsernameContainer>
+      <RouteWrapper>
+        <Avatar
+          img={imgPath}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {avatar === 0 ? (
+            <>
+              <ProfileIcon />
+              <AddAvatarIconContainer
+                variants={variants}
+                animate={isHovered ? "hover" : "initial"}
+              >
+                <AddAvatarIcon />
+              </AddAvatarIconContainer>
+            </>
           ) : null}
-        </UsernameContainer>
-        <DeleteAccountBtn onClick={handleDeleteUser}>
-          Delete account
-        </DeleteAccountBtn>
-      </ProfileWrapper>
+          <FileInput
+            type="file"
+            name="avatar"
+            id=""
+            onChange={(e: any) => setFiles(e.target.files[0])}
+            avatar={avatar}
+          />
+          {isHovered && avatar ? (
+            <EditContainer>
+              <DeleteIcon onClick={handleDeleteAvatar} />
+            </EditContainer>
+          ) : null}
+          {isHovered && avatar === 0 ? <EditContainer></EditContainer> : null}
+        </Avatar>
+        <ProfileWrapper>
+          <UsernameContainer>
+            <Username>
+              <strong>{username}</strong>
+              <button onClick={handleOpenEditUsername}>edit</button>
+            </Username>
+            {editUsername ? (
+              <EditUsernameContainer>
+                <input
+                  type="text"
+                  placeholder="new username"
+                  onChange={(e: any) => {
+                    setNewusername(e.target.value);
+                  }}
+                />
+                <button onClick={handleUpdateUsername}>save</button>
+              </EditUsernameContainer>
+            ) : null}
+          </UsernameContainer>
+          <DeleteAccountBtn onClick={handleDeleteUser}>
+            Delete account
+          </DeleteAccountBtn>
+        </ProfileWrapper>
+      </RouteWrapper>
     </RouteContainer>
   );
 };

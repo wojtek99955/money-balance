@@ -6,7 +6,11 @@ import {
   useAddAvatarMutation,
   useDeleteAvatarMutation,
 } from "../../api/avatarSlice";
-import { useGetUserQuery, useDeleteUserMutation } from "../../api/userSlice";
+import {
+  useGetUserQuery,
+  useDeleteUserMutation,
+  useUpdateUsernameMutation,
+} from "../../api/userSlice";
 import {
   Avatar,
   ProfileIcon,
@@ -76,6 +80,15 @@ const Profile = () => {
     localStorage.removeItem("username");
     navigate("/sign-in");
   };
+
+  const [newUsername, setNewusername] = useState("");
+  const [updateUsername] = useUpdateUsernameMutation();
+
+  const handleUpdateUsername = () => {
+    updateUsername({ username, newUsername });
+  };
+
+  console.log(userData);
   return (
     <RouteContainer>
       <Avatar
@@ -112,6 +125,14 @@ const Profile = () => {
       <DeleteAccountBtn onClick={handleDeleteUser}>
         Delete account
       </DeleteAccountBtn>
+      <input
+        type="text"
+        onChange={(e: any) => {
+          setNewusername(e.target.value);
+        }}
+      />
+      <button onClick={handleUpdateUsername}>update username</button>
+      {newUsername}
     </RouteContainer>
   );
 };

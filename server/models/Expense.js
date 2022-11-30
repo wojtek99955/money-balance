@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const expsenseSchema = new mongoose.Schema(
   {
-    username: String,
+    userId: String,
     category: String,
     amount: Number,
     date: String,

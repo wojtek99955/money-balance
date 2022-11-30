@@ -7,6 +7,7 @@ import BiggestExpenses from "./BiggestExpenses/BiggestExpenses";
 import RecentTransactionsCharts from "./RecentTransactionsCharts/RecentTransactionsCharts";
 import { useGetUserQuery } from "../../api/userSlice";
 import { useGetAvatarQuery } from "../../api/avatarSlice";
+import { useNavigate } from "react-router-dom";
 
 const Title = styled.div`
   h2 {
@@ -42,6 +43,7 @@ const Profile = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  cursor: pointer;
   span {
     font-weight: 600;
   }
@@ -68,6 +70,12 @@ const Dashboard = () => {
   const path = avatar ? avatar[0]?.path : null;
   const imgPath = `http://localhost:3500/${path}`;
 
+  let navigate = useNavigate();
+
+  const goToProfile = () => {
+    navigate("/profile");
+  };
+
   return (
     <RouteContainer>
       <RouteWrapper>
@@ -79,7 +87,7 @@ const Dashboard = () => {
           <InputContainer>
             <input type="text" placeholder="Search..." />
           </InputContainer>
-          <Profile>
+          <Profile onClick={goToProfile}>
             <img src={imgPath} alt="" />
             <span>{username}</span>
           </Profile>

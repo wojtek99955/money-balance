@@ -21,6 +21,10 @@ import {
   DeleteIcon,
   variants,
   DeleteAccountBtn,
+  ProfileWrapper,
+  UsernameContainer,
+  Username,
+  EditUsernameContainer,
 } from "./ProfileStyle";
 import { useDispatch } from "react-redux";
 import { apiSlice } from "../../api/apiSlice";
@@ -88,6 +92,11 @@ const Profile = () => {
     updateUsername({ username, newUsername });
   };
 
+  const [editUsername, setEditUsername] = useState(false);
+  const handleOpenEditUsername = () => {
+    setEditUsername((prev) => !prev);
+  };
+
   console.log(userData);
   return (
     <RouteContainer>
@@ -121,18 +130,29 @@ const Profile = () => {
         ) : null}
         {isHovered && avatar === 0 ? <EditContainer></EditContainer> : null}
       </Avatar>
-      <div>{username}</div>
-      <DeleteAccountBtn onClick={handleDeleteUser}>
-        Delete account
-      </DeleteAccountBtn>
-      <input
-        type="text"
-        onChange={(e: any) => {
-          setNewusername(e.target.value);
-        }}
-      />
-      <button onClick={handleUpdateUsername}>update username</button>
-      {newUsername}
+      <ProfileWrapper>
+        <UsernameContainer>
+          <Username>
+            <strong>{username}</strong>
+            <button onClick={handleOpenEditUsername}>edit</button>
+          </Username>
+          {editUsername ? (
+            <EditUsernameContainer>
+              <input
+                type="text"
+                placeholder="new username"
+                onChange={(e: any) => {
+                  setNewusername(e.target.value);
+                }}
+              />
+              <button onClick={handleUpdateUsername}>save</button>
+            </EditUsernameContainer>
+          ) : null}
+        </UsernameContainer>
+        <DeleteAccountBtn onClick={handleDeleteUser}>
+          Delete account
+        </DeleteAccountBtn>
+      </ProfileWrapper>
     </RouteContainer>
   );
 };

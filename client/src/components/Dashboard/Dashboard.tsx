@@ -5,6 +5,7 @@ import { RouteContainer } from "../../assets/atoms/RouteContainer";
 import Incomes from "./RecentIncomes/RecentIncomes";
 import BiggestExpenses from "./BiggestExpenses/BiggestExpenses";
 import RecentTransactionsCharts from "./RecentTransactionsCharts/RecentTransactionsCharts";
+import { useGetUserQuery } from "../../api/userSlice";
 
 const Title = styled.div`
   h2 {
@@ -48,7 +49,10 @@ const RecentOperations = styled.div`
 `;
 
 const Dashboard = () => {
-  const username = JSON.parse(localStorage.getItem("username")!);
+  const { data: userData, isLoading: userDataLoading } =
+    useGetUserQuery(undefined);
+
+  const username = userData ? userData[0].username : null;
 
   return (
     <RouteContainer>

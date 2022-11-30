@@ -22,11 +22,14 @@ const login = asyncHandler(async (req, res) => {
   const match = await bcrypt.compare(password, foundUser.password);
 
   if (!match) return res.status(401).json({ message: "Unauthorized" });
+  console.log(foundUser._id);
 
   const accessToken = jwt.sign(
     {
       UserInfo: {
         username: foundUser.username,
+        userId: foundUser._id,
+        cos: "cos",
       },
     },
     process.env.ACCESS_TOKEN_SECRET,
@@ -34,7 +37,7 @@ const login = asyncHandler(async (req, res) => {
   );
 
   const refreshToken = jwt.sign(
-    { username: foundUser.username },
+    { username: foundUser.username, userId: foundUser._id },
     process.env.REFRESH_TOKEN_SECRET,
     { expiresIn: "7d" }
   );

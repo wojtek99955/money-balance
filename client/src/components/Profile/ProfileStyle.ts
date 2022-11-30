@@ -103,3 +103,41 @@ export const DeleteAccountBtn = styled.button`
   border-radius: 8px;
   cursor: pointer;
 `;
+
+export const ProfileWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 20rem;
+
+  input {
+    border-radius: 8px;
+    padding: 0.5rem;
+    border: ${({ theme }) => `2px solid ${theme.colors.grey}`};
+  }
+`;
+
+export const UsernameContainer = styled.div``;
+export const Username = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  strong {
+    font-size: 2rem;
+    padding: 1rem 0;
+  }
+  button {
+    border: ${({ theme }) => `2px solid ${theme.colors.main.default}`};
+    background-color: ${({ theme }) => theme.colors.main.default};
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem 1.4rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+`;
+
+export const EditUsernameContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+`;

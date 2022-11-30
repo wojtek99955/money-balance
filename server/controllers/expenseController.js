@@ -3,7 +3,12 @@ const jwt_decode = require("jwt-decode");
 const asyncHandler = require("express-async-handler");
 
 const createExpense = async (req, res) => {
-  const { username, category, amount } = req.body;
+  const { category, amount } = req.body;
+  let JWT = req.cookies.jwt;
+
+  const decoded = jwt_decode(JWT);
+  const userId = decoded.userId;
+  console.log(userId);
   const date = new Date()
     .toLocaleDateString("pt-br")
     .split("/")
@@ -12,7 +17,7 @@ const createExpense = async (req, res) => {
 
   const expense = await Expense.create({
     category,
-    username,
+    userId,
     amount,
     date,
   });
@@ -42,14 +47,12 @@ const getExpenses = asyncHandler(async (req, res) => {
     : (category = req.query.category.split(","));
 
   const expensesCount = await Expense.find({
-    username,
+    userId: decoded.userId,
     date: date ? date : { $exists: true },
   }).count();
 
-  console.log(date);
-
   const expenses = await Expense.find({
-    username,
+    userId: decoded.userId,
     date: date ? date : { $exists: true },
   })
     .where("category")
@@ -94,7 +97,7 @@ const updateExpense = async (req, res) => {
 
   expense.amount = amount;
   expense.category = category;
-  expense.username = username;
+  expense.userId = userId;
 
   const updatedExpense = await expense.save();
 
@@ -105,11 +108,11 @@ const getLatestExpenses = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
+  const userId = decoded.userId;
 
-  const expenses = await Expense.find({ username: username })
+  const expenses = await Expense.find({ userId })
     .limit(3)
-    .select("-username")
+    .select("-userId")
     .sort({ createdAt: -1 })
     .lean();
   console.log(expenses);
@@ -120,10 +123,10 @@ const getTotalExpense = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
+  const userId = decoded.userId;
 
   const totalExpense = await Expense.aggregate([
-    { $match: { username: username } },
+    { $match: { userId } },
     {
       $group: { _id: "$name", totalExpense: { $sum: "$amount" } },
     },
@@ -136,31 +139,31 @@ const getSumCategories = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
+  const userId = decoded.userId;
 
   const shoppingSum = await Expense.aggregate([
-    { $match: { username: username, category: "shopping" } },
+    { $match: { userId, category: "shopping" } },
     {
       $group: { _id: "$name", shoppingSum: { $sum: "$amount" } },
     },
   ]);
 
   const giftSum = await Expense.aggregate([
-    { $match: { username: username, category: "gift" } },
+    { $match: { userId, category: "gift" } },
     {
       $group: { _id: "$name", giftSum: { $sum: "$amount" } },
     },
   ]);
 
   const restaurantsSum = await Expense.aggregate([
-    { $match: { username: username, category: "restaurants" } },
+    { $match: { userId, category: "restaurants" } },
     {
       $group: { _id: "$name", restaurantsSum: { $sum: "$amount" } },
     },
   ]);
 
   const transportationSum = await Expense.aggregate([
-    { $match: { username: username, category: "transportation" } },
+    { $match: { userId, category: "transportation" } },
     {
       $group: { _id: "$name", transportationSum: { $sum: "$amount" } },
     },
@@ -196,10 +199,10 @@ const getDailySum = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
+  const userId = decoded.userId;
 
   const totalExpense = await Expense.aggregate([
-    { $match: { username: username } },
+    { $match: { userId } },
     {
       $group: {
         _id: "$date",

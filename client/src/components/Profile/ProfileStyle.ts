@@ -99,9 +99,10 @@ export const DeleteAccountBtn = styled.button`
   background-color: #e65016;
   color: white;
   border: none;
-  padding: 0.8rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 1rem;
+  padding: 0.7rem 1.4rem;
 `;
 
 export const ProfileWrapper = styled.div`
@@ -116,7 +117,9 @@ export const ProfileWrapper = styled.div`
   }
 `;
 
-export const UsernameContainer = styled.div``;
+export const UsernameContainer = styled.div`
+  margin-bottom: 2rem;
+`;
 export const Username = styled.div`
   display: flex;
   justify-content: space-between;

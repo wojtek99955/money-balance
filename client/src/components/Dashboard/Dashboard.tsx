@@ -6,6 +6,7 @@ import Incomes from "./RecentIncomes/RecentIncomes";
 import BiggestExpenses from "./BiggestExpenses/BiggestExpenses";
 import RecentTransactionsCharts from "./RecentTransactionsCharts/RecentTransactionsCharts";
 import { useGetUserQuery } from "../../api/userSlice";
+import { useGetAvatarQuery } from "../../api/avatarSlice";
 
 const Title = styled.div`
   h2 {
@@ -38,8 +39,17 @@ const InputContainer = styled.div`
 `;
 
 const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   span {
     font-weight: 600;
+  }
+  img {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    object-fit: cover;
   }
 `;
 
@@ -54,6 +64,10 @@ const Dashboard = () => {
 
   const username = userData ? userData[0].username : null;
 
+  const { data: avatar, isLoading } = useGetAvatarQuery(undefined);
+  const path = avatar ? avatar[0]?.path : null;
+  const imgPath = `http://localhost:3500/${path}`;
+
   return (
     <RouteContainer>
       <RouteWrapper>
@@ -66,6 +80,7 @@ const Dashboard = () => {
             <input type="text" placeholder="Search..." />
           </InputContainer>
           <Profile>
+            <img src={imgPath} alt="" />
             <span>{username}</span>
           </Profile>
         </TopSection>

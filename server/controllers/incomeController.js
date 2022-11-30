@@ -8,7 +8,7 @@ const getIncomes = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
+  const userId = decoded.userId;
 
   const page = req.query.p;
   const incomesPerPage = req.query.limit;
@@ -26,12 +26,12 @@ const getIncomes = asyncHandler(async (req, res) => {
   console.log(category);
 
   const incomesCount = await Income.find({
-    username,
+    userId,
     date: date ? date : { $exists: true },
   }).count();
 
   const incomes = await Income.find({
-    username,
+    userId,
     date: date ? date : { $exists: true },
   })
     .where("category")
@@ -54,11 +54,15 @@ const createNewIncome = async (req, res) => {
     .split("/")
     .reverse()
     .join("-");
-  const { username, category, amount } = req.body;
+  const { category, amount } = req.body;
+
+  let JWT = req.cookies.jwt;
+  const decoded = jwt_decode(JWT);
+  const userId = decoded.userId;
 
   const income = await Income.create({
     category,
-    username,
+    userId,
     amount,
     date,
   });
@@ -92,14 +96,17 @@ const deleteIncome = async (req, res) => {
 };
 
 const updateIncome = async (req, res) => {
-  const { id, amount, category, username } = req.body;
+  const { id, amount, category } = req.body;
+
+  const decoded = jwt_decode(JWT);
+  const userId = decoded.userId;
 
   const income = await Income.findById(id).exec();
 
   console.log(income);
   income.amount = amount;
   income.category = category;
-  income.username = username;
+  income.userId = userId;
 
   const updatedIncome = await income.save();
 
@@ -110,10 +117,10 @@ const getLatestIncomes = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
+  const userId = decoded.userId;
 
-  const incomes = await Income.find({ username: username })
-    .select("-username")
+  const incomes = await Income.find({ userId })
+    .select("-userId")
     .sort({ createdAt: -1 })
     .limit(3)
     .lean();
@@ -125,11 +132,10 @@ const getTotalIncome = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
-  console.log(username);
+  const userId = decoded.userId;
 
   const totalIncome = await Income.aggregate([
-    { $match: { username: username } },
+    { $match: { userId } },
     {
       $group: { _id: "$name", totalIncome: { $sum: "$amount" } },
     },
@@ -142,10 +148,10 @@ const getDailySum = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
+  const userId = decoded.userId;
 
   const totalIncome = await Income.aggregate([
-    { $match: { username: username } },
+    { $match: { userId } },
     {
       $group: {
         _id: "$date",

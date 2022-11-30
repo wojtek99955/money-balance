@@ -88,7 +88,7 @@ const Dashboard = () => {
             <input type="text" placeholder="Search..." />
           </InputContainer>
           <Profile onClick={goToProfile}>
-            <img src={imgPath} alt="" />
+            <img src={imgPath} alt="avatar" />
             <span>{username}</span>
           </Profile>
         </TopSection>

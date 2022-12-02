@@ -16,6 +16,7 @@ import {
   ValueContainer,
 } from "./SummaryStyle";
 import LoaderContainer from "../../../assets/atoms/LoaderContainer";
+import { AnimatePresence } from "framer-motion";
 
 const Summary = () => {
   const [openExpensesModal, setOpenExpensesModal] = useState(false);
@@ -88,9 +89,11 @@ const Summary = () => {
           <AddIcon />
         </ItemContainer>
       </BoxWrapper>
-      {openExpensesModal ? (
-        <ExpensesModal setOpenExpensesModal={setOpenExpensesModal} />
-      ) : null}
+      <AnimatePresence>
+        {openExpensesModal ? (
+          <ExpensesModal setOpenExpensesModal={setOpenExpensesModal} />
+        ) : null}
+      </AnimatePresence>
       {openIncomesModal ? (
         <IncomesModal setOpenIncomesModal={setOpenIncomesModal} />
       ) : null}

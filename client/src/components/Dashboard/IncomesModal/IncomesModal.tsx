@@ -6,8 +6,9 @@ import { Button } from "../../../assets/atoms/Button";
 import { useAddIncomesMutation } from "../../../api/incomeApiSlice";
 import { getDate } from "../../../helpers/getDate";
 import { useRef } from "react";
+import { motion } from "framer-motion";
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
@@ -18,7 +19,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const FormContainer = styled.div`
+const FormContainer = styled(motion.div)`
   background-color: white;
   width: 400px;
   height: auto;
@@ -92,8 +93,20 @@ const IncomesModal = ({ setOpenIncomesModal }: Props) => {
   };
 
   return ReactDOM.createPortal(
-    <Container ref={wrapperRef} onClick={handleClickOutside}>
-      <FormContainer>
+    <Container
+      ref={wrapperRef}
+      onClick={handleClickOutside}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+    >
+      <FormContainer
+        initial={{ scale: 0.5 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.5 }}
+        transition={{ duration: 0.2 }}
+      >
         <CloseIcon onClick={handleCloseModal} />
         <h3>Add Income</h3>
         <Formik

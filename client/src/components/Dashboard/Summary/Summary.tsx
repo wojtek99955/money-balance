@@ -94,9 +94,11 @@ const Summary = () => {
           <ExpensesModal setOpenExpensesModal={setOpenExpensesModal} />
         ) : null}
       </AnimatePresence>
-      {openIncomesModal ? (
-        <IncomesModal setOpenIncomesModal={setOpenIncomesModal} />
-      ) : null}
+      <AnimatePresence>
+        {openIncomesModal ? (
+          <IncomesModal setOpenIncomesModal={setOpenIncomesModal} />
+        ) : null}
+      </AnimatePresence>
     </DashboardBox>
   );
 };

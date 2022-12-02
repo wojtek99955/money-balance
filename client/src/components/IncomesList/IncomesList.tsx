@@ -24,6 +24,7 @@ import {
 import { FilterWallet } from "../../Interfaces/FilterWallet";
 import IncomesFilterDropdown from "./IncomesFilterDropdown/IncomesFilterDropdown";
 import BudgetItemLoader from "../../assets/molecules/BudgetItemLoader";
+import { AnimatePresence } from "framer-motion";
 
 const IncomesList = () => {
   const [page, setPage] = useState<number>(0);
@@ -116,12 +117,14 @@ const IncomesList = () => {
                     </BtnContainer>
                   </ControllerBtns>
                 </ExpensesWrapper>
-                {openEditIncomesModal ? (
-                  <EditIncomesModal
-                    currentId={currentId}
-                    setOpenEditIncomesModal={setOpenEditIncomesModal}
-                  />
-                ) : null}
+                <AnimatePresence>
+                  {openEditIncomesModal ? (
+                    <EditIncomesModal
+                      currentId={currentId}
+                      setOpenEditIncomesModal={setOpenEditIncomesModal}
+                    />
+                  ) : null}
+                </AnimatePresence>{" "}
               </DashboardBox>
             );
           })}

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { Field } from "formik";
+import { motion } from "framer-motion";
 
-export const Container = styled.div`
+export const Container = styled(motion.div)`
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   display: flex;
@@ -14,7 +15,7 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const FormContainer = styled.div`
+export const FormContainer = styled(motion.div)`
   background-color: white;
   width: 400px;
   height: auto;

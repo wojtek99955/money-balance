@@ -58,8 +58,20 @@ const IncomesModal = ({ setOpenEditIncomesModal, currentId }: Props) => {
   };
 
   return ReactDOM.createPortal(
-    <Container onClickCapture={handleClickOutside} ref={wrapperRef}>
-      <FormContainer>
+    <Container
+      onClickCapture={handleClickOutside}
+      ref={wrapperRef}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.1 }}
+    >
+      <FormContainer
+        initial={{ scale: 0.5 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.5 }}
+        transition={{ duration: 0.1 }}
+      >
         <CloseIcon onClick={handleCloseModal} />
         <h3>Edit Income</h3>
         <Formik

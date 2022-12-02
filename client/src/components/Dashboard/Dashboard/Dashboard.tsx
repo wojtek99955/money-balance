@@ -8,58 +8,14 @@ import RecentTransactionsCharts from "../RecentTransactionsCharts/RecentTransact
 import { useGetUserQuery } from "../../../api/userSlice";
 import { useGetAvatarQuery } from "../../../api/avatarSlice";
 import { useNavigate } from "react-router-dom";
-
-const Title = styled.div`
-  h2 {
-    color: ${({ theme }) => theme.colors.title};
-  }
-  p {
-    color: ${({ theme }) => theme.colors.grey};
-  }
-`;
-
-const TopSection = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-`;
-const RouteWrapper = styled.div`
-  width: 100%;
-`;
-const InputContainer = styled.div`
-  width: 14rem;
-  input {
-    display: block;
-    border-radius: 12px;
-    border: none;
-    width: 100%;
-    padding: 0.4rem;
-  }
-`;
-
-const Profile = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  cursor: pointer;
-  span {
-    font-weight: 600;
-  }
-  img {
-    height: 4rem;
-    width: 4rem;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-  }
-`;
-
-const RecentOperations = styled.div`
-  display: flex;
-  gap: 2rem;
-`;
+import {
+  Title,
+  TopSection,
+  RouteWrapper,
+  InputContainer,
+  Profile,
+  RecentOperations,
+} from "./DashboardStyle";
 
 const Dashboard = () => {
   const { data: userData, isLoading: userDataLoading } =

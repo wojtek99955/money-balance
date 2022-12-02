@@ -115,6 +115,7 @@ export const ProfileWrapper = styled.div`
     border-radius: 8px;
     padding: 0.5rem;
     border: ${({ theme }) => `2px solid ${theme.colors.grey}`};
+    font-size: 1rem;
   }
 `;
 
@@ -137,6 +138,7 @@ export const Username = styled.div`
     padding: 0.5rem 1.4rem;
     border-radius: 8px;
     cursor: pointer;
+    width: 5rem;
   }
 `;
 
@@ -144,6 +146,16 @@ export const EditUsernameContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 1rem 0;
+  button {
+    border: ${({ theme }) => `2px solid ${theme.colors.main.default}`};
+    background-color: transparent;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem 1.4rem;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 5rem;
+  }
 `;
 
 export const RouteWrapper = styled.div`

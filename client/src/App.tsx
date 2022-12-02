@@ -4,7 +4,7 @@ import SignIn from "./components/auth/SignIn";
 import styled from "styled-components";
 import StartPage from "./components/StartPage/StartPage";
 import RequireAuth from "./components/RequireAuth";
-import Dashboard from "./components/Dashboard/Dashboard";
+import Dashboard from "./components/Dashboard/Dashboard/Dashboard";
 import { useLocation } from "react-router-dom";
 import Sidebar from "./components/Dashboard/Sidebar/Sidebar";
 import ExpensesList from "./components/Expenses/ExpensesList/ExpensesList";

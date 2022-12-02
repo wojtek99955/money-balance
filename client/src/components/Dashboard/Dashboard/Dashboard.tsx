@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import Summary from "./Summary/Summary";
-import Expenses from "./RecentExpenses/RecentExpenses";
-import { RouteContainer } from "../../assets/atoms/RouteContainer";
-import Incomes from "./RecentIncomes/RecentIncomes";
-import BiggestExpenses from "./BiggestExpenses/BiggestExpenses";
-import RecentTransactionsCharts from "./RecentTransactionsCharts/RecentTransactionsCharts";
-import { useGetUserQuery } from "../../api/userSlice";
-import { useGetAvatarQuery } from "../../api/avatarSlice";
+import Summary from "../Summary/Summary";
+import Expenses from "../RecentExpenses/RecentExpenses";
+import { RouteContainer } from "../../../assets/atoms/RouteContainer";
+import Incomes from "../RecentIncomes/RecentIncomes";
+import BiggestExpenses from "../BiggestExpenses/BiggestExpenses";
+import RecentTransactionsCharts from "../RecentTransactionsCharts/RecentTransactionsCharts";
+import { useGetUserQuery } from "../../../api/userSlice";
+import { useGetAvatarQuery } from "../../../api/avatarSlice";
 import { useNavigate } from "react-router-dom";
 
 const Title = styled.div`
@@ -52,6 +52,7 @@ const Profile = styled.div`
     width: 4rem;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center;
   }
 `;
 

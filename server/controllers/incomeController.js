@@ -98,15 +98,11 @@ const deleteIncome = async (req, res) => {
 const updateIncome = async (req, res) => {
   const { id, amount, category } = req.body;
 
-  const decoded = jwt_decode(JWT);
-  const userId = decoded.userId;
-
   const income = await Income.findById(id).exec();
 
   console.log(income);
   income.amount = amount;
   income.category = category;
-  income.userId = userId;
 
   const updatedIncome = await income.save();
 

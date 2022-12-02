@@ -97,7 +97,6 @@ const updateExpense = async (req, res) => {
 
   expense.amount = amount;
   expense.category = category;
-  expense.userId = userId;
 
   const updatedExpense = await expense.save();
 

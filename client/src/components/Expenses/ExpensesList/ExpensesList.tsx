@@ -25,6 +25,7 @@ import {
 } from "./ExpensesListStyle";
 import { FilterWallet } from "../../../Interfaces/FilterWallet";
 import BudgetItemLoader from "../../../assets/molecules/BudgetItemLoader";
+import { AnimatePresence } from "framer-motion";
 
 const ExpensesList = () => {
   const [page, setPage] = useState<number>(0);
@@ -119,12 +120,14 @@ const ExpensesList = () => {
                     </BtnContainer>
                   </ControllerBtns>
                 </ExpensesWrapper>
-                {openEditExpensesModal ? (
-                  <EditExpensesModal
-                    currentId={currentId}
-                    setOpenEditExpensesModal={setOpenEditExpensesModal}
-                  />
-                ) : null}
+                <AnimatePresence>
+                  {openEditExpensesModal ? (
+                    <EditExpensesModal
+                      currentId={currentId}
+                      setOpenEditExpensesModal={setOpenEditExpensesModal}
+                    />
+                  ) : null}
+                </AnimatePresence>
               </DashboardBox>
             );
           })}

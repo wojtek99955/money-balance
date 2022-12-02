@@ -39,15 +39,25 @@ export const Profile = styled.div`
     font-weight: 600;
   }
   img {
-    height: 4rem;
-    width: 4rem;
+    height: 100%;
+    width: 100%;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
+    color: transparent;
   }
 `;
 
 export const RecentOperations = styled.div`
   display: flex;
   gap: 2rem;
+`;
+
+export const AvatarContainer = styled.div`
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
 `;

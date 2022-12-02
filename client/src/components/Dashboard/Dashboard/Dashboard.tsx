@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Summary from "../Summary/Summary";
 import Expenses from "../RecentExpenses/RecentExpenses";
 import { RouteContainer } from "../../../assets/atoms/RouteContainer";
@@ -15,7 +14,9 @@ import {
   InputContainer,
   Profile,
   RecentOperations,
+  AvatarContainer,
 } from "./DashboardStyle";
+import LoaderContainer from "../../../assets/atoms/LoaderContainer";
 
 const Dashboard = () => {
   const { data: userData, isLoading: userDataLoading } =
@@ -23,7 +24,8 @@ const Dashboard = () => {
 
   const username = userData ? userData[0].username : null;
 
-  const { data: avatar, isLoading } = useGetAvatarQuery(undefined);
+  const { data: avatar, isLoading: isAvatarLoading } =
+    useGetAvatarQuery(undefined);
   const path = avatar ? avatar[0]?.path : null;
   const imgPath = `http://localhost:3500/${path}`;
 
@@ -45,7 +47,10 @@ const Dashboard = () => {
             <input type="text" placeholder="Search..." />
           </InputContainer>
           <Profile onClick={goToProfile}>
-            <img src={imgPath} alt="avatar" />
+            <AvatarContainer>
+              {isAvatarLoading ? <LoaderContainer /> : null}
+              {path ? <img src={imgPath} /> : null}
+            </AvatarContainer>
             <span>{username}</span>
           </Profile>
         </TopSection>

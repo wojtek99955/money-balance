@@ -42,12 +42,13 @@ const getAvatar = asyncHandler(async (req, res) => {
 const deleteAvatar = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
   const decoded = jwt_decode(JWT);
+
   const userId = decoded.userId;
+
   const avatar = await Avatar.find({ userId });
-  console.log(avatar + "cos");
 
   const avatarPath = avatar[0].path;
-  console.log(avatarPath);
+
   const result = await Avatar.deleteOne({ userId });
   fs.unlinkSync(avatarPath);
   const reply = "Avatar deleted";

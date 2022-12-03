@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const jwt_decode = require("jwt-decode");
 const Avatar = require("../models/Avatar");
+const fs = require("fs");
 
 const uploadAvatar = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
@@ -42,8 +43,13 @@ const deleteAvatar = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
   const decoded = jwt_decode(JWT);
   const userId = decoded.userId;
+  const avatar = await Avatar.find({ userId });
+  console.log(avatar + "cos");
 
+  const avatarPath = avatar[0].path;
+  console.log(avatarPath);
   const result = await Avatar.deleteOne({ userId });
+  fs.unlinkSync(avatarPath);
   const reply = "Avatar deleted";
 
   res.json(reply);

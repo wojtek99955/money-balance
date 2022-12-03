@@ -27,7 +27,7 @@ const validationSchema = yup.object().shape({
 });
 
 const SignUp = () => {
-  const [addUser, { isSuccess, isLoading }] = useCreateUserMutation();
+  const [addUser, { isSuccess, isLoading, isError }] = useCreateUserMutation();
   console.log(isSuccess);
 
   return (
@@ -59,6 +59,11 @@ const SignUp = () => {
                 <SuccessMessage>
                   <p>You've created an account</p>
                 </SuccessMessage>
+              )}
+              {isError && (
+                <ValidationErrorMsg>
+                  This username is already in use
+                </ValidationErrorMsg>
               )}
               <button type="submit">
                 {isLoading ? <LoadingSpinner /> : "Create account"}

@@ -51,7 +51,6 @@ const Profile = () => {
     setEditUsername((prev) => !prev);
   };
 
-  console.log(userData);
   return (
     <RouteContainer>
       <RouteWrapper>

@@ -9,6 +9,7 @@ Money Balance is an fullstack app which helps people track their expenses
 - nodejs
 - mongodb
 - jwt
+- framer motion
 
 ## Installation
 

@@ -1,11 +1,17 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Auth } from "../../Interfaces/Auth";
 import { Link } from "react-router-dom";
-import { FormContainer, FormWrapper, Container } from "./AuthStyles";
+import {
+  FormContainer,
+  FormWrapper,
+  Container,
+  SuccessMessage,
+} from "./AuthStyles";
 import DescriptionSection from "./DescriptionSection";
 import * as yup from "yup";
 import ValidationErrorMsg from "../../assets/atoms/ValidationErrorMsg";
 import { useCreateUserMutation } from "../../api/userSlice";
+import LoadingSpinner from "../../assets/atoms/LoadingSpinner";
 const initialValues = {
   username: "",
   password: "",
@@ -21,7 +27,8 @@ const validationSchema = yup.object().shape({
 });
 
 const SignUp = () => {
-  const [addUser, response] = useCreateUserMutation();
+  const [addUser, { isSuccess, isLoading }] = useCreateUserMutation();
+  console.log(isSuccess);
 
   return (
     <Container>
@@ -47,7 +54,14 @@ const SignUp = () => {
               <label htmlFor="password">Password</label>
               <Field type="password" name="password" />
               <ErrorMessage component={ValidationErrorMsg} name="password" />
-              <button type="submit">Create an account</button>
+              {isSuccess && (
+                <SuccessMessage>
+                  <p>You've created an account</p>
+                </SuccessMessage>
+              )}
+              <button type="submit">
+                {isLoading ? <LoadingSpinner /> : "Create account"}
+              </button>
             </Form>
           </Formik>
         </FormWrapper>

@@ -35,6 +35,9 @@ export const FormContainer = styled.div`
     font-size: 1.2rem;
     border-radius: 8px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 3.4rem;
     &:hover {
       background-color: ${({ theme }) => theme.colors.main.hover};
@@ -92,4 +95,11 @@ export const Description = styled.div`
     font-size: 1.1rem;
   }
   margin-bottom: 10rem;
+`;
+
+export const SuccessMessage = styled.div`
+  p {
+    color: #009f5f;
+    text-transform: none;
+  }
 `;

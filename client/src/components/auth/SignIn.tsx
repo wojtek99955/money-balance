@@ -7,6 +7,7 @@ import * as yup from "yup";
 import ValidationErrorMsg from "../../assets/atoms/ValidationErrorMsg";
 import jwt_decode from "jwt-decode";
 import { useLoginMutation } from "../../api/authSlice";
+import LoadingSpinner from "../../assets/atoms/LoadingSpinner";
 
 const initialValues = {
   username: "",
@@ -21,7 +22,7 @@ const validationSchema = yup.object().shape({
 const SignIn = () => {
   let navigate = useNavigate();
 
-  const [login, response] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
 
   const handleSubmit = async (val: Auth) => {
     const res: any = await login({
@@ -61,7 +62,9 @@ const SignIn = () => {
               <label htmlFor="password">Password</label>
               <Field type="password" name="password" placeholder="password" />
               <ErrorMessage component={ValidationErrorMsg} name="password" />
-              <button type="submit">Sign in</button>
+              <button type="submit">
+                {isLoading ? <LoadingSpinner /> : "Sign in"}
+              </button>
             </Form>
           </Formik>
         </FormWrapper>

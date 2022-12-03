@@ -10,6 +10,7 @@ import {
   Btn,
   BtnContainer,
 } from "./DeleteModalStyle";
+import { useRef } from "react";
 
 interface Props {
   setShowDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -37,8 +38,19 @@ const DeleteModal = ({ setShowDeleteModal }: Props) => {
   const handleCloseModal = () => {
     setShowDeleteModal(false);
   };
+
+  const modalContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClickOutside = (e: any) => {
+    if (e.target === modalContainerRef.current) {
+      setShowDeleteModal(false);
+    }
+  };
+
   return ReactDOM.createPortal(
     <Container
+      ref={modalContainerRef}
+      onClick={handleClickOutside}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

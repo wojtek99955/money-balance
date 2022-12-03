@@ -43,8 +43,9 @@ const SignUp = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(val) => {
+            onSubmit={(val, { resetForm }) => {
               addUser(val);
+              resetForm();
             }}
           >
             <Form>

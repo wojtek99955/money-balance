@@ -18,6 +18,7 @@ import { apiSlice } from "../../api/apiSlice";
 import { useNavigate } from "react-router-dom";
 import Avatar from "./Avatar/Avatar";
 import DeleteModal from "./DeleteModal/DeleteModal";
+import { AnimatePresence } from "framer-motion";
 
 const Profile = () => {
   const { data: userData, isLoading: userDataLoading } =
@@ -86,9 +87,11 @@ const Profile = () => {
           </DeleteAccountBtn>
         </ProfileWrapper>
       </RouteWrapper>
-      {showDeleteModal ? (
-        <DeleteModal setShowDeleteModal={setShowDeleteModal} />
-      ) : null}
+      <AnimatePresence>
+        {showDeleteModal ? (
+          <DeleteModal setShowDeleteModal={setShowDeleteModal} />
+        ) : null}
+      </AnimatePresence>
     </RouteContainer>
   );
 };

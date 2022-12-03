@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const avatarSchema = new mongoose.Schema({
-  username: String,
+  userId: String,
   fileName: String,
   path: String,
 });

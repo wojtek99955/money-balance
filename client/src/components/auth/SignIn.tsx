@@ -22,7 +22,7 @@ const validationSchema = yup.object().shape({
 const SignIn = () => {
   let navigate = useNavigate();
 
-  const [login, { isLoading }] = useLoginMutation();
+  const [login, { isLoading, isError }] = useLoginMutation();
 
   const handleSubmit = async (val: Auth) => {
     const res: any = await login({
@@ -62,6 +62,11 @@ const SignIn = () => {
               <label htmlFor="password">Password</label>
               <Field type="password" name="password" placeholder="password" />
               <ErrorMessage component={ValidationErrorMsg} name="password" />
+              {isError && (
+                <ValidationErrorMsg>
+                  Wrong username or password
+                </ValidationErrorMsg>
+              )}
               <button type="submit">
                 {isLoading ? <LoadingSpinner /> : "Sign in"}
               </button>

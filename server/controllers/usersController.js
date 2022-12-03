@@ -4,6 +4,8 @@ const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 const Income = require("../models/Income");
 const Expense = require("../models/Expense");
+const Avatar = require("../models/Avatar");
+const fs = require("fs");
 
 const getUser = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
@@ -67,6 +69,10 @@ const updateUsername = asyncHandler(async (req, res) => {
 
 const deleteUser = asyncHandler(async (req, res) => {
   const { username } = req.body;
+  let JWT = req.cookies.jwt;
+  const decoded = jwt_decode(JWT);
+  const userId = decoded.userId;
+
   console.log(username);
   if (!username) {
     return res.status(400).json({ message: "Username required" });
@@ -77,6 +83,14 @@ const deleteUser = asyncHandler(async (req, res) => {
   const deleteIncomeResult = await Income.deleteMany({ username });
 
   const deleteExpenseResult = await Expense.deleteMany({ username });
+
+  const avatar = await Avatar.find({ userId });
+
+  const avatarPath = avatar[0].path;
+
+  const result = await Avatar.deleteOne({ userId });
+
+  fs.unlinkSync(avatarPath);
 
   const reply = `Username ${deleteUserResult.username} deleted`;
   res.json(reply);

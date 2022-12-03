@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { apiSlice } from "../../api/apiSlice";
 import { useNavigate } from "react-router-dom";
 import Avatar from "./Avatar/Avatar";
+import DeleteModal from "./DeleteModal/DeleteModal";
 
 const Profile = () => {
   const { data: userData, isLoading: userDataLoading } =
@@ -51,6 +52,12 @@ const Profile = () => {
     setEditUsername((prev) => !prev);
   };
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const handleShowDeleteModal = () => {
+    setShowDeleteModal(true);
+  };
+
   return (
     <RouteContainer>
       <RouteWrapper>
@@ -74,11 +81,14 @@ const Profile = () => {
               </EditUsernameContainer>
             ) : null}
           </UsernameContainer>
-          <DeleteAccountBtn onClick={handleDeleteUser}>
+          <DeleteAccountBtn onClick={handleShowDeleteModal}>
             Delete account
           </DeleteAccountBtn>
         </ProfileWrapper>
       </RouteWrapper>
+      {showDeleteModal ? (
+        <DeleteModal setShowDeleteModal={setShowDeleteModal} />
+      ) : null}
     </RouteContainer>
   );
 };

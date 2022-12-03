@@ -5,12 +5,12 @@ const Avatar = require("../models/Avatar");
 const uploadAvatar = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
+  const userId = decoded.userId;
 
   const fileName = req.file.originalname;
 
   const avatar = await Avatar.create({
-    username,
+    userId,
     fileName,
     path: req.file.path,
   });
@@ -25,10 +25,10 @@ const uploadAvatar = asyncHandler(async (req, res) => {
 const getAvatar = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
+  const userId = decoded.userId;
 
   const avatar = await Avatar.find({
-    username,
+    userId,
   });
 
   if (avatar.length === 0) {
@@ -41,9 +41,9 @@ const getAvatar = asyncHandler(async (req, res) => {
 const deleteAvatar = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
+  const userId = decoded.userId;
 
-  const result = await Avatar.deleteOne({ username });
+  const result = await Avatar.deleteOne({ userId });
   const reply = "Avatar deleted";
 
   res.json(reply);

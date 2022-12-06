@@ -53,13 +53,18 @@ export const EditUsernameContainer = styled.div`
   margin: 1rem 0;
   button {
     border: ${({ theme }) => `2px solid ${theme.colors.main.default}`};
+    color: black;
     background-color: transparent;
-    color: white;
     font-size: 1rem;
     padding: 0.5rem 1.4rem;
     border-radius: 8px;
     cursor: pointer;
     width: 5rem;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.main.default};
+      color: white;
+    }
   }
 `;
 

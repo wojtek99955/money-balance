@@ -8,7 +8,7 @@ const createNewGoal = async (req, res) => {
     .split("/")
     .reverse()
     .join("-");
-  const { description, amount, deposit } = req.body;
+  const { description, amount, deposit, category } = req.body;
 
   let JWT = req.cookies.jwt;
   const decoded = jwt_decode(JWT);
@@ -20,6 +20,7 @@ const createNewGoal = async (req, res) => {
     amount,
     date,
     deposit,
+    category,
   });
 
   if (goal) {

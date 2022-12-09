@@ -4,8 +4,7 @@ const goalController = require("../controllers/goalController");
 
 router
   .route("/")
-  .post(expenseController.createNewGoal)
-  .delete(expenseController.deleteExpense)
-  .patch(expenseController.updateExpense);
+  .get(goalController.getGoals)
+  .post(goalController.createNewGoal);
 
 module.exports = router;

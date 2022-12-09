@@ -36,7 +36,7 @@ const links = [
   {
     text: "Goals",
     icon: <SavingsIcon />,
-    route: "/",
+    route: "/goals",
   },
 ];
 

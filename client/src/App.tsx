@@ -10,6 +10,7 @@ import Sidebar from "./components/Dashboard/Sidebar/Sidebar";
 import ExpensesList from "./components/Expenses/ExpensesList/ExpensesList";
 import IncomesList from "./components/IncomesList/IncomesList";
 import Profile from "./components/Profile/Profile";
+import Goals from "./components/Goals/Goals";
 
 interface StyleProps {
   location: string;
@@ -67,6 +68,14 @@ function App() {
             element={
               <RequireAuth>
                 <Profile />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/goals"
+            element={
+              <RequireAuth>
+                <Goals />
               </RequireAuth>
             }
           />

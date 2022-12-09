@@ -30,10 +30,6 @@ const GoalContainer = styled.div`
   border-radius: 12px;
   padding: 1rem;
   position: relative;
-
-  p {
-    padding-top: 2rem;
-  }
 `;
 
 const ListContainer = styled.section`
@@ -52,6 +48,18 @@ const ChartContainer = styled.div`
   margin: auto 0;
   display: flex;
   align-items: center;
+`;
+
+const Category = styled.h3`
+  text-transform: capitalize;
+`;
+
+const Description = styled.p`
+  color: ${({ theme }) => theme.colors.grey};
+`;
+
+const Amount = styled.p`
+  padding-top: 2rem;
 `;
 
 interface Props {
@@ -77,10 +85,13 @@ const GoalsList = ({ goals }: Props) => {
       {goals.map((goal: any) => {
         return (
           <GoalContainer>
-            <h3>{goal.category}</h3>
-            {goal.description}
+            <Category>{goal.category}</Category>
+            <Description>{goal.description}</Description>
             {goal.amount}
             {goal.deposit}
+            <Amount>
+              ${goal.deposit} of ${goal.amount}
+            </Amount>
             <ChartContainer>
               <Doughnut
                 data={{
@@ -95,9 +106,6 @@ const GoalsList = ({ goals }: Props) => {
                 options={chartOptions}
               />
             </ChartContainer>
-            <p>
-              ${goal.deposit} of ${goal.amount}
-            </p>
           </GoalContainer>
         );
       })}

@@ -6,7 +6,7 @@ import {
   DashboardIcon,
   StyledLink,
   ChartIcon,
-  WalletIcon,
+  SavingsIcon,
   CategoryIcon,
   CategoryDropdown,
   SidebarWrapper,
@@ -36,8 +36,8 @@ const links = [
     route: "/",
   },
   {
-    text: "Wallet",
-    icon: <WalletIcon />,
+    text: "Goals",
+    icon: <SavingsIcon />,
     route: "/",
   },
 ];

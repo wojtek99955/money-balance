@@ -3,7 +3,7 @@ import { TbLayoutDashboard } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { TbChartBar } from "react-icons/tb";
 import { TbCalendar } from "react-icons/tb";
-import { TbWallet } from "react-icons/tb";
+import { MdOutlineSavings } from "react-icons/md";
 import { FaListUl } from "react-icons/fa";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { GiReceiveMoney } from "react-icons/gi";
@@ -54,7 +54,7 @@ export const CalendarIcon = styled(TbCalendar)`
   color: ${({ theme }) => theme.colors.main.default};
 `;
 
-export const WalletIcon = styled(TbWallet)`
+export const SavingsIcon = styled(MdOutlineSavings)`
   font-size: 1.5rem;
   color: ${({ theme }) => theme.colors.main.default};
 `;

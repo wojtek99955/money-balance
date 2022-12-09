@@ -30,6 +30,10 @@ const GoalContainer = styled.div`
   border-radius: 12px;
   padding: 1rem;
   position: relative;
+
+  p {
+    padding-top: 2rem;
+  }
 `;
 
 const ListContainer = styled.section`
@@ -73,7 +77,8 @@ const GoalsList = ({ goals }: Props) => {
       {goals.map((goal: any) => {
         return (
           <GoalContainer>
-            <h3>{goal.description}</h3>
+            <h3>{goal.category}</h3>
+            {goal.description}
             {goal.amount}
             {goal.deposit}
             <ChartContainer>
@@ -91,7 +96,7 @@ const GoalsList = ({ goals }: Props) => {
               />
             </ChartContainer>
             <p>
-              ${goal.deposit} of {goal.amount}
+              ${goal.deposit} of ${goal.amount}
             </p>
           </GoalContainer>
         );

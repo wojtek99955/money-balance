@@ -55,11 +55,6 @@ interface Props {
 }
 
 const GoalsList = ({ goals }: Props) => {
-  const goalsAmount = goals.map((goal: any) => goal.amount);
-  console.log(goalsAmount);
-
-  const depositAmount = goals.map((goal: any) => goal.deposit);
-
   const chartOptions = {
     responsive: true,
     plugins: {

@@ -6,6 +6,7 @@ const goalSchema = new mongoose.Schema(
     description: String,
     amount: Number,
     date: String,
+    deposit: Number,
   },
   { timestamps: true }
 );

@@ -100,6 +100,7 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
 
   const handleSubmit = (val: any) => {
     addGoal(val);
+    setOpenAddGoalModal(false);
   };
   return ReactDOM.createPortal(
     <Container
@@ -124,6 +125,11 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
         >
           <Form>
             <FormWrapper>
+              <Field as="select" name="category">
+                <option value="home">home</option>
+                <option value="vacation">vacation</option>
+                <option value="other">other</option>
+              </Field>
               <StyledField name="description" placeholder="description" />
               <StyledField name="amount" placeholder="amount" />
               <StyledField name="deposit" placeholder="deposit" />

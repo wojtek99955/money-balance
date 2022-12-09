@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Field } from "formik";
 import { motion } from "framer-motion";
 import { RiCloseCircleLine } from "react-icons/ri";
+import { useRef } from "react";
 
 export const Container = styled(motion.div)`
   width: 100%;
@@ -73,9 +74,28 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
   const handleCloseModal = () => {
     setOpenAddGoalModal(false);
   };
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClickOutside = (e: any) => {
+    if (e.target === containerRef.current) {
+      setOpenAddGoalModal(false);
+    }
+  };
   return ReactDOM.createPortal(
-    <Container>
-      <FormContainer>
+    <Container
+      ref={containerRef}
+      onClick={handleClickOutside}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+    >
+      <FormContainer
+        initial={{ scale: 0.5 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.5 }}
+        transition={{ duration: 0.2 }}
+      >
         <CloseIcon onClick={handleCloseModal} />
         <h3>Add Goal</h3>
       </FormContainer>

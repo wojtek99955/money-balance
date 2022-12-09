@@ -3,6 +3,7 @@ import { RouteContainer } from "../../assets/atoms/RouteContainer";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
 import AddGoalModal from "./AddGoalModal";
+import { AnimatePresence } from "framer-motion";
 
 const NoGoalsContainer = styled.div`
   position: absolute;
@@ -59,9 +60,11 @@ const Goals = () => {
           </div>
         </NoGoalsWrapper>
       </NoGoalsContainer>
-      {openAddGoalModal ? (
-        <AddGoalModal setOpenAddGoalModal={setOpenAddGoalModal} />
-      ) : null}
+      <AnimatePresence>
+        {openAddGoalModal ? (
+          <AddGoalModal setOpenAddGoalModal={setOpenAddGoalModal} />
+        ) : null}
+      </AnimatePresence>
     </RouteContainer>
   );
 };

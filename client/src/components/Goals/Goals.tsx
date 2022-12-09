@@ -4,7 +4,9 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
 import AddGoalModal from "./AddGoalModal";
 import { AnimatePresence } from "framer-motion";
-
+import { useGetGoalsQuery } from "../../api/goalSlice";
+import GoalsList from "./GoalsList/GoalsList";
+import { Button } from "../../assets/atoms/Button";
 const NoGoalsContainer = styled.div`
   position: absolute;
   top: 0;
@@ -48,18 +50,26 @@ const Goals = () => {
   const handleOpenGoalModal = () => {
     setOpenAddGoalModal(true);
   };
+
+  const { data: goals, isLoading } = useGetGoalsQuery(undefined);
+  console.log(goals);
   return (
     <RouteContainer>
       <h2>Your goals</h2>
-      <NoGoalsContainer>
-        <NoGoalsWrapper>
-          <h3>You did not set any goals yet</h3>
-          <div>
-            <AddGoalIcon onClick={handleOpenGoalModal} />
-            <span>Set new goal</span>
-          </div>
-        </NoGoalsWrapper>
-      </NoGoalsContainer>
+      <Button onClick={handleOpenGoalModal}>Add new goal</Button>
+      {goals ? (
+        <GoalsList goals={goals} />
+      ) : (
+        <NoGoalsContainer>
+          <NoGoalsWrapper>
+            <h3>You did not set any goals yet</h3>
+            <div>
+              <AddGoalIcon onClick={handleOpenGoalModal} />
+              <span>Set new goal</span>
+            </div>
+          </NoGoalsWrapper>
+        </NoGoalsContainer>
+      )}
       <AnimatePresence>
         {openAddGoalModal ? (
           <AddGoalModal setOpenAddGoalModal={setOpenAddGoalModal} />

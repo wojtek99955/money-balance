@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import ReactDOM from "react-dom";
-import { Field } from "formik";
+import { Field, Formik, Form } from "formik";
 import { motion } from "framer-motion";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { useRef } from "react";
+import { useAddGoalMutation } from "../../api/goalSlice";
 
 export const Container = styled(motion.div)`
   width: 100%;
@@ -70,6 +71,12 @@ interface Props {
   setOpenAddGoalModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const initialValues = {
+  description: "",
+  amount: "",
+  deposit: "",
+};
+
 const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
   const handleCloseModal = () => {
     setOpenAddGoalModal(false);
@@ -80,6 +87,12 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
     if (e.target === containerRef.current) {
       setOpenAddGoalModal(false);
     }
+  };
+
+  const [addGoal, response] = useAddGoalMutation();
+
+  const handleSubmit = (val: any) => {
+    addGoal(val);
   };
   return ReactDOM.createPortal(
     <Container
@@ -98,6 +111,17 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
       >
         <CloseIcon onClick={handleCloseModal} />
         <h3>Add Goal</h3>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(val: any) => handleSubmit(val)}
+        >
+          <Form>
+            <StyledField name="description" />
+            <StyledField name="amount" />
+            <StyledField name="deposit" />
+            <button type="submit">Add</button>
+          </Form>
+        </Formik>
       </FormContainer>
     </Container>,
     document.getElementById("goal-modal")!

@@ -29,4 +29,17 @@ const createNewGoal = async (req, res) => {
   }
 };
 
-module.exports = { createNewGoal };
+const getGoals = asyncHandler(async (req, res) => {
+  let JWT = req.cookies.jwt;
+
+  const decoded = jwt_decode(JWT);
+  const userId = decoded.userId;
+
+  const goals = await Goal.find({
+    userId,
+  }).select("-userId");
+
+  res.json(goals);
+});
+
+module.exports = { createNewGoal, getGoals };

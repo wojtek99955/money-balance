@@ -39,6 +39,7 @@ const NoGoalsWrapper = styled.div`
 const AddGoalIcon = styled(IoMdAddCircleOutline)`
   font-size: 2.5rem;
   color: ${({ theme }) => theme.colors.main.default};
+  cursor: pointer;
 `;
 
 const Goals = () => {

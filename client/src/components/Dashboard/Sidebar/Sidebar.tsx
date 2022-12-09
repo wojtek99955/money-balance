@@ -7,8 +7,6 @@ import {
   StyledLink,
   ChartIcon,
   SavingsIcon,
-  CategoryIcon,
-  CategoryDropdown,
   SidebarWrapper,
   IncomesIcon,
   ExpensesIcon,
@@ -57,9 +55,6 @@ const Sidebar = () => {
             );
           })}
         </Nav>
-        <CategoryDropdown>
-          <CategoryIcon /> Categories
-        </CategoryDropdown>
         <Profile />
       </SidebarWrapper>
     </Container>

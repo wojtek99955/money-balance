@@ -59,11 +59,6 @@ export const SavingsIcon = styled(MdOutlineSavings)`
   color: ${({ theme }) => theme.colors.main.default};
 `;
 
-export const CategoryIcon = styled(FaListUl)`
-  font-size: 1.5rem;
-  color: ${({ theme }) => theme.colors.main.default};
-`;
-
 export const AddIcon = styled(IoMdAddCircleOutline)`
   font-size: 1.5rem;
   color: ${({ theme }) => theme.colors.main.default};
@@ -72,16 +67,6 @@ export const AddIcon = styled(IoMdAddCircleOutline)`
 export const IncomesIcon = styled(GiReceiveMoney)`
   font-size: 1.5rem;
   color: ${({ theme }) => theme.colors.main.default};
-`;
-
-export const CategoryDropdown = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  color: ${({ theme }) => theme.colors.title};
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  user-select: none;
 `;
 
 export const SidebarWrapper = styled.div`

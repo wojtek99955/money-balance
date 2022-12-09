@@ -45,6 +45,11 @@ const AddGoalIcon = styled(IoMdAddCircleOutline)`
   cursor: pointer;
 `;
 
+const GoalsContainer = styled.div`
+  max-width: 1200px;
+  margin: auto;
+`;
+
 const Goals = () => {
   const [openAddGoalModal, setOpenAddGoalModal] = useState(false);
   const handleOpenGoalModal = () => {
@@ -55,28 +60,30 @@ const Goals = () => {
   console.log(goals);
   return (
     <RouteContainer>
-      <h2>Your goals</h2>
-      {goals?.length > 0 ? (
-        <>
-          <Button onClick={handleOpenGoalModal}>Add new goal</Button>
-          <GoalsList goals={goals} />
-        </>
-      ) : (
-        <NoGoalsContainer>
-          <NoGoalsWrapper>
-            <h3>You did not set any goals yet</h3>
-            <div>
-              <AddGoalIcon onClick={handleOpenGoalModal} />
-              <span>Set new goal</span>
-            </div>
-          </NoGoalsWrapper>
-        </NoGoalsContainer>
-      )}
-      <AnimatePresence>
-        {openAddGoalModal ? (
-          <AddGoalModal setOpenAddGoalModal={setOpenAddGoalModal} />
-        ) : null}
-      </AnimatePresence>
+      <GoalsContainer>
+        <h2>Your goals</h2>
+        {goals?.length > 0 ? (
+          <>
+            <Button onClick={handleOpenGoalModal}>Add new goal</Button>
+            <GoalsList goals={goals} />
+          </>
+        ) : (
+          <NoGoalsContainer>
+            <NoGoalsWrapper>
+              <h3>You did not set any goals yet</h3>
+              <div>
+                <AddGoalIcon onClick={handleOpenGoalModal} />
+                <span>Set new goal</span>
+              </div>
+            </NoGoalsWrapper>
+          </NoGoalsContainer>
+        )}
+        <AnimatePresence>
+          {openAddGoalModal ? (
+            <AddGoalModal setOpenAddGoalModal={setOpenAddGoalModal} />
+          ) : null}
+        </AnimatePresence>
+      </GoalsContainer>
     </RouteContainer>
   );
 };

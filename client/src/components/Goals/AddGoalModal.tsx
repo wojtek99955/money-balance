@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { useRef } from "react";
 import { useAddGoalMutation } from "../../api/goalSlice";
+import { Button } from "../../assets/atoms/Button";
 
 export const Container = styled(motion.div)`
   width: 100%;
@@ -126,7 +127,7 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
               <StyledField name="description" placeholder="description" />
               <StyledField name="amount" placeholder="amount" />
               <StyledField name="deposit" placeholder="deposit" />
-              <button type="submit">Add</button>
+              <Button type="submit">Add</Button>
             </FormWrapper>
           </Form>
         </Formik>

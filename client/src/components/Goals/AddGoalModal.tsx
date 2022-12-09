@@ -82,7 +82,7 @@ const initialValues = {
   description: "",
   amount: "",
   deposit: "",
-  category: "",
+  category: "home",
 };
 
 const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {

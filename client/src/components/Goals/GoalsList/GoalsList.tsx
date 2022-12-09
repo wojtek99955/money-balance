@@ -83,7 +83,7 @@ const GoalsList = ({ goals }: Props) => {
                   datasets: [
                     {
                       data: [goal.amount - goal.deposit, goal.deposit],
-                      backgroundColor: ["grey", "green"],
+                      backgroundColor: ["#DEE1E9", "#009F5F"],
                     },
                   ],
                 }}

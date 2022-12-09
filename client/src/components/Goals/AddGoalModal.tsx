@@ -24,6 +24,11 @@ export const FormContainer = styled(motion.div)`
   padding: 2rem 0;
   border-radius: 12px;
   position: relative;
+  gap: 1rem;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
 
   h3 {
     text-align: center;
@@ -57,6 +62,7 @@ export const StyledField = styled(Field)`
   padding: 1rem;
   width: 80%;
   font-size: 1rem;
+  margin: auto;
 `;
 
 export const FormWrapper = styled.div`
@@ -116,10 +122,12 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
           onSubmit={(val: any) => handleSubmit(val)}
         >
           <Form>
-            <StyledField name="description" />
-            <StyledField name="amount" />
-            <StyledField name="deposit" />
-            <button type="submit">Add</button>
+            <FormWrapper>
+              <StyledField name="description" placeholder="description" />
+              <StyledField name="amount" placeholder="amount" />
+              <StyledField name="deposit" placeholder="deposit" />
+              <button type="submit">Add</button>
+            </FormWrapper>
           </Form>
         </Formik>
       </FormContainer>

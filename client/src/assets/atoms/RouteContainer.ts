@@ -5,4 +5,5 @@ export const RouteContainer = styled.div`
     theme.colors.backgroundColor.lightBackground};
   padding: 1rem;
   padding-top: 1rem;
+  position: relative;
 `;

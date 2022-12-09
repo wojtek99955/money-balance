@@ -56,9 +56,11 @@ const Goals = () => {
   return (
     <RouteContainer>
       <h2>Your goals</h2>
-      <Button onClick={handleOpenGoalModal}>Add new goal</Button>
       {goals?.length > 0 ? (
-        <GoalsList goals={goals} />
+        <>
+          <Button onClick={handleOpenGoalModal}>Add new goal</Button>
+          <GoalsList goals={goals} />
+        </>
       ) : (
         <NoGoalsContainer>
           <NoGoalsWrapper>

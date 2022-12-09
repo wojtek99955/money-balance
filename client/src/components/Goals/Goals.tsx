@@ -7,6 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import { useGetGoalsQuery } from "../../api/goalSlice";
 import GoalsList from "./GoalsList/GoalsList";
 import { Button } from "../../assets/atoms/Button";
+import { AddIcon } from "../Dashboard/Summary/SummaryStyle";
 const NoGoalsContainer = styled.div`
   position: absolute;
   top: 0;
@@ -48,6 +49,20 @@ const AddGoalIcon = styled(IoMdAddCircleOutline)`
 const GoalsContainer = styled.div`
   max-width: 1200px;
   margin: auto;
+  position: relative;
+`;
+
+const StyledButton = styled(Button)`
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const AddIconBtn = styled(IoMdAddCircleOutline)`
+  color: white;
+  font-size: 2rem;
 `;
 
 const Goals = () => {
@@ -64,7 +79,13 @@ const Goals = () => {
         <h2>Your goals</h2>
         {goals?.length > 0 ? (
           <>
-            <Button onClick={handleOpenGoalModal}>Add new goal</Button>
+            <StyledButton
+              onClick={handleOpenGoalModal}
+              style={{ position: "absolute", right: 0 }}
+            >
+              <AddIconBtn />
+              Add new goal
+            </StyledButton>
             <GoalsList goals={goals} />
           </>
         ) : (

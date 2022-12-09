@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { RouteContainer } from "../../assets/atoms/RouteContainer";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { useState } from "react";
+import AddGoalModal from "./AddGoalModal";
 
 const NoGoalsContainer = styled.div`
   position: absolute;
@@ -40,6 +42,10 @@ const AddGoalIcon = styled(IoMdAddCircleOutline)`
 `;
 
 const Goals = () => {
+  const [openAddGoalModal, setOpenAddGoalModal] = useState(false);
+  const handleOpenGoalModal = () => {
+    setOpenAddGoalModal(true);
+  };
   return (
     <RouteContainer>
       <h2>Your goals</h2>
@@ -47,11 +53,14 @@ const Goals = () => {
         <NoGoalsWrapper>
           <h3>You did not set any goals yet</h3>
           <div>
-            <AddGoalIcon />
+            <AddGoalIcon onClick={handleOpenGoalModal} />
             <span>Set new goal</span>
           </div>
         </NoGoalsWrapper>
       </NoGoalsContainer>
+      {openAddGoalModal ? (
+        <AddGoalModal setOpenAddGoalModal={setOpenAddGoalModal} />
+      ) : null}
     </RouteContainer>
   );
 };

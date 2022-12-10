@@ -24,6 +24,8 @@ const DeleteIcon = styled(IoMdClose)`
 const AdjustIcon = styled(HiOutlineAdjustments)`
   color: ${({ theme }) => theme.colors.grey};
   font-size: 1.2rem;
+  position: relative;
+  z-index: 10;
 `;
 
 const Container = styled.div`
@@ -67,6 +69,7 @@ const ActionBtnsContainer = styled(motion.div)`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  z-index: 9;
 `;
 
 const BtnContainer = styled.div`
@@ -96,6 +99,7 @@ const EditGoal = () => {
   const toggleShowBtns = () => {
     setShowActionBtns((prev) => !prev);
   };
+
   return (
     <Container onMouseEnter={toggleShowBtns} onMouseLeave={toggleShowBtns}>
       <Wrapper>
@@ -106,6 +110,7 @@ const EditGoal = () => {
               initial={{ right: -40, opacity: 0 }}
               animate={{ right: 0, opacity: 1 }}
               exit={{ right: -40, opacity: 0 }}
+              transition={{ duration: 0.2 }}
             >
               <BtnContainer>
                 <EditIcon />

@@ -5,6 +5,7 @@ const goalController = require("../controllers/goalController");
 router
   .route("/")
   .get(goalController.getGoals)
-  .post(goalController.createNewGoal);
+  .post(goalController.createNewGoal)
+  .delete(goalController.deleteGoal);
 
 module.exports = router;

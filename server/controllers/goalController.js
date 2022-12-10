@@ -43,4 +43,25 @@ const getGoals = asyncHandler(async (req, res) => {
   res.json(goals);
 });
 
-module.exports = { createNewGoal, getGoals };
+const deleteGoal = async (req, res) => {
+  const { id } = req.body;
+  console.log(id);
+
+  if (!id) {
+    return res.status(400).json({ message: "Goal ID required" });
+  }
+
+  const goal = await Goal.findById(id).exec();
+
+  if (!goal) {
+    return res.status(400).json({ message: "Goal not found" });
+  }
+
+  const result = await goal.deleteOne();
+
+  const reply = `Goal ${result.title} with ID ${result._id} deleted`;
+
+  res.json(reply);
+};
+
+module.exports = { createNewGoal, getGoals, deleteGoal };

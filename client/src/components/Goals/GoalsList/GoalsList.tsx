@@ -61,7 +61,7 @@ const GoalsList = ({ goals }: Props) => {
             <Amount>
               ${goal.deposit} of ${goal.amount}
             </Amount>
-            <EditGoal />
+            <EditGoal id={goal._id} />
             <ChartContainer>
               <Doughnut
                 data={{

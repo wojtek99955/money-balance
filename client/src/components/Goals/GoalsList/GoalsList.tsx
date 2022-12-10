@@ -87,8 +87,6 @@ const GoalsList = ({ goals }: Props) => {
           <GoalContainer>
             <Category>{goal.category}</Category>
             <Description>{goal.description}</Description>
-            {goal.amount}
-            {goal.deposit}
             <Amount>
               ${goal.deposit} of ${goal.amount}
             </Amount>

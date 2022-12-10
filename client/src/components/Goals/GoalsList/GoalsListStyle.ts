@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const GoalContainer = styled.div`
   background-color: white;
   border-radius: 12px;
-  padding: 1rem;
+  padding: 2rem;
   position: relative;
 `;
 
@@ -17,7 +17,7 @@ export const ListContainer = styled.section`
 export const ChartContainer = styled.div`
   width: 5rem;
   position: absolute;
-  right: 1rem;
+  right: 2rem;
   top: 0;
   bottom: 0;
   margin: auto 0;

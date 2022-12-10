@@ -14,7 +14,16 @@ const goalApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Goals"],
     }),
+    deleteGoal: builder.mutation({
+      query: ({ id }) => ({
+        url: "/goal",
+        method: "DELETE",
+        body: { id },
+      }),
+      invalidatesTags: ["Goals"],
+    }),
   }),
 });
 
-export const { useGetGoalsQuery, useAddGoalMutation } = goalApiSlice;
+export const { useGetGoalsQuery, useAddGoalMutation, useDeleteGoalMutation } =
+  goalApiSlice;

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { HiOutlineAdjustments } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
+import { useDeleteGoalMutation } from "../../api/goalSlice";
 
 const EditIcon = styled(AiOutlineEdit)`
   color: ${({ theme }) => theme.colors.grey};
@@ -93,11 +94,21 @@ const BtnContainer = styled.div`
   }
 `;
 
-const EditGoal = () => {
+interface Props {
+  id: string;
+}
+
+const EditGoal = ({ id }: Props) => {
   const [showActionBtns, setShowActionBtns] = useState(false);
 
   const toggleShowBtns = () => {
     setShowActionBtns((prev) => !prev);
+  };
+
+  const [deleteGoal, response] = useDeleteGoalMutation();
+
+  const handleDeleteGoal = () => {
+    deleteGoal({ id });
   };
 
   return (
@@ -115,7 +126,12 @@ const EditGoal = () => {
               <BtnContainer>
                 <EditIcon />
               </BtnContainer>
-              <BtnContainer>
+              <BtnContainer
+                onClick={() => {
+                  console.log(id);
+                  handleDeleteGoal();
+                }}
+              >
                 <DeleteIcon />
               </BtnContainer>
             </ActionBtnsContainer>

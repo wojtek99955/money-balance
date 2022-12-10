@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { HiOutlineAdjustments } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
+import { AnimatePresence, motion } from "framer-motion";
 
 const EditIcon = styled(AiOutlineEdit)`
   color: ${({ theme }) => theme.colors.grey};
@@ -54,7 +55,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const ActionBtnsContainer = styled.div`
+const ActionBtnsContainer = styled(motion.div)`
   position: absolute;
   top: 0;
   bottom: 0;
@@ -99,16 +100,22 @@ const EditGoal = () => {
     <Container onMouseEnter={toggleShowBtns} onMouseLeave={toggleShowBtns}>
       <Wrapper>
         <AdjustIcon />
-        {showActionBtns ? (
-          <ActionBtnsContainer>
-            <BtnContainer>
-              <EditIcon />
-            </BtnContainer>
-            <BtnContainer>
-              <DeleteIcon />
-            </BtnContainer>
-          </ActionBtnsContainer>
-        ) : null}
+        <AnimatePresence>
+          {showActionBtns ? (
+            <ActionBtnsContainer
+              initial={{ right: -40, opacity: 0 }}
+              animate={{ right: 0, opacity: 1 }}
+              exit={{ right: -40, opacity: 0 }}
+            >
+              <BtnContainer>
+                <EditIcon />
+              </BtnContainer>
+              <BtnContainer>
+                <DeleteIcon />
+              </BtnContainer>
+            </ActionBtnsContainer>
+          ) : null}
+        </AnimatePresence>
       </Wrapper>
     </Container>
   );

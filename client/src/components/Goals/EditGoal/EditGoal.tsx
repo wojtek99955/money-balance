@@ -43,12 +43,7 @@ const EditGoal = ({ id }: Props) => {
               <BtnContainer>
                 <EditIcon />
               </BtnContainer>
-              <BtnContainer
-                onClick={() => {
-                  console.log(id);
-                  handleDeleteGoal();
-                }}
-              >
+              <BtnContainer onClick={handleDeleteGoal}>
                 <DeleteIcon />
               </BtnContainer>
             </ActionBtnsContainer>

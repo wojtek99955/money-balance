@@ -79,12 +79,13 @@ const BtnContainer = styled.div`
 
   &:hover {
     background-color: #ddecff;
-  }
-  ${EditIcon} {
-    color: ${({ theme }) => theme.colors.main.default};
-  }
-  ${DeleteIcon} {
-    color: ${({ theme }) => theme.colors.main.default};
+
+    ${EditIcon} {
+      color: ${({ theme }) => theme.colors.main.default};
+    }
+    ${DeleteIcon} {
+      color: ${({ theme }) => theme.colors.main.default};
+    }
   }
 `;
 

@@ -19,6 +19,7 @@ import {
   Amount,
   Description,
 } from "./GoalsListStyle";
+import EditGoal from "../EditGoal";
 
 ChartJS.register(
   CategoryScale,
@@ -60,6 +61,7 @@ const GoalsList = ({ goals }: Props) => {
             <Amount>
               ${goal.deposit} of ${goal.amount}
             </Amount>
+            <EditGoal />
             <ChartContainer>
               <Doughnut
                 data={{

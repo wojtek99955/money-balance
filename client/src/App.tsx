@@ -10,7 +10,7 @@ import Sidebar from "./components/Dashboard/Sidebar/Sidebar";
 import ExpensesList from "./components/Expenses/ExpensesList/ExpensesList";
 import IncomesList from "./components/IncomesList/IncomesList";
 import Profile from "./components/Profile/Profile";
-import Goals from "./components/Goals/Goals";
+import Goals from "./components/Goals/Goals/Goals";
 
 interface StyleProps {
   location: string;

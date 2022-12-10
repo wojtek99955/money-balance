@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { RouteContainer } from "../../assets/atoms/RouteContainer";
+import { RouteContainer } from "../../../assets/atoms/RouteContainer";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
-import AddGoalModal from "./AddGoalModal";
+import AddGoalModal from "../AddGoalModal";
 import { AnimatePresence } from "framer-motion";
-import { useGetGoalsQuery } from "../../api/goalSlice";
-import GoalsList from "./GoalsList/GoalsList";
-import { Button } from "../../assets/atoms/Button";
+import { useGetGoalsQuery } from "../../../api/goalSlice";
+import GoalsList from "../GoalsList/GoalsList";
+import { Button } from "../../../assets/atoms/Button";
 
 const NoGoalsWrapper = styled.div`
   display: flex;

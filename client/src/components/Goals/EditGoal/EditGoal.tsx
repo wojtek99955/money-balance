@@ -4,7 +4,7 @@ import { useState } from "react";
 import { HiOutlineAdjustments } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
-import { useDeleteGoalMutation } from "../../api/goalSlice";
+import { useDeleteGoalMutation } from "../../../api/goalSlice";
 
 const EditIcon = styled(AiOutlineEdit)`
   color: ${({ theme }) => theme.colors.grey};

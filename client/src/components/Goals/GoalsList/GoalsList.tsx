@@ -19,7 +19,7 @@ import {
   Amount,
   Description,
 } from "./GoalsListStyle";
-import EditGoal from "../EditGoal";
+import EditGoal from "../EditGoal/EditGoal";
 
 ChartJS.register(
   CategoryScale,

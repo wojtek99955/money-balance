@@ -8,9 +8,24 @@ const EditIcon = styled(AiOutlineEdit)`
 `;
 
 const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f7fd;
+  padding: 0.5rem;
+  border-radius: 12px;
+  cursor: pointer;
   position: absolute;
+  top: 0.5rem;
   right: 1rem;
-  top: 0;
+  z-index: 10;
+
+  &:hover {
+    background-color: #ddecff;
+    ${EditIcon} {
+      color: ${({ theme }) => theme.colors.main.default};
+    }
+  }
 `;
 
 const EditGoal = () => {

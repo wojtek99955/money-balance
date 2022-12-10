@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const GoalContainer = styled.div`
   background-color: white;
   border-radius: 12px;
-  padding: 2rem;
+  padding: 3rem 2rem;
   position: relative;
 `;
 

@@ -36,7 +36,7 @@ const ListContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  padding: 2rem 0;
+  padding: 6rem 0;
 `;
 
 const ChartContainer = styled.div`

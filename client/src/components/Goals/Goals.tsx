@@ -7,25 +7,15 @@ import { AnimatePresence } from "framer-motion";
 import { useGetGoalsQuery } from "../../api/goalSlice";
 import GoalsList from "./GoalsList/GoalsList";
 import { Button } from "../../assets/atoms/Button";
-import { AddIcon } from "../Dashboard/Summary/SummaryStyle";
-const NoGoalsContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const NoGoalsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3rem;
-
+  margin-top: 4rem;
   h3 {
     font-size: 2rem;
+    text-align: center;
   }
 
   div {
@@ -89,15 +79,13 @@ const Goals = () => {
             <GoalsList goals={goals} />
           </>
         ) : (
-          <NoGoalsContainer>
-            <NoGoalsWrapper>
-              <h3>You did not set any goals yet</h3>
-              <div>
-                <AddGoalIcon onClick={handleOpenGoalModal} />
-                <span>Set new goal</span>
-              </div>
-            </NoGoalsWrapper>
-          </NoGoalsContainer>
+          <NoGoalsWrapper>
+            <h3>You did not set any goals yet</h3>
+            <div>
+              <AddGoalIcon onClick={handleOpenGoalModal} />
+              <span>Set new goal</span>
+            </div>
+          </NoGoalsWrapper>
         )}
         <AnimatePresence>
           {openAddGoalModal ? (

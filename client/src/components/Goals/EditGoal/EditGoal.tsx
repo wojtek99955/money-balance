@@ -10,6 +10,7 @@ import {
   ActionBtnsContainer,
   BtnContainer,
 } from "./EditGoalStyle";
+import EditGoalModal from "../EditGoalModal/EditGoalModal";
 
 interface Props {
   id: string;
@@ -17,9 +18,15 @@ interface Props {
 
 const EditGoal = ({ id }: Props) => {
   const [showActionBtns, setShowActionBtns] = useState(false);
+  const [showEditGoalModal, setShowEditGoalModal] = useState(false);
 
   const toggleShowBtns = () => {
     setShowActionBtns((prev) => !prev);
+  };
+
+  const handleOpenEditModal = () => {
+    setShowEditGoalModal(true);
+    setShowActionBtns(false);
   };
 
   const [deleteGoal, response] = useDeleteGoalMutation();
@@ -40,7 +47,7 @@ const EditGoal = ({ id }: Props) => {
               exit={{ right: -40, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <BtnContainer>
+              <BtnContainer onClick={handleOpenEditModal}>
                 <EditIcon />
               </BtnContainer>
               <BtnContainer onClick={handleDeleteGoal}>
@@ -50,6 +57,9 @@ const EditGoal = ({ id }: Props) => {
           ) : null}
         </AnimatePresence>
       </Wrapper>
+      {showEditGoalModal ? (
+        <EditGoalModal setShowEditGoalModal={setShowEditGoalModal} id={id} />
+      ) : null}
     </Container>
   );
 };

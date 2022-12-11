@@ -57,9 +57,11 @@ const EditGoal = ({ id }: Props) => {
           ) : null}
         </AnimatePresence>
       </Wrapper>
-      {showEditGoalModal ? (
-        <EditGoalModal setShowEditGoalModal={setShowEditGoalModal} id={id} />
-      ) : null}
+      <AnimatePresence>
+        {showEditGoalModal ? (
+          <EditGoalModal setShowEditGoalModal={setShowEditGoalModal} id={id} />
+        ) : null}
+      </AnimatePresence>
     </Container>
   );
 };

@@ -51,8 +51,20 @@ const UpdateGoalModal = ({ setShowEditGoalModal, id }: Props) => {
   };
 
   return ReactDOM.createPortal(
-    <Container ref={wrapperRef} onClick={handleClickOutside}>
-      <FormContainer>
+    <Container
+      ref={wrapperRef}
+      onClick={handleClickOutside}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.1 }}
+    >
+      <FormContainer
+        initial={{ scale: 0.5 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.5 }}
+        transition={{ duration: 0.1 }}
+      >
         <CloseIcon onClick={handleCloseModal} />
         <h3>Edit Goal</h3>
         <Formik

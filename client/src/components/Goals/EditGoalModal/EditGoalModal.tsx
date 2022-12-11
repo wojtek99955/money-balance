@@ -9,6 +9,7 @@ import {
   StyledField,
   FormWrapper,
 } from "./EditGoalModalStyle";
+import { useRef } from "react";
 
 interface InitialValues {
   description: string;
@@ -40,8 +41,17 @@ const UpdateGoalModal = ({ setShowEditGoalModal, id }: Props) => {
       ...values,
     });
   };
+
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClickOutside = (e: any) => {
+    if (e.target === wrapperRef.current) {
+      setShowEditGoalModal(false);
+    }
+  };
+
   return ReactDOM.createPortal(
-    <Container>
+    <Container ref={wrapperRef} onClick={handleClickOutside}>
       <FormContainer>
         <CloseIcon onClick={handleCloseModal} />
         <h3>Edit Goal</h3>

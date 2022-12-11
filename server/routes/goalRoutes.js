@@ -6,6 +6,7 @@ router
   .route("/")
   .get(goalController.getGoals)
   .post(goalController.createNewGoal)
-  .delete(goalController.deleteGoal);
+  .delete(goalController.deleteGoal)
+  .patch(goalController.updateGoal);
 
 module.exports = router;

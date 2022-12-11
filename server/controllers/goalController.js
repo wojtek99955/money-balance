@@ -64,4 +64,19 @@ const deleteGoal = async (req, res) => {
   res.json(reply);
 };
 
-module.exports = { createNewGoal, getGoals, deleteGoal };
+const updateGoal = async (req, res) => {
+  const { id, description, amount, deposit, category } = req.body;
+
+  const goal = await Goal.findById(id).exec();
+
+  goal.amount = amount;
+  goal.category = category;
+  goal.description = description;
+  goal.deposit = deposit;
+
+  const updatedGoal = await goal.save();
+
+  res.json(` Expense with ID '${updatedGoal.id}' updated`);
+};
+
+module.exports = { createNewGoal, getGoals, deleteGoal, updateGoal };

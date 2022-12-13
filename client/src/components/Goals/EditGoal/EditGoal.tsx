@@ -74,6 +74,7 @@ const EditGoal = ({ id }: Props) => {
         ) : null}
         {showDepositHistoryModal ? (
           <GoalsDepositHistoryModal
+            id={id}
             setShowDepositHistoryModal={setShowDepositHistoryModal}
           />
         ) : null}

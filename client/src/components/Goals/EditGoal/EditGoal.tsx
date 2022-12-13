@@ -9,8 +9,10 @@ import {
   Wrapper,
   ActionBtnsContainer,
   BtnContainer,
+  HistoryIcon,
 } from "./EditGoalStyle";
 import EditGoalModal from "../EditGoalModal/EditGoalModal";
+import GoalsDepositHistoryModal from "../GoalsDepositHistoryModal/GoalsDepositHistoryModal";
 
 interface Props {
   id: string;
@@ -19,6 +21,7 @@ interface Props {
 const EditGoal = ({ id }: Props) => {
   const [showActionBtns, setShowActionBtns] = useState(false);
   const [showEditGoalModal, setShowEditGoalModal] = useState(false);
+  const [showDepositHistoryModal, setShowDepositHistoryModal] = useState(false);
 
   const toggleShowBtns = () => {
     setShowActionBtns((prev) => !prev);
@@ -26,6 +29,11 @@ const EditGoal = ({ id }: Props) => {
 
   const handleOpenEditModal = () => {
     setShowEditGoalModal(true);
+    setShowActionBtns(false);
+  };
+
+  const handleShowDepositHistoryModal = () => {
+    setShowDepositHistoryModal(true);
     setShowActionBtns(false);
   };
 
@@ -47,6 +55,9 @@ const EditGoal = ({ id }: Props) => {
               exit={{ right: -40, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
+              <BtnContainer onClick={handleShowDepositHistoryModal}>
+                <HistoryIcon />
+              </BtnContainer>
               <BtnContainer onClick={handleOpenEditModal}>
                 <EditIcon />
               </BtnContainer>
@@ -60,6 +71,11 @@ const EditGoal = ({ id }: Props) => {
       <AnimatePresence>
         {showEditGoalModal ? (
           <EditGoalModal setShowEditGoalModal={setShowEditGoalModal} id={id} />
+        ) : null}
+        {showDepositHistoryModal ? (
+          <GoalsDepositHistoryModal
+            setShowDepositHistoryModal={setShowDepositHistoryModal}
+          />
         ) : null}
       </AnimatePresence>
     </Container>

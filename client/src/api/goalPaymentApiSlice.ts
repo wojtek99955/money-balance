@@ -2,6 +2,10 @@ import { apiSlice } from "./apiSlice";
 
 const goalPaymentSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getGoalPayment: builder.query<any, any>({
+      query: ({ id }) => `/goalPayment?id=${id}`,
+      providesTags: ["GoalPayment"],
+    }),
     addGoalPayment: builder.mutation({
       query: ({ id, deposit }) => ({
         url: "/goalPayment",
@@ -13,4 +17,5 @@ const goalPaymentSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useAddGoalPaymentMutation } = goalPaymentSlice;
+export const { useGetGoalPaymentQuery, useAddGoalPaymentMutation } =
+  goalPaymentSlice;

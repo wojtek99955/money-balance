@@ -29,6 +29,16 @@ const createNewPayment = async (req, res) => {
   }
 };
 
+const getPayments = asyncHandler(async (req, res) => {
+  const id = req.query.id;
+  console.log(id);
+  const payments = await GoalPayment.find({ goalId: id });
+  console.log(payments);
+
+  res.json(payments);
+});
+
 module.exports = {
   createNewPayment,
+  getPayments,
 };

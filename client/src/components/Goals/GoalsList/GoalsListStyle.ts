@@ -37,6 +37,9 @@ export const Description = styled.p`
 
 export const Amount = styled.p`
   padding-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 `;
 
 export const AcheivedGoal = styled.div`
@@ -55,6 +58,7 @@ export const AcheivedIcon = styled(IoMdCheckmark)`
 `;
 
 export const AddDepositIcon = styled(IoMdAddCircleOutline)`
-  color: grey;
+  color: ${({ theme }) => theme.colors.main.default};
   font-size: 2rem;
+  cursor: pointer;
 `;

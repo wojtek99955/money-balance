@@ -7,6 +7,7 @@ import {
   PaymentsContainer,
   Deposit,
 } from "./GoalsDepositHisotryModalStyle";
+import { useRef } from "react";
 
 interface Props {
   setShowDepositHistoryModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,9 +26,17 @@ const GoalsDepositHistoryModal = ({
     id,
   });
 
+  const containerRef = useRef(null);
+
+  const handleClickOutside = (e: any) => {
+    if (e.target === containerRef.current) {
+      setShowDepositHistoryModal(false);
+    }
+  };
+
   console.log(goalsDepositHistory);
   return ReactDOM.createPortal(
-    <Container>
+    <Container ref={containerRef} onClick={handleClickOutside}>
       <Wrapper>
         <h3>Deposit history</h3>
         <CloseIcon onClick={handleCloseModal} />

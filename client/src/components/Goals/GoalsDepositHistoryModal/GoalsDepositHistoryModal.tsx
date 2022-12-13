@@ -5,6 +5,8 @@ import { HiOutlineAdjustments } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import { motion } from "framer-motion";
 import { RiCloseCircleLine } from "react-icons/ri";
+import { useGetGoalPaymentQuery } from "../../../api/goalPaymentApiSlice";
+import { useState } from "react";
 
 export const Container = styled(motion.div)`
   width: 100%;
@@ -43,19 +45,49 @@ export const CloseIcon = styled(RiCloseCircleLine)`
   right: 0.5rem;
 `;
 
+export const PaymentsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+`;
+
 interface Props {
   setShowDepositHistoryModal: React.Dispatch<React.SetStateAction<boolean>>;
+  id: string;
 }
 
-const GoalsDepositHistoryModal = ({ setShowDepositHistoryModal }: Props) => {
+const GoalsDepositHistoryModal = ({
+  setShowDepositHistoryModal,
+  id,
+}: Props) => {
   const handleCloseModal = () => {
     setShowDepositHistoryModal(false);
   };
+
+  const { data: goalsDepositHistory, isLoading } = useGetGoalPaymentQuery({
+    id,
+  });
+
+  console.log(goalsDepositHistory);
   return ReactDOM.createPortal(
     <Container>
       <Wrapper>
         <h3>Deposit history</h3>
         <CloseIcon onClick={handleCloseModal} />
+        <PaymentsContainer>
+          {goalsDepositHistory ? (
+            goalsDepositHistory.map((deposit: any) => {
+              return (
+                <>
+                  <span>{deposit.date}</span>
+                  <span>+ ${deposit.deposit}</span>
+                </>
+              );
+            })
+          ) : (
+            <p>no depos yet</p>
+          )}
+        </PaymentsContainer>
       </Wrapper>
     </Container>,
     document.getElementById("goal-deposit-history-modal")!

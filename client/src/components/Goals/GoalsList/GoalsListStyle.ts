@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { IoMdCheckmark } from "react-icons/io";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 export const GoalContainer = styled.div`
   background-color: white;
@@ -51,4 +52,9 @@ export const AcheivedGoal = styled.div`
 export const AcheivedIcon = styled(IoMdCheckmark)`
   font-size: 2rem;
   color: #009f5f;
+`;
+
+export const AddDepositIcon = styled(IoMdAddCircleOutline)`
+  color: grey;
+  font-size: 2rem;
 `;

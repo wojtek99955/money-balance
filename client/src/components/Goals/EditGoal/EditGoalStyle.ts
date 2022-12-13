@@ -3,6 +3,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { HiOutlineAdjustments } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import { motion } from "framer-motion";
+import { AiOutlineHistory } from "react-icons/ai";
 
 export const EditIcon = styled(AiOutlineEdit)`
   color: ${({ theme }) => theme.colors.grey};
@@ -71,6 +72,14 @@ export const ActionBtnsContainer = styled(motion.div)`
   z-index: 9;
 `;
 
+export const HistoryIcon = styled(AiOutlineHistory)`
+  color: ${({ theme }) => theme.colors.grey};
+  font-size: 1.2rem;
+  &:hover {
+    color: ${({ theme }) => theme.colors.main.default};
+  }
+`;
+
 export const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -87,6 +96,9 @@ export const BtnContainer = styled.div`
       color: ${({ theme }) => theme.colors.main.default};
     }
     ${DeleteIcon} {
+      color: ${({ theme }) => theme.colors.main.default};
+    }
+    ${HistoryIcon} {
       color: ${({ theme }) => theme.colors.main.default};
     }
   }

@@ -20,8 +20,11 @@ import {
   Description,
   AcheivedGoal,
   AcheivedIcon,
+  AddDepositIcon,
 } from "./GoalsListStyle";
 import EditGoal from "../EditGoal/EditGoal";
+import { useState } from "react";
+import AddDepositModal from "../AddDepositModal/AddDepositModal";
 
 ChartJS.register(
   CategoryScale,
@@ -53,6 +56,11 @@ const GoalsList = ({ goals }: Props) => {
       },
     },
   };
+
+  const [openAddDepositModal, setOpenAddDepositModal] = useState(false);
+  const handleOpenAddDepositModal = () => {
+    setOpenAddDepositModal(true);
+  };
   return (
     <ListContainer>
       {goals.map((goal: any) => {
@@ -62,6 +70,7 @@ const GoalsList = ({ goals }: Props) => {
             <Description>{goal.description}</Description>
             <Amount>
               ${goal.deposit} of ${goal.amount}
+              <AddDepositIcon onClick={handleOpenAddDepositModal} />
             </Amount>
             <EditGoal id={goal._id} />
             <ChartContainer>
@@ -84,6 +93,12 @@ const GoalsList = ({ goals }: Props) => {
                 />
               )}
             </ChartContainer>
+            {openAddDepositModal ? (
+              <AddDepositModal
+                id={goal._id}
+                setOpenAddDepositModal={setOpenAddDepositModal}
+              />
+            ) : null}
           </GoalContainer>
         );
       })}

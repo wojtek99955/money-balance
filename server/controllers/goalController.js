@@ -76,7 +76,30 @@ const updateGoal = async (req, res) => {
 
   const updatedGoal = await goal.save();
 
-  res.json(` Expense with ID '${updatedGoal.id}' updated`);
+  res.json(` Goal with ID '${updatedGoal.id}' updated`);
 };
 
-module.exports = { createNewGoal, getGoals, deleteGoal, updateGoal };
+const updateDeposit = async (req, res) => {
+  const { id, deposit, amount } = req.body;
+
+  const goal = await Goal.findById(id).exec();
+
+  const isAcheived = deposit >= amount;
+
+  if (isAcheived) {
+    goal.acheived = true;
+  }
+  goal.amount = amount;
+
+  const updatedGoal = await goal.save();
+
+  res.json(` Goal amount with ID '${updatedGoal.id}' updated`);
+};
+
+module.exports = {
+  createNewGoal,
+  getGoals,
+  deleteGoal,
+  updateGoal,
+  updateDeposit,
+};

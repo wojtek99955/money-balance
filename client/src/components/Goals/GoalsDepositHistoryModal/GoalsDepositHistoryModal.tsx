@@ -36,8 +36,20 @@ const GoalsDepositHistoryModal = ({
 
   console.log(goalsDepositHistory);
   return ReactDOM.createPortal(
-    <Container ref={containerRef} onClick={handleClickOutside}>
-      <Wrapper>
+    <Container
+      ref={containerRef}
+      onClick={handleClickOutside}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.1 }}
+    >
+      <Wrapper
+        initial={{ scale: 0.5 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.5 }}
+        transition={{ duration: 0.1 }}
+      >
         <h3>Deposit history</h3>
         <CloseIcon onClick={handleCloseModal} />
         <PaymentsContainer>

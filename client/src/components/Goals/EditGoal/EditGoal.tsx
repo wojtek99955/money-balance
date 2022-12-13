@@ -72,6 +72,8 @@ const EditGoal = ({ id }: Props) => {
         {showEditGoalModal ? (
           <EditGoalModal setShowEditGoalModal={setShowEditGoalModal} id={id} />
         ) : null}
+      </AnimatePresence>
+      <AnimatePresence>
         {showDepositHistoryModal ? (
           <GoalsDepositHistoryModal
             id={id}

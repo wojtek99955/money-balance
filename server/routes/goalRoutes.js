@@ -8,5 +8,6 @@ router
   .post(goalController.createNewGoal)
   .delete(goalController.deleteGoal)
   .patch(goalController.updateGoal);
+router.patch("/updateDeposit", goalController.updateDeposit);
 
 module.exports = router;

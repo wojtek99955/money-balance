@@ -46,9 +46,13 @@ export const CloseIcon = styled(RiCloseCircleLine)`
 `;
 
 export const PaymentsContainer = styled.div`
+  padding: 1rem;
+`;
+
+const Deposit = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  margin-top: 0.5rem;
 `;
 
 interface Props {
@@ -78,10 +82,10 @@ const GoalsDepositHistoryModal = ({
           {goalsDepositHistory ? (
             goalsDepositHistory.map((deposit: any) => {
               return (
-                <>
+                <Deposit>
                   <span>{deposit.date}</span>
                   <span>+ ${deposit.deposit}</span>
-                </>
+                </Deposit>
               );
             })
           ) : (

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IoMdCheckmark } from "react-icons/io";
 
 export const GoalContainer = styled.div`
   background-color: white;
@@ -35,4 +36,19 @@ export const Description = styled.p`
 
 export const Amount = styled.p`
   padding-top: 2rem;
+`;
+
+export const AcheivedGoal = styled.div`
+  width: 100%;
+  background-color: #a6eeda;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const AcheivedIcon = styled(IoMdCheckmark)`
+  font-size: 2rem;
+  color: #009f5f;
 `;

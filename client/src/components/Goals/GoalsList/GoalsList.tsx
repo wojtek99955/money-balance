@@ -18,6 +18,8 @@ import {
   Category,
   Amount,
   Description,
+  AcheivedGoal,
+  AcheivedIcon,
 } from "./GoalsListStyle";
 import EditGoal from "../EditGoal/EditGoal";
 
@@ -63,18 +65,24 @@ const GoalsList = ({ goals }: Props) => {
             </Amount>
             <EditGoal id={goal._id} />
             <ChartContainer>
-              <Doughnut
-                data={{
-                  labels: ["Left", "Deposit"],
-                  datasets: [
-                    {
-                      data: [goal.amount - goal.deposit, goal.deposit],
-                      backgroundColor: ["#DEE1E9", "#009F5F"],
-                    },
-                  ],
-                }}
-                options={chartOptions}
-              />
+              {goal.deposit >= goal.amount ? (
+                <AcheivedGoal>
+                  <AcheivedIcon />
+                </AcheivedGoal>
+              ) : (
+                <Doughnut
+                  data={{
+                    labels: ["Left", "Deposit"],
+                    datasets: [
+                      {
+                        data: [goal.amount - goal.deposit, goal.deposit],
+                        backgroundColor: ["#DEE1E9", "#009F5F"],
+                      },
+                    ],
+                  }}
+                  options={chartOptions}
+                />
+              )}
             </ChartContainer>
           </GoalContainer>
         );

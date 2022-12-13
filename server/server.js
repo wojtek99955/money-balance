@@ -32,6 +32,7 @@ app.use("/income", require("./routes/incomeRoutes"));
 app.use("/expense", require("./routes/expenseRoutes"));
 app.use("/avatar", require("./routes/avatarRoutes"));
 app.use("/goal", require("./routes/goalRoutes"));
+app.use("/goalPayment", require("./routes/goalPaymentRoutes"));
 
 app.all("*", (req, res) => {
   res.status(404);

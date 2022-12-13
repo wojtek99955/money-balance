@@ -158,7 +158,7 @@ const AddDepositModal = ({ setOpenAddDepositModal, id }: Props) => {
     <Container>
       <FormContainer>
         <CloseIcon onClick={handleCloseModal} />
-        <h3>Edit Goal</h3>
+        <h3>Add deposit</h3>
         <Formik
           initialValues={initialValues}
           onSubmit={(val: any) => {

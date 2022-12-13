@@ -25,6 +25,7 @@ import {
 import EditGoal from "../EditGoal/EditGoal";
 import { useState } from "react";
 import AddDepositModal from "../AddDepositModal/AddDepositModal";
+import { AnimatePresence } from "framer-motion";
 
 ChartJS.register(
   CategoryScale,
@@ -93,12 +94,14 @@ const GoalsList = ({ goals }: Props) => {
                 />
               )}
             </ChartContainer>
-            {openAddDepositModal ? (
-              <AddDepositModal
-                id={goal._id}
-                setOpenAddDepositModal={setOpenAddDepositModal}
-              />
-            ) : null}
+            <AnimatePresence>
+              {openAddDepositModal ? (
+                <AddDepositModal
+                  id={goal._id}
+                  setOpenAddDepositModal={setOpenAddDepositModal}
+                />
+              ) : null}
+            </AnimatePresence>
           </GoalContainer>
         );
       })}

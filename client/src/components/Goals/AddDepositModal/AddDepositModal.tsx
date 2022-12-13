@@ -8,6 +8,7 @@ import { Field, Formik, Form } from "formik";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { Button } from "../../../assets/atoms/Button";
 import { useAddGoalPaymentMutation } from "../../../api/goalPaymentApiSlice";
+import { useRef } from "react";
 
 export const EditIcon = styled(AiOutlineEdit)`
   color: ${({ theme }) => theme.colors.grey};
@@ -154,8 +155,23 @@ const AddDepositModal = ({ setOpenAddDepositModal, id }: Props) => {
 
   const [updateDeposit] = useAddGoalPaymentMutation();
 
+  const containerRef = useRef(null);
+
+  const handleClickOutside = (e: any) => {
+    if (e.target === containerRef.current) {
+      setOpenAddDepositModal(false);
+    }
+  };
+
   return ReactDOM.createPortal(
-    <Container>
+    <Container
+      ref={containerRef}
+      onClick={handleClickOutside}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.1 }}
+    >
       <FormContainer>
         <CloseIcon onClick={handleCloseModal} />
         <h3>Add deposit</h3>

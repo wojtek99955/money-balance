@@ -36,6 +36,18 @@ const goalApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Goals"],
     }),
+    updateDeposit: builder.mutation({
+      query: ({ id, amount, deposit }) => ({
+        url: "/goal/updateDeposit",
+        method: "PATCH",
+        body: {
+          id,
+          amount,
+          deposit,
+        },
+      }),
+      invalidatesTags: ["Goals"],
+    }),
   }),
 });
 
@@ -44,4 +56,5 @@ export const {
   useAddGoalMutation,
   useDeleteGoalMutation,
   useUpdateGoalMutation,
+  useUpdateDepositMutation,
 } = goalApiSlice;

@@ -11,7 +11,7 @@ export const GoalContainer = styled.div`
 
 export const ListContainer = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 1rem;
   padding: 6rem 0;
 `;

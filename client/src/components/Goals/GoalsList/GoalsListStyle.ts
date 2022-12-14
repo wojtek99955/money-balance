@@ -5,7 +5,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 export const GoalContainer = styled.div`
   background-color: white;
   border-radius: 12px;
-  padding: 3rem 2rem;
+  padding: 1rem 1rem;
   position: relative;
 `;
 
@@ -36,7 +36,7 @@ export const Description = styled.p`
 `;
 
 export const Amount = styled.p`
-  padding-top: 2rem;
+  padding-top: 5rem;
   display: flex;
   gap: 1rem;
   align-items: center;

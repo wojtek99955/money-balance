@@ -46,14 +46,15 @@ interface Props {
 const GoalsList = ({ goals }: Props) => {
   const chartOptions = {
     responsive: true,
+    cutout: "60%",
     plugins: {
       legend: {
         display: false,
       },
-      elements: {
-        arc: {
-          borderWidth: 0.5,
-        },
+    },
+    elements: {
+      arc: {
+        borderWidth: 2,
       },
     },
   };

@@ -12,7 +12,7 @@ const goalPaymentSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: { id, deposit },
       }),
-      invalidatesTags: ["GoalPayment"],
+      invalidatesTags: ["GoalPayment", "Goals"],
     }),
   }),
 });

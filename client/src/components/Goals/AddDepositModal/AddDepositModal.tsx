@@ -17,10 +17,10 @@ const initialValues = {
 
 interface Props {
   setOpenAddDepositModal: React.Dispatch<React.SetStateAction<boolean>>;
-  id: string;
+  currentId: string;
 }
 
-const AddDepositModal = ({ setOpenAddDepositModal, id }: Props) => {
+const AddDepositModal = ({ setOpenAddDepositModal, currentId }: Props) => {
   const handleCloseModal = () => {
     setOpenAddDepositModal(false);
   };
@@ -45,12 +45,13 @@ const AddDepositModal = ({ setOpenAddDepositModal, id }: Props) => {
       transition={{ duration: 0.1 }}
     >
       <FormContainer>
+        <p>{currentId}vvv</p>
         <CloseIcon onClick={handleCloseModal} />
         <h3>Add deposit</h3>
         <Formik
           initialValues={initialValues}
           onSubmit={(val: any) => {
-            updateDeposit({ id, deposit: val.deposit });
+            updateDeposit({ id: currentId, deposit: val.deposit });
             setOpenAddDepositModal(false);
           }}
         >

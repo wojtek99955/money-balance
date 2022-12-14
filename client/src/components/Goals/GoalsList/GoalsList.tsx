@@ -59,6 +59,7 @@ const GoalsList = ({ goals }: Props) => {
   };
 
   const [openAddDepositModal, setOpenAddDepositModal] = useState(false);
+  const [currentId, setCurrentId] = useState(" ");
   const handleOpenAddDepositModal = () => {
     setOpenAddDepositModal(true);
   };
@@ -71,7 +72,12 @@ const GoalsList = ({ goals }: Props) => {
             <Description>{goal.description}</Description>
             <Amount>
               ${goal.deposit} of ${goal.amount}
-              <AddDepositIcon onClick={handleOpenAddDepositModal} />
+              <AddDepositIcon
+                onClick={() => {
+                  handleOpenAddDepositModal();
+                  setCurrentId(goal._id);
+                }}
+              />
             </Amount>
             <EditGoal id={goal._id} />
             <ChartContainer>
@@ -97,7 +103,7 @@ const GoalsList = ({ goals }: Props) => {
             <AnimatePresence>
               {openAddDepositModal ? (
                 <AddDepositModal
-                  id={goal._id}
+                  currentId={currentId}
                   setOpenAddDepositModal={setOpenAddDepositModal}
                 />
               ) : null}

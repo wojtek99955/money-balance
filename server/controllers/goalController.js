@@ -1,6 +1,7 @@
 const Goal = require("../models/Goal");
 const asyncHandler = require("express-async-handler");
 const jwt_decode = require("jwt-decode");
+const GoalPayment = require("../models/GoalPayment");
 
 const createNewGoal = async (req, res) => {
   const date = new Date()
@@ -21,6 +22,14 @@ const createNewGoal = async (req, res) => {
     date,
     deposit,
     category,
+  });
+
+  const newGoalId = goal._id;
+
+  const goalPayment = await GoalPayment.create({
+    goalId: newGoalId,
+    deposit,
+    date,
   });
 
   if (goal) {

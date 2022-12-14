@@ -1,6 +1,5 @@
 const GoalPayment = require("../models/GoalPayment");
 const asyncHandler = require("express-async-handler");
-const jwt_decode = require("jwt-decode");
 const Goal = require("../models/Goal");
 
 const createNewPayment = async (req, res) => {
@@ -11,8 +10,6 @@ const createNewPayment = async (req, res) => {
     .join("-");
   const { id, deposit } = req.body;
 
-  console.log(id);
-
   const goalPayment = await GoalPayment.create({
     goalId: id,
     deposit,
@@ -22,7 +19,7 @@ const createNewPayment = async (req, res) => {
   goalPayment.save();
 
   const goal = await Goal.findByIdAndUpdate(id, { $inc: { deposit } });
-  console.log(goal);
+
   goal.save();
 
   if (goalPayment) {

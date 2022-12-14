@@ -96,10 +96,27 @@ const updateDeposit = async (req, res) => {
   res.json(` Goal amount with ID '${updatedGoal.id}' updated`);
 };
 
+const getTotalAmount = asyncHandler(async (req, res) => {
+  let JWT = req.cookies.jwt;
+
+  const decoded = jwt_decode(JWT);
+  const userId = decoded.userId;
+
+  const totalGoals = await Goal.aggregate([
+    { $match: { userId } },
+    {
+      $group: { _id: "totalExpense", totalExpense: { $sum: "$deposit" } },
+    },
+  ]);
+
+  res.json(totalGoals[0].totalExpense);
+});
+
 module.exports = {
   createNewGoal,
   getGoals,
   deleteGoal,
   updateGoal,
   updateDeposit,
+  getTotalAmount,
 };

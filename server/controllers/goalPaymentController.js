@@ -1,6 +1,7 @@
 const GoalPayment = require("../models/GoalPayment");
 const asyncHandler = require("express-async-handler");
 const jwt_decode = require("jwt-decode");
+const Goal = require("../models/Goal");
 
 const createNewPayment = async (req, res) => {
   const date = new Date()
@@ -19,6 +20,10 @@ const createNewPayment = async (req, res) => {
   });
 
   goalPayment.save();
+
+  const goal = await Goal.findByIdAndUpdate(id, { $inc: { deposit } });
+  console.log(goal);
+  goal.save();
 
   if (goalPayment) {
     return res.status(201).json({ message: "New goalPayment created" });

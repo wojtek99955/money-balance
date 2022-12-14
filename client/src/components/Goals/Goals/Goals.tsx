@@ -11,6 +11,7 @@ import {
   StyledButton,
   AddIconBtn,
 } from "./GoalsStyle";
+import AllGoalsAmount from "./AllGoalsAmount";
 
 const Goals = () => {
   const [openAddGoalModal, setOpenAddGoalModal] = useState(false);
@@ -33,6 +34,8 @@ const Goals = () => {
               <AddIconBtn />
               Add new goal
             </StyledButton>
+            <AllGoalsAmount />
+
             <GoalsList goals={goals} />
           </>
         ) : (

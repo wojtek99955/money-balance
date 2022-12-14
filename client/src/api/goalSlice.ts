@@ -48,6 +48,10 @@ const goalApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Goals"],
     }),
+    getTotalAmount: builder.query<any, undefined>({
+      query: () => "/goal/get-total-amount",
+      providesTags: ["Goals"],
+    }),
   }),
 });
 
@@ -57,4 +61,5 @@ export const {
   useDeleteGoalMutation,
   useUpdateGoalMutation,
   useUpdateDepositMutation,
+  useGetTotalAmountQuery,
 } = goalApiSlice;

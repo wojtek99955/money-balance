@@ -49,6 +49,10 @@ export const Deposit = styled.div`
   margin-top: 0.8rem;
   align-items: center;
 
+  span {
+    font-size: 1rem;
+  }
+
   strong {
     color: #009f5f;
     font-size: 1.2rem;

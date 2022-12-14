@@ -46,5 +46,11 @@ export const PaymentsContainer = styled.div`
 export const Deposit = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
+  align-items: center;
+
+  strong {
+    color: #009f5f;
+    font-size: 1.2rem;
+  }
 `;

@@ -58,7 +58,7 @@ const GoalsDepositHistoryModal = ({
               return (
                 <Deposit>
                   <span>{deposit.date}</span>
-                  <span>+ ${deposit.deposit}</span>
+                  <strong>+ ${deposit.deposit}</strong>
                 </Deposit>
               );
             })

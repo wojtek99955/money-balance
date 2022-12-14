@@ -39,7 +39,7 @@ export const Container = styled.div`
   cursor: pointer;
   position: absolute;
   top: 0.5rem;
-  right: 1rem;
+  right: 0.5rem;
   z-index: 10;
 
   &:hover {

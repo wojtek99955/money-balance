@@ -50,9 +50,9 @@ const EditGoal = ({ id }: Props) => {
         <AnimatePresence>
           {showActionBtns ? (
             <ActionBtnsContainer
-              initial={{ right: -40, opacity: 0 }}
+              initial={{ right: -30, opacity: 0 }}
               animate={{ right: 0, opacity: 1 }}
-              exit={{ right: -40, opacity: 0 }}
+              exit={{ right: -30, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
               <BtnContainer onClick={handleShowDepositHistoryModal}>

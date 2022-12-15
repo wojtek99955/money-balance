@@ -34,7 +34,6 @@ const GoalsDepositHistoryModal = ({
     }
   };
 
-  console.log(goalsDepositHistory);
   return ReactDOM.createPortal(
     <Container
       ref={containerRef}

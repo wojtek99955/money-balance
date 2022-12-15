@@ -68,7 +68,7 @@ const GoalsList = ({ goals }: Props) => {
     <ListContainer>
       {goals.map((goal: any) => {
         return (
-          <GoalContainer>
+          <GoalContainer key={goal._id}>
             <Category>{goal.category}</Category>
             <Description>{goal.description}</Description>
             <Amount>

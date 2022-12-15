@@ -45,7 +45,6 @@ const AddDepositModal = ({ setOpenAddDepositModal, currentId }: Props) => {
       transition={{ duration: 0.1 }}
     >
       <FormContainer>
-        <p>{currentId}vvv</p>
         <CloseIcon onClick={handleCloseModal} />
         <h3>Add deposit</h3>
         <Formik

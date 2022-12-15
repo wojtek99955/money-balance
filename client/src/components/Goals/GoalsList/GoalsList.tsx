@@ -26,6 +26,7 @@ import EditGoal from "../EditGoal/EditGoal";
 import { useState } from "react";
 import AddDepositModal from "../AddDepositModal/AddDepositModal";
 import { AnimatePresence } from "framer-motion";
+import { Goal } from "../../../Interfaces/Goal";
 
 ChartJS.register(
   CategoryScale,
@@ -66,7 +67,7 @@ const GoalsList = ({ goals }: Props) => {
   };
   return (
     <ListContainer>
-      {goals.map((goal: any) => {
+      {goals.map((goal: Goal) => {
         return (
           <GoalContainer key={goal._id}>
             <Category>{goal.category}</Category>

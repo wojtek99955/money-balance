@@ -1,6 +1,6 @@
 import { RouteContainer } from "../../../assets/atoms/RouteContainer";
 import { useState } from "react";
-import AddGoalModal from "../AddGoalModal";
+import AddGoalModal from "../AddGoalModal/AddGoalModal";
 import { AnimatePresence } from "framer-motion";
 import { useGetGoalsQuery } from "../../../api/goalSlice";
 import GoalsList from "../GoalsList/GoalsList";

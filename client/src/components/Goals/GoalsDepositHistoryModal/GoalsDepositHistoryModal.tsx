@@ -8,6 +8,7 @@ import {
   Deposit,
 } from "./GoalsDepositHisotryModalStyle";
 import { useRef } from "react";
+import { GoalPayment } from "../../../Interfaces/GoalPayment";
 
 interface Props {
   setShowDepositHistoryModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -53,7 +54,7 @@ const GoalsDepositHistoryModal = ({
         <CloseIcon onClick={handleCloseModal} />
         <PaymentsContainer>
           {goalsDepositHistory ? (
-            goalsDepositHistory.map((deposit: any) => {
+            goalsDepositHistory.map((deposit: GoalPayment) => {
               return (
                 <Deposit key={deposit._id}>
                   <span>{deposit.date}</span>

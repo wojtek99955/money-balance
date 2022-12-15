@@ -56,7 +56,7 @@ const GoalsDepositHistoryModal = ({
           {goalsDepositHistory ? (
             goalsDepositHistory.map((deposit: any) => {
               return (
-                <Deposit>
+                <Deposit key={deposit._id}>
                   <span>{deposit.date}</span>
                   <strong>+ ${deposit.deposit}</strong>
                 </Deposit>

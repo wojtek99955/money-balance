@@ -58,3 +58,14 @@ export const Deposit = styled.div`
     font-size: 1.2rem;
   }
 `;
+
+export const PaginationBtns = styled.div`
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    padding: 0.5rem 1.5rem;
+  }
+`;

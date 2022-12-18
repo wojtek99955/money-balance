@@ -34,7 +34,13 @@ const createNewPayment = async (req, res) => {
 const getPayments = asyncHandler(async (req, res) => {
   const id = req.query.id;
   console.log(id);
-  const payments = await GoalPayment.find({ goalId: id });
+
+  const page = req.query.p;
+  const expensesPerPage = 6;
+
+  const payments = await GoalPayment.find({ goalId: id })
+    .skip(page * expensesPerPage)
+    .limit(expensesPerPage);
   console.log(payments);
 
   res.json(payments);

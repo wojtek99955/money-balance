@@ -6,8 +6,9 @@ import {
   CloseIcon,
   PaymentsContainer,
   Deposit,
+  PaginationBtns,
 } from "./GoalsDepositHisotryModalStyle";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { GoalPayment } from "../../../Interfaces/GoalPayment";
 
 interface Props {
@@ -23,8 +24,11 @@ const GoalsDepositHistoryModal = ({
     setShowDepositHistoryModal(false);
   };
 
+  const [page, setPage] = useState(0);
+
   const { data: goalsDepositHistory, isLoading } = useGetGoalPaymentQuery({
     id,
+    page,
   });
 
   const containerRef = useRef(null);
@@ -33,6 +37,14 @@ const GoalsDepositHistoryModal = ({
     if (e.target === containerRef.current) {
       setShowDepositHistoryModal(false);
     }
+  };
+
+  const goPrevPage = () => {
+    setPage((prev) => prev - 1);
+  };
+
+  const goNextPage = () => {
+    setPage((prev) => prev + 1);
   };
 
   return ReactDOM.createPortal(
@@ -66,6 +78,12 @@ const GoalsDepositHistoryModal = ({
             <p>no depos yet</p>
           )}
         </PaymentsContainer>
+        <PaginationBtns>
+          <button onClick={goPrevPage} disabled={page === 0}>
+            prev
+          </button>
+          <button onClick={goNextPage}>next</button>
+        </PaginationBtns>
       </Wrapper>
     </Container>,
     document.getElementById("goal-deposit-history-modal")!

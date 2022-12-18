@@ -3,7 +3,7 @@ import { apiSlice } from "./apiSlice";
 const goalPaymentSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getGoalPayment: builder.query<any, any>({
-      query: ({ id }) => `/goalPayment?id=${id}`,
+      query: ({ id, page }) => `/goalPayment?id=${id}&p=${page}`,
       providesTags: ["GoalPayment"],
     }),
     addGoalPayment: builder.mutation({

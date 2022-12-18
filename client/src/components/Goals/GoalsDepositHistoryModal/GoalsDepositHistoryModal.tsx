@@ -11,6 +11,7 @@ import {
 import { useRef, useState } from "react";
 import { GoalPayment } from "../../../Interfaces/GoalPayment";
 import { Button } from "../../../assets/atoms/Button";
+import GoalsDepositHistoryLoader from "./GoalsDepositHistoryLoader";
 
 interface Props {
   setShowDepositHistoryModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -68,6 +69,7 @@ const GoalsDepositHistoryModal = ({
         <h3>Deposit history</h3>
         <CloseIcon onClick={handleCloseModal} />
         <PaymentsContainer>
+          {isLoading && <GoalsDepositHistoryLoader />}
           {goalsDepositHistory ? (
             goalsDepositHistory.payments.map((deposit: GoalPayment) => {
               return (

@@ -12,6 +12,7 @@ import {
   AddIconBtn,
 } from "./GoalsStyle";
 import AllGoalsAmount from "./AllGoalsAmount";
+import GoalListLoader from "../GoalsList/GoalListLoader";
 
 const Goals = () => {
   const [openAddGoalModal, setOpenAddGoalModal] = useState(false);
@@ -25,27 +26,33 @@ const Goals = () => {
     <RouteContainer>
       <GoalsContainer>
         <h2>Your goals</h2>
-        {goals?.length > 0 ? (
-          <>
-            <StyledButton
-              onClick={handleOpenGoalModal}
-              style={{ position: "absolute", right: 0 }}
-            >
-              <AddIconBtn />
-              Add new goal
-            </StyledButton>
-            <AllGoalsAmount />
-
-            <GoalsList goals={goals} />
-          </>
+        {isLoading ? (
+          <GoalListLoader />
         ) : (
-          <NoGoalsWrapper>
-            <h3>You did not set any goals yet</h3>
-            <div>
-              <AddGoalIcon onClick={handleOpenGoalModal} />
-              <span>Set new goal</span>
-            </div>
-          </NoGoalsWrapper>
+          <>
+            {goals?.length > 0 ? (
+              <>
+                <StyledButton
+                  onClick={handleOpenGoalModal}
+                  style={{ position: "absolute", right: 0 }}
+                >
+                  <AddIconBtn />
+                  Add new goal
+                </StyledButton>
+                <AllGoalsAmount />
+
+                <GoalsList goals={goals} />
+              </>
+            ) : (
+              <NoGoalsWrapper>
+                <h3>You did not set any goals yet</h3>
+                <div>
+                  <AddGoalIcon onClick={handleOpenGoalModal} />
+                  <span>Set new goal</span>
+                </div>
+              </NoGoalsWrapper>
+            )}
+          </>
         )}
         <AnimatePresence>
           {openAddGoalModal ? (

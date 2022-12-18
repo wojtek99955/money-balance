@@ -17,7 +17,7 @@ export const Container = styled(motion.div)`
 export const Wrapper = styled(motion.div)`
   background-color: white;
   width: 400px;
-  height: auto;
+  min-height: 30rem;
   padding: 2rem 0;
   border-radius: 12px;
   position: relative;
@@ -64,4 +64,6 @@ export const PaginationBtns = styled.div`
   padding: 1rem;
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  bottom: 1rem;
 `;

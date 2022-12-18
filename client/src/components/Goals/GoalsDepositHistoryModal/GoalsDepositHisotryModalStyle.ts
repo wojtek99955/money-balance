@@ -17,7 +17,7 @@ export const Container = styled(motion.div)`
 export const Wrapper = styled(motion.div)`
   background-color: white;
   width: 400px;
-  min-height: 30rem;
+  min-height: 32rem;
   padding: 2rem 0;
   border-radius: 12px;
   position: relative;

@@ -43,7 +43,11 @@ const getPayments = asyncHandler(async (req, res) => {
     .limit(expensesPerPage);
   console.log(payments);
 
-  res.json(payments);
+  const paymentsCount = await GoalPayment.find({ goalId: id }).count();
+
+  const totalPages = Math.ceil(paymentsCount / expensesPerPage);
+
+  res.json({ payments, totalPages });
 });
 
 module.exports = {

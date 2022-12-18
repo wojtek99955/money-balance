@@ -10,6 +10,7 @@ import {
 } from "./GoalsDepositHisotryModalStyle";
 import { useRef, useState } from "react";
 import { GoalPayment } from "../../../Interfaces/GoalPayment";
+import { Button } from "../../../assets/atoms/Button";
 
 interface Props {
   setShowDepositHistoryModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -47,6 +48,8 @@ const GoalsDepositHistoryModal = ({
     setPage((prev) => prev + 1);
   };
 
+  console.log(goalsDepositHistory?.totalPages);
+
   return ReactDOM.createPortal(
     <Container
       ref={containerRef}
@@ -66,7 +69,7 @@ const GoalsDepositHistoryModal = ({
         <CloseIcon onClick={handleCloseModal} />
         <PaymentsContainer>
           {goalsDepositHistory ? (
-            goalsDepositHistory.map((deposit: GoalPayment) => {
+            goalsDepositHistory.payments.map((deposit: GoalPayment) => {
               return (
                 <Deposit key={deposit._id}>
                   <span>{deposit.date}</span>
@@ -79,10 +82,15 @@ const GoalsDepositHistoryModal = ({
           )}
         </PaymentsContainer>
         <PaginationBtns>
-          <button onClick={goPrevPage} disabled={page === 0}>
+          <Button onClick={goPrevPage} disabled={page === 0}>
             prev
-          </button>
-          <button onClick={goNextPage}>next</button>
+          </Button>
+          <Button
+            onClick={goNextPage}
+            disabled={page === goalsDepositHistory?.totalPages - 1}
+          >
+            next
+          </Button>
         </PaginationBtns>
       </Wrapper>
     </Container>,

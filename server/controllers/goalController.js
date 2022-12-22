@@ -9,11 +9,16 @@ const createNewGoal = async (req, res) => {
     .split("/")
     .reverse()
     .join("-");
-  const { description, amount, deposit, category } = req.body;
+  const { description, amount, deposit, category, targetDate } = req.body;
 
   let JWT = req.cookies.jwt;
   const decoded = jwt_decode(JWT);
   const userId = decoded.userId;
+
+  console.log(targetDate);
+
+  const targetDateMilisec = new Date(targetDate).getTime();
+  // console.log(targeDateMl);
 
   const goal = await Goal.create({
     description,
@@ -22,6 +27,7 @@ const createNewGoal = async (req, res) => {
     date,
     deposit,
     category,
+    targetDate: targetDateMilisec,
   });
 
   const newGoalId = goal._id;
@@ -49,7 +55,24 @@ const getGoals = asyncHandler(async (req, res) => {
     userId,
   }).select("-userId");
 
-  res.json(goals);
+  const currentDate = new Date().getTime();
+
+  const goalsArray = goals.map((goal) => {
+    const calculateDaysLeft = (currentDate) => {
+      let difference = currentDate - goal.targetDate;
+      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      return Math.abs(TotalDays);
+    };
+    return {
+      goal,
+      daysLeft: calculateDaysLeft(currentDate),
+    };
+  });
+
+  const dates = goals.map((goal) => new Date(goal.targetDate).getTime());
+  console.log(goalsArray);
+
+  res.json(goalsArray);
 });
 
 const deleteGoal = async (req, res) => {

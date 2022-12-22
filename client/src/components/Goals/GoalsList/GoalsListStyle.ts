@@ -62,3 +62,7 @@ export const AddDepositIcon = styled(IoMdAddCircleOutline)`
   font-size: 2rem;
   cursor: pointer;
 `;
+
+export const DaysLeft = styled.div`
+  color: ${({ theme }) => theme.colors.grey};
+`;

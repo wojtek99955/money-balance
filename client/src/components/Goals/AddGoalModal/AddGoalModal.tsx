@@ -20,6 +20,7 @@ const initialValues = {
   amount: "",
   deposit: "",
   category: "home",
+  targetDate: "",
 };
 
 const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
@@ -71,6 +72,11 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
               <StyledField name="description" placeholder="description" />
               <StyledField name="amount" placeholder="amount" />
               <StyledField name="deposit" placeholder="deposit" />
+              <StyledField
+                type="date"
+                name="targetDate"
+                placeholder="target date"
+              />
               <Button type="submit">Add</Button>
             </FormWrapper>
           </Form>

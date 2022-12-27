@@ -75,7 +75,7 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
                 <option value="gift">gift</option>
                 <option value="transportation">transportation</option>
               </Field>
-              <StyledField type="text" name="amount" />
+              <StyledField type="text" name="amount" placeholder="amount" />
               <Button type="submit">Save</Button>
             </FormWrapper>
           </Form>

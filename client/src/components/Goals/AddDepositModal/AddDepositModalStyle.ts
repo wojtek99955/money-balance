@@ -57,4 +57,9 @@ export const StyledField = styled(Field)`
   width: 100%;
   font-size: 1rem;
   margin: auto;
+
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.grey};
+    opacity: 1;
+  }
 `;

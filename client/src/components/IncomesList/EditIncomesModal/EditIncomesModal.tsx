@@ -88,7 +88,7 @@ const IncomesModal = ({ setOpenEditIncomesModal, currentId }: Props) => {
                 <option value="salary">salary</option>
                 <option value="prize">prize</option>
               </Field>
-              <StyledField type="text" name="amount" />
+              <StyledField type="text" name="amount" placeholder="amount" />
               <ErrorMessage name="amount" component={ValidationErrorMsg} />
               <Button type="submit">Save</Button>
             </FormWrapper>

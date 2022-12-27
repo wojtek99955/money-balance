@@ -4,7 +4,8 @@ const Container = styled.span`
   font-size: 1rem;
   color: red;
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
 `;
 
 interface Props {

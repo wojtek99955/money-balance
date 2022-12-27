@@ -55,6 +55,11 @@ export const StyledField = styled(Field)`
   padding: 1rem;
   width: 80%;
   font-size: 1rem;
+
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.grey};
+    opacity: 1;
+  }
 `;
 
 export const FormWrapper = styled.div`

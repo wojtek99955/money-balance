@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import { Formik, Form, Field } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useAddIncomesMutation } from "../../../api/incomeApiSlice";
-import { getDate } from "../../../helpers/getDate";
+import { getCurrentDate } from "../../../helpers/getCurrentDate";
 import { useRef } from "react";
 import {
   Container,
@@ -59,7 +59,7 @@ const IncomesModal = ({ setOpenIncomesModal }: Props) => {
               category: val.category,
               amount: +val.amount,
               username: username,
-              date: getDate(),
+              date: getCurrentDate(),
             });
             setOpenIncomesModal(false);
           }}

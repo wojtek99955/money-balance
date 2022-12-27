@@ -1,4 +1,4 @@
-export const getDate = () => {
+export const getCurrentDate = () => {
   const months = [
     "Jan",
     "Feb",

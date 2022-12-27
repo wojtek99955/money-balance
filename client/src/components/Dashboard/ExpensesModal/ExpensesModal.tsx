@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import { Formik, Form, Field } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useAddExpensesMutation } from "../../../api/expenseApiSlice";
-import { getDate } from "../../../helpers/getDate";
+import { getCurrentDate } from "../../../helpers/getCurrentDate";
 import { useState, useRef } from "react";
 import {
   Container,
@@ -61,7 +61,7 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
               category: val.category,
               amount: +val.amount,
               username: username,
-              date: getDate(),
+              date: getCurrentDate(),
             });
             setValues(val.category);
             setOpenExpensesModal(false);

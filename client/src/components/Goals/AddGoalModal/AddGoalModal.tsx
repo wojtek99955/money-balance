@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { Field, Formik, Form } from "formik";
+import { Field, Formik, Form, ErrorMessage } from "formik";
 import { useRef } from "react";
 import { useAddGoalMutation } from "../../../api/goalSlice";
 import { Button } from "../../../assets/atoms/Button";
@@ -10,6 +10,8 @@ import {
   CloseIcon,
   FormWrapper,
 } from "./AddGoalModalStyle";
+import * as yup from "yup";
+import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
 
 interface Props {
   setOpenAddGoalModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,6 +24,14 @@ const initialValues = {
   category: "home",
   targetDate: "",
 };
+
+const validationSchema = yup.object().shape({
+  category: yup.string().required("Required"),
+  amount: yup.number().typeError("Only numbers").required("Required"),
+  deposit: yup.number().typeError("Only numbers").required("Required"),
+  description: yup.string().required("Required"),
+  targetDate: yup.string().required("Required"),
+});
 
 const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
   const handleCloseModal = () => {
@@ -60,6 +70,7 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
         <h3>Add Goal</h3>
         <Formik
           initialValues={initialValues}
+          validationSchema={validationSchema}
           onSubmit={(val: any) => handleSubmit(val)}
         >
           <Form>
@@ -69,14 +80,19 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
                 <option value="vacation">vacation</option>
                 <option value="other">other</option>
               </Field>
+              <ErrorMessage name="category" component={ValidationErrorMsg} />
               <StyledField name="description" placeholder="description" />
+              <ErrorMessage name="description" component={ValidationErrorMsg} />
               <StyledField name="amount" placeholder="amount" />
+              <ErrorMessage name="amount" component={ValidationErrorMsg} />
               <StyledField name="deposit" placeholder="deposit" />
+              <ErrorMessage name="deposit" component={ValidationErrorMsg} />
               <StyledField
                 type="date"
                 name="targetDate"
                 placeholder="target date"
               />
+              <ErrorMessage name="targetDate" component={ValidationErrorMsg} />
               <Button type="submit">Add</Button>
             </FormWrapper>
           </Form>

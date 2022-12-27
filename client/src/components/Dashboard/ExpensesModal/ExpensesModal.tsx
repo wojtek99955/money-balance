@@ -27,7 +27,6 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
   const handleCloseModal = () => {
     setOpenExpensesModal(false);
   };
-  const [values, setValues] = useState<any>("");
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -63,7 +62,6 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
               username: username,
               date: getCurrentDate(),
             });
-            setValues(val.category);
             setOpenExpensesModal(false);
           }}
         >

@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { Formik, Form } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useAddGoalPaymentMutation } from "../../../api/goalPaymentApiSlice";
 import { useRef } from "react";
@@ -10,10 +10,8 @@ import {
   FormWrapper,
   StyledField,
 } from "./AddDepositModalStyle";
-
-const initialValues = {
-  deposit: "",
-};
+import * as yup from "yup";
+import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
 
 interface Props {
   setOpenAddDepositModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,6 +19,13 @@ interface Props {
 }
 
 const AddDepositModal = ({ setOpenAddDepositModal, currentId }: Props) => {
+  const initialValues = {
+    deposit: "",
+  };
+
+  const validationSchema = yup.object().shape({
+    deposit: yup.number().typeError("Only numbers").required("Required"),
+  });
   const handleCloseModal = () => {
     setOpenAddDepositModal(false);
   };
@@ -49,6 +54,7 @@ const AddDepositModal = ({ setOpenAddDepositModal, currentId }: Props) => {
         <h3>Add deposit</h3>
         <Formik
           initialValues={initialValues}
+          validationSchema={validationSchema}
           onSubmit={(val: any) => {
             updateDeposit({ id: currentId, deposit: val.deposit });
             setOpenAddDepositModal(false);
@@ -57,6 +63,7 @@ const AddDepositModal = ({ setOpenAddDepositModal, currentId }: Props) => {
           <Form>
             <FormWrapper>
               <StyledField name="deposit" placeholder="deposit" />
+              <ErrorMessage name="deposit" component={ValidationErrorMsg} />
               <Button type="submit">Add</Button>
             </FormWrapper>
           </Form>

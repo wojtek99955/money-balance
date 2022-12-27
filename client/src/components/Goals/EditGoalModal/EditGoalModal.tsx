@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { Field, Formik, Form } from "formik";
+import { Field, Formik, Form, ErrorMessage } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useUpdateGoalMutation } from "../../../api/goalSlice";
 import {
@@ -10,6 +10,8 @@ import {
   FormWrapper,
 } from "./EditGoalModalStyle";
 import { useRef } from "react";
+import * as yup from "yup";
+import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
 
 interface InitialValues {
   description: string;
@@ -22,6 +24,12 @@ const initialValues = {
   amount: "",
   category: "home",
 };
+
+const validationSchema = yup.object().shape({
+  category: yup.string().required("Required"),
+  amount: yup.number().typeError("Only numbers").required("Required"),
+  description: yup.string().required("Required"),
+});
 
 interface Props {
   setShowEditGoalModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -69,6 +77,7 @@ const UpdateGoalModal = ({ setShowEditGoalModal, id }: Props) => {
         <h3>Edit Goal</h3>
         <Formik
           initialValues={initialValues}
+          validationSchema={validationSchema}
           onSubmit={(val: any) => {
             handleUpdateGoal(val);
             setShowEditGoalModal(false);
@@ -81,8 +90,11 @@ const UpdateGoalModal = ({ setShowEditGoalModal, id }: Props) => {
                 <option value="vacation">vacation</option>
                 <option value="other">other</option>
               </Field>
+              <ErrorMessage name="category" component={ValidationErrorMsg} />
               <StyledField name="description" placeholder="description" />
+              <ErrorMessage name="description" component={ValidationErrorMsg} />
               <StyledField name="amount" placeholder="amount" />
+              <ErrorMessage name="amount" component={ValidationErrorMsg} />
               <Button type="submit">Add</Button>
             </FormWrapper>
           </Form>

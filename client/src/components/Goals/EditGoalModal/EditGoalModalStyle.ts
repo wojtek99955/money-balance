@@ -35,7 +35,7 @@ export const FormContainer = styled(motion.div)`
     border: ${({ theme }) => `2px solid ${theme.colors.grey}`};
     border-radius: 12px;
     padding: 1rem;
-    width: 80%;
+    width: 100%;
     font-size: 1rem;
   }
 `;
@@ -54,7 +54,7 @@ export const StyledField = styled(Field)`
   border: ${({ theme }) => `2px solid ${theme.colors.grey}`};
   border-radius: 12px;
   padding: 1rem;
-  width: 80%;
+  width: 100%;
   font-size: 1rem;
   margin: auto;
 `;
@@ -63,6 +63,7 @@ export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 0 2rem;
   justify-content: center;
   align-items: center;
 `;

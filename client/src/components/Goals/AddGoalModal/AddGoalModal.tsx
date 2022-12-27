@@ -9,10 +9,12 @@ import {
   StyledField,
   CloseIcon,
   FormWrapper,
+  StyledDateField,
+  DateFieldContainer,
+  DatePlaceholder,
 } from "./AddGoalModalStyle";
 import * as yup from "yup";
 import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
-
 interface Props {
   setOpenAddGoalModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -73,29 +75,44 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
           validationSchema={validationSchema}
           onSubmit={(val: any) => handleSubmit(val)}
         >
-          <Form>
-            <FormWrapper>
-              <Field as="select" name="category">
-                <option value="home">home</option>
-                <option value="vacation">vacation</option>
-                <option value="other">other</option>
-              </Field>
-              <ErrorMessage name="category" component={ValidationErrorMsg} />
-              <StyledField name="description" placeholder="description" />
-              <ErrorMessage name="description" component={ValidationErrorMsg} />
-              <StyledField name="amount" placeholder="amount" />
-              <ErrorMessage name="amount" component={ValidationErrorMsg} />
-              <StyledField name="deposit" placeholder="deposit" />
-              <ErrorMessage name="deposit" component={ValidationErrorMsg} />
-              <StyledField
-                type="date"
-                name="targetDate"
-                placeholder="target date"
-              />
-              <ErrorMessage name="targetDate" component={ValidationErrorMsg} />
-              <Button type="submit">Add</Button>
-            </FormWrapper>
-          </Form>
+          {({ values }) => (
+            <Form>
+              <FormWrapper>
+                <Field as="select" name="category">
+                  <option value="home">home</option>
+                  <option value="vacation">vacation</option>
+                  <option value="other">other</option>
+                </Field>
+                <ErrorMessage name="category" component={ValidationErrorMsg} />
+                <StyledField name="description" placeholder="description" />
+                <ErrorMessage
+                  name="description"
+                  component={ValidationErrorMsg}
+                />
+                <StyledField name="amount" placeholder="amount" />
+                <ErrorMessage name="amount" component={ValidationErrorMsg} />
+                <StyledField name="deposit" placeholder="deposit" />
+                <ErrorMessage name="deposit" component={ValidationErrorMsg} />
+                <DateFieldContainer>
+                  <StyledDateField
+                    type="date"
+                    name="targetDate"
+                    placeholder="target date"
+                  />
+                  {values.targetDate ? (
+                    <span>{values.targetDate}</span>
+                  ) : (
+                    <DatePlaceholder>Target date</DatePlaceholder>
+                  )}
+                </DateFieldContainer>
+                <ErrorMessage
+                  name="targetDate"
+                  component={ValidationErrorMsg}
+                />
+                <Button type="submit">Add</Button>
+              </FormWrapper>
+            </Form>
+          )}
         </Formik>
       </FormContainer>
     </Container>,

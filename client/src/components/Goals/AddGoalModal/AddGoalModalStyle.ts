@@ -57,6 +57,11 @@ export const StyledField = styled(Field)`
   width: 100%;
   font-size: 1rem;
   margin: auto;
+
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.grey};
+    opacity: 1;
+  }
 `;
 
 export const FormWrapper = styled.div`
@@ -66,4 +71,45 @@ export const FormWrapper = styled.div`
   padding: 2rem;
   justify-content: center;
   align-items: center;
+`;
+
+export const StyledDateField = styled(Field)`
+  display: block;
+  border-radius: 12px;
+  padding: 1rem;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  margin: auto;
+  opacity: 0;
+
+  ::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+  }
+  /* .widget-ptcsdatepicker::part(date-field-text-box) {
+    border-radius: 25px;
+  } */
+`;
+
+export const DateFieldContainer = styled.div`
+  width: 100%;
+  position: relative;
+  border: ${({ theme }) => `2px solid ${theme.colors.grey}`};
+  border-radius: 12px;
+
+  span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+  }
+`;
+export const DatePlaceholder = styled.span`
+  color: ${({ theme }) => theme.colors.grey};
 `;

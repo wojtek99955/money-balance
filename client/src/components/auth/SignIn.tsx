@@ -49,7 +49,7 @@ const SignIn = () => {
       } else if (err.status === 400) {
         setErrMsg("Missing Username or Password");
       } else if (err.status === 401) {
-        setErrMsg("Unauthorized");
+        setErrMsg("Wrong password or email");
       } else if (err.status === "FETCH_ERROR") {
         setErrMsg("Internet connection error");
       } else {

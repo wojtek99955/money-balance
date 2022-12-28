@@ -12,6 +12,7 @@ import * as yup from "yup";
 import ValidationErrorMsg from "../../assets/atoms/ValidationErrorMsg";
 import { useCreateUserMutation } from "../../api/userSlice";
 import LoadingSpinner from "../../assets/atoms/LoadingSpinner";
+import { useState } from "react";
 const initialValues = {
   username: "",
   password: "",
@@ -28,8 +29,27 @@ const validationSchema = yup.object().shape({
 
 const SignUp = () => {
   const [addUser, { isSuccess, isLoading, isError }] = useCreateUserMutation();
-  console.log(isSuccess);
 
+  const [errMsg, setErrMsg] = useState("f");
+
+  const handleSubmit = async (val: Auth) => {
+    try {
+      const res = await addUser({
+        username: val.username,
+        password: val.password,
+      }).unwrap();
+    } catch (err: any) {
+      if (!err.status) {
+        setErrMsg("No Server Response");
+      } else if (err.status === 400) {
+        setErrMsg("Missing Username or Password");
+      } else if (err.status === "FETCH_ERROR") {
+        setErrMsg("Internet connection error");
+      } else {
+        setErrMsg(err.data.message);
+      }
+    }
+  };
   return (
     <Container>
       <DescriptionSection />
@@ -44,7 +64,7 @@ const SignUp = () => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(val, { resetForm }) => {
-              addUser(val);
+              handleSubmit(val);
               resetForm();
             }}
           >
@@ -60,11 +80,7 @@ const SignUp = () => {
                   <p>You've created an account</p>
                 </SuccessMessage>
               )}
-              {isError && (
-                <ValidationErrorMsg>
-                  This username is already in use
-                </ValidationErrorMsg>
-              )}
+              {isError && <ValidationErrorMsg>{errMsg} </ValidationErrorMsg>}
               <button type="submit">
                 {isLoading ? <LoadingSpinner /> : "Create account"}
               </button>

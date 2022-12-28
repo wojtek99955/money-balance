@@ -8,6 +8,7 @@ import ValidationErrorMsg from "../../assets/atoms/ValidationErrorMsg";
 import jwt_decode from "jwt-decode";
 import { useLoginMutation } from "../../api/authSlice";
 import LoadingSpinner from "../../assets/atoms/LoadingSpinner";
+import { useState } from "react";
 
 const initialValues = {
   username: "",
@@ -22,20 +23,39 @@ const validationSchema = yup.object().shape({
 const SignIn = () => {
   let navigate = useNavigate();
 
-  const [login, { isLoading, isError }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
+
+  const [errMsg, setErrMsg] = useState("");
 
   const handleSubmit = async (val: Auth) => {
-    const res: any = await login({
-      username: val.username,
-      password: val.password,
-    }).unwrap();
-    console.log(res);
+    try {
+      const res = await login({
+        username: val.username,
+        password: val.password,
+      }).unwrap();
+      console.log(res);
 
-    let JWT = await res.accessToken;
-    console.log(JWT);
-    const decoded: any = jwt_decode(JWT);
-    localStorage.setItem("username", JSON.stringify(decoded.UserInfo.username));
-    navigate("/dashboard");
+      let JWT = await res.accessToken;
+      console.log(JWT);
+      const decoded: any = jwt_decode(JWT);
+      localStorage.setItem(
+        "username",
+        JSON.stringify(decoded.UserInfo.username)
+      );
+      navigate("/dashboard");
+    } catch (err: any) {
+      if (!err.status) {
+        setErrMsg("No Server Response");
+      } else if (err.status === 400) {
+        setErrMsg("Missing Username or Password");
+      } else if (err.status === 401) {
+        setErrMsg("Unauthorized");
+      } else if (err.status === "FETCH_ERROR") {
+        setErrMsg("Internet connection error");
+      } else {
+        setErrMsg(err.data.message);
+      }
+    }
   };
 
   return (
@@ -62,11 +82,7 @@ const SignIn = () => {
               <label htmlFor="password">Password</label>
               <Field type="password" name="password" placeholder="password" />
               <ErrorMessage component={ValidationErrorMsg} name="password" />
-              {isError && (
-                <ValidationErrorMsg>
-                  Wrong username or password
-                </ValidationErrorMsg>
-              )}
+              {errMsg && <ValidationErrorMsg>{errMsg}</ValidationErrorMsg>}
               <button type="submit">
                 {isLoading ? <LoadingSpinner /> : "Sign in"}
               </button>

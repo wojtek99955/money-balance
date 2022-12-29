@@ -9,6 +9,5 @@ router
   .delete(goalController.deleteGoal)
   .patch(goalController.updateGoal);
 router.get("/get-total-amount", goalController.getTotalAmount);
-router.patch("/updateDeposit", goalController.updateDeposit);
 
 module.exports = router;

@@ -54,8 +54,6 @@ const getGoals = asyncHandler(async (req, res) => {
     acheived,
   }).select("-userId");
 
-  console.log(acheived);
-
   const currentDate = new Date().getTime();
 
   const goalsArray = goals.map((goal) => {
@@ -99,8 +97,6 @@ const updateGoal = async (req, res) => {
   const { id, description, amount, category } = req.body;
 
   const goal = await Goal.findById(id).exec();
-
-  console.log(currentDeposit);
 
   goal.amount = amount;
   goal.category = category;

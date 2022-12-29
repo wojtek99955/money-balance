@@ -19,7 +19,8 @@ const createNewPayment = async (req, res) => {
   goalPayment.save();
 
   const goal = await Goal.findByIdAndUpdate(id, { $inc: { deposit } });
-
+  const acheived = goal.deposit + deposit >= goal.amount ? true : false;
+  goal.acheived = acheived;
   goal.save();
 
   if (goalPayment) {

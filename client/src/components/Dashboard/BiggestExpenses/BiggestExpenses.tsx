@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useGetSumCategoryExpensesQuery } from "../../../api/expenseApiSlice";
 import { DashboardBox } from "../../../assets/atoms/DashboardBox";
 import { getExpenseCategoryIcon } from "../../../helpers/getExpenseCategoryIcon";

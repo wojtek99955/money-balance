@@ -15,8 +15,6 @@ const createNewGoal = async (req, res) => {
   const decoded = jwt_decode(JWT);
   const userId = decoded.userId;
 
-  console.log(targetDate);
-
   const targetDateMilisec = new Date(targetDate).getTime();
 
   const goal = await Goal.create({
@@ -46,13 +44,17 @@ const createNewGoal = async (req, res) => {
 
 const getGoals = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
+  const acheived = req.query.acheived;
 
   const decoded = jwt_decode(JWT);
   const userId = decoded.userId;
 
   const goals = await Goal.find({
     userId,
+    acheived,
   }).select("-userId");
+
+  console.log(acheived);
 
   const currentDate = new Date().getTime();
 
@@ -69,14 +71,12 @@ const getGoals = asyncHandler(async (req, res) => {
   });
 
   const dates = goals.map((goal) => new Date(goal.targetDate).getTime());
-  console.log(goalsArray);
 
   res.json(goalsArray);
 });
 
 const deleteGoal = async (req, res) => {
   const { id } = req.body;
-  console.log(id);
 
   if (!id) {
     return res.status(400).json({ message: "Goal ID required" });
@@ -96,35 +96,19 @@ const deleteGoal = async (req, res) => {
 };
 
 const updateGoal = async (req, res) => {
-  const { id, description, amount, deposit, category } = req.body;
+  const { id, description, amount, category } = req.body;
 
   const goal = await Goal.findById(id).exec();
+
+  console.log(currentDeposit);
 
   goal.amount = amount;
   goal.category = category;
   goal.description = description;
-  goal.deposit = deposit;
 
   const updatedGoal = await goal.save();
 
   res.json(` Goal with ID '${updatedGoal.id}' updated`);
-};
-
-const updateDeposit = async (req, res) => {
-  const { id, deposit, amount } = req.body;
-
-  const goal = await Goal.findById(id).exec();
-
-  const isAcheived = deposit >= amount;
-
-  if (isAcheived) {
-    goal.acheived = true;
-  }
-  goal.amount = amount;
-
-  const updatedGoal = await goal.save();
-
-  res.json(` Goal amount with ID '${updatedGoal.id}' updated`);
 };
 
 const getTotalAmount = asyncHandler(async (req, res) => {
@@ -148,6 +132,5 @@ module.exports = {
   getGoals,
   deleteGoal,
   updateGoal,
-  updateDeposit,
   getTotalAmount,
 };

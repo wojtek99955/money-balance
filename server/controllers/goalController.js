@@ -18,7 +18,6 @@ const createNewGoal = async (req, res) => {
   console.log(targetDate);
 
   const targetDateMilisec = new Date(targetDate).getTime();
-  // console.log(targeDateMl);
 
   const goal = await Goal.create({
     description,

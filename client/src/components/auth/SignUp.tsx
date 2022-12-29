@@ -30,7 +30,7 @@ const validationSchema = yup.object().shape({
 const SignUp = () => {
   const [addUser, { isSuccess, isLoading, isError }] = useCreateUserMutation();
 
-  const [errMsg, setErrMsg] = useState("f");
+  const [errMsg, setErrMsg] = useState("");
 
   const handleSubmit = async (val: Auth) => {
     try {

@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useAddExpensesMutation } from "../../../api/expenseApiSlice";
 import { getCurrentDate } from "../../../helpers/getCurrentDate";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import {
   Container,
   FormContainer,

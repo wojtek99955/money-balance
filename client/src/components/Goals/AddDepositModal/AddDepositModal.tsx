@@ -56,7 +56,7 @@ const AddDepositModal = ({ setOpenAddDepositModal, currentId }: Props) => {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={(val: any) => {
-            updateDeposit({ id: currentId, deposit: val.deposit });
+            updateDeposit({ id: currentId, deposit: +val.deposit });
             setOpenAddDepositModal(false);
           }}
         >

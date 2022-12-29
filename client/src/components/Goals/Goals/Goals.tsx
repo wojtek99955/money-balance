@@ -13,6 +13,7 @@ import {
 } from "./GoalsStyle";
 import AllGoalsAmount from "./AllGoalsAmount";
 import GoalListLoader from "../GoalsList/GoalListLoader";
+import GoalFilterDropdown from "../GoalFilterDropdown/GoalFilterDropdown";
 
 const Goals = () => {
   const [openAddGoalModal, setOpenAddGoalModal] = useState(false);
@@ -20,12 +21,22 @@ const Goals = () => {
     setOpenAddGoalModal(true);
   };
 
-  const { data: goals, isLoading } = useGetGoalsQuery(undefined);
+  const [filterData, setFilterData] = useState({
+    acheived: false,
+  });
+
+  const { acheived } = filterData;
+
+  const { data: goals, isLoading } = useGetGoalsQuery({ acheived });
   console.log(goals);
   return (
     <RouteContainer>
       <GoalsContainer>
         <h2>Your goals</h2>
+        <GoalFilterDropdown
+          filterData={filterData}
+          setFilterData={setFilterData}
+        />
         {isLoading ? (
           <GoalListLoader />
         ) : (

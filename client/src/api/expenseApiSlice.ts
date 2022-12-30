@@ -37,7 +37,7 @@ const expenseApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Expenses"],
     }),
-    getLatestExpenses: builder.query<ExpenseType[], undefined>({
+    getLatestExpenses: builder.query<{ expenses: ExpenseType[] }, undefined>({
       query: () => "/expense/latest",
       providesTags: ["Expenses"],
     }),

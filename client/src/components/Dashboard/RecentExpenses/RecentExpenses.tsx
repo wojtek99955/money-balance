@@ -11,7 +11,6 @@ import {
 } from "./ExpensesStyle";
 import ShowMore from "../../../assets/atoms/ShowMore";
 import { useNavigate } from "react-router-dom";
-import { ExpenseType } from "../../../Interfaces/Expense";
 import LoaderContainer from "../../../assets/atoms/LoaderContainer";
 const Expenses = () => {
   const { data: expenses, isLoading } = useGetLatestExpensesQuery(undefined);
@@ -21,7 +20,7 @@ const Expenses = () => {
   const goToExpenses = () => {
     navigate("/expenses");
   };
-
+  console.log(expenses);
   return (
     <DashboardBox>
       {isLoading ? <LoaderContainer /> : null}
@@ -33,7 +32,7 @@ const Expenses = () => {
       </TopSection>
       {!isLoading ? (
         <ExpensesWrapper>
-          {expenses?.expenses!.map((expense: ExpenseType) => {
+          {expenses?.expenses!.map((expense) => {
             return (
               <Expense key={expense._id}>
                 <ExpenseDataGroup>

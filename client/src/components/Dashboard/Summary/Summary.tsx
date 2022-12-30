@@ -30,16 +30,18 @@ const Summary = () => {
 
   const { data: totalIncome, isLoading: loadingIncome } =
     useGetTotalIncomeQuery(undefined);
+  console.log(totalIncome);
 
   const { data: totalExpense, isLoading: loadingExpense } =
     useGetTotalExpenseQuery(undefined);
+  console.log(totalExpense);
 
-  const totalIncomeData = totalIncome?.totalIncome[0]?.totalIncome;
-  const totalExpenseData = totalExpense?.totalExpense[0]?.totalExpense;
+  const totalIncomeData = totalIncome?.[0].totalIncome;
+  const totalExpenseData = totalExpense?.[0].totalExpense;
 
   const getWalletValue = () => {
     if (!totalExpenseData) {
-      return totalIncomeData - 0;
+      return totalIncomeData! - 0;
     } else if (!totalIncomeData) {
       return 0 - totalExpenseData;
     } else {

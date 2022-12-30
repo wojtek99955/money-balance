@@ -44,7 +44,10 @@ const incomeApiSlice = apiSlice.injectEndpoints({
       query: () => "/income/latest",
       providesTags: ["Incomes"],
     }),
-    getTotalIncome: builder.query<any, undefined>({
+    getTotalIncome: builder.query<
+      { _id: number; totalIncome: number }[],
+      undefined
+    >({
       query: () => "income/total",
       providesTags: ["Incomes"],
     }),

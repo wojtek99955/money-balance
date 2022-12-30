@@ -38,7 +38,7 @@ const Goals = () => {
           <GoalListLoader />
         ) : (
           <>
-            {goals?.length > 0 ? (
+            {goals!.length > 0 ? (
               <>
                 <BtnContainer>
                   <GoalFilterDropdown

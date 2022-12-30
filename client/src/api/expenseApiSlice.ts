@@ -1,8 +1,9 @@
+import { ExpenseType } from "../Interfaces/Expense";
 import { apiSlice } from "./apiSlice";
 
 const expenseApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getExpenses: builder.query<any, any>({
+    getExpenses: builder.query<ExpenseType[], any>({
       query: ({ page, category, amount, date, limit, timestamp }) =>
         `/expense?p=${page}&limit=${limit}&category=${category}&timestamp=${timestamp}&amount=${amount}&date=${date}`,
       providesTags: ["Expenses"],
@@ -36,11 +37,11 @@ const expenseApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Expenses"],
     }),
-    getLatestExpenses: builder.query<any, undefined>({
+    getLatestExpenses: builder.query<ExpenseType[], undefined>({
       query: () => "/expense/latest",
       providesTags: ["Expenses"],
     }),
-    getTotalExpense: builder.query<any, undefined>({
+    getTotalExpense: builder.query<number, undefined>({
       query: () => "expense/total",
       providesTags: ["Expenses"],
     }),
@@ -48,7 +49,7 @@ const expenseApiSlice = apiSlice.injectEndpoints({
       query: () => "expense/sumCategories",
       providesTags: ["Expenses"],
     }),
-    getDailySumExpenses: builder.query<any, undefined>({
+    getDailySumExpenses: builder.query<number, undefined>({
       query: () => "expense/getDailySum",
       providesTags: ["Expenses"],
     }),

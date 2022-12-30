@@ -28,7 +28,7 @@ const Goals = () => {
   const { acheived } = filterData;
 
   const { data: goals, isLoading } = useGetGoalsQuery({ acheived });
-  console.log(goals);
+
   return (
     <RouteContainer>
       <GoalsContainer>

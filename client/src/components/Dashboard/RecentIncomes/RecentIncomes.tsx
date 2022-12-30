@@ -16,7 +16,6 @@ import LoaderContainer from "../../../assets/atoms/LoaderContainer";
 
 const RecentIncomes = () => {
   const { data: incomes, isLoading } = useGetLatestIncomesQuery(undefined);
-  console.log(incomes);
 
   let navigate = useNavigate();
   const goToIncomes = () => {

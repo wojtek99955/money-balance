@@ -87,7 +87,7 @@ const IncomesList = () => {
             setFilterData={setFilterData}
             filterData={filterData}
           />
-          {income?.incomes.map((income: any) => {
+          {income?.incomes!.map((income: any) => {
             return (
               <DashboardBox key={income._id}>
                 <ExpensesWrapper>
@@ -141,7 +141,7 @@ const IncomesList = () => {
           <Button
             onClick={goNextPage}
             style={{ width: "9rem" }}
-            disabled={page >= income!.totalPages - 1}
+            disabled={page >= income?.totalPages! - 1}
           >
             Next
           </Button>

@@ -1,5 +1,6 @@
 import { ExpenseType } from "../Interfaces/Expense";
 import { apiSlice } from "./apiSlice";
+import { BiggestExpense } from "../Interfaces/BiggestExpense";
 
 const expenseApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -48,7 +49,7 @@ const expenseApiSlice = apiSlice.injectEndpoints({
       query: () => "expense/total",
       providesTags: ["Expenses"],
     }),
-    getSumCategoryExpenses: builder.query<any, undefined>({
+    getSumCategoryExpenses: builder.query<BiggestExpense[], undefined>({
       query: () => "expense/sumCategories",
       providesTags: ["Expenses"],
     }),

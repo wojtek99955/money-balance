@@ -10,14 +10,10 @@ import {
   LoadingBox,
 } from "./BiggestExpensesStyle";
 
-interface BiggestExpense {
-  category: string;
-  amount: number;
-}
-
 const BiggestExpenses = () => {
   const { data: sumCategories, isLoading } =
     useGetSumCategoryExpensesQuery(undefined);
+  console.log(sumCategories);
 
   let loading = isLoading ? (
     <>
@@ -40,7 +36,7 @@ const BiggestExpenses = () => {
     <Container>
       <ExpensesWrapper>
         {loading}
-        {sumCategories?.map((cat: BiggestExpense) => {
+        {sumCategories?.map((cat) => {
           return (
             <DashboardBox key={cat.category}>
               {loading}

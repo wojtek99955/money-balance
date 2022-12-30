@@ -48,3 +48,10 @@ export const AddIconBtn = styled(IoMdAddCircleOutline)`
   color: white;
   font-size: 2rem;
 `;
+
+export const BtnContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+`;

@@ -141,7 +141,7 @@ const IncomesList = () => {
           <Button
             onClick={goNextPage}
             style={{ width: "9rem" }}
-            disabled={page >= income?.totalPages - 1}
+            disabled={page >= income!.totalPages - 1}
           >
             Next
           </Button>

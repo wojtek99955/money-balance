@@ -1,8 +1,12 @@
+import { IncomeType } from "../Interfaces/Income";
 import { apiSlice } from "./apiSlice";
 
 const incomeApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getIncomes: builder.query<any, any>({
+    getIncomes: builder.query<
+      { incomes: IncomeType[]; totalPages: number },
+      any
+    >({
       query: ({ page, category, amount, timestamp, limit, date }) =>
         `/income?p=${page}&limit=${limit}&category=${category}&timestamp=${timestamp}&amount=${amount}&date=${date}`,
       providesTags: ["Incomes"],

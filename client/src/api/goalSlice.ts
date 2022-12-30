@@ -1,8 +1,9 @@
+import { Goal } from "../Interfaces/Goal";
 import { apiSlice } from "./apiSlice";
 
 const goalApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getGoals: builder.query<any, any>({
+    getGoals: builder.query<Goal[], any>({
       query: ({ acheived }) => `/goal?acheived=${acheived}`,
       providesTags: ["Goals"],
     }),
@@ -35,7 +36,7 @@ const goalApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Goals"],
     }),
-    getTotalAmount: builder.query<any, undefined>({
+    getTotalAmount: builder.query<number, undefined>({
       query: () => "/goal/get-total-amount",
       providesTags: ["Goals"],
     }),

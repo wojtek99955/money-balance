@@ -1,8 +1,9 @@
+import { GoalPayment } from "../Interfaces/GoalPayment";
 import { apiSlice } from "./apiSlice";
 
 const goalPaymentSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getGoalPayment: builder.query<any, any>({
+    getGoalPayment: builder.query<GoalPayment[], any>({
       query: ({ id, page }) => `/goalPayment?id=${id}&p=${page}`,
       providesTags: ["GoalPayment"],
     }),

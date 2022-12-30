@@ -131,7 +131,7 @@ const getTotalExpense = asyncHandler(async (req, res) => {
     },
   ]);
 
-  res.json({ totalExpense: totalExpense });
+  res.json(totalExpense);
 });
 
 const getSumCategories = asyncHandler(async (req, res) => {

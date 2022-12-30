@@ -137,7 +137,7 @@ const getTotalIncome = asyncHandler(async (req, res) => {
     },
   ]);
 
-  res.json({ totalIncome: totalIncome });
+  res.json(totalIncome);
 });
 
 const getDailySum = asyncHandler(async (req, res) => {

@@ -40,7 +40,7 @@ const incomeApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Incomes"],
     }),
-    getLatestIncomes: builder.query<any, undefined>({
+    getLatestIncomes: builder.query<{ incomes: IncomeType[] }, undefined>({
       query: () => "/income/latest",
       providesTags: ["Incomes"],
     }),

@@ -20,7 +20,6 @@ const Expenses = () => {
   const goToExpenses = () => {
     navigate("/expenses");
   };
-  console.log(expenses);
   return (
     <DashboardBox>
       {isLoading ? <LoaderContainer /> : null}

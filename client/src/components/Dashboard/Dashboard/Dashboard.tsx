@@ -17,6 +17,7 @@ import {
   AvatarContainer,
 } from "./DashboardStyle";
 import LoaderContainer from "../../../assets/atoms/LoaderContainer";
+import ShowDataDropdown from "../ShowDataDropdown/ShowDataDropdown";
 
 const Dashboard = () => {
   const { data: userData, isLoading: userDataLoading } =
@@ -54,6 +55,7 @@ const Dashboard = () => {
             <span>{username}</span>
           </Profile>
         </TopSection>
+        <ShowDataDropdown />
         <Summary />
         <RecentOperations>
           <Expenses />

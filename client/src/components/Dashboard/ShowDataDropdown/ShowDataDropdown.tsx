@@ -9,7 +9,8 @@ const Btn = styled.button<TStyle>`
   background-color: #d1e8fb;
   border: none;
   padding: 0.5rem 1.2rem;
-  color: ${({ theme }) => theme.colors.main.default};
+  color: ${({ theme, active, id }) =>
+    active === id ? theme.colors.main.default : theme.colors.grey};
   font-size: 1rem;
   cursor: pointer;
   border-radius: 12px;

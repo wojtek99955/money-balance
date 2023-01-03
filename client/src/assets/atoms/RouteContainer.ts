@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const RouteContainer = styled.div`
-  width: 100%;
+  width: calc(100% - 13rem);
   background-color: ${({ theme }) =>
     theme.colors.backgroundColor.lightBackground};
   padding: 1rem;

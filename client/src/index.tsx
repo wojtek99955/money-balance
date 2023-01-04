@@ -8,6 +8,8 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./assets/styleTheme";
 import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
 import { apiSlice } from "./api/apiSlice";
+import { store } from "./store";
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,9 +19,9 @@ root.render(
     <BrowserRouter>
       <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <ApiProvider api={apiSlice}>
+        <Provider store={store}>
           <App />
-        </ApiProvider>
+        </Provider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

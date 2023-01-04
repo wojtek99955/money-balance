@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { setRange } from "../../../dataRangeReducer";
 
 interface TStyle {
   active: any;
@@ -25,6 +27,7 @@ const Container = styled.div`
 `;
 
 const ShowDataDropdown = () => {
+  const dispatch = useDispatch();
   const [selectedValue, setSelectedValue] = useState(
     localStorage.getItem("data-range")
   );
@@ -39,7 +42,7 @@ const ShowDataDropdown = () => {
     <Container>
       <Btn
         onClick={(e) => {
-          setSelectedValue("month");
+          dispatch(setRange("month"));
           handleClick(e);
         }}
         id={"month"}
@@ -49,7 +52,7 @@ const ShowDataDropdown = () => {
       </Btn>
       <Btn
         onClick={(e) => {
-          setSelectedValue("week");
+          dispatch(setRange("week"));
           handleClick(e);
         }}
         id={"week"}

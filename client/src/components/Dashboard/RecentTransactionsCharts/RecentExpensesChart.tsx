@@ -13,6 +13,7 @@ import {
 import { Line } from "react-chartjs-2";
 import { useGetDailySumExpensesQuery } from "../../../api/expenseApiSlice";
 import LoaderContainer from "../../../assets/atoms/LoaderContainer";
+import { useSelector } from "react-redux";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -25,7 +26,11 @@ ChartJS.register(
 );
 
 const RecentExpensesChart = () => {
-  const { data: dailySum, isLoading } = useGetDailySumExpensesQuery(undefined);
+  const dateRange = useSelector((state: any) => state.dataRange.value!);
+
+  const { data: dailySum, isLoading } = useGetDailySumExpensesQuery({
+    dateRange,
+  });
 
   const labels = dailySum?.totalDayExpense.map((dailySum: any) => {
     return dailySum._id;

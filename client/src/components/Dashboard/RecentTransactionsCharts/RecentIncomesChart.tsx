@@ -12,6 +12,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import LoaderContainer from "../../../assets/atoms/LoaderContainer";
+import { useSelector } from "react-redux";
 
 ChartJS.register(
   CategoryScale,
@@ -24,7 +25,14 @@ ChartJS.register(
   Filler
 );
 const RecentIncomesChart = () => {
-  const { data: dailySum, isLoading } = useGetDailySumIncomesQuery(undefined);
+  // const dateRange = localStorage.getItem("data-range")!;
+
+  const dateRange = useSelector((state: any) => state.dataRange.value!);
+  // console.log(rangeState);
+
+  const { data: dailySum, isLoading } = useGetDailySumIncomesQuery({
+    dateRange,
+  });
   console.log(dailySum);
 
   const labels = dailySum?.totalDayIncome.map((dailySum: any) => {

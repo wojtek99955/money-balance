@@ -15,15 +15,10 @@ const getIncomes = asyncHandler(async (req, res) => {
   const timestamp = req.query.timestamp;
   const date = req.query.date;
   let category = req.query.category;
-  console.log(incomesPerPage);
-  console.log();
-  console.log(date);
 
   category === "all"
     ? (category = [...categories])
     : (category = req.query.category.split(","));
-
-  console.log(category);
 
   const incomesCount = await Income.find({
     userId,
@@ -145,6 +140,10 @@ const getDailySum = asyncHandler(async (req, res) => {
 
   const decoded = jwt_decode(JWT);
   const userId = decoded.userId;
+  const dateRange = req.query.dateRange;
+  console.log(dateRange + "cos");
+  const limit = dateRange === "month" ? 30 : 7;
+  console.log(limit);
 
   const totalIncome = await Income.aggregate([
     { $match: { userId } },
@@ -154,9 +153,11 @@ const getDailySum = asyncHandler(async (req, res) => {
         totalAmount: { $sum: "$amount" },
       },
     },
-  ]).sort({ _id: 1 });
+  ])
+    .sort({ _id: -1 })
+    .limit(limit);
 
-  res.json({ totalDayIncome: totalIncome });
+  res.json({ totalDayIncome: totalIncome.reverse() });
 });
 
 module.exports = {

@@ -200,6 +200,10 @@ const getDailySum = asyncHandler(async (req, res) => {
   const decoded = jwt_decode(JWT);
   const userId = decoded.userId;
 
+  const dateRange = req.query.dateRange;
+  console.log(dateRange + "cos");
+  const limit = dateRange === "month" ? 30 : 7;
+
   const totalExpense = await Expense.aggregate([
     { $match: { userId } },
     {
@@ -208,9 +212,11 @@ const getDailySum = asyncHandler(async (req, res) => {
         totalAmount: { $sum: "$amount" },
       },
     },
-  ]).sort({ _id: 1 });
+  ])
+    .sort({ _id: -1 })
+    .limit(limit);
 
-  res.json({ totalDayExpense: totalExpense });
+  res.json({ totalDayExpense: totalExpense.reverse() });
 });
 
 module.exports = {

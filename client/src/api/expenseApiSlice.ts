@@ -53,8 +53,8 @@ const expenseApiSlice = apiSlice.injectEndpoints({
       query: () => "expense/sumCategories",
       providesTags: ["Expenses"],
     }),
-    getDailySumExpenses: builder.query<any, undefined>({
-      query: () => "expense/getDailySum",
+    getDailySumExpenses: builder.query<any, any>({
+      query: ({ dateRange }) => `expense/getDailySum?dateRange=${dateRange}`,
       providesTags: ["Expenses"],
     }),
   }),

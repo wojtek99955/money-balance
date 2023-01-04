@@ -51,8 +51,8 @@ const incomeApiSlice = apiSlice.injectEndpoints({
       query: () => "income/total",
       providesTags: ["Incomes"],
     }),
-    getDailySumIncomes: builder.query<any, undefined>({
-      query: () => "income/dailySum",
+    getDailySumIncomes: builder.query<any, any>({
+      query: ({ dateRange }) => `income/dailySum?dateRange=${dateRange}`,
       providesTags: ["Incomes"],
     }),
   }),

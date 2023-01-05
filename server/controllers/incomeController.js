@@ -60,6 +60,7 @@ const createNewIncome = async (req, res) => {
     userId,
     amount,
     date,
+    dateAdded: Date.now(),
   });
 
   if (income) {
@@ -141,21 +142,18 @@ const getDailySum = asyncHandler(async (req, res) => {
   const decoded = jwt_decode(JWT);
   const userId = decoded.userId;
   const dateRange = req.query.dateRange;
-  console.log(dateRange + "cos");
-  const limit = dateRange === "month" ? 30 : 7;
-  console.log(limit);
+  const range =
+    dateRange === "month" ? 30 * 60 * 60 * 24 * 1000 : 7 * 60 * 60 * 24 * 1000;
 
   const totalIncome = await Income.aggregate([
-    { $match: { userId } },
+    { $match: { userId, dateAdded: { $gte: Date.now() - range } } },
     {
       $group: {
         _id: "$date",
         totalAmount: { $sum: "$amount" },
       },
     },
-  ])
-    .sort({ _id: -1 })
-    .limit(limit);
+  ]).sort({ _id: -1 });
 
   res.json({ totalDayIncome: totalIncome.reverse() });
 });

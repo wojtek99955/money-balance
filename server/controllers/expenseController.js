@@ -19,6 +19,7 @@ const createExpense = async (req, res) => {
     userId,
     amount,
     date,
+    dateAdded: Date.now(),
   });
 
   if (expense) {
@@ -198,19 +199,19 @@ const getDailySum = asyncHandler(async (req, res) => {
   const userId = decoded.userId;
 
   const dateRange = req.query.dateRange;
-  const limit = dateRange === "month" ? 30 : 7;
+
+  const range =
+    dateRange === "month" ? 30 * 60 * 60 * 24 * 1000 : 7 * 60 * 60 * 24 * 1000;
 
   const totalExpense = await Expense.aggregate([
-    { $match: { userId } },
+    { $match: { userId, dateAdded: { $gte: Date.now() - range } } },
     {
       $group: {
         _id: "$date",
         totalAmount: { $sum: "$amount" },
       },
     },
-  ])
-    .sort({ _id: -1 })
-    .limit(limit);
+  ]).sort({ _id: -1 });
 
   res.json({ totalDayExpense: totalExpense.reverse() });
 });

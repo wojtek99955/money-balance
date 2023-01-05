@@ -6,6 +6,7 @@ const expsenseSchema = new mongoose.Schema(
     category: String,
     amount: Number,
     date: String,
+    dateAdded: Number,
   },
   { timestamps: true }
 );

@@ -6,6 +6,7 @@ const incomeSchema = new mongoose.Schema(
     amount: Number,
     userId: String,
     date: String,
+    dateAdded: Number,
   },
   { timestamps: true }
 );

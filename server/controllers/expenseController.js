@@ -8,7 +8,6 @@ const createExpense = async (req, res) => {
 
   const decoded = jwt_decode(JWT);
   const userId = decoded.userId;
-  console.log(userId);
   const date = new Date()
     .toLocaleDateString("pt-br")
     .split("/")
@@ -71,7 +70,6 @@ const getExpenses = asyncHandler(async (req, res) => {
 
 const deleteExpense = async (req, res) => {
   const { id } = req.body;
-  console.log(id);
 
   if (!id) {
     return res.status(400).json({ message: "Expense ID required" });
@@ -114,7 +112,6 @@ const getLatestExpenses = asyncHandler(async (req, res) => {
     .select("-userId")
     .sort({ createdAt: -1 })
     .lean();
-  console.log(expenses);
   res.json({ expenses });
 });
 
@@ -201,7 +198,6 @@ const getDailySum = asyncHandler(async (req, res) => {
   const userId = decoded.userId;
 
   const dateRange = req.query.dateRange;
-  console.log(dateRange + "cos");
   const limit = dateRange === "month" ? 30 : 7;
 
   const totalExpense = await Expense.aggregate([

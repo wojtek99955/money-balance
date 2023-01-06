@@ -35,7 +35,6 @@ const getExpenses = asyncHandler(async (req, res) => {
   let JWT = req.cookies.jwt;
 
   const decoded = jwt_decode(JWT);
-  const username = decoded.username;
   const timestamp = req.query.timestamp;
   const page = req.query.p;
   const expensesPerPage = req.query.limit;
@@ -90,7 +89,7 @@ const deleteExpense = async (req, res) => {
 };
 
 const updateExpense = async (req, res) => {
-  const { id, amount, category, username } = req.body;
+  const { id, amount, category } = req.body;
 
   const expense = await Expense.findById(id).exec();
 

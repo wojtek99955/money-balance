@@ -72,7 +72,6 @@ const createNewIncome = async (req, res) => {
 
 const deleteIncome = async (req, res) => {
   const { id } = req.body;
-  console.log(id);
 
   if (!id) {
     return res.status(400).json({ message: "Expense ID required" });
@@ -96,7 +95,6 @@ const updateIncome = async (req, res) => {
 
   const income = await Income.findById(id).exec();
 
-  console.log(income);
   income.amount = amount;
   income.category = category;
 

@@ -72,6 +72,7 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
                 <option value="restaurants">restaurants</option>
                 <option value="gift">gift</option>
                 <option value="transportation">transportation</option>
+                <option value="other">other</option>
               </Field>
               <StyledField type="text" name="amount" placeholder="amount" />
               <Button type="submit">Save</Button>

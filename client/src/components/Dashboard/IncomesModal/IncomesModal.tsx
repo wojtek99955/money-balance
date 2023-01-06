@@ -69,6 +69,7 @@ const IncomesModal = ({ setOpenIncomesModal }: Props) => {
               <Field as="select" name="category">
                 <option value="salary">salary</option>
                 <option value="prize">prize</option>
+                <option value="other">other</option>
               </Field>
               <StyledField type="text" name="amount" placeholder="amount" />
               <Button type="submit">Save</Button>

@@ -9,7 +9,7 @@ export const Container = styled.div`
 export const ExpensesWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 export const Category = styled.div`

@@ -50,7 +50,7 @@ export const Profile = styled.div`
 
 export const RecentOperations = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 export const AvatarContainer = styled.div`

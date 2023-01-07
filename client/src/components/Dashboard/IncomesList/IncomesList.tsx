@@ -1,11 +1,11 @@
-import { useGetIncomesQuery } from "../../api/incomeApiSlice";
-import { RouteContainer } from "../../assets/atoms/RouteContainer";
-import { getIncomeCategoryIcon } from "../../helpers/getIncomeCategoryIcon";
-import { DashboardBox } from "../../assets/atoms/DashboardBox";
-import { useDeleteIncomeMutation } from "../../api/incomeApiSlice";
+import { useGetIncomesQuery } from "../../../api/incomeApiSlice";
+import { RouteContainer } from "../../../assets/atoms/RouteContainer";
+import { getIncomeCategoryIcon } from "../../../helpers/getIncomeCategoryIcon";
+import { DashboardBox } from "../../../assets/atoms/DashboardBox";
+import { useDeleteIncomeMutation } from "../../../api/incomeApiSlice";
 import { useState } from "react";
 import EditIncomesModal from "./EditIncomesModal/EditIncomesModal";
-import { Button } from "../../assets/atoms/Button";
+import { Button } from "../../../assets/atoms/Button";
 import {
   EditIcon,
   Price,
@@ -21,9 +21,9 @@ import {
   IncomeIconContainer,
   Wrapper,
 } from "./IncomesListStyle";
-import { FilterWallet } from "../../Interfaces/FilterWallet";
+import { FilterWallet } from "../../../Interfaces/FilterWallet";
 import IncomesFilterDropdown from "./IncomesFilterDropdown/IncomesFilterDropdown";
-import BudgetItemLoader from "../../assets/molecules/BudgetItemLoader";
+import BudgetItemLoader from "../../../assets/molecules/BudgetItemLoader";
 import { AnimatePresence } from "framer-motion";
 
 const IncomesList = () => {

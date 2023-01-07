@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Button } from "../../../assets/atoms/Button";
-import { useUpdateIncomeMutation } from "../../../api/incomeApiSlice";
+import { Button } from "../../../../assets/atoms/Button";
+import { useUpdateIncomeMutation } from "../../../../api/incomeApiSlice";
 import {
   Container,
   FormContainer,
@@ -10,7 +10,7 @@ import {
   FormWrapper,
 } from "./EditIncomesModalStyle";
 import * as yup from "yup";
-import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
+import ValidationErrorMsg from "../../../../assets/atoms/ValidationErrorMsg";
 import { useRef } from "react";
 
 interface Props {

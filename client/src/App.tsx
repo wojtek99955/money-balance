@@ -8,7 +8,7 @@ import Dashboard from "./components/Dashboard/Dashboard/Dashboard";
 import { useLocation } from "react-router-dom";
 import Sidebar from "./components/Dashboard/Sidebar/Sidebar";
 import ExpensesList from "./components/Expenses/ExpensesList/ExpensesList";
-import IncomesList from "./components/IncomesList/IncomesList";
+import IncomesList from "./components/Dashboard/IncomesList/IncomesList";
 import Profile from "./components/Profile/Profile";
 import Goals from "./components/Goals/Goals/Goals";
 

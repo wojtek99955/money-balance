@@ -94,7 +94,7 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
                 />
                 <StyledField name="amount" placeholder="amount" />
                 <ErrorMessage name="amount" component={ValidationErrorMsg} />
-                <StyledField name="deposit" placeholder="deposit" />
+                <StyledField name="deposit" placeholder="initial deposit" />
                 <ErrorMessage name="deposit" component={ValidationErrorMsg} />
                 <DateFieldContainer>
                   <StyledDateField

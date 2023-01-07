@@ -41,8 +41,13 @@ ChartJS.register(
   ArcElement
 );
 
+interface GoalsList {
+  goal: Goal;
+  daysLeft: number;
+}
+
 interface Props {
-  goals: any;
+  goals: GoalsList[];
 }
 
 const GoalsList = ({ goals }: Props) => {
@@ -66,10 +71,11 @@ const GoalsList = ({ goals }: Props) => {
   const handleOpenAddDepositModal = () => {
     setOpenAddDepositModal(true);
   };
+  console.log(goals);
 
   return (
     <ListContainer>
-      {goals.map((goal: any) => {
+      {goals.map((goal: GoalsList) => {
         return (
           <GoalContainer key={goal.goal._id}>
             <Category>{goal.goal.category}</Category>
@@ -86,7 +92,7 @@ const GoalsList = ({ goals }: Props) => {
             <DaysLeft>{goal.daysLeft} days left</DaysLeft>
             <EditGoal id={goal.goal._id} />
             <ChartContainer>
-              {goal.deposit >= goal.amount ? (
+              {goal.goal.acheived ? (
                 <AcheivedGoal>
                   <AcheivedIcon />
                 </AcheivedGoal>

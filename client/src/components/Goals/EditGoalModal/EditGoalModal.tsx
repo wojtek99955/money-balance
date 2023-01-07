@@ -88,6 +88,9 @@ const UpdateGoalModal = ({ setShowEditGoalModal, id }: Props) => {
               <Field as="select" name="category">
                 <option value="home">home</option>
                 <option value="vacation">vacation</option>
+                <option value="retirement">retirement</option>
+                <option value="car">car</option>
+                <option value="education">education</option>
                 <option value="other">other</option>
               </Field>
               <ErrorMessage name="category" component={ValidationErrorMsg} />

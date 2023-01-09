@@ -30,14 +30,12 @@ const Summary = () => {
 
   const { data: totalIncome, isLoading: loadingIncome } =
     useGetTotalIncomeQuery(undefined);
-  console.log(totalIncome);
 
   const { data: totalExpense, isLoading: loadingExpense } =
     useGetTotalExpenseQuery(undefined);
-  console.log(totalExpense);
 
-  const totalIncomeData = totalIncome?.[0].totalIncome;
-  const totalExpenseData = totalExpense?.[0].totalExpense;
+  const totalIncomeData = totalIncome?.[0]?.totalIncome;
+  const totalExpenseData = totalExpense?.[0]?.totalExpense;
 
   const getWalletValue = () => {
     if (!totalExpenseData) {

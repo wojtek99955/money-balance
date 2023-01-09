@@ -27,6 +27,9 @@ const SignIn = () => {
 
   const [errMsg, setErrMsg] = useState("");
 
+  const dataRange = localStorage.getItem("data-range");
+  console.log(dataRange);
+
   const handleSubmit = async (val: Auth) => {
     try {
       const res = await login({
@@ -42,6 +45,9 @@ const SignIn = () => {
         "username",
         JSON.stringify(decoded.UserInfo.username)
       );
+
+      dataRange ? localStorage.setItem("data-range", "month") : null;
+
       navigate("/dashboard");
     } catch (err: any) {
       if (!err.status) {

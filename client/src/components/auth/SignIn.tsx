@@ -28,7 +28,6 @@ const SignIn = () => {
   const [errMsg, setErrMsg] = useState("");
 
   const dataRange = localStorage.getItem("data-range");
-  console.log(dataRange);
 
   const handleSubmit = async (val: Auth) => {
     try {
@@ -36,18 +35,13 @@ const SignIn = () => {
         username: val.username,
         password: val.password,
       }).unwrap();
-      console.log(res);
-
       let JWT = await res.accessToken;
-      console.log(JWT);
       const decoded: any = jwt_decode(JWT);
       localStorage.setItem(
         "username",
         JSON.stringify(decoded.UserInfo.username)
       );
-
       dataRange ? localStorage.setItem("data-range", "month") : null;
-
       navigate("/dashboard");
     } catch (err: any) {
       if (!err.status) {

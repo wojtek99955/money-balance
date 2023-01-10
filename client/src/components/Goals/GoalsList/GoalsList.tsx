@@ -1,10 +1,6 @@
 import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
   Title,
   Tooltip,
   Legend,
@@ -29,17 +25,7 @@ import AddDepositModal from "../AddDepositModal/AddDepositModal";
 import { AnimatePresence } from "framer-motion";
 import { Goal } from "../../../Interfaces/Goal";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-  ArcElement
-);
+ChartJS.register(Title, Tooltip, Legend, Filler, ArcElement);
 
 interface GoalsList {
   goal: Goal;

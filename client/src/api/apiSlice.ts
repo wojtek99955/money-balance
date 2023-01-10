@@ -4,7 +4,7 @@ export const apiSlice = createApi({
   reducerPath: "expenses",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3500",
+    baseUrl: "https://money-balance-backend.onrender.com",
     credentials: "include",
   }),
   tagTypes: ["Expenses", "Incomes", "Avatar", "User", "Goals", "GoalPayment"],

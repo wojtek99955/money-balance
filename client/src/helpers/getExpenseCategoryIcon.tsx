@@ -5,6 +5,7 @@ import { BsCreditCard } from "react-icons/bs";
 import { BsGift } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { AiOutlineCar } from "react-icons/ai";
+import { BsThreeDots } from "react-icons/bs";
 
 interface StyleProps {
   color: string;
@@ -44,6 +45,12 @@ const IconContainer = styled.div<StyleProps>`
   background-color: ${({ color }) => color};
 `;
 
+const OtherIcon = styled(BsThreeDots)`
+  width: 2.6rem;
+  height: 2.6rem;
+  color: #767882;
+`;
+
 export const getExpenseCategoryIcon = (category: string) => {
   switch (category) {
     case "restaurants":
@@ -70,6 +77,12 @@ export const getExpenseCategoryIcon = (category: string) => {
       return (
         <IconContainer color="#fef8e6">
           <TransportationIcon />
+        </IconContainer>
+      );
+    case "other":
+      return (
+        <IconContainer color="#BFC0C5">
+          <OtherIcon />
         </IconContainer>
       );
   }

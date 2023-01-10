@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { BiMedal } from "react-icons/bi";
 import { BsBarChartLine } from "react-icons/bs";
+import { BsThreeDots } from "react-icons/bs";
 
 interface StyleProps {
   color: string;
@@ -32,6 +33,12 @@ const InvestmentsIcon = styled(BsBarChartLine)`
   color: #ff9999;
 `;
 
+const OtherIcon = styled(BsThreeDots)`
+  width: 2.6rem;
+  height: 2.6rem;
+  color: #767882;
+`;
+
 export const getIncomeCategoryIcon = (category: string) => {
   switch (category) {
     case "salary":
@@ -50,6 +57,12 @@ export const getIncomeCategoryIcon = (category: string) => {
       return (
         <IconContainer color="#ffe3e3">
           <InvestmentsIcon />
+        </IconContainer>
+      );
+    case "other":
+      return (
+        <IconContainer color="#BFC0C5">
+          <OtherIcon />
         </IconContainer>
       );
   }

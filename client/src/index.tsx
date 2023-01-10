@@ -10,6 +10,9 @@ import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
 import { apiSlice } from "./api/apiSlice";
 import { store } from "./store";
 import { Provider } from "react-redux";
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+
+if (process.env.NODE_ENV === "production") disableReactDevTools();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

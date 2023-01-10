@@ -47,7 +47,10 @@ interface GoalsList {
 }
 
 interface Props {
-  goals: GoalsList[];
+  goals: {
+    goal: Goal;
+    daysLeft: number;
+  }[];
 }
 
 const GoalsList = ({ goals }: Props) => {
@@ -71,7 +74,6 @@ const GoalsList = ({ goals }: Props) => {
   const handleOpenAddDepositModal = () => {
     setOpenAddDepositModal(true);
   };
-  console.log(goals);
 
   return (
     <ListContainer>

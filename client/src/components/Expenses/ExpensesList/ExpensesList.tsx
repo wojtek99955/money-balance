@@ -144,7 +144,7 @@ const ExpensesList = () => {
           <Button
             onClick={goNextPage}
             style={{ width: "9rem" }}
-            disabled={page >= expenses?.totalPages - 1}
+            disabled={page >= expenses?.totalPages! - 1}
           >
             Next
           </Button>

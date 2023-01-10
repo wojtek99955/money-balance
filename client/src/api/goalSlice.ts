@@ -3,7 +3,7 @@ import { apiSlice } from "./apiSlice";
 
 const goalApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getGoals: builder.query<Goal[], any>({
+    getGoals: builder.query<{ goal: Goal; daysLeft: number }[], any>({
       query: ({ acheived }) => `/goal?acheived=${acheived}`,
       providesTags: ["Goals"],
     }),

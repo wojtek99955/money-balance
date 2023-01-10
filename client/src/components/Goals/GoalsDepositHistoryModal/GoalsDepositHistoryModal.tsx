@@ -49,7 +49,7 @@ const GoalsDepositHistoryModal = ({
     setPage((prev) => prev + 1);
   };
 
-  console.log(goalsDepositHistory?.totalPages);
+  console.log(goalsDepositHistory);
 
   return ReactDOM.createPortal(
     <Container
@@ -89,7 +89,7 @@ const GoalsDepositHistoryModal = ({
           </Button>
           <Button
             onClick={goNextPage}
-            disabled={page === goalsDepositHistory?.totalPages - 1}
+            disabled={page === goalsDepositHistory?.totalPages! - 1}
           >
             next
           </Button>

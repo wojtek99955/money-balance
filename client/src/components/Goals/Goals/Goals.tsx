@@ -51,7 +51,7 @@ const Goals = () => {
                   </StyledButton>
                 </BtnContainer>
                 <AllGoalsAmount />
-                <GoalsList goals={goals} />
+                <GoalsList goals={goals!} />
               </>
             ) : (
               <>

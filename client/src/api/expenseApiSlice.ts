@@ -4,7 +4,10 @@ import { BiggestExpense } from "../Interfaces/BiggestExpense";
 
 const expenseApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getExpenses: builder.query<ExpenseType[], any>({
+    getExpenses: builder.query<
+      { expenses: ExpenseType[]; totalPages: number },
+      any
+    >({
       query: ({ page, category, amount, date, limit, timestamp }) =>
         `/expense?p=${page}&limit=${limit}&category=${category}&timestamp=${timestamp}&amount=${amount}&date=${date}`,
       providesTags: ["Expenses"],

@@ -1,3 +1,3 @@
-const allowedOrigins = ["https://money-balance.netlify.app/sign-in"];
+const allowedOrigins = ["https://money-balance.netlify.app"];
 
 module.exports = allowedOrigins;

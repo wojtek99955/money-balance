@@ -1,3 +1,3 @@
-const allowedOrigins = ["https://money-balance-jqjq.onrender.com"];
+const allowedOrigins = ["https://money-balance.netlify.app/sign-in"];
 
 module.exports = allowedOrigins;

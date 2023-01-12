@@ -27,8 +27,6 @@ const Dashboard = () => {
 
   const { data: avatar, isLoading: isAvatarLoading } =
     useGetAvatarQuery(undefined);
-  const path = avatar ? avatar[0]?.path : null;
-  const imgPath = `http://localhost:3500/${path}`;
 
   let navigate = useNavigate();
 
@@ -50,7 +48,7 @@ const Dashboard = () => {
           <Profile onClick={goToProfile}>
             <AvatarContainer>
               {isAvatarLoading ? <LoaderContainer /> : null}
-              {path ? <img src={imgPath} /> : null}
+              {avatar ? <img src={avatar[0]?.file} /> : null}
             </AvatarContainer>
             <span>{username}</span>
           </Profile>

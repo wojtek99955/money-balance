@@ -14,6 +14,8 @@ const PORT = process.env.PORT || 3500;
 
 connectDB();
 
+app.use(express.json({ limit: "16mb" }));
+
 app.use(logger);
 
 app.use(cors(corsOptions));

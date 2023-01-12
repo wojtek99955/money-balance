@@ -14,7 +14,6 @@ import {
   FileInput,
   variants,
 } from "./AvatarStyle";
-import LiquidLoader from "../../../assets/molecules/LiquidLoader";
 
 const Avatar = () => {
   const [files, setFiles] = useState<File | null>(null);
@@ -93,7 +92,6 @@ const Avatar = () => {
         </EditContainer>
       ) : null}
       {isHovered && avatar === 0 ? <EditContainer /> : null}
-      {isLoading ? <LiquidLoader /> : null}
     </AvatarContainer>
   );
 };

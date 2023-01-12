@@ -14,17 +14,30 @@ import {
   FileInput,
   variants,
 } from "./AvatarStyle";
+import LiquidLoader from "../../../assets/molecules/LiquidLoader";
 
 const Avatar = () => {
-  const [files, setFiles] = useState<any>(null);
+  const [files, setFiles] = useState<File | null>(null);
   const [addAvatar, response] = useAddAvatarMutation();
   const [deleteAvatar, { isSuccess, isError, error }] =
     useDeleteAvatarMutation();
 
-  const handleSendAvatar = () => {
-    const formData = new FormData();
-    formData.append("avatar", files);
-    addAvatar(formData);
+  const convertToBase64 = (file: File) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const handleSendAvatar = async () => {
+    const base64 = await convertToBase64(files!);
+    addAvatar({ myFile: base64 });
   };
 
   const handleDeleteAvatar = async () => {
@@ -33,8 +46,6 @@ const Avatar = () => {
   };
 
   const { data: avatar, isLoading } = useGetAvatarQuery(undefined);
-  const path = avatar ? avatar[0]?.path : null;
-  const imgPath = `http://localhost:3500/${path}`;
 
   useEffect(() => {
     if (files) {
@@ -50,9 +61,11 @@ const Avatar = () => {
     setIsHovered(false);
   }
 
+  console.log(isLoading);
+
   return (
     <AvatarContainer
-      img={imgPath}
+      img={avatar ? avatar[0]?.file : null}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -79,7 +92,8 @@ const Avatar = () => {
           <DeleteIcon onClick={handleDeleteAvatar} />
         </EditContainer>
       ) : null}
-      {isHovered && avatar === 0 ? <EditContainer></EditContainer> : null}
+      {isHovered && avatar === 0 ? <EditContainer /> : null}
+      {isLoading ? <LiquidLoader /> : null}
     </AvatarContainer>
   );
 };

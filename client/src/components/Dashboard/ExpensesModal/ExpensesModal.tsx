@@ -11,6 +11,7 @@ import {
   StyledField,
   FormWrapper,
 } from "./ExpensesModalStyle";
+import LoadingSpinner from "../../../assets/atoms/LoadingSpinner";
 
 interface Props {
   setOpenExpensesModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,7 +24,7 @@ const initialValues = {
 
 const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
-  const [addExpense, response] = useAddExpensesMutation();
+  const [addExpense, { isLoading }] = useAddExpensesMutation();
   const handleCloseModal = () => {
     setOpenExpensesModal(false);
   };
@@ -62,7 +63,7 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
               username: username,
               date: getCurrentDate(),
             });
-            setOpenExpensesModal(false);
+            if (!isLoading) setOpenExpensesModal(false);
           }}
         >
           <Form>
@@ -75,7 +76,9 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
                 <option value="other">other</option>
               </Field>
               <StyledField type="text" name="amount" placeholder="amount" />
-              <Button type="submit">Save</Button>
+              <Button type="submit">
+                {isLoading ? <LoadingSpinner /> : "Add"}
+              </Button>
             </FormWrapper>
           </Form>
         </Formik>

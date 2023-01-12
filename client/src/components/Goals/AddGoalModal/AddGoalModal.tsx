@@ -15,6 +15,8 @@ import {
 } from "./AddGoalModalStyle";
 import * as yup from "yup";
 import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
+import LoadingSpinner from "../../../assets/atoms/LoadingSpinner";
+
 interface Props {
   setOpenAddGoalModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -47,11 +49,11 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
     }
   };
 
-  const [addGoal, response] = useAddGoalMutation();
+  const [addGoal, { isLoading }] = useAddGoalMutation();
 
   const handleSubmit = (val: any) => {
     addGoal(val);
-    setOpenAddGoalModal(false);
+    if (!isLoading) setOpenAddGoalModal(false);
   };
   return ReactDOM.createPortal(
     <Container
@@ -112,7 +114,9 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
                   name="targetDate"
                   component={ValidationErrorMsg}
                 />
-                <Button type="submit">Add</Button>
+                <Button type="submit">
+                  {isLoading ? <LoadingSpinner /> : "Add"}
+                </Button>
               </FormWrapper>
             </Form>
           )}

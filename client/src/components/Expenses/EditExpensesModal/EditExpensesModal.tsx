@@ -12,6 +12,7 @@ import {
 import * as yup from "yup";
 import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
 import { useRef } from "react";
+import LoadingSpinner from "../../../assets/atoms/LoadingSpinner";
 
 interface Props {
   setOpenEditExpensesModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -35,7 +36,7 @@ const validationSchema = yup.object().shape({
 const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
 
-  const [updateExpense] = useUpdateExpenseMutation();
+  const [updateExpense, { isLoading }] = useUpdateExpenseMutation();
 
   const handleCloseModal = () => {
     setOpenEditExpensesModal(false);
@@ -78,7 +79,7 @@ const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
           validationSchema={validationSchema}
           onSubmit={(val) => {
             handleUpdateExpense(currentId, val);
-            setOpenEditExpensesModal(false);
+            if (!isLoading) setOpenEditExpensesModal(false);
           }}
         >
           <Form>
@@ -91,7 +92,9 @@ const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
               </Field>
               <StyledField type="text" name="amount" placeholder="amount" />
               <ErrorMessage name="amount" component={ValidationErrorMsg} />
-              <Button type="submit">Save</Button>
+              <Button type="submit">
+                {isLoading ? <LoadingSpinner /> : "Save"}
+              </Button>
             </FormWrapper>
           </Form>
         </Formik>

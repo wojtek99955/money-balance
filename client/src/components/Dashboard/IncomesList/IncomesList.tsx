@@ -124,7 +124,7 @@ const IncomesList = () => {
                       setOpenEditIncomesModal={setOpenEditIncomesModal}
                     />
                   ) : null}
-                </AnimatePresence>{" "}
+                </AnimatePresence>
               </DashboardBox>
             );
           })}

@@ -12,6 +12,7 @@ import {
 } from "./AddDepositModalStyle";
 import * as yup from "yup";
 import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
+import LoadingSpinner from "../../../assets/atoms/LoadingSpinner";
 
 interface Props {
   setOpenAddDepositModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,7 +31,7 @@ const AddDepositModal = ({ setOpenAddDepositModal, currentId }: Props) => {
     setOpenAddDepositModal(false);
   };
 
-  const [updateDeposit] = useAddGoalPaymentMutation();
+  const [updateDeposit, { isLoading }] = useAddGoalPaymentMutation();
 
   const containerRef = useRef(null);
 
@@ -57,14 +58,16 @@ const AddDepositModal = ({ setOpenAddDepositModal, currentId }: Props) => {
           validationSchema={validationSchema}
           onSubmit={(val: any) => {
             updateDeposit({ id: currentId, deposit: +val.deposit });
-            setOpenAddDepositModal(false);
+            if (!isLoading) setOpenAddDepositModal(false);
           }}
         >
           <Form>
             <FormWrapper>
               <StyledField name="deposit" placeholder="deposit" />
               <ErrorMessage name="deposit" component={ValidationErrorMsg} />
-              <Button type="submit">Add</Button>
+              <Button type="submit">
+                {isLoading ? <LoadingSpinner /> : "Add"}
+              </Button>
             </FormWrapper>
           </Form>
         </Formik>

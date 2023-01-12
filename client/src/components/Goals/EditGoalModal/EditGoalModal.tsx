@@ -12,6 +12,7 @@ import {
 import { useRef } from "react";
 import * as yup from "yup";
 import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
+import LoadingSpinner from "../../../assets/atoms/LoadingSpinner";
 
 interface InitialValues {
   description: string;
@@ -41,7 +42,7 @@ const UpdateGoalModal = ({ setShowEditGoalModal, id }: Props) => {
     setShowEditGoalModal(false);
   };
 
-  const [updateGoal] = useUpdateGoalMutation();
+  const [updateGoal, { isLoading }] = useUpdateGoalMutation();
 
   const handleUpdateGoal = (values: InitialValues) => {
     updateGoal({
@@ -80,7 +81,7 @@ const UpdateGoalModal = ({ setShowEditGoalModal, id }: Props) => {
           validationSchema={validationSchema}
           onSubmit={(val: any) => {
             handleUpdateGoal(val);
-            setShowEditGoalModal(false);
+            if (!isLoading) setShowEditGoalModal(false);
           }}
         >
           <Form>
@@ -98,7 +99,9 @@ const UpdateGoalModal = ({ setShowEditGoalModal, id }: Props) => {
               <ErrorMessage name="description" component={ValidationErrorMsg} />
               <StyledField name="amount" placeholder="amount" />
               <ErrorMessage name="amount" component={ValidationErrorMsg} />
-              <Button type="submit">Add</Button>
+              <Button type="submit">
+                {isLoading ? <LoadingSpinner /> : "Save"}
+              </Button>
             </FormWrapper>
           </Form>
         </Formik>

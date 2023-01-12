@@ -11,7 +11,7 @@ import {
   StyledField,
   FormWrapper,
 } from "./IncomesModalStyle";
-
+import LoadingSpinner from "../../../assets/atoms/LoadingSpinner";
 interface Props {
   setOpenIncomesModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -23,7 +23,7 @@ const initialValues = {
 
 const IncomesModal = ({ setOpenIncomesModal }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
-  const [addIncome, response] = useAddIncomesMutation();
+  const [addIncome, { isLoading }] = useAddIncomesMutation();
   const handleCloseModal = () => {
     setOpenIncomesModal(false);
   };
@@ -61,7 +61,7 @@ const IncomesModal = ({ setOpenIncomesModal }: Props) => {
               username: username,
               date: getCurrentDate(),
             });
-            setOpenIncomesModal(false);
+            if (!isLoading) setOpenIncomesModal(false);
           }}
         >
           <Form>
@@ -72,7 +72,9 @@ const IncomesModal = ({ setOpenIncomesModal }: Props) => {
                 <option value="other">other</option>
               </Field>
               <StyledField type="text" name="amount" placeholder="amount" />
-              <Button type="submit">Save</Button>
+              <Button type="submit">
+                {isLoading ? <LoadingSpinner /> : "Add"}
+              </Button>
             </FormWrapper>
           </Form>
         </Formik>

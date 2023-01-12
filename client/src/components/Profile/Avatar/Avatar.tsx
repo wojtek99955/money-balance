@@ -14,10 +14,11 @@ import {
   FileInput,
   variants,
 } from "./AvatarStyle";
+import LiquidLoader from "../../../assets/molecules/LiquidLoader";
 
 const Avatar = () => {
   const [files, setFiles] = useState<File | null>(null);
-  const [addAvatar, response] = useAddAvatarMutation();
+  const [addAvatar, { isLoading: addAvatarLoading }] = useAddAvatarMutation();
   const [deleteAvatar, { isSuccess, isError, error }] =
     useDeleteAvatarMutation();
 
@@ -44,7 +45,8 @@ const Avatar = () => {
     setFiles(null);
   };
 
-  const { data: avatar, isLoading } = useGetAvatarQuery(undefined);
+  const { data: avatar, isLoading: getAvatarLoading } =
+    useGetAvatarQuery(undefined);
 
   useEffect(() => {
     if (files) {
@@ -60,7 +62,7 @@ const Avatar = () => {
     setIsHovered(false);
   }
 
-  console.log(isLoading);
+  let liquidLoader = getAvatarLoading || addAvatarLoading;
 
   return (
     <AvatarContainer
@@ -92,6 +94,7 @@ const Avatar = () => {
         </EditContainer>
       ) : null}
       {isHovered && avatar === 0 ? <EditContainer /> : null}
+      {liquidLoader ? <LiquidLoader /> : null}
     </AvatarContainer>
   );
 };

@@ -42,7 +42,7 @@ const UpdateGoalModal = ({ setShowEditGoalModal, id }: Props) => {
     setShowEditGoalModal(false);
   };
 
-  const [updateGoal, { isLoading }] = useUpdateGoalMutation();
+  const [updateGoal, { isLoading, isSuccess }] = useUpdateGoalMutation();
 
   const handleUpdateGoal = (values: InitialValues) => {
     updateGoal({
@@ -58,6 +58,10 @@ const UpdateGoalModal = ({ setShowEditGoalModal, id }: Props) => {
       setShowEditGoalModal(false);
     }
   };
+
+  if (isSuccess) {
+    setShowEditGoalModal(false);
+  }
 
   return ReactDOM.createPortal(
     <Container
@@ -81,7 +85,6 @@ const UpdateGoalModal = ({ setShowEditGoalModal, id }: Props) => {
           validationSchema={validationSchema}
           onSubmit={(val: any) => {
             handleUpdateGoal(val);
-            if (!isLoading) setShowEditGoalModal(false);
           }}
         >
           <Form>

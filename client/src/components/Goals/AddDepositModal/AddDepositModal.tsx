@@ -31,7 +31,7 @@ const AddDepositModal = ({ setOpenAddDepositModal, currentId }: Props) => {
     setOpenAddDepositModal(false);
   };
 
-  const [updateDeposit, { isLoading }] = useAddGoalPaymentMutation();
+  const [updateDeposit, { isLoading, isSuccess }] = useAddGoalPaymentMutation();
 
   const containerRef = useRef(null);
 
@@ -40,6 +40,10 @@ const AddDepositModal = ({ setOpenAddDepositModal, currentId }: Props) => {
       setOpenAddDepositModal(false);
     }
   };
+
+  if (isSuccess) {
+    setOpenAddDepositModal(false);
+  }
 
   return ReactDOM.createPortal(
     <Container
@@ -58,7 +62,6 @@ const AddDepositModal = ({ setOpenAddDepositModal, currentId }: Props) => {
           validationSchema={validationSchema}
           onSubmit={(val: any) => {
             updateDeposit({ id: currentId, deposit: +val.deposit });
-            if (!isLoading) setOpenAddDepositModal(false);
           }}
         >
           <Form>

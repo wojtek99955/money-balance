@@ -36,7 +36,7 @@ const validationSchema = yup.object().shape({
 const IncomesModal = ({ setOpenEditIncomesModal, currentId }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
 
-  const [updateIncome, { isLoading }] = useUpdateIncomeMutation();
+  const [updateIncome, { isLoading, isSuccess }] = useUpdateIncomeMutation();
 
   const handleCloseModal = (e: any) => {
     setOpenEditIncomesModal(false);
@@ -57,6 +57,10 @@ const IncomesModal = ({ setOpenEditIncomesModal, currentId }: Props) => {
       username: username,
     });
   };
+
+  if (isSuccess) {
+    setOpenEditIncomesModal(false);
+  }
 
   return ReactDOM.createPortal(
     <Container
@@ -80,7 +84,6 @@ const IncomesModal = ({ setOpenEditIncomesModal, currentId }: Props) => {
           validationSchema={validationSchema}
           onSubmit={(val) => {
             handleUpdateIncome(currentId, val);
-            if (!isLoading) setOpenEditIncomesModal(false);
           }}
         >
           <Form>

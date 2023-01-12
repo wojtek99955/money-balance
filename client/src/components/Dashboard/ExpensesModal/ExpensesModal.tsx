@@ -12,6 +12,7 @@ import {
   FormWrapper,
 } from "./ExpensesModalStyle";
 import LoadingSpinner from "../../../assets/atoms/LoadingSpinner";
+import { useGetLatestExpensesQuery } from "../../../api/expenseApiSlice";
 
 interface Props {
   setOpenExpensesModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,7 +25,7 @@ const initialValues = {
 
 const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
-  const [addExpense, { isLoading }] = useAddExpensesMutation();
+  const [addExpense, { isSuccess, isLoading }] = useAddExpensesMutation();
   const handleCloseModal = () => {
     setOpenExpensesModal(false);
   };
@@ -36,7 +37,9 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
       setOpenExpensesModal(false);
     }
   };
-
+  if (isSuccess) {
+    setOpenExpensesModal(false);
+  }
   return ReactDOM.createPortal(
     <Container
       ref={wrapperRef}
@@ -63,7 +66,6 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
               username: username,
               date: getCurrentDate(),
             });
-            if (!isLoading) setOpenExpensesModal(false);
           }}
         >
           <Form>

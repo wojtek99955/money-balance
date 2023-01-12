@@ -36,7 +36,7 @@ const validationSchema = yup.object().shape({
 const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
 
-  const [updateExpense, { isLoading }] = useUpdateExpenseMutation();
+  const [updateExpense, { isLoading, isSuccess }] = useUpdateExpenseMutation();
 
   const handleCloseModal = () => {
     setOpenEditExpensesModal(false);
@@ -57,6 +57,11 @@ const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
       username: username,
     });
   };
+
+  if (isSuccess) {
+    setOpenEditExpensesModal(false);
+  }
+
   return ReactDOM.createPortal(
     <Container
       ref={wrapperRef}
@@ -79,7 +84,6 @@ const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
           validationSchema={validationSchema}
           onSubmit={(val) => {
             handleUpdateExpense(currentId, val);
-            if (!isLoading) setOpenEditExpensesModal(false);
           }}
         >
           <Form>

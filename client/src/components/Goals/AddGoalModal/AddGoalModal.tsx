@@ -49,12 +49,15 @@ const AddGoalModal = ({ setOpenAddGoalModal }: Props) => {
     }
   };
 
-  const [addGoal, { isLoading }] = useAddGoalMutation();
+  const [addGoal, { isLoading, isSuccess }] = useAddGoalMutation();
 
   const handleSubmit = (val: any) => {
     addGoal(val);
-    if (!isLoading) setOpenAddGoalModal(false);
   };
+
+  if (isSuccess) {
+    setOpenAddGoalModal(false);
+  }
   return ReactDOM.createPortal(
     <Container
       ref={containerRef}

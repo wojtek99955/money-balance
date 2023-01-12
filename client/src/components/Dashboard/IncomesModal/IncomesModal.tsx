@@ -23,7 +23,7 @@ const initialValues = {
 
 const IncomesModal = ({ setOpenIncomesModal }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
-  const [addIncome, { isLoading }] = useAddIncomesMutation();
+  const [addIncome, { isLoading, isSuccess }] = useAddIncomesMutation();
   const handleCloseModal = () => {
     setOpenIncomesModal(false);
   };
@@ -34,6 +34,10 @@ const IncomesModal = ({ setOpenIncomesModal }: Props) => {
       setOpenIncomesModal(false);
     }
   };
+
+  if (isSuccess) {
+    setOpenIncomesModal(false);
+  }
 
   return ReactDOM.createPortal(
     <Container
@@ -61,7 +65,6 @@ const IncomesModal = ({ setOpenIncomesModal }: Props) => {
               username: username,
               date: getCurrentDate(),
             });
-            if (!isLoading) setOpenIncomesModal(false);
           }}
         >
           <Form>

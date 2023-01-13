@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useAddIncomesMutation } from "../../../api/incomeApiSlice";
 import { getCurrentDate } from "../../../helpers/getCurrentDate";
@@ -12,6 +12,9 @@ import {
   FormWrapper,
 } from "./IncomesModalStyle";
 import LoadingSpinner from "../../../assets/atoms/LoadingSpinner";
+import * as yup from "yup";
+import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
+
 interface Props {
   setOpenIncomesModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -20,6 +23,10 @@ const initialValues = {
   category: "salary",
   amount: "",
 };
+
+const validationSchema = yup.object().shape({
+  amount: yup.number().typeError("Only numbers").required("Required"),
+});
 
 const IncomesModal = ({ setOpenIncomesModal }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
@@ -58,6 +65,7 @@ const IncomesModal = ({ setOpenIncomesModal }: Props) => {
         <h3>Add Income</h3>
         <Formik
           initialValues={initialValues}
+          validationSchema={validationSchema}
           onSubmit={(val) => {
             addIncome({
               category: val.category,
@@ -75,6 +83,7 @@ const IncomesModal = ({ setOpenIncomesModal }: Props) => {
                 <option value="other">other</option>
               </Field>
               <StyledField type="text" name="amount" placeholder="amount" />
+              <ErrorMessage name="amount" component={ValidationErrorMsg} />
               <Button type="submit">
                 {isLoading ? <LoadingSpinner /> : "Add"}
               </Button>

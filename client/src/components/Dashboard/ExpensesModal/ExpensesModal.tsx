@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../../assets/atoms/Button";
 import { useAddExpensesMutation } from "../../../api/expenseApiSlice";
 import { getCurrentDate } from "../../../helpers/getCurrentDate";
@@ -12,7 +12,8 @@ import {
   FormWrapper,
 } from "./ExpensesModalStyle";
 import LoadingSpinner from "../../../assets/atoms/LoadingSpinner";
-import { useGetLatestExpensesQuery } from "../../../api/expenseApiSlice";
+import * as yup from "yup";
+import ValidationErrorMsg from "../../../assets/atoms/ValidationErrorMsg";
 
 interface Props {
   setOpenExpensesModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,6 +23,10 @@ const initialValues = {
   category: "shopping",
   amount: "",
 };
+
+const validationSchema = yup.object().shape({
+  amount: yup.number().typeError("Only numbers").required("Required"),
+});
 
 const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
@@ -59,6 +64,7 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
         <h3>Add Expense</h3>
         <Formik
           initialValues={initialValues}
+          validationSchema={validationSchema}
           onSubmit={(val) => {
             addExpense({
               category: val.category,
@@ -78,6 +84,7 @@ const ExpensesModal = ({ setOpenExpensesModal }: Props) => {
                 <option value="other">other</option>
               </Field>
               <StyledField type="text" name="amount" placeholder="amount" />
+              <ErrorMessage name="amount" component={ValidationErrorMsg} />
               <Button type="submit">
                 {isLoading ? <LoadingSpinner /> : "Add"}
               </Button>

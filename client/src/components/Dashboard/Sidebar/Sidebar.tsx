@@ -28,11 +28,11 @@ const links = [
     icon: <ExpensesIcon />,
     route: "/expenses",
   },
-  {
-    text: "Statistics",
-    icon: <ChartIcon />,
-    route: "/",
-  },
+  // {
+  //   text: "Statistics",
+  //   icon: <ChartIcon />,
+  //   route: "/",
+  // },
   {
     text: "Goals",
     icon: <SavingsIcon />,

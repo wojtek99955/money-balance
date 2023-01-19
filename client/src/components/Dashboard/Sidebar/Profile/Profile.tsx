@@ -65,8 +65,6 @@ const Profile = () => {
               <li>
                 <StyledLink to="/profile">Profile</StyledLink>
               </li>
-              <li>Statistics</li>
-              <li>Wallet</li>
               <li onClick={handleLogout}>Logout</li>
             </ul>
           </OptionsContainer>

@@ -39,7 +39,11 @@ const IncomesList = () => {
 
   const { category, amount, timestamp, limit, date } = filterData;
 
-  const { data: income, isLoading } = useGetIncomesQuery({
+  const {
+    data: income,
+    isLoading,
+    isFetching,
+  } = useGetIncomesQuery({
     page,
     category,
     amount,
@@ -70,6 +74,52 @@ const IncomesList = () => {
     setPage((prev) => prev - 1);
   };
 
+  let content;
+
+  content = income?.incomes!.map((income: any) => {
+    return (
+      <DashboardBox key={income._id}>
+        <ExpensesWrapper>
+          <ExpenseDataGroup>
+            {getIncomeCategoryIcon(income.category)}
+            <div>
+              <div>{income.category}</div>
+              <span>{income.date}</span>
+            </div>
+          </ExpenseDataGroup>
+          <Price> + ${income.amount}</Price>
+          <ControllerBtns>
+            <BtnContainer
+              onClick={() => {
+                handleOpenEditModal();
+                setCurrentId(income._id);
+              }}
+            >
+              <EditIcon />
+            </BtnContainer>
+            <BtnContainer
+              onClick={() => {
+                handleDeleteIncome(income._id);
+              }}
+            >
+              <DeleteIcon />
+            </BtnContainer>
+          </ControllerBtns>
+        </ExpensesWrapper>
+        <AnimatePresence>
+          {openEditIncomesModal ? (
+            <EditIncomesModal
+              currentId={currentId}
+              setOpenEditIncomesModal={setOpenEditIncomesModal}
+            />
+          ) : null}
+        </AnimatePresence>{" "}
+      </DashboardBox>
+    );
+  });
+
+  if (isLoading || isFetching) content = <BudgetItemLoader />;
+
   return (
     <RouteContainer>
       <Wrapper>
@@ -87,48 +137,7 @@ const IncomesList = () => {
             setFilterData={setFilterData}
             filterData={filterData}
           />
-          {income?.incomes!.map((income: any) => {
-            return (
-              <DashboardBox key={income._id}>
-                <ExpensesWrapper>
-                  <ExpenseDataGroup>
-                    {getIncomeCategoryIcon(income.category)}
-                    <div>
-                      <div>{income.category}</div>
-                      <span>{income.date}</span>
-                    </div>
-                  </ExpenseDataGroup>
-                  <Price> + ${income.amount}</Price>
-                  <ControllerBtns>
-                    <BtnContainer
-                      onClick={() => {
-                        handleOpenEditModal();
-                        setCurrentId(income._id);
-                      }}
-                    >
-                      <EditIcon />
-                    </BtnContainer>
-                    <BtnContainer
-                      onClick={() => {
-                        handleDeleteIncome(income._id);
-                      }}
-                    >
-                      <DeleteIcon />
-                    </BtnContainer>
-                  </ControllerBtns>
-                </ExpensesWrapper>
-                <AnimatePresence>
-                  {openEditIncomesModal ? (
-                    <EditIncomesModal
-                      currentId={currentId}
-                      setOpenEditIncomesModal={setOpenEditIncomesModal}
-                    />
-                  ) : null}
-                </AnimatePresence>
-              </DashboardBox>
-            );
-          })}
-          {isLoading ? <BudgetItemLoader /> : null}
+          {content}
         </IncomeContainer>
         <PaginationBtns>
           <Button

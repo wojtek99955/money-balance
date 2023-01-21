@@ -40,7 +40,11 @@ const ExpensesList = () => {
 
   const { category, amount, timestamp, limit, date } = filterData;
 
-  const { data: expenses, isLoading } = useGetExpensesQuery({
+  const {
+    data: expenses,
+    isLoading,
+    isFetching,
+  } = useGetExpensesQuery({
     page,
     category,
     amount,
@@ -73,6 +77,52 @@ const ExpensesList = () => {
   };
   console.log(expenses);
 
+  let content;
+
+  if (isLoading || isFetching) content = <BudgetItemLoader />;
+
+  content = expenses?.expenses.map((expense: ExpenseType) => {
+    return (
+      <DashboardBox key={expense._id}>
+        <ExpensesWrapper>
+          <ExpenseDataGroup>
+            {getExpenseCategoryIcon(expense.category)}
+            <div>
+              <div>{expense.category}</div>
+              <span>{expense.date}</span>
+            </div>
+          </ExpenseDataGroup>
+          <Price> - ${expense.amount} </Price>
+          <ControllerBtns>
+            <BtnContainer
+              onClick={() => {
+                handleOpenEditModal();
+                handleSetCurrentId(expense._id);
+              }}
+            >
+              <EditIcon />
+            </BtnContainer>
+            <BtnContainer
+              onClick={() => {
+                handleDeleteNote(expense._id);
+              }}
+            >
+              <DeleteIcon />
+            </BtnContainer>
+          </ControllerBtns>
+        </ExpensesWrapper>
+        <AnimatePresence>
+          {openEditExpensesModal ? (
+            <EditExpensesModal
+              currentId={currentId}
+              setOpenEditExpensesModal={setOpenEditExpensesModal}
+            />
+          ) : null}
+        </AnimatePresence>
+      </DashboardBox>
+    );
+  });
+
   return (
     <RouteContainer>
       <Wrapper>
@@ -90,48 +140,7 @@ const ExpensesList = () => {
             setFilterData={setFilterData}
             filterData={filterData}
           />
-          {expenses?.expenses.map((expense: ExpenseType) => {
-            return (
-              <DashboardBox key={expense._id}>
-                <ExpensesWrapper>
-                  <ExpenseDataGroup>
-                    {getExpenseCategoryIcon(expense.category)}
-                    <div>
-                      <div>{expense.category}</div>
-                      <span>{expense.date}</span>
-                    </div>
-                  </ExpenseDataGroup>
-                  <Price> - ${expense.amount} </Price>
-                  <ControllerBtns>
-                    <BtnContainer
-                      onClick={() => {
-                        handleOpenEditModal();
-                        handleSetCurrentId(expense._id);
-                      }}
-                    >
-                      <EditIcon />
-                    </BtnContainer>
-                    <BtnContainer
-                      onClick={() => {
-                        handleDeleteNote(expense._id);
-                      }}
-                    >
-                      <DeleteIcon />
-                    </BtnContainer>
-                  </ControllerBtns>
-                </ExpensesWrapper>
-                <AnimatePresence>
-                  {openEditExpensesModal ? (
-                    <EditExpensesModal
-                      currentId={currentId}
-                      setOpenEditExpensesModal={setOpenEditExpensesModal}
-                    />
-                  ) : null}
-                </AnimatePresence>
-              </DashboardBox>
-            );
-          })}
-          {isLoading ? <BudgetItemLoader /> : null}
+          {content}
         </ExpensesContainer>
         <PaginationBtns>
           <Button

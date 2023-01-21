@@ -79,8 +79,6 @@ const ExpensesList = () => {
 
   let content;
 
-  if (isLoading || isFetching) content = <BudgetItemLoader />;
-
   content = expenses?.expenses.map((expense: ExpenseType) => {
     return (
       <DashboardBox key={expense._id}>
@@ -122,6 +120,8 @@ const ExpensesList = () => {
       </DashboardBox>
     );
   });
+
+  if (isLoading || isFetching) content = <BudgetItemLoader />;
 
   return (
     <RouteContainer>

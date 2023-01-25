@@ -4,6 +4,8 @@ import FilterDropdown from "../../../assets/atoms/FilterDropdown/FilterDropdown"
 import { FilterWallet } from "../../../Interfaces/FilterWallet";
 import DateInputContainer from "../../../assets/atoms/DateInputContainer";
 import { DateInput } from "../../../assets/atoms/DateInput";
+import { device } from "../../../assets/devices";
+
 interface Props {
   setFilterData: React.Dispatch<React.SetStateAction<FilterWallet>>;
   filterData: FilterWallet;
@@ -17,7 +19,11 @@ const FilterContainer = styled.div`
 
 const DropdownWrapper = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
+
+  @media ${device.tablet} {
+    gap: 1rem;
+  }
 `;
 
 const ExpensesFilterDropdown = ({ setFilterData, filterData }: Props) => {

@@ -20,6 +20,7 @@ import {
   IncomeIcon,
   IncomeIconContainer,
   Wrapper,
+  IncomeDetails,
 } from "./IncomesListStyle";
 import { FilterWallet } from "../../../Interfaces/FilterWallet";
 import IncomesFilterDropdown from "./IncomesFilterDropdown/IncomesFilterDropdown";
@@ -85,14 +86,16 @@ const IncomesList = () => {
     return (
       <DashboardBox key={income._id}>
         <ExpensesWrapper>
-          <ExpenseDataGroup>
-            {getIncomeCategoryIcon(income.category)}
-            <div>
-              <div>{income.category}</div>
-              <span>{income.date}</span>
-            </div>
-          </ExpenseDataGroup>
-          <Price> + ${income.amount}</Price>
+          <div>{getIncomeCategoryIcon(income.category)}</div>
+          <IncomeDetails>
+            <ExpenseDataGroup>
+              <div>
+                <div>{income.category}</div>
+                <span>{income.date}</span>
+              </div>
+            </ExpenseDataGroup>
+            <Price> + ${income.amount}</Price>
+          </IncomeDetails>
           <ControllerBtns>
             <BtnContainer
               onClick={() => {

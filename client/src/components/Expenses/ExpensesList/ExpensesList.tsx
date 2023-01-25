@@ -22,6 +22,7 @@ import {
   ExpensesWrapper,
   PaginationBtns,
   Wrapper,
+  ExpenseDetails,
 } from "./ExpensesListStyle";
 import { FilterWallet } from "../../../Interfaces/FilterWallet";
 import BudgetItemLoader from "../../../assets/molecules/BudgetItemLoader";
@@ -86,14 +87,16 @@ const ExpensesList = () => {
     return (
       <DashboardBox key={expense._id}>
         <ExpensesWrapper>
-          <ExpenseDataGroup>
-            {getExpenseCategoryIcon(expense.category)}
-            <div>
-              <div>{expense.category}</div>
-              <span>{expense.date}</span>
-            </div>
-          </ExpenseDataGroup>
-          <Price> - ${expense.amount} </Price>
+          <div>{getExpenseCategoryIcon(expense.category)}</div>
+          <ExpenseDetails>
+            <ExpenseDataGroup>
+              <div>
+                <div>{expense.category}</div>
+                <span>{expense.date}</span>
+              </div>
+            </ExpenseDataGroup>
+            <Price> - ${expense.amount} </Price>
+          </ExpenseDetails>
           <ControllerBtns>
             <BtnContainer
               onClick={() => {

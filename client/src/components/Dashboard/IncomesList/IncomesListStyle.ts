@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { AiOutlineEdit } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
 import { GiReceiveMoney } from "react-icons/gi";
+import { device } from "../../../assets/devices.js";
 
 export const IncomeIcon = styled(GiReceiveMoney)`
   font-size: 3rem;
@@ -40,8 +41,12 @@ export const Price = styled.div`
   color: #009f5f;
   font-size: 1.4rem;
   font-weight: 600;
-  margin-left: auto;
   margin-right: 3rem;
+  margin: auto;
+  @media ${device.tablet} {
+    margin: unset;
+    margin-left: auto;
+  }
 `;
 export const ExpenseDataGroup = styled.div`
   display: flex;
@@ -52,11 +57,21 @@ export const ExpenseDataGroup = styled.div`
     font-weight: 700;
     font-size: 1.1rem;
     text-transform: capitalize;
+    text-align: center;
+
+    @media ${device.tablet} {
+      text-align: unset;
+    }
   }
   span {
     color: ${({ theme }) => theme.colors.grey};
     font-weight: 500;
     font-size: 1rem;
+    text-align: center;
+
+    @media ${device.tablet} {
+      text-align: unset;
+    }
   }
 `;
 
@@ -74,6 +89,7 @@ export const ExpensesWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0;
+  gap: 0.5rem;
 `;
 
 export const DeleteIcon = styled(IoMdClose)`
@@ -101,7 +117,12 @@ export const BtnContainer = styled.div`
 `;
 export const ControllerBtns = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 1rem;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+  }
 `;
 
 export const PaginationBtns = styled.div`
@@ -119,4 +140,16 @@ export const PaginationBtns = styled.div`
 export const Wrapper = styled.div`
   position: relative;
   min-height: 100%;
+`;
+
+export const IncomeDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;

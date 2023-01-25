@@ -11,6 +11,8 @@ import ExpensesList from "./components/Expenses/ExpensesList/ExpensesList";
 import IncomesList from "./components/Dashboard/IncomesList/IncomesList";
 import Profile from "./components/Profile/Profile";
 import Goals from "./components/Goals/Goals/Goals";
+import Header from "./components/Header/Header";
+import { device } from "./assets/devices.js";
 
 interface StyleProps {
   location: string;
@@ -22,6 +24,16 @@ const AppContainer = styled.div<StyleProps>`
     location === "/" || location === "/sign-up" || location === "/sign-in"
       ? "column"
       : "row"};
+  background-color: ${({ theme }) =>
+    theme.colors.backgroundColor.lightBackground};
+
+  padding-top: ${({ location }) =>
+    location === "/" || location === "/sign-up" || location === "/sign-in"
+      ? "0"
+      : "5rem"};
+  @media ${device.tablet} {
+    padding-top: 0;
+  }
 `;
 function App() {
   let location = useLocation();
@@ -32,7 +44,10 @@ function App() {
           {location.pathname === "/" ||
           location.pathname === "/sign-up" ||
           location.pathname === "/sign-in" ? null : (
-            <Sidebar />
+            <>
+              <Sidebar />
+              <Header />
+            </>
           )}
         </div>
         <Routes>

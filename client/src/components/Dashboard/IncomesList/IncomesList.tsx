@@ -139,7 +139,6 @@ const IncomesList = () => {
               <IncomeIcon />
             </IncomeIconContainer>
             <div>
-              <Hamburger />
               <h2>Incomes</h2>
               <p>Browse your incomes history</p>
             </div>

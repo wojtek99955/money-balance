@@ -39,6 +39,7 @@ export const Profile = styled.div`
   align-items: center;
   gap: 1rem;
   cursor: pointer;
+  display: none;
   span {
     font-weight: 600;
     display: none;

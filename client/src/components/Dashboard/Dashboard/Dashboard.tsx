@@ -19,7 +19,6 @@ import {
 } from "./DashboardStyle";
 import LoaderContainer from "../../../assets/atoms/LoaderContainer";
 import ShowDataDropdown from "../ShowDataDropdown/ShowDataDropdown";
-import Hamburger from "../../../assets/atoms/Hamburger";
 
 const Dashboard = () => {
   const { data: userData, isLoading: userDataLoading } =
@@ -40,7 +39,6 @@ const Dashboard = () => {
     <RouteContainer>
       <RouteWrapper>
         <TopSectionWrapper>
-          <Hamburger />
           <TopSection>
             <Title>
               <h2>Dashboard</h2>

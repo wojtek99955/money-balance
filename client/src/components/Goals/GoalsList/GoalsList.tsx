@@ -25,7 +25,7 @@ import AddDepositModal from "../AddDepositModal/AddDepositModal";
 import { AnimatePresence } from "framer-motion";
 import { Goal } from "../../../Interfaces/Goal";
 
-// ChartJS.register(Title, Tooltip, Legend, Filler, ArcElement);
+ChartJS.register(Title, Tooltip, Legend, Filler, ArcElement);
 
 interface GoalsList {
   goal: Goal;
@@ -40,20 +40,20 @@ interface Props {
 }
 
 const GoalsList = ({ goals }: Props) => {
-  // const chartOptions = {
-  //   responsive: true,
-  //   cutout: "60%",
-  //   plugins: {
-  //     legend: {
-  //       display: false,
-  //     },
-  //   },
-  //   elements: {
-  //     arc: {
-  //       borderWidth: 2,
-  //     },
-  //   },
-  // };
+  const chartOptions = {
+    responsive: true,
+    cutout: "60%",
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    elements: {
+      arc: {
+        borderWidth: 2,
+      },
+    },
+  };
 
   const [openAddDepositModal, setOpenAddDepositModal] = useState(false);
   const [currentId, setCurrentId] = useState(" ");
@@ -84,22 +84,23 @@ const GoalsList = ({ goals }: Props) => {
                 <AcheivedGoal>
                   <AcheivedIcon />
                 </AcheivedGoal>
-              ) : // <Doughnut
-              //   data={{
-              //     labels: ["Left", "Deposit"],
-              //     datasets: [
-              //       {
-              //         data: [
-              //           goal.goal.amount - goal.goal.deposit,
-              //           goal.goal.deposit,
-              //         ],
-              //         backgroundColor: ["#DEE1E9", "#009F5F"],
-              //       },
-              //     ],
-              //   }}
-              //   options={chartOptions}
-              // />
-              null}
+              ) : (
+                <Doughnut
+                  data={{
+                    labels: ["Left", "Deposit"],
+                    datasets: [
+                      {
+                        data: [
+                          goal.goal.amount - goal.goal.deposit,
+                          goal.goal.deposit,
+                        ],
+                        backgroundColor: ["#DEE1E9", "#009F5F"],
+                      },
+                    ],
+                  }}
+                  options={chartOptions}
+                />
+              )}
             </ChartContainer>
             <AnimatePresence>
               {openAddDepositModal ? (

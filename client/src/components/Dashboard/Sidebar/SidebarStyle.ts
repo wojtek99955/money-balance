@@ -23,6 +23,7 @@ export const Container = styled.aside<Style>`
   display: flex;
   flex-direction: column;
   align-items: center;
+  top: 0;
 
   @media ${device.tablet} {
     display: flex;

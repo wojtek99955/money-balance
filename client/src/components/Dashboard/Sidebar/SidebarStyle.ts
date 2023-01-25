@@ -107,6 +107,7 @@ export const SideBarMobileContainer = styled.div<Style>`
   z-index: 90;
   width: 100vw;
   height: 100vh;
+  top: 0;
   display: ${({ showSidebar }) => (!showSidebar ? "none" : "block")};
   @media ${device.tablet} {
     display: none;

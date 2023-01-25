@@ -31,11 +31,8 @@ const Summary = () => {
   const { data: totalIncome, isLoading: loadingIncome } =
     useGetTotalIncomeQuery(undefined);
 
-  const {
-    data: totalExpense,
-    isLoading: loadingExpense,
-    isSuccess: isSuccessExpense,
-  } = useGetTotalExpenseQuery(undefined);
+  const { data: totalExpense, isLoading: loadingExpense } =
+    useGetTotalExpenseQuery(undefined);
 
   const totalIncomeData = totalIncome?.[0]?.totalIncome;
   const totalExpenseData = totalExpense?.[0]?.totalExpense;
@@ -93,12 +90,12 @@ const Summary = () => {
         </ItemContainer>
       </BoxWrapper>
       <AnimatePresence>
-        {openExpensesModal || loadingExpense ? (
+        {openExpensesModal ? (
           <ExpensesModal setOpenExpensesModal={setOpenExpensesModal} />
         ) : null}
       </AnimatePresence>
       <AnimatePresence>
-        {openIncomesModal || loadingIncome ? (
+        {openIncomesModal ? (
           <IncomesModal setOpenIncomesModal={setOpenIncomesModal} />
         ) : null}
       </AnimatePresence>

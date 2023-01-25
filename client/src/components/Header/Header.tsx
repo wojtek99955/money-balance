@@ -4,7 +4,7 @@ import { AvatarContainer } from "../Dashboard/Dashboard/DashboardStyle";
 import { useGetAvatarQuery } from "../../api/avatarSlice";
 import LoaderContainer from "../../assets/atoms/LoaderContainer";
 import { device } from "../../assets/devices.js";
-import Hamburger from "../../assets/atoms/Hamburger-kopia";
+import Hamburger from "../../assets/atoms/Hamburger";
 const StyledHeader = styled.header`
   background-color: white;
   padding: 0.3rem 1rem;

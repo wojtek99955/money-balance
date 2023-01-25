@@ -3,6 +3,7 @@ import { TbWallet } from "react-icons/tb";
 import { GiReceiveMoney } from "react-icons/gi";
 import { GiExpense } from "react-icons/gi";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { device } from "../../../assets/devices.js";
 
 export const BoxWrapper = styled.div`
   display: flex;
@@ -13,11 +14,15 @@ export const IconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3rem;
+  height: 3rem;
   background-color: ${({ color }) => color};
   border-radius: 12px;
   cursor: pointer;
+  @media ${device.tablet} {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
 `;
 export const WalletIcon = styled(TbWallet)`
   font-size: 2rem;
@@ -32,7 +37,12 @@ export const IncomeIcon = styled(GiReceiveMoney)`
 export const ItemContainer = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
   gap: 1rem;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+  }
   h3 {
     color: ${({ theme }) => theme.colors.grey};
   }

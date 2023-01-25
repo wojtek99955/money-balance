@@ -10,7 +10,11 @@ import {
   SidebarWrapper,
   IncomesIcon,
   ExpensesIcon,
+  CloseIcon,
+  SideBarMobileContainer,
 } from "./SidebarStyle";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSidebar } from "../../../sidebarSlice";
 
 const links = [
   {
@@ -28,11 +32,6 @@ const links = [
     icon: <ExpensesIcon />,
     route: "/expenses",
   },
-  // {
-  //   text: "Statistics",
-  //   icon: <ChartIcon />,
-  //   route: "/",
-  // },
   {
     text: "Goals",
     icon: <SavingsIcon />,
@@ -41,23 +40,37 @@ const links = [
 ];
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+
+  let showSidebar = useSelector((state: any) => state.sideBar.showSidebar);
+  const closeSideBar = () => {
+    dispatch(toggleSidebar(false));
+  };
   return (
-    <Container>
-      <SidebarWrapper>
-        <Logo />
-        <Nav>
-          {links.map((link) => {
-            return (
-              <StyledLink to={link.route}>
-                {link.icon}
-                {link.text}
-              </StyledLink>
-            );
-          })}
-        </Nav>
-        <Profile />
-      </SidebarWrapper>
-    </Container>
+    <>
+      <SideBarMobileContainer
+        showSidebar={showSidebar}
+        onClick={closeSideBar}
+      />
+
+      <Container showSidebar={showSidebar}>
+        <CloseIcon onClick={closeSideBar} />
+        <SidebarWrapper>
+          <Logo />
+          <Nav>
+            {links.map((link) => {
+              return (
+                <StyledLink to={link.route}>
+                  {link.icon}
+                  {link.text}
+                </StyledLink>
+              );
+            })}
+          </Nav>
+          <Profile />
+        </SidebarWrapper>
+      </Container>
+    </>
   );
 };
 

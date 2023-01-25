@@ -4,19 +4,42 @@ import { Link } from "react-router-dom";
 import { TbChartBar } from "react-icons/tb";
 import { TbCalendar } from "react-icons/tb";
 import { MdOutlineSavings } from "react-icons/md";
-import { FaListUl } from "react-icons/fa";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { GiReceiveMoney } from "react-icons/gi";
 import { GiExpense } from "react-icons/gi";
+import { device } from "../../../assets/devices.js";
+import { GrClose } from "react-icons/gr";
 
-export const Container = styled.aside`
+interface Style {
+  showSidebar: boolean;
+}
+
+export const Container = styled.aside<Style>`
   height: 100vh;
-  width: 13rem;
+  width: 12rem;
+  background-color: white;
+  position: fixed;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  background-color: white;
+
+  @media ${device.tablet} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+  }
+  display: ${({ showSidebar }) => (!showSidebar ? "none" : "flex")};
+`;
+
+export const CloseIcon = styled(GrClose)`
+  @media ${device.tablet} {
+    display: none;
+  }
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
 `;
 
 export const ExpensesIcon = styled(GiExpense)`
@@ -76,4 +99,16 @@ export const SidebarWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1rem 0;
+`;
+
+export const SideBarMobileContainer = styled.div<Style>`
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  z-index: 90;
+  width: 100vw;
+  height: 100vh;
+  display: ${({ showSidebar }) => (!showSidebar ? "none" : "block")};
+  @media ${device.tablet} {
+    display: none;
+  }
 `;

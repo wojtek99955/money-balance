@@ -15,9 +15,11 @@ import {
   Profile,
   RecentOperations,
   AvatarContainer,
+  TopSectionWrapper,
 } from "./DashboardStyle";
 import LoaderContainer from "../../../assets/atoms/LoaderContainer";
 import ShowDataDropdown from "../ShowDataDropdown/ShowDataDropdown";
+import Hamburger from "../../../assets/atoms/Hamburger";
 
 const Dashboard = () => {
   const { data: userData, isLoading: userDataLoading } =
@@ -37,22 +39,25 @@ const Dashboard = () => {
   return (
     <RouteContainer>
       <RouteWrapper>
-        <TopSection>
-          <Title>
-            <h2>Dashboard</h2>
-            <p>detailed information about your expenses</p>
-          </Title>
-          <InputContainer>
-            <input type="text" placeholder="Search..." />
-          </InputContainer>
-          <Profile onClick={goToProfile}>
-            <AvatarContainer>
-              {isAvatarLoading ? <LoaderContainer /> : null}
-              {avatar ? <img src={avatar[0]?.file} /> : null}
-            </AvatarContainer>
-            <span>{username}</span>
-          </Profile>
-        </TopSection>
+        <TopSectionWrapper>
+          <Hamburger />
+          <TopSection>
+            <Title>
+              <h2>Dashboard</h2>
+              <p>detailed information about your expenses</p>
+            </Title>
+            <InputContainer>
+              <input type="text" placeholder="Search..." />
+            </InputContainer>
+            <Profile onClick={goToProfile}>
+              <AvatarContainer>
+                {isAvatarLoading ? <LoaderContainer /> : null}
+                {avatar ? <img src={avatar[0]?.file} /> : null}
+              </AvatarContainer>
+              <span>{username}</span>
+            </Profile>
+          </TopSection>
+        </TopSectionWrapper>
         <ShowDataDropdown />
         <Summary />
         <RecentOperations>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../../assets/devices.js";
 
 export const Title = styled.div`
   h2 {
@@ -14,19 +15,22 @@ export const TopSection = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
 `;
 export const RouteWrapper = styled.div`
   width: 100%;
 `;
 export const InputContainer = styled.div`
   width: 14rem;
+  display: none;
   input {
     display: block;
     border-radius: 12px;
     border: none;
     width: 100%;
     padding: 0.4rem;
+  }
+  @media ${device.laptop} {
+    display: block;
   }
 `;
 
@@ -37,6 +41,10 @@ export const Profile = styled.div`
   cursor: pointer;
   span {
     font-weight: 600;
+    display: none;
+    @media ${device.tablet} {
+      display: block;
+    }
   }
   img {
     height: 100%;
@@ -50,7 +58,12 @@ export const Profile = styled.div`
 
 export const RecentOperations = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 1rem;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+  }
 `;
 
 export const AvatarContainer = styled.div`
@@ -60,4 +73,11 @@ export const AvatarContainer = styled.div`
   position: relative;
   overflow: hidden;
   background-color: white;
+`;
+
+export const TopSectionWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem;
 `;

@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../../../assets/atoms/Button";
-import { useUpdateIncomeMutation } from "../../../../api/incomeApiSlice";
 import {
   Container,
   FormContainer,
@@ -17,6 +16,8 @@ import LoadingSpinner from "../../../../assets/atoms/LoadingSpinner";
 interface Props {
   setOpenEditIncomesModal: React.Dispatch<React.SetStateAction<boolean>>;
   currentId: string;
+  isLoading: boolean;
+  updateIncome: any;
 }
 
 interface InitialValues {
@@ -33,10 +34,13 @@ const validationSchema = yup.object().shape({
   amount: yup.number().typeError("Only numbers").required("Required"),
 });
 
-const IncomesModal = ({ setOpenEditIncomesModal, currentId }: Props) => {
+const IncomesModal = ({
+  setOpenEditIncomesModal,
+  currentId,
+  isLoading,
+  updateIncome,
+}: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
-
-  const [updateIncome, { isLoading, isSuccess }] = useUpdateIncomeMutation();
 
   const handleCloseModal = (e: any) => {
     setOpenEditIncomesModal(false);
@@ -56,11 +60,8 @@ const IncomesModal = ({ setOpenEditIncomesModal, currentId }: Props) => {
       ...values,
       username: username,
     });
+    if (!isLoading) setOpenEditIncomesModal(false);
   };
-
-  if (isSuccess) {
-    setOpenEditIncomesModal(false);
-  }
 
   return ReactDOM.createPortal(
     <Container

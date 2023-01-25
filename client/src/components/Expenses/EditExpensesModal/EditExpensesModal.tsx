@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../../assets/atoms/Button";
-import { useUpdateExpenseMutation } from "../../../api/expenseApiSlice";
 import {
   Container,
   FormContainer,
@@ -17,6 +16,8 @@ import LoadingSpinner from "../../../assets/atoms/LoadingSpinner";
 interface Props {
   setOpenEditExpensesModal: React.Dispatch<React.SetStateAction<boolean>>;
   currentId: string;
+  updateExpense: any;
+  isLoading: boolean;
 }
 
 interface InitialValues {
@@ -33,10 +34,13 @@ const validationSchema = yup.object().shape({
   amount: yup.number().typeError("Only numbers").required("Required"),
 });
 
-const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
+const ExpensesModal = ({
+  setOpenEditExpensesModal,
+  currentId,
+  updateExpense,
+  isLoading,
+}: Props) => {
   const username = JSON.parse(localStorage.getItem("username")!);
-
-  const [updateExpense, { isLoading, isSuccess }] = useUpdateExpenseMutation();
 
   const handleCloseModal = () => {
     setOpenEditExpensesModal(false);
@@ -56,11 +60,8 @@ const ExpensesModal = ({ setOpenEditExpensesModal, currentId }: Props) => {
       ...values,
       username: username,
     });
+    if (!isLoading) setOpenEditExpensesModal(false);
   };
-
-  if (isSuccess) {
-    setOpenEditExpensesModal(false);
-  }
 
   return ReactDOM.createPortal(
     <Container

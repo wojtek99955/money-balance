@@ -26,6 +26,7 @@ import {
 import { FilterWallet } from "../../../Interfaces/FilterWallet";
 import BudgetItemLoader from "../../../assets/molecules/BudgetItemLoader";
 import { AnimatePresence } from "framer-motion";
+import { useUpdateExpenseMutation } from "../../../api/expenseApiSlice";
 
 const ExpensesList = () => {
   const [page, setPage] = useState<number>(0);
@@ -52,13 +53,15 @@ const ExpensesList = () => {
     limit,
     date,
   });
-  const [deleteExpense, { isSuccess, isError, error }] =
-    useDeleteExpenseMutation();
+  const [deleteExpense] = useDeleteExpenseMutation();
 
   const handleDeleteNote = async (id: string) => {
     await deleteExpense({ id: id });
   };
   const [openEditExpensesModal, setOpenEditExpensesModal] = useState(false);
+
+  const [updateExpense, { isLoading: isupdateLoading }] =
+    useUpdateExpenseMutation();
 
   const handleOpenEditModal = () => {
     setOpenEditExpensesModal(true);
@@ -110,8 +113,10 @@ const ExpensesList = () => {
           </ControllerBtns>
         </ExpensesWrapper>
         <AnimatePresence>
-          {openEditExpensesModal ? (
+          {openEditExpensesModal || isupdateLoading ? (
             <EditExpensesModal
+              updateExpense={updateExpense}
+              isLoading={isupdateLoading}
               currentId={currentId}
               setOpenEditExpensesModal={setOpenEditExpensesModal}
             />
@@ -122,7 +127,6 @@ const ExpensesList = () => {
   });
 
   if (isLoading || isFetching) content = <BudgetItemLoader />;
-
   return (
     <RouteContainer>
       <Wrapper>

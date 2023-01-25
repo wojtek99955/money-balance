@@ -25,6 +25,8 @@ import { FilterWallet } from "../../../Interfaces/FilterWallet";
 import IncomesFilterDropdown from "./IncomesFilterDropdown/IncomesFilterDropdown";
 import BudgetItemLoader from "../../../assets/molecules/BudgetItemLoader";
 import { AnimatePresence } from "framer-motion";
+import Hamburger from "../../../assets/atoms/Hamburger";
+import { useUpdateIncomeMutation } from "../../../api/incomeApiSlice";
 
 const IncomesList = () => {
   const [page, setPage] = useState<number>(0);
@@ -59,6 +61,9 @@ const IncomesList = () => {
     await deleteIncome({ id: id });
   };
 
+  const [updateIncome, { isLoading: isupdateLoading }] =
+    useUpdateIncomeMutation();
+
   const [openEditIncomesModal, setOpenEditIncomesModal] = useState(false);
   const handleOpenEditModal = () => {
     setOpenEditIncomesModal(true);
@@ -75,7 +80,7 @@ const IncomesList = () => {
   };
 
   let content;
-
+  console.log(isupdateLoading + " loading");
   content = income?.incomes!.map((income: any) => {
     return (
       <DashboardBox key={income._id}>
@@ -107,8 +112,10 @@ const IncomesList = () => {
           </ControllerBtns>
         </ExpensesWrapper>
         <AnimatePresence>
-          {openEditIncomesModal ? (
+          {openEditIncomesModal || isupdateLoading ? (
             <EditIncomesModal
+              updateIncome={updateIncome}
+              isLoading={isupdateLoading}
               currentId={currentId}
               setOpenEditIncomesModal={setOpenEditIncomesModal}
             />
@@ -129,6 +136,7 @@ const IncomesList = () => {
               <IncomeIcon />
             </IncomeIconContainer>
             <div>
+              <Hamburger />
               <h2>Incomes</h2>
               <p>Browse your incomes history</p>
             </div>

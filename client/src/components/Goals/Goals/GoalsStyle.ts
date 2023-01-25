@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { Button } from "../../../assets/atoms/Button";
+import { device } from "../../../assets/devices.js";
 
 export const NoGoalsWrapper = styled.div`
   display: flex;
@@ -37,8 +38,6 @@ export const GoalsContainer = styled.div`
 `;
 
 export const StyledButton = styled(Button)`
-  position: absolute;
-  right: 0;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -52,6 +51,13 @@ export const AddIconBtn = styled(IoMdAddCircleOutline)`
 export const BtnContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  gap: 1rem;
   margin-top: 3rem;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+    align-items: center;
+  }
 `;

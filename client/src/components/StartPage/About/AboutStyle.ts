@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { BiWallet } from "react-icons/bi";
 import { BiBarChartSquare } from "react-icons/bi";
 import { BiMedal } from "react-icons/bi";
+import { device } from "../../../assets/devices.js";
 
 export const Container = styled.div`
   margin: 2rem 1rem;
@@ -13,16 +14,22 @@ export const Container = styled.div`
   p {
     color: ${({ theme }) => theme.colors.grey};
     font-size: 1.2rem;
-    width: 20rem;
     margin: auto;
+    max-width: 25rem;
     padding-top: 2rem;
   }
 `;
 
 export const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   padding: 4rem 0;
+  gap: 3rem;
+
+  @media ${device.tablet} {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
 `;
 export const WalletIcon = styled(BiWallet)`
   font-size: 4rem;
@@ -43,12 +50,14 @@ export const GridItem = styled.div`
   align-items: center;
   h3 {
     font-size: 1.8rem;
+    color: ${({ theme }) => theme.colors.title};
+
     padding: 0.5rem 0;
   }
   p {
-    margin-top: 2rem;
     color: ${({ theme }) => theme.colors.title};
     text-align: center;
     font-size: 1rem;
+    width: 90%;
   }
 `;

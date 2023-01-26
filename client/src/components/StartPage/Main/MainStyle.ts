@@ -1,17 +1,23 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { device } from "../../../assets/devices.js";
 
 export const Container = styled.div`
   width: 100%;
   background-color: ${({ theme }) =>
     theme.colors.backgroundColor.lightBackground};
   min-height: 100vh;
+  padding: 0 1rem;
 `;
 export const MainTitle = styled.h1`
   color: ${({ theme }) => theme.colors.title};
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: auto;
   text-align: center;
+
+  @media ${device.tablet} {
+    font-size: 2.5rem;
+  }
 `;
 
 export const MainSection = styled.main`
@@ -25,9 +31,13 @@ export const MainSection = styled.main`
 
   p {
     color: ${({ theme }) => theme.colors.grey};
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-top: 2rem;
     text-align: center;
+
+    @media ${device.tablet} {
+      font-size: 1.2rem;
+    }
   }
 `;
 

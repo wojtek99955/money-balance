@@ -39,7 +39,7 @@ export const Profile = styled.div`
   cursor: pointer;
   display: none;
   @media ${device.tablet} {
-    display: block;
+    display: flex;
     align-items: center;
   }
   span {

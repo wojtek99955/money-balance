@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { device } from "../../../assets/devices.js";
 
 export const StyledHeader = styled.header`
   position: fixed;
@@ -44,7 +45,13 @@ export const StyledLink = styled(Link)`
       border: ${({ theme }) => `2px solid ${theme.colors.main.active}`};
     }
   }
-  padding: 0.4rem 1.3rem;
+  padding: 0.4rem 0.8rem;
   margin-left: 1rem;
+  font-size: 0.9rem;
   border-radius: 8px;
+
+  @media ${device.tablet} {
+    font-size: 1rem;
+    padding: 0.4rem 1.3rem;
+  }
 `;

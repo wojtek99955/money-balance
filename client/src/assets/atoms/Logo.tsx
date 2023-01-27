@@ -7,7 +7,6 @@ const LogoContainer = styled.div`
   color: ${({ theme }) => theme.colors.main.default};
   cursor: pointer;
   user-select: none;
-  padding-top: 1rem;
 `;
 
 const username = JSON.parse(localStorage.getItem("username")!);

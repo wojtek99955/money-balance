@@ -8,6 +8,9 @@ export const Container = styled.div`
     theme.colors.backgroundColor.lightBackground};
   min-height: 100vh;
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 export const MainTitle = styled.h1`
   color: ${({ theme }) => theme.colors.title};

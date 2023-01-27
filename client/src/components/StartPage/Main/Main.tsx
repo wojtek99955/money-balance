@@ -13,7 +13,7 @@ const Main = () => {
     <Container>
       <MainSection>
         <MainTitle>
-          Start manage your Finances <br /> smart with Money Balance.
+          Start manage your finance <br /> smart with Money Balance.
         </MainTitle>
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus,

@@ -9,6 +9,7 @@ import jwt_decode from "jwt-decode";
 import { useLoginMutation } from "../../api/authSlice";
 import LoadingSpinner from "../../assets/atoms/LoadingSpinner";
 import { useState } from "react";
+import Header from "../StartPage/Header/Header";
 
 const initialValues = {
   username: "",
@@ -60,6 +61,7 @@ const SignIn = () => {
 
   return (
     <Container>
+      <Header />
       <DescriptionSection />
       <FormContainer>
         <div>Welcome back</div>

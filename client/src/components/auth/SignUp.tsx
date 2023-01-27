@@ -13,6 +13,7 @@ import ValidationErrorMsg from "../../assets/atoms/ValidationErrorMsg";
 import { useCreateUserMutation } from "../../api/userSlice";
 import LoadingSpinner from "../../assets/atoms/LoadingSpinner";
 import { useState } from "react";
+import Header from "../StartPage/Header/Header";
 const initialValues = {
   username: "",
   password: "",
@@ -52,6 +53,7 @@ const SignUp = () => {
   };
   return (
     <Container>
+      <Header />
       <DescriptionSection />
       <FormContainer>
         <div>start for free</div>

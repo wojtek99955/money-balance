@@ -1,14 +1,18 @@
 import styled from "styled-components";
+import { device } from "../../assets/devices.js";
 
 export const Container = styled.div`
   min-height: 100vh;
   display: flex;
-  align-items: center;
 `;
 
 export const FormContainer = styled.div`
-  width: 50%;
-  padding: 0 1rem 0 3rem;
+  width: 90%;
+  margin: auto;
+  @media ${device.tablet} {
+    width: 50%;
+    padding: 0 1rem 0 3rem;
+  }
 
   h1 {
     color: ${({ theme }) => theme.colors.title};
@@ -75,17 +79,21 @@ export const FormWrapper = styled.div`
 export const SvgContainer = styled.div`
   width: 85%;
   max-width: 700px;
+  @media ${device.tablet} {
+    display: block;
+  }
 `;
 export const Wrapper = styled.div`
   width: 50%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   background-color: ${({ theme }) =>
     theme.colors.backgroundColor.lightBackground};
   align-items: center;
   padding-left: 1rem;
+  display: none;
+  @media ${device.tablet} {
+    display: flex;
+    align-items: center;
+  }
 `;
 export const Description = styled.div`
   p {
@@ -102,4 +110,10 @@ export const SuccessMessage = styled.div`
     color: #009f5f;
     text-transform: none;
   }
+`;
+
+export const DescriptionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;

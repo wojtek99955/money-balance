@@ -3,10 +3,15 @@ import { FiChevronDown } from "react-icons/fi";
 import { FiChevronUp } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { device } from "../../../../assets/devices.js";
 
 export const Container = styled.div`
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 3.5rem;
+
+  @media ${device.tablet} {
+    bottom: 1.5rem;
+  }
 `;
 
 export const DownIcon = styled(FiChevronDown)`
@@ -26,7 +31,6 @@ export const OptionsContainer = styled(motion.div)`
   border-radius: 12px;
   padding: 1rem 0;
   overflow: hidden;
-  height: 200px;
 
   ul {
     list-style: none;

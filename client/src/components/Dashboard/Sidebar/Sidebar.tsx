@@ -60,7 +60,7 @@ const Sidebar = () => {
           <Nav>
             {links.map((link) => {
               return (
-                <StyledLink to={link.route}>
+                <StyledLink to={link.route} onClick={closeSideBar}>
                   {link.icon}
                   {link.text}
                 </StyledLink>

@@ -24,7 +24,6 @@ export const Container = styled.aside<Style>`
   flex-direction: column;
   align-items: center;
   top: 0;
-
   @media ${device.tablet} {
     display: flex;
     flex-direction: column;
@@ -95,7 +94,7 @@ export const IncomesIcon = styled(GiReceiveMoney)`
 
 export const SidebarWrapper = styled.div`
   position: fixed;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,7 +104,7 @@ export const SidebarWrapper = styled.div`
 export const SideBarMobileContainer = styled.div<Style>`
   background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
-  z-index: 90;
+  z-index: 100;
   width: 100vw;
   height: 100vh;
   top: 0;

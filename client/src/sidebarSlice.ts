@@ -4,7 +4,7 @@ export interface Sidebar {
   windowWidth: number;
 }
 const initialState = {
-  showSidebar: true,
+  showSidebar: false,
   windowWidth: window.innerWidth,
 } as Sidebar;
 

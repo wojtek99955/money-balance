@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import LoaderContainer from "../atoms/LoaderContainer";
-
 import { DashboardBox } from "../atoms/DashboardBox";
 
 const Container = styled.div`
-  width: 800px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;

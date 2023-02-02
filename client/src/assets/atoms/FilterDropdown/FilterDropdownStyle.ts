@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { HiOutlineSelector } from "react-icons/hi";
 import { RiCloseLine } from "react-icons/ri";
-import { device } from "../../../assets/device.js";
+import { device } from "../../../assets/devices.js";
 
 interface StyleProps {
   open: boolean;

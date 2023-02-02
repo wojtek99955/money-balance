@@ -8,7 +8,7 @@ const Container = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 99;
+  z-index: 2;
   border-radius: 12px;
   overflow: hidden;
 

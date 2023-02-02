@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { HiOutlineSelector } from "react-icons/hi";
 import { RiCloseLine } from "react-icons/ri";
+import { device } from "../../../assets/device.js";
 
 interface StyleProps {
   open: boolean;
@@ -27,11 +28,14 @@ export const FilterName = styled.div<StyleProps>`
   color: ${({ theme, open, reset }) =>
     open || reset ? theme.colors.main.default : theme.colors.grey};
   display: flex;
-  gap: 1rem;
+  gap: 0.3rem;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
   font-weight: 600;
+  @media ${device.tablet} {
+    gap: 1rem;
+  }
 `;
 
 export const OptionsContainer = styled.div`

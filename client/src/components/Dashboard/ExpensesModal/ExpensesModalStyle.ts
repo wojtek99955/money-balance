@@ -12,6 +12,7 @@ export const Container = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 110;
 `;
 
 export const FormContainer = styled(motion.div)`

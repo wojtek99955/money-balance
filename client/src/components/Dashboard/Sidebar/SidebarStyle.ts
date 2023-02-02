@@ -19,7 +19,7 @@ export const Container = styled.aside<Style>`
   width: 12rem;
   background-color: white;
   position: fixed;
-  z-index: 100;
+  z-index: 110;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -112,4 +112,5 @@ export const SideBarMobileContainer = styled.div<Style>`
   @media ${device.tablet} {
     display: none;
   }
+  z-index: 110;
 `;

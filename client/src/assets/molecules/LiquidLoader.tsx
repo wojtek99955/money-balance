@@ -4,8 +4,9 @@ const BoxWrapper = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
+  border-radius: 50%;
   overflow: hidden;
+  top: 0;
 `;
 const Box = styled.div`
   border-radius: 12px;

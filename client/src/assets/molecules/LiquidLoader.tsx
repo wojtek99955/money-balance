@@ -5,6 +5,7 @@ const BoxWrapper = styled.div`
   height: 100%;
   position: absolute;
   top: 0;
+  overflow: hidden;
 `;
 const Box = styled.div`
   border-radius: 12px;

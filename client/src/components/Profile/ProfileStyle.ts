@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../assets/devices.js";
 
 export const DeleteAccountBtn = styled.button`
   background-color: #e65016;
@@ -11,11 +12,6 @@ export const DeleteAccountBtn = styled.button`
 `;
 
 export const ProfileWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-width: 20rem;
-  height: auto;
-  justify-content: space-between;
   input {
     border-radius: 8px;
     padding: 0.5rem;
@@ -31,8 +27,9 @@ export const Username = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   strong {
-    font-size: 2rem;
+    font-size: 1.2rem;
     padding: 1rem 0;
   }
   button {
@@ -50,6 +47,7 @@ export const Username = styled.div`
 export const EditUsernameContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   margin: 1rem 0;
   button {
     border: ${({ theme }) => `2px solid ${theme.colors.main.default}`};
@@ -70,5 +68,11 @@ export const EditUsernameContainer = styled.div`
 
 export const RouteWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 2rem;
+  align-items: center;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+  }
 `;

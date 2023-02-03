@@ -3,6 +3,7 @@ import { CgProfile } from "react-icons/cg";
 import { BsCamera } from "react-icons/bs";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { motion } from "framer-motion";
+import { device } from "../../../assets/devices.js";
 
 interface Img {
   img: string | number;
@@ -13,25 +14,38 @@ interface FetchAvatar {
 }
 
 export const AvatarContainer = styled(motion.div)<Img>`
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
   border: 1px solid grey;
-  border-radius: 12px;
+  border-radius: 50%;
   background-image: ${({ img }) => `url(${img})`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
   cursor: pointer;
+
+  @media ${device.tablet} {
+    width: 11rem;
+    height: 11rem;
+  }
+  @media ${device.laptop} {
+    width: 15rem;
+    height: 15rem;
+  }
 `;
 
 export const ProfileIcon = styled(CgProfile)`
-  font-size: 10rem;
+  font-size: 8rem;
   color: ${({ theme }) => theme.colors.grey};
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+
+  @media ${device.tablet} {
+    font-size: 10rem;
+  }
 `;
 
 export const AddAvatarIconContainer = styled(motion.div)`
@@ -68,7 +82,7 @@ export const EditContainer = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   top: 0;
-  border-radius: 12px;
+  border-radius: 50%;
   z-index: 10;
   button {
   }

@@ -68,12 +68,13 @@ export const AddAvatarIcon = styled(BsCamera)`
 `;
 
 export const FileInput = styled.input<FetchAvatar>`
-  display: block;
   height: 100%;
   opacity: 0;
+  width: 100%;
   cursor: pointer;
   position: relative;
   z-index: ${({ avatar }) => (avatar === 0 ? "100" : "1")};
+  display: ${({ avatar }) => (avatar ? "none" : "block")};
 `;
 
 export const EditContainer = styled.div`

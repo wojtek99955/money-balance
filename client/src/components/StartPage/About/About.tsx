@@ -26,7 +26,7 @@ const descriptions = [
   },
   {
     name: "Set goals",
-    text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore consectetur est esse sunt culpa quidem mollitia dignissimos quam error ex at consequuntur magnam vel veritatis dolore ipsa, fuga minima laborum.",
+    text: "Have you ever struggled with saving money? Using Money Balance you can set your financial goals and watch how the progress is going.",
     icon: <MedalIcon />,
   },
 ];

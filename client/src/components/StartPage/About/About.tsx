@@ -16,7 +16,7 @@ interface Description {
 const descriptions = [
   {
     name: "Track expenses",
-    text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore consectetur est esse sunt culpa quidem mollitia dignissimos quam error ex at consequuntur magnam vel veritatis dolore ipsa, fuga minima laborum.",
+    text: "Take care of your finances. With Money Balance, you have your expenses under control. You know precisely what your money has been spent on.",
     icon: <WalletIcon />,
   },
   {

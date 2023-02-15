@@ -5,7 +5,12 @@ import { BiMedal } from "react-icons/bi";
 import { device } from "../../../assets/devices.js";
 
 export const Container = styled.div`
-  margin: 2rem 1rem;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
   h2 {
     color: ${({ theme }) => theme.colors.title};
     font-size: 2rem;
@@ -14,9 +19,12 @@ export const Container = styled.div`
   p {
     color: ${({ theme }) => theme.colors.grey};
     font-size: 1.2rem;
-    margin: auto;
-    max-width: 25rem;
     padding-top: 2rem;
+
+    &:first-of-type {
+      max-width: 25rem;
+      text-align: center;
+    }
   }
 `;
 

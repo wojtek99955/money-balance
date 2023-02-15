@@ -16,9 +16,8 @@ const Main = () => {
           Start manage your finance <br /> smart with Money Balance.
         </MainTitle>
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus,
-          placeat excepturi at molestias maxime minus aut. Ea cum iste
-          voluptatum.
+          Discover how money balance can change the way you think about your
+          finances.
         </p>
         <AuthSection>
           <StyledLink to="/sign-up">Register free</StyledLink>

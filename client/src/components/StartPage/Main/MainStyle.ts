@@ -37,9 +37,9 @@ export const MainSection = styled.main`
     font-size: 1.1rem;
     margin-top: 2rem;
     text-align: center;
-
-    @media ${device.tablet} {
-      font-size: 1.2rem;
+    font-size: 1.2rem;
+    @media ${device.mobileL} {
+      width: 22rem;
     }
   }
 `;

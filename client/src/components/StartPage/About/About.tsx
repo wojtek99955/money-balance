@@ -36,8 +36,7 @@ const About = () => {
     <Container>
       <h2>About</h2>
       <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus
-        omnis assumenda officia consequuntur illo minus?
+        Look over the Money Balance features and find out how it could help you
       </p>
       <GridContainer>
         {descriptions.map((item: Description) => {

@@ -4,8 +4,6 @@ import { useRefreshMutation } from "./api/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const VerifyToken = () => {
-  const [trueSuccess, setTrueSuccess] = useState(false);
-
   const [refresh, { isUninitialized, isLoading, isSuccess, isError, error }] =
     useRefreshMutation();
   let navigate = useNavigate();
@@ -24,7 +22,7 @@ const VerifyToken = () => {
         } else {
           return;
         }
-      } catch (err: any) {
+      } catch (err) {
         console.log(err);
       }
     };
@@ -32,7 +30,7 @@ const VerifyToken = () => {
     verifyRefreshToken();
   }, []);
   let content: any;
-  if (isSuccess && trueSuccess) {
+  if (isSuccess) {
     console.log("success");
     content = <Outlet />;
   } else if (isUninitialized) {
@@ -40,7 +38,7 @@ const VerifyToken = () => {
     console.log(isUninitialized);
     content = <Outlet />;
   } else if (isError) {
-    console.log(isError + " is eerror");
+    console.log("error " + isError);
   }
 
   return content;

@@ -36,7 +36,7 @@ const About = () => {
     <Container>
       <h2>About</h2>
       <p>
-        Look over the Money Balance features and find out how it could help you
+        Look over the application features and find out how it could help you.
       </p>
       <GridContainer>
         {descriptions.map((item: Description) => {

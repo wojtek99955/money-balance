@@ -13,6 +13,7 @@ import Profile from "./components/Profile/Profile";
 import Goals from "./components/Goals/Goals/Goals";
 import Header from "./components/Header/Header";
 import { device } from "./assets/devices.js";
+import VerifyToken from "./VerifyToken";
 
 interface StyleProps {
   location: string;
@@ -54,46 +55,48 @@ function App() {
           <Route path="/" element={<StartPage />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
-          <Route
-            path="/dashboard"
-            element={
-              <RequireAuth>
-                <Dashboard />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/expenses"
-            element={
-              <RequireAuth>
-                <ExpensesList />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/incomes"
-            element={
-              <RequireAuth>
-                <IncomesList />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <RequireAuth>
-                <Profile />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/goals"
-            element={
-              <RequireAuth>
-                <Goals />
-              </RequireAuth>
-            }
-          />
+          <Route element={<VerifyToken />}>
+            <Route
+              path="/dashboard"
+              element={
+                <RequireAuth>
+                  <Dashboard />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/expenses"
+              element={
+                <RequireAuth>
+                  <ExpensesList />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/incomes"
+              element={
+                <RequireAuth>
+                  <IncomesList />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <RequireAuth>
+                  <Profile />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/goals"
+              element={
+                <RequireAuth>
+                  <Goals />
+                </RequireAuth>
+              }
+            />
+          </Route>
         </Routes>
       </AppContainer>
     </>

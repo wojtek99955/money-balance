@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRefreshMutation } from "./api/authSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +14,6 @@ const VerifyToken = () => {
       try {
         const res: any = await refresh(null);
         console.log(res);
-        setTrueSuccess(true);
         console.log(isError, error);
         if (res.error.status === 401) {
           navigate("/sign-in");

@@ -35,15 +35,18 @@ export const InputContainer = styled.div`
 `;
 
 export const Profile = styled.div`
+  display: flex;
+  align-items: center;
   gap: 1rem;
   cursor: pointer;
-  display: none;
-  @media ${device.tablet} {
-    display: flex;
-    align-items: center;
-  }
+  z-index: 100;
+
   span {
     font-weight: 600;
+    display: none;
+    @media ${device.tablet} {
+      display: block;
+    }
   }
   img {
     height: 100%;

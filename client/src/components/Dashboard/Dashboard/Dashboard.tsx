@@ -48,11 +48,11 @@ const Dashboard = () => {
               <input type="text" placeholder="Search..." />
             </InputContainer>
             <Profile onClick={goToProfile}>
+              <span>{username}</span>
               <AvatarContainer>
                 {isAvatarLoading ? <LoaderContainer /> : null}
                 {avatar ? <img src={avatar[0]?.file} /> : null}
               </AvatarContainer>
-              <span>{username}</span>
             </Profile>
           </TopSection>
         </TopSectionWrapper>

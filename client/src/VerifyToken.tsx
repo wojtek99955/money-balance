@@ -1,9 +1,11 @@
 import { Outlet } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRefreshMutation } from "./api/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const VerifyToken = () => {
+  const [trueSuccess, setTrueSuccess] = useState(false);
+
   const [refresh, { isUninitialized, isLoading, isSuccess, isError, error }] =
     useRefreshMutation();
   let navigate = useNavigate();
@@ -14,6 +16,7 @@ const VerifyToken = () => {
       try {
         const res: any = await refresh(null);
         console.log(res);
+        setTrueSuccess(true);
         console.log(isError, error);
         if (res.error.status === 401) {
           navigate("/sign-in");
@@ -21,7 +24,7 @@ const VerifyToken = () => {
         } else {
           return;
         }
-      } catch (err) {
+      } catch (err: any) {
         console.log(err);
       }
     };
@@ -29,7 +32,7 @@ const VerifyToken = () => {
     verifyRefreshToken();
   }, []);
   let content: any;
-  if (isSuccess) {
+  if (isSuccess && trueSuccess) {
     console.log("success");
     content = <Outlet />;
   } else if (isUninitialized) {
@@ -37,7 +40,7 @@ const VerifyToken = () => {
     console.log(isUninitialized);
     content = <Outlet />;
   } else if (isError) {
-    console.log("error " + isError);
+    console.log(isError + " is eerror");
   }
 
   return content;

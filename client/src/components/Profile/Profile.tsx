@@ -20,6 +20,7 @@ import Avatar from "./Avatar/Avatar";
 import DeleteModal from "./DeleteModal/DeleteModal";
 import { AnimatePresence } from "framer-motion";
 import ValidationErrorMsg from "../../assets/atoms/ValidationErrorMsg";
+import LoadingSpinner from "../../assets/atoms/LoadingSpinner";
 
 const Profile = () => {
   const { data: userData, isLoading: userDataLoading } =
@@ -31,7 +32,8 @@ const Profile = () => {
   let navigate = useNavigate();
 
   const [newUsername, setNewusername] = useState("");
-  const [updateUsername, { isSuccess }] = useUpdateUsernameMutation();
+  const [updateUsername, { isSuccess, isLoading }] =
+    useUpdateUsernameMutation();
   const [conflictMsg, setConflictMsg] = useState<null | string>(null);
 
   const handleUpdateUsername = async () => {
@@ -72,7 +74,9 @@ const Profile = () => {
                     setNewusername(e.target.value);
                   }}
                 />
-                <button onClick={handleUpdateUsername}>save</button>
+                <button onClick={handleUpdateUsername}>
+                  {isLoading ? <LoadingSpinner /> : "save"}
+                </button>
               </EditUsernameContainer>
             ) : null}
             <ValidationErrorMsg>

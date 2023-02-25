@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import Avatar from "./Avatar/Avatar";
 import DeleteModal from "./DeleteModal/DeleteModal";
 import { AnimatePresence } from "framer-motion";
+import ValidationErrorMsg from "../../assets/atoms/ValidationErrorMsg";
 
 const Profile = () => {
   const { data: userData, isLoading: userDataLoading } =
@@ -26,28 +27,21 @@ const Profile = () => {
 
   const username = userData ? userData[0].username : null;
 
-  const [
-    deleteUser,
-    { isSuccess: deleteUserSuccess, isError: deleteUserError },
-  ] = useDeleteUserMutation();
-
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const handleDeleteUser = async () => {
-    await deleteUser({ username });
-    dispatch(apiSlice.util.resetApiState());
-    localStorage.removeItem("username");
-    navigate("/sign-in");
-  };
-
   const [newUsername, setNewusername] = useState("");
-  const [updateUsername] = useUpdateUsernameMutation();
+  const [updateUsername, { isSuccess }] = useUpdateUsernameMutation();
+  const [conflictMsg, setConflictMsg] = useState<null | string>(null);
 
-  const handleUpdateUsername = () => {
-    updateUsername({ username, newUsername });
+  const handleUpdateUsername = async () => {
+    const res: any = await updateUsername({ username, newUsername });
+    console.log(res);
+    if (res.error.status === 409) {
+      setConflictMsg("duplicated username");
+    }
   };
-
+  console.log(conflictMsg);
   const [editUsername, setEditUsername] = useState(false);
   const handleOpenEditUsername = () => {
     setEditUsername((prev) => !prev);
@@ -81,6 +75,9 @@ const Profile = () => {
                 <button onClick={handleUpdateUsername}>save</button>
               </EditUsernameContainer>
             ) : null}
+            <ValidationErrorMsg>
+              {isSuccess ? null : conflictMsg}
+            </ValidationErrorMsg>
           </UsernameContainer>
           <DeleteAccountBtn onClick={handleShowDeleteModal}>
             Delete account

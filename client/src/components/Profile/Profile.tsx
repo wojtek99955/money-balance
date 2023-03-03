@@ -70,7 +70,7 @@ const Profile = () => {
                 <input
                   type="text"
                   placeholder="new username"
-                  onChange={(e: any) => {
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setNewusername(e.target.value);
                   }}
                 />

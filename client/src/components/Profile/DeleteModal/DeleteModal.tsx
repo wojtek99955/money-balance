@@ -11,6 +11,7 @@ import {
   BtnContainer,
 } from "./DeleteModalStyle";
 import { useRef } from "react";
+import LoadingSpinner from "../../../assets/atoms/LoadingSpinner";
 
 interface Props {
   setShowDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,7 +23,11 @@ const DeleteModal = ({ setShowDeleteModal }: Props) => {
   const username = userData ? userData[0].username : null;
   const [
     deleteUser,
-    { isSuccess: deleteUserSuccess, isError: deleteUserError },
+    {
+      isSuccess: deleteUserSuccess,
+      isLoading: deleteLoading,
+      isError: deleteUserError,
+    },
   ] = useDeleteUserMutation();
 
   const dispatch = useDispatch();
@@ -65,7 +70,9 @@ const DeleteModal = ({ setShowDeleteModal }: Props) => {
         <h3>Are you sure?</h3>
         <BtnContainer>
           <Btn onClick={handleCloseModal}>No</Btn>
-          <Btn onClick={handleDeleteUser}>Yes</Btn>
+          <Btn onClick={handleDeleteUser}>
+            {deleteLoading ? <LoadingSpinner /> : "Yes"}
+          </Btn>
         </BtnContainer>
         <CloseIcon onClick={handleCloseModal} />
       </ModalContent>

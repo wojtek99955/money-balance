@@ -49,8 +49,26 @@ const GoalsDepositHistoryModal = ({
     setPage((prev) => prev + 1);
   };
 
-  console.log(goalsDepositHistory);
+  let content;
 
+  if (isLoading) {
+    content = <GoalsDepositHistoryLoader />;
+  }
+
+  if (goalsDepositHistory) {
+    content = goalsDepositHistory.payments.map((deposit: GoalPayment) => {
+      return (
+        <Deposit key={deposit._id}>
+          <span>{deposit.date}</span>
+          <strong>+ ${deposit.deposit}</strong>
+        </Deposit>
+      );
+    });
+  }
+
+  if (!goalsDepositHistory && !isLoading) {
+    content = <p>no depos yet</p>;
+  }
   return ReactDOM.createPortal(
     <Container
       ref={containerRef}
@@ -68,21 +86,7 @@ const GoalsDepositHistoryModal = ({
       >
         <h3>Deposit history</h3>
         <CloseIcon onClick={handleCloseModal} />
-        <PaymentsContainer>
-          {isLoading && <GoalsDepositHistoryLoader />}
-          {goalsDepositHistory ? (
-            goalsDepositHistory.payments.map((deposit: GoalPayment) => {
-              return (
-                <Deposit key={deposit._id}>
-                  <span>{deposit.date}</span>
-                  <strong>+ ${deposit.deposit}</strong>
-                </Deposit>
-              );
-            })
-          ) : (
-            <p>no depos yet</p>
-          )}
-        </PaymentsContainer>
+        <PaymentsContainer>{content}</PaymentsContainer>
         <PaginationBtns>
           <Button onClick={goPrevPage} disabled={page === 0}>
             prev

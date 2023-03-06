@@ -77,7 +77,7 @@ export const FormWrapper = styled.div`
 `;
 
 export const SvgContainer = styled.div`
-  width: 85%;
+  width: 140%;
   max-width: 700px;
   @media ${device.tablet} {
     display: block;
@@ -99,7 +99,7 @@ export const Description = styled.div`
   p {
     color: ${({ theme }) => theme.colors.grey};
     padding: 2rem 0;
-    width: 70%;
+    width: 100%;
     font-size: 1.1rem;
   }
   margin-bottom: 10rem;

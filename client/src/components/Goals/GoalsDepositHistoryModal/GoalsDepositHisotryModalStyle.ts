@@ -11,7 +11,7 @@ export const Container = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 105;
+  z-index: 110;
 `;
 
 export const Wrapper = styled(motion.div)`

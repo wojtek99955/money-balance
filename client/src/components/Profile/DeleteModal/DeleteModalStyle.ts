@@ -10,7 +10,7 @@ export const Container = styled(motion.div)`
   position: fixed;
   top: 0;
   display: flex;
-  z-index: 5;
+  z-index: 110;
   justify-content: center;
   align-items: center;
 `;
